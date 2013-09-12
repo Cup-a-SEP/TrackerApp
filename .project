@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-	<name>project</name>
-=======
-<<<<<<< HEAD
-	<name>project</name>
-=======
-	<name>GitTest2</name>
->>>>>>> 5108383f23804d067cccd62778bafb0aee2686e9
->>>>>>> origin/master
+	<name>Project2</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
-<<<<<<< HEAD
-	</buildSpec>
-	<natures>
-=======
-<<<<<<< HEAD
-	</buildSpec>
-	<natures>
-=======
 		<buildCommand>
 			<name>com.aptana.ide.core.unifiedBuilder</name>
 			<arguments>
@@ -29,7 +13,5 @@
 	</buildSpec>
 	<natures>
 		<nature>com.aptana.projects.webnature</nature>
->>>>>>> 5108383f23804d067cccd62778bafb0aee2686e9
->>>>>>> origin/master
 	</natures>
 </projectDescription>
