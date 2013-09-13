@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+	<title>OTP test</title>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="geocode.js"></script>
+	<script src="otp.js"></script>
+	
+	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<style type="text/css">
+		section {
+			width: 100%;
+		}
+		
+		input {
+			width: 75%;
+			float: right;
+		}
+		button, select {
+			float: right;
+		}
+		#plan {
+			margin-top: 3em;
+		}
+		.time {
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	<h1>OTP test</h1>
+	<section>
+		<form>
+			<p>
+				<label>Van: <input type="text" id="from"></label>
+				<input type="hidden" name="fromPlace">
+			</p>
+			<p>
+				<label>Naar: <input type="text" id="to"></label>
+				<input type="hidden" name="toPlace">
+			</p>
+			<p>
+				<label>Plan: <select name="arriveBy">
+					<option value="false">vertrek</option>
+					<option value="true">aankomst</option>
+				</select></label>
+			</p>
+			<p>
+				<label>Date: <input type="date" name="date"></label>
+			</p>
+			<p>
+				<label>Time: <input type="time" name="time"></label>
+			</p>
+			<p>
+				<label>Voorkeur: <select name="preferLeastTransfers">
+					<option value="false">snelste route</option>
+					<option value="true">minst aantal overstappen</option>
+				</select></label>
+			</p>
+			<p>
+				<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
+			</p>
+			<input type="submit" value="Plan">
+		</form>
+	</section>
+	
+	<section id="plan">
+	</section>
+	
+	<script>
+		
+		function addItinerary(itinerary)
+		{
+			var toAppend = '<h3><img src="../www/'
+			toAppend = toAppend.concat(itinerary.mode);
+			toAppend = toAppend.concat('.png" width="20" height="20"> ');
+			
+			// titel:
+			toAppend = toAppend.concat(itinerary.mode.toLowerCase()).concat(' ').concat(itinerary.route);
+			toAppend = toAppend.concat('<span class="time">');
+			
+			var startTime = new Date(itinerary.startTime);
+			var startHours = startTime.getHours();
+			var startMinutes = startTime.getMinutes();
+			var startTime2 = startHours + ':' + (startMinutes<10?'0':'') + startMinutes;
+			
+			var endTime = new Date(itinerary.endTime);
+			var endHours = endTime.getHours();
+			var endMinutes = endTime.getMinutes();
+			var endTime2 = endHours + ':' + (endMinutes<10?'0':'') + endMinutes;
+			
+			toAppend = toAppend.concat(startTime2).concat(' -> ').concat(endTime2);
+			toAppend = toAppend.concat('</span>');
+			toAppend = toAppend.concat('</h3><div>')
+			
+			// zichtbaar bij uitklappen:
+			toAppend = toAppend.concat(itinerary.from.name.concat(' -> ').concat(itinerary.to.name));
+			
+			toAppend = toAppend.concat('</div>');
+			$("#accordion").append(toAppend);
+			console.log(toAppend);
+		}
+		
+		$(function()
+		{
+			var dt = new Date().toJSON().split('T');
+			dt[1] = dt[1].split(':').slice(0,2).join(':');
+			$("input[name='date']").val(dt[0]);
+			$("input[name='time']").val(dt[1]);
+			
+			var from = $('#from');
+			from.blur(function()
+			{
+				Geocode(from.val(), function(coords)
+				{
+					$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
+				});
+				return false;
+			});
+			
+			var to = $('#to');
+			to.blur(function()
+			{
+				Geocode(to.val(), function(coords)
+				{
+					$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
+				});
+				return false;
+			});
+			
+			
+			var form = $('form');
+			form.submit(function()
+			{
+				var req = {};
+				$.each(form.serializeArray(), function(i, obj)
+				{
+					req[obj.name] = obj.value;
+				});
+				console.log(req);
+				
+				OTP.plan(req, function(data)
+				{
+					$('#plan').empty();
+					//console.log(data);
+					$("#plan").append('<div id="accordion"></div>');
+		
+					//console.log(data.plan.itineraries[0].legs);
+					for(var i = 0; i < data.plan.itineraries[0].legs.length; i++){
+						addItinerary(data.plan.itineraries[0].legs[i]);
+					}
+					$( "#accordion" ).accordion({collapsible:true});
+				});
+				
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>

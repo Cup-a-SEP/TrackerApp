@@ -8,6 +8,12 @@
         PhoneGap Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.AccelListener" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.Notification" />
+    </feature>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -48,4 +54,6 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <access origin="http://127.0.0.1*" />
+	<access origin="http://maps.googleapis.com"/>
+	<access origin="http://84.244.177.172"/>
 </widget>
