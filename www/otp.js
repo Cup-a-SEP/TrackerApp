@@ -20,7 +20,7 @@ var OTP = {};
 * @param {String}  bannedStopsHard             Geeft een lijst (cs) van haltes die niet gebruikt mogen worden voor het reisadvies. Deze haltes mogen niet gebruikt worden om in of uit te stappen en door heen te reizen. Notatie is agency_tripId,agency_tripId. Deze informatie kan uit een eerder geplande reis worden gehaald.
 */
 
-OTP.ServerPath = 'http://84.244.177.172/rest/v1.0/';
+OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 
 OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers)
 {
