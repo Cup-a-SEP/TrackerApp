@@ -105,10 +105,13 @@
 		
 		$(function()
 		{
-			var dt = new Date().toJSON().split('T');
-			dt[1] = dt[1].split(':').slice(0,2).join(':');
-			$("input[name='date']").val(dt[0]);
-			$("input[name='time']").val(dt[1]);
+			function pad(x) { x = x.toString(); return x.length < 2 ? '0' + x : x; }
+			
+			var dt = new Date();
+			var date = dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
+			var time = pad(dt.getHours()) + ':' + pad(dt.getMinutes());
+			$("input[name='date']").val(date);
+			$("input[name='time']").val(time);
 			
 			var from = $('#from');
 			from.blur(function()
