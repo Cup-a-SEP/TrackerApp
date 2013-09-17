@@ -33,14 +33,20 @@ OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, 
 	this.preferLeastTransfers = preferLeastTransfers;
 };
 
-OTP.plan = function OTPPlan(request, callback)
+OTP.plan = function OTPPlan(request)
 {
-	console.log('start plan');
-	$.getJSON(OTP.ServerPath + 'plan',
-	request, function(data)
+	var def = $.Deferred();
+	
+	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
-		// Todo: Format data
-		console.log('callback');
-		callback(data);
+		if (!data.error)
+			def.resolve(data.plan);
+		else
+			def.reject(data.error.id, data.error.msg);
+	}).fail(function(jqxhr, textStatus, error)
+	{
+		def.reject(textStatus, error);
 	});
+	
+	return def;
 };

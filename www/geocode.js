@@ -23,8 +23,8 @@ Geo.code = function Geocode(address)
 				def.reject('ZERO_RESULTS');
 			else
 			{
-				var addresses = data.results[0].address_components;
-				addresses = $.map(addresses, function(x) { return x.long_name; });
+				var addresses = data.results[0].formatted_address;//data.results[0].address_components;
+				//addresses = $.map(addresses, function(x) { return x.long_name; });
 				def.resolve(data.results[0].geometry.location, addresses);
 			}
 		}
@@ -52,8 +52,8 @@ Geo.decode = function Geodecode(latlng)
 	{
 		if (data.status == 'OK')
 		{
-			var addresses = data.results[0].address_components;
-			addresses = $.map(addresses, function(x) { return x.long_name; });
+			var addresses = data.results[0].formatted_address;//data.results[0].address_components;
+			//addresses = $.map(addresses, function(x) { return x.long_name; });
 			def.resolve(data.results[0].geometry.location, addresses);
 		}
 		else

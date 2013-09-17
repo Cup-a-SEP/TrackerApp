@@ -36,12 +36,12 @@
 			<p>
 				<label>Van: <input type="text" id="from"></label>
 				<input type="hidden" name="fromPlace">
-				<p id="fromName">...</p>
+				<div id="fromName">...</div>
 			</p>
 			<p>
 				<label>Naar: <input type="text" id="to"></label>
 				<input type="hidden" name="toPlace">
-				<p id="toName">...</p>
+				<div id="toName">...</div>
 			</p>
 			<p>
 				<label>Plan: <select name="arriveBy">
@@ -75,9 +75,7 @@
 		
 		function addItinerary(itinerary)
 		{
-			var toAppend = '<h3><img src="../www/'
-			toAppend = toAppend.concat(itinerary.mode);
-			toAppend = toAppend.concat('.png" width="20" height="20"> ');
+			var toAppend = '<h3><img src="../www/img/'+ itinerary.mode + '.png" width="20" height="20"> ';
 			
 			// titel:
 			toAppend = toAppend.concat(itinerary.mode.toLowerCase()).concat(' ').concat(itinerary.route);
@@ -118,22 +116,28 @@
 			var from = $('#from');
 			from.keypress(function(event)
 			{
-				Geo.code(from.val()).done(function(coords, name)
+				setTimeout(function()
 				{
-					console.log(coords, name);
-					$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
-					$('#fromName').text(name);
-				});
+					Geo.code(from.val()).done(function(coords, name)
+					{
+						console.log(coords, name);
+						$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
+						$('#fromName').text(name);
+					});
+				}, 0);
 			});
 			
 			var to = $('#to');
 			to.keypress(function()
 			{
-				Geo.code(to.val()).done(function(coords, name)
+				setTimeout(function()
 				{
-					$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
-					$('#toName').text(name);
-				});
+					Geo.code(to.val()).done(function(coords, name)
+					{
+						$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
+						$('#toName').text(name);
+					});
+				}, 0);
 			});
 			
 			
@@ -147,15 +151,15 @@
 				});
 				console.log(req);
 				
-				OTP.plan(req, function(data)
+				OTP.plan(req).done(function(data)
 				{
 					$('#plan').empty();
 					//console.log(data);
 					$("#plan").append('<div id="accordion"></div>');
 		
 					//console.log(data.plan.itineraries[0].legs);
-					for(var i = 0; i < data.plan.itineraries[0].legs.length; i++){
-						addItinerary(data.plan.itineraries[0].legs[i]);
+					for(var i = 0; i < data.itineraries[0].legs.length; i++){
+						addItinerary(data.itineraries[0].legs[i]);
 					}
 					$( "#accordion" ).accordion({collapsible:true});
 				});
