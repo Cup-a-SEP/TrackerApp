@@ -27,21 +27,22 @@
     </head>
     <body onload="onLoad()">
         <div class="app">
-            <h1>1337ov</h1>
+            <h1>Frits!</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Wait for it...</p>
                 <p class="event received">Ready to rumble!</p>
             </div>
 			<p><a href="plan.html">Plan je route!</a></p>
 			<p><a href="testdecoder.html">Test de JSON decoder!</a></p>
+			<p><a href="storage_test.html">Test Data Storage!</a></p>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script><!-- TODO: file does not exist-->
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            app.initialize();
-        </script>
         
-        <script language="Javascript">
+        //TODO: Dit hele ding verplaatsen naar een JS bestand....
+        app.initialize();
+
         // Wait for device API libraries to load
         //
         function onLoad() {
