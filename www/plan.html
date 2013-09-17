@@ -36,10 +36,12 @@
 			<p>
 				<label>Van: <input type="text" id="from"></label>
 				<input type="hidden" name="fromPlace">
+				<p id="fromName">...</p>
 			</p>
 			<p>
 				<label>Naar: <input type="text" id="to"></label>
 				<input type="hidden" name="toPlace">
+				<p id="toName">...</p>
 			</p>
 			<p>
 				<label>Plan: <select name="arriveBy">
@@ -114,23 +116,24 @@
 			$("input[name='time']").val(time);
 			
 			var from = $('#from');
-			from.blur(function()
+			from.keypress(function(event)
 			{
-				Geocode(from.val(), function(coords)
+				Geo.code(from.val()).done(function(coords, name)
 				{
+					console.log(coords, name);
 					$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
+					$('#fromName').text(name);
 				});
-				return false;
 			});
 			
 			var to = $('#to');
-			to.blur(function()
+			to.keypress(function()
 			{
-				Geocode(to.val(), function(coords)
+				Geo.code(to.val()).done(function(coords, name)
 				{
 					$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
+					$('#toName').text(name);
 				});
-				return false;
 			});
 			
 			
