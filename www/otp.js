@@ -22,15 +22,16 @@ var OTP = {};
 
 OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 
-OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers)
+OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers, mode)
 {
 	this.fromPlace = fromPlace;
 	this.toPlace = toPlace;
 	this.date = date;
 	this.time = time;
 	this.arriveBy = arriveBy;
-	this.wheelchair = cheelchair;
+	this.wheelchair = wheelchair;
 	this.preferLeastTransfers = preferLeastTransfers;
+	this.mode = mode;
 };
 
 OTP.plan = function OTPPlan(request)
