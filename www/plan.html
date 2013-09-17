@@ -3,6 +3,7 @@
 <head>
 	<title>OTP test</title>
 	<script src="jquery-1.8.3.min.js"></script>
+	<script src="system.js"></script>
 	<script src="geocode.js"></script>
 	<script src="otp.js"></script>
 	
@@ -100,18 +101,19 @@
 			
 			toAppend = toAppend.concat('</div>');
 			$("#accordion").append(toAppend);
-			console.log(toAppend);
 		}
 		
 		$(function()
 		{
-			function pad(x) { x = x.toString(); return x.length < 2 ? '0' + x : x; }
-			
-			var dt = new Date();
-			var date = dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
-			var time = pad(dt.getHours()) + ':' + pad(dt.getMinutes());
-			$("input[name='date']").val(date);
-			$("input[name='time']").val(time);
+			$("input[name='date']").val(System.getDate());
+			$("input[name='time']").val(System.getTime());
+			System.getLocation().done(function(coords)
+			{
+				Geo.decode(coords).done(function(coords, name)
+				{
+					from.val(name);
+				});
+			});
 			
 			var from = $('#from');
 			from.keypress(function(event)
@@ -120,8 +122,7 @@
 				{
 					Geo.code(from.val()).done(function(coords, name)
 					{
-						console.log(coords, name);
-						$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
+						$("input[name='fromPlace']").val(coords);
 						$('#fromName').text(name);
 					});
 				}, 0);
@@ -134,7 +135,7 @@
 				{
 					Geo.code(to.val()).done(function(coords, name)
 					{
-						$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
+						$("input[name='toPlace']").val(coords);
 						$('#toName').text(name);
 					});
 				}, 0);
@@ -149,7 +150,6 @@
 				{
 					req[obj.name] = obj.value;
 				});
-				console.log(req);
 				
 				OTP.plan(req).done(function(data)
 				{
