@@ -11,20 +11,10 @@ storeData = function(tx, tableName, data) {
 	tx.executeSql(sqlquery);
 };
 
-onDeviceReady = function () {
-	console.log('Device ready (storage test');
-	//storeData('DEMO', {a:1,b:2,c:3});
-	
+
+storageTest = function () {
+
 	var db = window.openDatabase("Database", "1.0", "Frits Storage Demo 1", 1000);
-
-
-	db.transaction(function(tx) {
-//			tx.executeSql('DROP TABLE IF EXISTS DEMO');
-	    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)');
-		}, 
-		errorCB, 
-		successCB
-	);
 
 	db.transaction(function(tx) {
 			storeData(tx, 'DEMO', {a:1,b:2,c:3});
@@ -35,6 +25,24 @@ onDeviceReady = function () {
 	
 	db.transaction(queryDB, errorCB);	
 
+};
+
+onDeviceReady = function () {
+	console.log('Device ready (storage test');
+	//storeData('DEMO', {a:1,b:2,c:3});
+};
+	
+resetTable = function () {
+
+	var db = window.openDatabase("Database", "1.0", "Frits Storage Demo 1", 1000);
+
+	db.transaction(function(tx) {
+			tx.executeSql('DROP TABLE IF EXISTS DEMO');
+	    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)');
+		}, 
+		errorCB, 
+		successCB
+	);
 };
 document.addEventListener("deviceready", onDeviceReady, false);
 

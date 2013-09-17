@@ -22,25 +22,32 @@ var OTP = {};
 
 OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 
-OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers)
+OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers, mode)
 {
 	this.fromPlace = fromPlace;
 	this.toPlace = toPlace;
 	this.date = date;
 	this.time = time;
 	this.arriveBy = arriveBy;
-	this.wheelchair = cheelchair;
+	this.wheelchair = wheelchair;
 	this.preferLeastTransfers = preferLeastTransfers;
+	this.mode = mode;
 };
 
-OTP.plan = function OTPPlan(request, callback)
+OTP.plan = function OTPPlan(request)
 {
-	console.log('start plan');
-	$.getJSON(OTP.ServerPath + 'plan',
-	request, function(data)
+	var def = $.Deferred();
+	
+	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
-		// Todo: Format data
-		console.log('callback');
-		callback(data);
+		if (!data.error)
+			def.resolve(data.plan);
+		else
+			def.reject(data.error.id, data.error.msg);
+	}).fail(function(jqxhr, textStatus, error)
+	{
+		def.reject(textStatus, error);
 	});
+	
+	return def;
 };

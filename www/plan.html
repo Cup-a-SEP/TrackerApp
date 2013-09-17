@@ -3,6 +3,7 @@
 <head>
 	<title>OTP test</title>
 	<script src="jquery-1.8.3.min.js"></script>
+	<script src="system.js"></script>
 	<script src="geocode.js"></script>
 	<script src="otp.js"></script>
 	
@@ -36,10 +37,12 @@
 			<p>
 				<label>Van: <input type="text" id="from"></label>
 				<input type="hidden" name="fromPlace">
+				<div id="fromName">...</div>
 			</p>
 			<p>
 				<label>Naar: <input type="text" id="to"></label>
 				<input type="hidden" name="toPlace">
+				<div id="toName">...</div>
 			</p>
 			<p>
 				<label>Plan: <select name="arriveBy">
@@ -73,9 +76,7 @@
 		
 		function addItinerary(itinerary)
 		{
-			var toAppend = '<h3><img src="../www/'
-			toAppend = toAppend.concat(itinerary.mode);
-			toAppend = toAppend.concat('.png" width="20" height="20"> ');
+			var toAppend = '<h3><img src="../www/img/'+ itinerary.mode + '.png" width="20" height="20"> ';
 			
 			// titel:
 			toAppend = toAppend.concat(itinerary.mode.toLowerCase()).concat(' ').concat(itinerary.route);
@@ -100,37 +101,44 @@
 			
 			toAppend = toAppend.concat('</div>');
 			$("#accordion").append(toAppend);
-			console.log(toAppend);
 		}
 		
 		$(function()
 		{
-			function pad(x) { x = x.toString(); return x.length < 2 ? '0' + x : x; }
-			
-			var dt = new Date();
-			var date = dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
-			var time = pad(dt.getHours()) + ':' + pad(dt.getMinutes());
-			$("input[name='date']").val(date);
-			$("input[name='time']").val(time);
+			$("input[name='date']").val(System.getDate());
+			$("input[name='time']").val(System.getTime());
+			System.getLocation().done(function(coords)
+			{
+				Geo.decode(coords).done(function(coords, name)
+				{
+					from.val(name);
+				});
+			});
 			
 			var from = $('#from');
-			from.blur(function()
+			from.keypress(function(event)
 			{
-				Geocode(from.val(), function(coords)
+				setTimeout(function()
 				{
-					$("input[name='fromPlace']").val(''+coords.lat+','+coords.lng);
-				});
-				return false;
+					Geo.code(from.val()).done(function(coords, name)
+					{
+						$("input[name='fromPlace']").val(coords);
+						$('#fromName').text(name);
+					});
+				}, 0);
 			});
 			
 			var to = $('#to');
-			to.blur(function()
+			to.keypress(function()
 			{
-				Geocode(to.val(), function(coords)
+				setTimeout(function()
 				{
-					$("input[name='toPlace']").val(''+coords.lat+','+coords.lng);
-				});
-				return false;
+					Geo.code(to.val()).done(function(coords, name)
+					{
+						$("input[name='toPlace']").val(coords);
+						$('#toName').text(name);
+					});
+				}, 0);
 			});
 			
 			
@@ -142,17 +150,16 @@
 				{
 					req[obj.name] = obj.value;
 				});
-				console.log(req);
 				
-				OTP.plan(req, function(data)
+				OTP.plan(req).done(function(data)
 				{
 					$('#plan').empty();
 					//console.log(data);
 					$("#plan").append('<div id="accordion"></div>');
 		
 					//console.log(data.plan.itineraries[0].legs);
-					for(var i = 0; i < data.plan.itineraries[0].legs.length; i++){
-						addItinerary(data.plan.itineraries[0].legs[i]);
+					for(var i = 0; i < data.itineraries[0].legs.length; i++){
+						addItinerary(data.itineraries[0].legs[i]);
 					}
 					$( "#accordion" ).accordion({collapsible:true});
 				});

@@ -17,6 +17,9 @@
     <feature name="Storage">
 			<param name="android-package" value="org.apache.cordova.Storage" />
 		</feature>
+    <feature name="Geolocation">
+    	<param name="android-package" value="org.apache.cordova.GeoBroker" />
+		</feature>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
