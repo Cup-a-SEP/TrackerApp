@@ -1,37 +1,48 @@
-//Supported Platforms:
-//	Android
-//	BlackBerry WebWorks (OS 6.0 and higher)
-//	iPhone
-//source: http://docs.phonegap.com/en/1.2.0/phonegap_storage_storage.md.html
+//Storage functions
 
+storeData = function(tx, tableName, data) {
+	var keys = '', els = '';
+	$.each(data, function (key, el) {
+		keys += ', `' + key + '`';
+		els += ', \'' + el + '\'';
+	});
+	
+	var sqlquery = 'INSERT INTO ' + tableName + ' (' + keys.substring(2) + ') VALUES (' + els.substring(2) + ')';
+	tx.executeSql(sqlquery);
+};
 
 onDeviceReady = function () {
-	alert('device ready');
-	console.log('OPVALLEND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-	storageTest();
+	console.log('Device ready (storage test');
+	//storeData('DEMO', {a:1,b:2,c:3});
+	
+	var db = window.openDatabase("Database", "1.0", "Frits Storage Demo 1", 1000);
+
+
+	db.transaction(function(tx) {
+//			tx.executeSql('DROP TABLE IF EXISTS DEMO');
+	    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)');
+		}, 
+		errorCB, 
+		successCB
+	);
+
+	db.transaction(function(tx) {
+			storeData(tx, 'DEMO', {a:1,b:2,c:3});
+		}, 
+		errorCB, 
+		successCB
+	);
+	
+	db.transaction(queryDB, errorCB);	
+
 };
 document.addEventListener("deviceready", onDeviceReady, false);
 
-	
-function storageTest() {
 
-	var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-	db.transaction(populateDB, errorCB, successCB);
-	
-	alert('DB Filled');
-	db.transaction(queryDB, errorCB);
-}
-
-
-function populateDB(tx) {
-	tx.executeSql('DROP TABLE IF EXISTS DEMO');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-}
 
 function errorCB(err) {
 	alert("Error processing SQL: "+err.code);
+	console.log(err);
 }
 
 function successCB() {
@@ -44,10 +55,9 @@ function queryDB(tx) {
 }
 
 function querySuccess(tx, results) {
-	// this will be empty since no rows were inserted.
-	console.log("Insert ID = " + results.insertId); //TODO: Error here in android (adb logcat | grep 'Web Console')
-	// this will be 0 since it is a select statement
-	console.log("Rows Affected = " + results.rowAffected);
-	// the number of rows returned by the select statement
-	console.log("Insert ID = " + results.rows.length);
+	var len = results.rows.length;
+	console.log("DEMO table: " + len + " rows found.");
+	for (var i=0; i<len; i++){
+		console.log("Row = " + i + " ID = " + results.rows.item(i).id + " a =  " + results.rows.item(i).a + " b =  " + results.rows.item(i).b + " c =  " + results.rows.item(i).c);
+	}
 }
