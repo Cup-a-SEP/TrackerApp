@@ -1,8 +1,7 @@
 //Storage functions
 
-var LocalDBObj = new LocalDB({arg1: 'blaat', arg2: 'bloot'});
-console.log('blaat');
-
+var LocalDBObj = new LocalDB('jemoeder');
+console.log(LocalDBObj);
 
 storeData = function(tx, tableName, data) {
 	var keys = '', els = '';
