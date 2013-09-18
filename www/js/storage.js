@@ -1,5 +1,9 @@
 //Storage functions
 
+var LocalDBObj = new LocalDB({arg1: 'blaat', arg2: 'bloot'});
+console.log('blaat');
+
+
 storeData = function(tx, tableName, data) {
 	var keys = '', els = '';
 	$.each(data, function (key, el) {
