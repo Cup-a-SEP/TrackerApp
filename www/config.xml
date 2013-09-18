@@ -62,4 +62,5 @@
     <access origin="http://127.0.0.1*" />
 	<access origin="http://maps.googleapis.com"/>
 	<access origin="http://b-direct.cup-a-sep.nl"/>
+	<access origin="http://*.openstreetmap.org"/>
 </widget>
