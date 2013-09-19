@@ -1234,8 +1234,8 @@ body {
 	border-radius: 15px;
 	color: red;
 	background-color: #F5EED5;
-	padding-left: 4px;
-	padding-right: 4px;
+	padding-left: -1px;
+	padding-right: -1px;
 	box-shadow: inset 0 0 10px #FF73F6;
 }
 
