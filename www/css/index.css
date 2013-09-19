@@ -109,3 +109,91 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+#header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 47px;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 8px 0px red;
+	-moz-box-shadow: 0px 0px 8px 0px blue;
+	box-shadow: 0px 0px 8px 0px #000000;
+	background-color: #C7ED5F;
+	color: #358219;
+	font-family: verdana;
+	font-size: 20px;
+		box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				inset;
+  	border: 1px black solid;
+}
+
+#vraagteken {
+	border: 1px #09363B solid;
+	border-radius: 15px;
+	color: #FFFFFF;
+	background-color: #24C0D1;
+	padding-left: 7px;
+	padding-right: 7px;
+	box-shadow:inset 0 0 10px #167782;
+}
+
+#fav {
+	border: 1px #CC3535 solid;
+	border-radius: 15px;
+	color: red;
+	background-color: #F5EED5;
+	padding-left: -1px;
+	padding-right: -1px;
+	box-shadow: inset 0 0 10px #FF73F6;
+}
+
+#left {
+	padding: 5px;
+	margin: 5px;
+	float: left;
+}
+
+#center {
+	
+	font-size: 40px;
+}
+#right {
+	float: right;
+	padding: 5px;
+	margin: 5px;
+}
+
+.button {
+	border: 1px #358219 solid;
+	text-decoration: none;
+	border-radius: 15px;
+	background-color: #C7ED5F;
+	box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				inset;
+}
+
+.button a {
+	text-decoration: none;
+		color: #358219;
+}
+
+.button a:active {
+
+}
+
+.button:active {
+	box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#DDEDB2
+  				inset;
+}
+
+
+
+
