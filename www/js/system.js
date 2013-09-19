@@ -5,7 +5,7 @@ var System = {};
  */
 System.getTime = function SystemGetTime()
 {
-	function pad(x) { x = x.toString(); return x.length < 2 ? '0' + x : x; }
+	function pad(x) { return x < 10 ? '0' + x : x; }
 	var dt = new Date();
 	return pad(dt.getHours()) + ':' + pad(dt.getMinutes());
 };
@@ -15,7 +15,7 @@ System.getTime = function SystemGetTime()
  */
 System.getDate = function SystemGetDate()
 {
-	function pad(x) { x = x.toString(); return x.length < 2 ? '0' + x : x; }
+	function pad(x) { return x < 10 ? '0' + x : x; }
 	var dt = new Date();
 	return dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
 };
