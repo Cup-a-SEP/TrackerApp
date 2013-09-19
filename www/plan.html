@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>OTP test</title>
+	<meta charset="utf-8"/>
 	<script src="jquery-1.8.3.min.js"></script>
 	<script src="system.js"></script>
 	<script src="geocode.js"></script>
@@ -31,40 +32,42 @@
 	</style>
 </head>
 <body>
-	<h1>OTP test</h1>
+	<div id="header">	<span id="left">| <span id="back">&#9668;</span> | <span id="fav">&hearts;</span> |</span>  
+						<span id="center">Frits &#9786;</span> 
+						<span id="right">| Tandwiel | <span id="vraagteken">?</span> |</span></div>
 	<section>
-		<form>
-			<p>
+		<form class="headerbuffer">
+			<div class="licht">
 				<label>Van: <input type="text" id="from"></label>
-				<input type="hidden" name="fromPlace">
-				<div id="fromName">...</div>
-			</p>
-			<p>
+				<input type="hidden" name="fromPlace"><p>
+				<div id="fromName" class="donker">...</div>
+			</div>
+			<div class="donker">
 				<label>Naar: <input type="text" id="to"></label>
-				<input type="hidden" name="toPlace">
-				<div id="toName">...</div>
-			</p>
-			<p>
+				<input type="hidden" name="toPlace"><p>
+				<div id="toName" class="licht">...</div>
+			</div>
+			<div class="licht">
 				<label>Plan: <select name="arriveBy">
 					<option value="false">vertrek</option>
 					<option value="true">aankomst</option>
 				</select></label>
-			</p>
-			<p>
+			</div>
+			<div class="donker">
 				<label>Date: <input type="date" name="date"></label>
-			</p>
-			<p>
+			</div>
+			<div class="licht">
 				<label>Time: <input type="time" name="time"></label>
-			</p>
-			<p>
+			</div>
+			<div class="donker">
 				<label>Voorkeur: <select name="preferLeastTransfers">
 					<option value="false">snelste route</option>
 					<option value="true">minst aantal overstappen</option>
 				</select></label>
-			</p>
-			<p>
+			</div>
+			<div class="licht">
 				<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
-			</p>
+			</div>
 			<input type="submit" value="Plan">
 		</form>
 	</section>
