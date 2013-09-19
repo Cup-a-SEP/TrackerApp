@@ -4,3 +4,4 @@
 build-tools
 .gitignore
 .project
+*.db
