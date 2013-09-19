@@ -1,0 +1,1 @@
+yuidoc -o docs -x OpenLayers,lib .
