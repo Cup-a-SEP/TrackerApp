@@ -7,7 +7,7 @@
 var LocalDB = Class.create({
 	
 	//Constants
-	cDefaultDbVersion: 1, //When DB Version is not specified, use this value. 
+	cDefaultDbVersion: 2, //When DB Version is not specified, use this value. 
 	
 	
 	//Properties
@@ -15,6 +15,8 @@ var LocalDB = Class.create({
 	pDbo: undefined,
 	pTableName: undefined,
 	pError: false,
+	
+	dbResultCallback: undefined,
 	
 	//Methods
 	
@@ -43,8 +45,7 @@ var LocalDB = Class.create({
 		
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
-			console.log('try shit');
-			this.pDbo = window.openDatabase("FritsOVLocalDatabase2", '3', "FritsOV Local Database", 1000, onDBCreate);
+			this.pDbo = window.openDatabase("FritsOVLocalDatabase2", this.pDbVersion, "FritsOV Local Database", 1000, onDBCreate);
 		} catch (e) {
 			//(Most likely) database version mismatch
 			if (e.code == 11) {
@@ -61,14 +62,30 @@ var LocalDB = Class.create({
 	 * Select a single row from the current table
 	 * 
 	 * @param {int} id Row ID in the database table
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	select: function(id, dbResultCallback) {
+	selectOne: function(id, dbResultCallback) {
 		//TODO
 		
 		
-		//tx.executeSql('SELECT * FROM ' + this.pTablename + ' WHERE id=\'' + id + '\'', [], querySuccess, errorCB);
-		var sqlquery = 'SELECT * FROM ' + this.pTablename + ' WHERE id=\'' + id + '\'';
+		//tx.executeSql('SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'', [], querySuccess, errorCB);
+		var sqlquery = 'SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'';
+		
+		return this.query(sqlquery, dbResultCallback);
+	},
+	
+	/**
+	 * Select a single row from the current table
+	 * 
+	 * @param {int} limit Limit of the amount of rows returned. A value of -1 disables the limit.
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 */	
+	selectAll: function(limit, dbResultCallback) {
+		//TODO
+		
+		
+		//tx.executeSql('SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'', [], querySuccess, errorCB);
+		var sqlquery = 'SELECT * FROM ' + this.pTableName + (limit > -1) ? (' LIMIT ' + limit + '\'') : '';
 		
 		return this.query(sqlquery, dbResultCallback);
 	},
@@ -77,7 +94,7 @@ var LocalDB = Class.create({
 	 * Select rows from the current table that match a certain value for a certain column
 	 * 
 	 * @param {object} values Column-value pairs to search for in the database
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
 	search: function(values, dbResultCallback) {
 		//TODO
@@ -87,49 +104,53 @@ var LocalDB = Class.create({
 	 * Inserts a row into the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
 	insert: function(values, dbResultCallback) {		
 		var cols = '', vals = '';
-		$.each(values, function (col, val) {
+		jQuery.each(values, function (col, val) {
 			cols += ', `' + col + '`';
 			vals += ', \'' + val + '\'';
 		});
+		//console.log(values);
 		
-		var sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
+		
+		//this.query('CREATE TABLE IF NOT EXISTS jemoeder (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)', function() {console.log('blaat');});
+
+		var sqlquery = 'INSERT INTO ' + this.pTableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
 		
 		return this.query(sqlquery, dbResultCallback);
 	},
 
 
 	/**
-	 * Inserts a row into the current table.
+	 * Updates a row in the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	update: function(values, dbResultCallback) {		
+	update: function(id, values, dbResultCallback) {		
 		var cols = '', vals = '';
-		$.each(values, function (col, val) {
+		jQuery.each(values, function (col, val) {
 			cols += ', `' + col + '`';
 			vals += ', \'' + val + '\'';
 		});
 		
-		var sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
+		//TODOvar sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
 		
 		return this.query(sqlquery, dbResultCallback);
 	},
 	
 
 	/**
-	 * Inserts a row into the current table.
+	 * Deletes a row into the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	insert: function(values, dbResultCallback) {		
+	/*insert: function(values, dbResultCallback) {		
 		var cols = '', vals = '';
-		$.each(values, function (col, val) {
+		jQuery.each(values, function (col, val) {
 			cols += ', `' + col + '`';
 			vals += ', \'' + val + '\'';
 		});
@@ -137,27 +158,43 @@ var LocalDB = Class.create({
 		var sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
 		
 		return this.query(sqlquery, dbResultCallback);
-	},
+	},*/
 
 	/**
 	 * Perform a query on the database. Disregards current table.
 	 * 
 	 * @param {String} sqlQuery The query to be executed
-	 * @param {function(LocalDBResult object)} dbResltCallback Callback function called on completion of the query
+	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
 	query: function(sqlQuery, dbResultCallback) {
-		if (!$this.pError) {
-			db.transaction(
+		
+		if (!this.pError) {
+			
+			if ('function' == typeof dbResultCallback) {
+				var requestCallback = dbResultCallback;
+			} else {
+				var requestCallback = function(){};
+			}
+			
+			var queryExecuteCallback = function(tx, result) {
+				var localDBResultObj = new LocalDBResult(sqlQuery, result);
+				requestCallback(localDBResultObj);
+			};
+			
+			this.dbResultCallback = dbResultCallback;
+			this.pDbo.transaction(
 				function(tx) { //Transaction function
-					tx.executeSql(sqlQuery);
+					tx.executeSql(sqlQuery, [], queryExecuteCallback);
+					console.log(sqlQuery);
 				}, 
 				function(err) { //Error function
 					console.log(err);
 				}, 
 				function() { //Success function
-					LocalDBResultObj = new LocalDBResult();
-					dbResultCallback(LocalDBResultObj);
-				}
+					console.log('success');
+					//var localDBResultObj = new LocalDBResult(false);
+					//this(localDBResultObj);
+				}//.bind(callback)
 			);
 		}
 	},
@@ -200,27 +237,19 @@ var LocalDBResult = Class.create({
 	
 	
 	//Properties
-	pDbVersion: undefined,
-	pDbo: undefined,
-	pTableName: undefined,
-	pError: false,
-	
-	pValue: undefined,
+	pResultDataObj: undefined,
+	pSqlQuery: undefined,
 	
 	//Methods
 	
 	/**
 	 * Initialize a LocalDB instance for a specified table and database structure version
 	 * 
-	 * @param {String} tableName Name of the table to connect to
+	 * @param {bool} isSelectQuery Is this the result based on a SELECT query or not
 	 * @param {String} dbVersion Version of the data structure expected on the device
 	 */
-	initialize: function(tableName, dbVersion) {
-		this.pValue = 'test!';
-		
-	
+	initialize: function(sqlQuery, resultData) {
+		this.pSqlQuery = sqlQuery;
+		this.pResultData = resultData;	
 	},
-
-	
 });
-

@@ -1,11 +1,16 @@
 //Storage functions
 
 var LocalDBObj = new LocalDB('jemoeder');
-console.log(LocalDBObj);
+//console.log(LocalDBObj);
+
+
+LocalDBObj.insert({a:1,b:2});
+
+LocalDBObj.selectOne(1, function(localDbResultObj) { console.log(localDbResultObj); });
 
 storeData = function(tx, tableName, data) {
 	var keys = '', els = '';
-	$.each(data, function (key, el) {
+	jQuery.each(data, function (key, el) {
 		keys += ', `' + key + '`';
 		els += ', \'' + el + '\'';
 	});
@@ -17,10 +22,9 @@ storeData = function(tx, tableName, data) {
 
 storageTest = function () {
 
-	var db = window.openDatabase("Database", "1.0", "Frits Storage Demo 1", 1000);
-
+window.openDatabase("FritsOVLocalDatabase2", this.pDbVersion, "FritsOV Local Database", 1000, onDBCreate);
 	db.transaction(function(tx) {
-			storeData(tx, 'DEMO', {a:1,b:2,c:3});
+			storeData(tx, 'jemoeder', {a:1,b:2,c:3});
 		}, 
 		errorCB, 
 		successCB
@@ -32,16 +36,16 @@ storageTest = function () {
 
 onDeviceReady = function () {
 	console.log('Device ready (storage test');
-	//storeData('DEMO', {a:1,b:2,c:3});
+	//storeData('jemoeder', {a:1,b:2,c:3});
 };
 	
 resetTable = function () {
 
-	var db = window.openDatabase("Database", "1.0", "Frits Storage Demo 1", 1000);
+	var db = window.openDatabase("Database", "1.0", "Frits Storage jemoeder 1", 1000);
 
 	db.transaction(function(tx) {
-			tx.executeSql('DROP TABLE IF EXISTS DEMO');
-	    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)');
+			tx.executeSql('DROP TABLE IF EXISTS jemoeder');
+	    tx.executeSql('CREATE TABLE IF NOT EXISTS jemoeder (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)');
 		}, 
 		errorCB, 
 		successCB
@@ -62,12 +66,12 @@ function successCB() {
 
 
 function queryDB(tx) {
-	tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM jemoeder', [], querySuccess, errorCB);
 }
 
 function querySuccess(tx, results) {
 	var len = results.rows.length;
-	console.log("DEMO table: " + len + " rows found.");
+	console.log("jemoeder table: " + len + " rows found.");
 	for (var i=0; i<len; i++){
 		console.log("Row = " + i + " ID = " + results.rows.item(i).id + " a =  " + results.rows.item(i).a + " b =  " + results.rows.item(i).b + " c =  " + results.rows.item(i).c);
 	}
