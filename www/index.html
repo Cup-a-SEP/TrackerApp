@@ -25,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Frits</title>
     </head>
-    <body onload="onLoad(); return false;">
+    <body>
     	<div id="header"><span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
 						<span id="center">Frits</span> 
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
@@ -49,10 +49,7 @@
 
         // Wait for device API libraries to load
         //
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-            console.log("Test 1");
-        }
+        document.addEventListener("deviceready", onDeviceReady, false);
 
         ///////////////////////////////// ACCELERATION /////////////////////////////////////
         // The watch id references the current `watchAcceleration`
