@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+	<title>OTP test</title>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/otp.js"></script>
+	
+	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<style type="text/css">
+		section {
+			width: 100%;
+		}
+		
+		input {
+			width: 90%;
+			float: middle;
+		}
+		button, select {
+			float: right;
+		}
+		#plan {
+			margin-top: 3em;
+		}
+		.time {
+			float:right;
+		}
+		.suggestion {
+			margin-top: 10px;
+			font-size: 2em;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<h1>Waar wil je naartoe?</h1>
+	<section>
+		<p>
+			<label><input type="text" id="loc"></label>
+			<input type="hidden" name="location">
+		</p>
+	</section>
+	
+	<section>
+	    <div id="suggestion1" style="margin-bottom:4px;" class="clonedInput" name="Goog">Google optie
+	    </div>
+	</section>
+	<script>
+		
+		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"];
+		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"];
+		var totalPositions = 5; // changing this will result in errors!
+		
+		function LsteinDistance(s, t, delCost, insCost, subsCost) // from s to t
+		{
+			var d = new Array(s.length + 1);
+			for(var i = 0; i < d.length; i++){
+				d[i] = new Array(t.length + 1);
+			}
+			d[0][0] = 0;
+			for (var i = 1; i <= s.length; i++){
+				d[i][0] = i*delCost;
+			}
+			for(var i = 1; i <= t.length; i++){
+				d[0][i] = i*insCost;
+			}
+			for(var j = 1; j <= t.length; j++){
+				for(var i = 1; i <= s.length; i++){
+					if(s.charAt(i-1) == t.charAt(j-1)){
+						d[i][j] = d[i-1][j-1];
+					} else {
+						d[i][j] = Math.min(d[i-1][j] + delCost, Math.min(d[i][j-1]+insCost, d[i-1][j-1] + subsCost));
+					}
+				}
+			}
+			return d[s.length][t.length];
+		}
+		
+		function addSuggestion(id, location){
+            var num     = new Number(1);
+            var newNum  = new Number(id);
+
+            var newElem = $('#suggestion' + num).clone().attr('id', 'suggestion' + newNum);
+     		newElem.html("<div class=\"suggestion\">"+ location + "</div>");
+            $('#suggestion' + num).after(newElem);
+		}
+		
+		function changeSuggestion(id, location){
+            var elem = $('#suggestion' + id);
+     		elem.html("<div class=\"suggestion\">"+ location + "</div>");
+		}
+		
+		function setVisibleSuggestion(id, vis){
+			var elem = $('#suggestion' + id);
+			if(vis){
+				elem.show();
+			} else {
+				elem.hide();
+			}
+		}
+		
+		function updateSuggestions(){
+			var maxTolerance = 3;
+			var delCost = 2;
+			var insCost = 0;
+			var subsCost = 1;
+			
+			var curTyped = $('#loc').val();
+			
+			//current location already up to date (assuming user does not move)
+			
+			//google location
+			var loc = $('#loc');
+			setTimeout(function()
+			{
+				Geo.code(loc.val()).done(function(coords, name)
+				{
+					$("input[name='location']").val(coords);
+					changeSuggestion(1,name);
+					setVisibleSuggestion(1,true);
+				}).fail(function(code,message){
+					setVisibleSuggestion(1,false);
+				});
+			}, 0);
+			
+			//favorites
+			var LsteinDistances = new Array();
+			var minDist = 1000;
+			for(var i = 0; i < favorites.length; i++){
+				LsteinDistances[i] = LsteinDistance(curTyped, favorites[i], delCost, insCost, subsCost);
+				if(minDist > LsteinDistances[i]){
+					minDist = LsteinDistances[i];
+				}
+			}
+			
+			var filled = 0;
+			while(filled < 5 && minDist <= maxTolerance){
+				for(var i = 0; i < favorites.length; i++){
+					if(LsteinDistances[i] == minDist && filled < 5){
+						changeSuggestion(filled+2,LsteinDistances[i] + " " + favorites[i]);
+						setVisibleSuggestion(filled+2,true);
+						filled ++;
+					}
+				}
+				minDist ++;
+				if(filled == favorites.length){
+					break;
+				}
+			}
+			for(var i = filled; i < 5; i++){
+				setVisibleSuggestion(i+2,false);
+			}
+			
+			//previously used
+			var positionsLeft = totalPositions-filled;
+			
+			LsteinDistances = new Array();
+			minDist = 1000;
+			for(var i = 0; i < prevused.length; i++){
+				LsteinDistances[i] = LsteinDistance(curTyped, prevused[i], delCost, insCost, subsCost);
+				if(minDist > LsteinDistances[i]){
+					minDist = LsteinDistances[i];
+				}
+			}
+			
+			filled = 0;
+			while(filled < positionsLeft && minDist <= maxTolerance){
+				for(var i = 0; i < prevused.length; i++){
+					if(LsteinDistances[i] == minDist && filled < 5){
+						changeSuggestion(filled+7,LsteinDistances[i] + " " + prevused[i]);
+						setVisibleSuggestion(filled+7,true);
+						filled ++;
+					}
+				}
+				minDist ++;
+				if(filled == prevused.length){
+					break;
+				}
+			}
+			for(var i = filled; i < 5; i++){
+				setVisibleSuggestion(i+7,false);
+			}
+			
+		}
+		
+		$(function()
+		{
+			
+			System.getLocation().done(function(coords)
+			{
+				Geo.decode(coords).done(function(coords, name)
+				{
+					changeSuggestion(12,name);
+					setVisibleSuggestion(12,true);
+				});
+			});
+			
+			addSuggestion(12,"Huidige locatie");
+			setVisibleSuggestion(12,false);
+			
+			addSuggestion(11,"Gebruikt 5");
+			addSuggestion(10,"Gebruikt 4");
+			addSuggestion(9,"Gebruikt 3");
+			addSuggestion(8,"Gebruikt 2");
+			addSuggestion(7,"Gebruikt 1");
+			
+			addSuggestion(6,"Fav 5");
+			addSuggestion(5,"Fav 4");
+			addSuggestion(4,"Fav 3");
+			addSuggestion(3,"Fav 2");
+			addSuggestion(2,"Fav 1");
+			
+			updateSuggestions();
+			//removeSuggestion(2);
+			//removeSuggestion(2);
+			/*System.getLocation().done(function(coords)
+			{
+				Geo.decode(coords).done(function(coords, name)
+				{
+					from.val(name);
+				});
+			});*/
+			
+			var loc = $('#loc');
+			loc.keypress(function(event)
+			{
+				updateSuggestions();
+			});
+			
+			var form = $('form');
+			form.submit(function()
+			{
+				updateSuggestions();
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
