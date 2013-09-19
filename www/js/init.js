@@ -12,5 +12,6 @@ document.addEventListener('deviceready',function onDeviceReady()
  */
 function onBackButton()
 {
+	console.log('The user want\'s to go back...');
 	history.back();
 }
