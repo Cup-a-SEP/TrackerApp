@@ -128,6 +128,7 @@ h1 {
   				-10px /* spread */
   				inset;
   	border: 1px black solid;
+  	text-transform: none;
 }
 
 #vraagteken {
@@ -193,7 +194,23 @@ h1 {
   				#DDEDB2
   				inset;
 }
+.headerbuffer p {
+	width: 70%;
+	float: middle;
+	margin: auto;
+	margin-bottom: 15px;
+}
 
 
+.headerbuffer {
+	margin-top: 68px;
+	text-align: center;
+	text-transform: none;
+	font-family: Helvetica;
+}
+
+#headertekst {
+	color: #3D4036;
+}
 
 
