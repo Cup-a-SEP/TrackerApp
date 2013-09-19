@@ -84,9 +84,7 @@ Geo.decode = function Geodecode(latlng)
 	return def;
 };
 
-/**
-*
-*/
+
 Geo.filterCountry = function(result, country)
 {
 	return $.grep(result, function(x)

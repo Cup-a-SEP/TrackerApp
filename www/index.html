@@ -25,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Frits</title>
     </head>
-    <body onload="onLoad()">
+    <body onload="onLoad(); return false;">
     	<div id="header"><span id="left"><span id="fav">&hearts;</span> |</span>  
 						<span id="center">Frits</span> 
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
@@ -42,7 +42,6 @@
         </div>
         <script type="text/javascript" src="cordova.js"></script><!-- TODO: file does not exist-->
         <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/init.js"></script>
         <script type="text/javascript">
         
         //TODO: Dit hele ding verplaatsen naar een JS bestand....
@@ -100,8 +99,13 @@
         function onDeviceReady() {
             // Register the event listener
             console.log("Test Device ready");
-            document.addEventListener("backbutton", onBackKeyDown, false);
+            document.addEventListener("backbutton", onBackButton, false);
             startWatch();
+        }
+        
+        function onBackButton()
+        {
+        	navigator.app.exitApp();
         }
         
         
