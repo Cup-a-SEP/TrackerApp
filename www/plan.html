@@ -142,6 +142,7 @@
 			
 			
 			var form = $('form');
+			var plan = $('#plan');
 			form.submit(function()
 			{
 				var req = {};
@@ -150,17 +151,24 @@
 					req[obj.name] = obj.value;
 				});
 				
+				
+				plan.empty().append($('<h1>').text('Loading...'));
+				
+				
 				OTP.plan(req).done(function(data)
 				{
-					$('#plan').empty();
-					//console.log(data);
-					$("#plan").append('<div id="accordion"></div>');
+					plan.empty().append('<div id="accordion"></div>');
 		
 					//console.log(data.plan.itineraries[0].legs);
 					for(var i = 0; i < data.itineraries[0].legs.length; i++){
 						addItinerary(data.itineraries[0].legs[i]);
 					}
 					$( "#accordion" ).accordion({collapsible:true});
+				}).fail(function(error, message)
+				{
+					plan.empty()
+						.append($('<h1>').text('Oeps!'))
+						.append($('<h2>').text(message));
 				});
 				
 				return false;
