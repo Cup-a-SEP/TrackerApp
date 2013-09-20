@@ -1284,3 +1284,35 @@ body {
 	width: 48px;
 	height: 60px;
 }
+
+.ui-accordion-header{
+   background: #D7FF73;
+   box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#BFAB37 /*A88718 /*BFAB37 /*97BD39, 8AB325*/
+  				inset;
+  	border: 1px black solid;
+  	color: #358219;
+}
+
+.ui-accordion-content{
+	background: #F0FAB6; /*F0FFC9;*/
+	color: #53693D;
+	
+}
+
+.ui-state-active {
+	color: #6E096E;
+	background-color: #E8FFB8;
+	box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#81C4E6 /*97BD39*/
+  				inset;
+}
+
+.ui-icon {
+	color: red;
+}
+
