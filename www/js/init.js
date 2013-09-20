@@ -1,5 +1,5 @@
 
-/*
+/**
  * Initialization when the device is ready
  */
 document.addEventListener('deviceready',function onDeviceReady()
@@ -7,8 +7,8 @@ document.addEventListener('deviceready',function onDeviceReady()
 	document.addEventListener("backbutton", onBackButton, false);
 }, false);
 
-/*
- * Back button event
+/**
+ * Back button event - Goes to the previous page.
  */
 function onBackButton()
 {
