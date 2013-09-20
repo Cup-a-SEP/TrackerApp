@@ -1280,6 +1280,7 @@ body {
 	margin-top: 48px;
 }
 
-
-
-
+.icon {
+	width: 48px;
+	height: 60px;
+}
