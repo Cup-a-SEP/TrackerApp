@@ -39,18 +39,18 @@
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
 	
 	<section id="plan">
-		<h1>Loading...</h1>
 	</section>
 	
 	<script src="js/init.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
 		var plan = $('#plan');
+		var data;
 		$(function()
 			{
 				var string = localStorage['OTP data'];
 				console.log(string);
-				var data = $.evalJSON(string);
+				data = $.evalJSON(string);
 				var route;
 				plan.empty().append(route = $('<div>').attr('id', 'route'));
 				route.add = UI.addItinerary;
@@ -58,6 +58,8 @@
 				route.accordion({collapsible:true});
 			}
 		);
+		
+		
 	</script>
 </body>
 </html>
