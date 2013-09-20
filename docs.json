@@ -1,7 +1,7 @@
 {
 	"opts": {
 		"destination": "./docs/",
-		"recurse": false,
+		"recurse": true,
 	},
     "source": {
     	"includePattern": ".+\\.js$",
