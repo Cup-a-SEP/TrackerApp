@@ -1,12 +1,53 @@
-//Storage functions
+/*
+LocalDB Examples:
 
-var LocalDBObj = new LocalDB('jemoeder');
-//console.log(LocalDBObj);
+var localDbObj = new LocalDB('tablename');
 
+localDbObj.insert(
+	{a:2, b:3},
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.insertId()); 
+	}
+);
 
-LocalDBObj.insert({a:1,b:2});
+localDbObj.selectOne(
+	1, //id
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.firstRow());
+	}
+);
 
-LocalDBObj.selectOne(1, function(localDbResultObj) { console.log(localDbResultObj); });
+localDbObj.selectAll(
+	-1, //limit, -1 is no limit
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.toObject());
+	}
+);
+
+localDbObj.match(
+	{a:2}, //match criteria
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.toObject());
+	}
+);
+
+localDbObj.update(
+	13, //id
+	{a:2, b:3}, //new values
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.rowsAffected()); 
+	}
+);
+
+localDbObj.deleteOne(
+	14, //id
+	function(localDbResultObj) { 
+		console.log(localDbResultObj.rowsAffected());
+	}
+);
+
+*/
+
 
 storeData = function(tx, tableName, data) {
 	var keys = '', els = '';

@@ -7,6 +7,7 @@
 var LocalDB = Class.create({
 	
 	//Constants
+	cClassVersion: 1, //Version of this class code
 	cDefaultDbVersion: 2, //When DB Version is not specified, use this value. 
 	
 	
@@ -65,10 +66,7 @@ var LocalDB = Class.create({
 	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
 	selectOne: function(id, dbResultCallback) {
-		//TODO
-		
-		
-		//tx.executeSql('SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'', [], querySuccess, errorCB);
+
 		var sqlquery = 'SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'';
 		
 		return this.query(sqlquery, dbResultCallback);
@@ -80,12 +78,9 @@ var LocalDB = Class.create({
 	 * @param {int} limit Limit of the amount of rows returned. A value of -1 disables the limit.
 	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	selectAll: function(limit, dbResultCallback) {
-		//TODO
+	selectAll: function(limit, dbResultCallback) {		
 		
-		
-		//tx.executeSql('SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'', [], querySuccess, errorCB);
-		var sqlquery = 'SELECT * FROM ' + this.pTableName + (limit > -1) ? (' LIMIT ' + limit + '\'') : '';
+		var sqlquery = 'SELECT * FROM ' + this.pTableName + (limit > -1 ? (' LIMIT ' + limit + '\'') : '');
 		
 		return this.query(sqlquery, dbResultCallback);
 	},
@@ -96,8 +91,15 @@ var LocalDB = Class.create({
 	 * @param {object} values Column-value pairs to search for in the database
 	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	search: function(values, dbResultCallback) {
-		//TODO
+	match: function(values, dbResultCallback) {
+		var wheres = '';
+		jQuery.each(values, function (col, val) {
+			wheres += ' AND `' + col + '` = \'' + val + '\'';
+		});
+
+		var sqlquery = 'SELECT * FROM ' + this.pTableName + ' WHERE ' + wheres.substring(5);
+		
+		return this.query(sqlquery, dbResultCallback);
 	},
 
 	/**
@@ -130,35 +132,33 @@ var LocalDB = Class.create({
 	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
 	update: function(id, values, dbResultCallback) {		
-		var cols = '', vals = '';
+		var updates = '';
 		jQuery.each(values, function (col, val) {
-			cols += ', `' + col + '`';
-			vals += ', \'' + val + '\'';
+			updates += ', `' + col + '` = \'' + val + '\'';
 		});
+
 		
 		//TODOvar sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
 		
+		
+		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates.substring(2) + ' WHERE `id` = \'' + id + '\'';
+
 		return this.query(sqlquery, dbResultCallback);
 	},
-	
 
 	/**
 	 * Deletes a row into the current table.
 	 * 
-	 * @param {object} values Column-value pairs to insert for this row
+	 * @param {int} id Row ID in the database table
 	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
 	 */	
-	/*insert: function(values, dbResultCallback) {		
-		var cols = '', vals = '';
-		jQuery.each(values, function (col, val) {
-			cols += ', `' + col + '`';
-			vals += ', \'' + val + '\'';
-		});
-		
-		var sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
-		
+	deleteOne: function(id, dbResultCallback) {
+
+		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'';
+	
 		return this.query(sqlquery, dbResultCallback);
-	},*/
+	},
+	
 
 	/**
 	 * Perform a query on the database. Disregards current table.
@@ -239,6 +239,7 @@ var LocalDBResult = Class.create({
 	//Properties
 	pResultDataObj: undefined,
 	pSqlQuery: undefined,
+	pRows: -1,
 	
 	//Methods
 	
@@ -250,6 +251,35 @@ var LocalDBResult = Class.create({
 	 */
 	initialize: function(sqlQuery, resultData) {
 		this.pSqlQuery = sqlQuery;
-		this.pResultData = resultData;	
+		this.pResultData = resultData;
+		this.pRows = this.pResultData.rows.length;	
+	},
+	
+	toObject: function() {
+		
+		var obj = {};
+		
+		var item = undefined;
+		for (var i = 0; i < this.pRows; i++){
+			//results.rows.item(i).id + " a =  " + results.rows.item(i).a + " b =  " + results.rows.item(i).b + " c =  " + results.rows.item(i).c);
+			item = this.pResultData.rows.item(i);
+			obj[item.id] = item;
+		}
+		return obj;
+	},
+	
+	firstRow: function() {
+		
+		return this.pResultData.rows.item(0);
+	},
+	
+	rowsAffected: function() {
+		
+		return this.pResultData.rowsAffected;
+	},
+	
+	insertId: function() {
+		
+		return this.pResultData.insertId;
 	},
 });
