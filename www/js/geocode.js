@@ -16,8 +16,6 @@ Geo.ServerPath = 'http://maps.googleapis.com/maps/api/geocode/json';
 
 /**
 * Converts an human readable location to geo-coordinates
-* 
-* @method Geocode
 * @param {string} A human readable location designation
 * @return {object} jQuery deferred object
 */
