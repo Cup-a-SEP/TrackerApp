@@ -1,7 +1,11 @@
 {
+	"opts": {
+		"destination": "./docs/",
+		"recurse": false,
+	},
     "source": {
     	"includePattern": ".+\\.js$",
-        "includePattern": "www",
-        "excludePattern": "www/OpenLayers,www/js/lib"
+        "include": ["www/js"],
+        "exclude": ["www/OpenLayers","www/js/lib"]
     },
 }

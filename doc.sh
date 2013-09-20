@@ -1,1 +1,1 @@
-jsdoc www -r -d docs -c docs.json
+jsdoc -c ./docs.json
