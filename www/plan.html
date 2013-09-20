@@ -42,12 +42,10 @@
 			<div class="licht">
 				<label>Van: <input type="text" id="from"></label>
 				<input type="hidden" name="fromPlace"><p>
-				<div id="fromName" class="donker">...</div>
 			</div>
 			<div class="donker">
 				<label>Naar: <input type="text" id="to"></label>
 				<input type="hidden" name="toPlace"><p>
-				<div id="toName" class="licht">...</div>
 			</div>
 			<div class="licht">
 				<label>Plan: <select name="arriveBy">
@@ -80,46 +78,59 @@
 	<script src="js/init.js"></script>
 	<script>
 		
+		var permanentStorage = window.localStorage;
+		var tempStorage = window.sessionStorage;
+		
 		$(function()
 		{
 			$("input[name='date']").val(System.getDate());
 			$("input[name='time']").val(System.getTime());
-			System.getLocation().done(function(coords)
-			{
-				Geo.decode(coords).done(function(coords, name)
-				{
-					from.val(name);
-					$("input[name='fromPlace']").val(coords);
-					$('#fromName').text(name);
-				});
-			});
-			
 			var from = $('#from');
-			from.keypress(function(event)
-			{
+			
+			var sessionFrom = tempStorage.getItem("from");
+			if(sessionFrom != null){
+				from.val(sessionFrom);
 				setTimeout(function()
 				{
 					Geo.code(from.val()).done(function(coords, name)
 					{
 						$("input[name='fromPlace']").val(coords);
-						$('#fromName').text(name);
 					});
 				}, 0);
+			}
+			
+			from.click(function(){
+				window.location = "location.html?mode=from";
 			});
 			
+			if(from.val() == ""){
+				System.getLocation().done(function(coords)
+				{
+					Geo.decode(coords).done(function(coords, name)
+					{
+						from.val(name);
+						$("input[name='fromPlace']").val(coords);
+						$('#fromName').text(name);
+					});
+				});
+			}
+			
 			var to = $('#to');
-			to.keypress(function()
-			{
+			var sessionTo = tempStorage.getItem("to");
+			if(sessionTo != null){
+				to.val(sessionTo);
 				setTimeout(function()
 				{
 					Geo.code(to.val()).done(function(coords, name)
 					{
 						$("input[name='toPlace']").val(coords);
-						$('#toName').text(name);
 					});
 				}, 0);
+			}
+			to.click(function(){
+				console.log("Hey!");
+				window.location = "location.html?mode=to";
 			});
-			
 			
 			var form = $('form');
 			var plan = $('#plan');
@@ -144,7 +155,7 @@
 				}).fail(function(error, message)
 				{
 					plan.empty()
-						.append($('<h1>').text('Oeps!'))
+						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
 						.append($('<h2>').text(message));
 				});
 				
