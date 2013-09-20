@@ -1,7 +1,13 @@
+/**
+ * User interface formatting and rendering functions
+ * @namespace UI 
+ */
 var UI = {};
 
-/*
+/**
  * Formats time to hh:mm format
+ * @param time - A javascrip suppored time designation
+ * @return The specified time in hh:mm format
  */
 UI.formatTime = function UIFormatTime(time)
 {
@@ -10,8 +16,10 @@ UI.formatTime = function UIFormatTime(time)
 	return time.getHours() + ':' + pad(time.getMinutes());
 };
 
-/*
+/**
  * Adds a formatted itinerary to a element
+ * @param {OTP~Itinerary} itinerary - Itinerary 
+ * @this jQuery
  */
 UI.addItinerary = function UIaddItinerary(itinerary)
 {

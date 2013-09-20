@@ -1,13 +1,11 @@
 /**
  * Provides functions for resolving locations to geo-coordinates and back
- * @module Geo
  * @namespace Geo
  */
 var Geo = {};
 
 /**
  * Location to the lookup server
- *
  * @attribute ServerPath
  * @readOnly
  * @type string
@@ -15,10 +13,10 @@ var Geo = {};
 Geo.ServerPath = 'http://maps.googleapis.com/maps/api/geocode/json';
 
 /**
-* Converts an human readable location to geo-coordinates
-* @param {string} A human readable location designation
-* @return {object} jQuery deferred object
-*/
+ * Converts an human readable location to geo-coordinates
+ * @param {string} address - A human readable location designation
+ * @return {object} jQuery deferred object
+ */
 Geo.code = function Geocode(address)
 {
 	var def = $.Deferred();
@@ -53,8 +51,10 @@ Geo.code = function Geocode(address)
 };
 
 /**
-* Converts geo-coordinates to an human readable location
-*/
+ * Converts geo-coordinates to an human readable location
+ * @param {string} latlng - A geo-location coordinate latitude,longitude
+ * @return {object} jQuery deferred object
+ */
 Geo.decode = function Geodecode(latlng)
 {
 	var def = $.Deferred();
@@ -82,7 +82,12 @@ Geo.decode = function Geodecode(latlng)
 	return def;
 };
 
-
+/**
+ * Removes all unspecified countries from a Geocode result.
+ * @param {object} result - Geocode result
+ * @param {string} country - country code that is should be left in the results
+ * @return {object} Geocode result (filtered by country)
+ */
 Geo.filterCountry = function(result, country)
 {
 	return $.grep(result, function(x)

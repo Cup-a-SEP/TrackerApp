@@ -1,7 +1,12 @@
+/**
+ * Provides functions for device querying and manipulation
+ * @namespace System 
+ */
 var System = {};
 
-/*
- * Returns the current time 
+/**
+ * Returns the current time
+ * @return Current device time in hh:mm format 
  */
 System.getTime = function SystemGetTime()
 {
@@ -10,8 +15,9 @@ System.getTime = function SystemGetTime()
 	return pad(dt.getHours()) + ':' + pad(dt.getMinutes());
 };
 
-/*
+/**
  * Returns the current date 
+ * @return Current device date in yyyy-mm-dd format 
  */
 System.getDate = function SystemGetDate()
 {
@@ -20,8 +26,9 @@ System.getDate = function SystemGetDate()
 	return dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
 };
 
-/*
+/**
  * Return the current location (deferred)
+ * @return {Deferred} jquery deferred object
  */
 System.getLocation = function SystemGetLocation()
 {
