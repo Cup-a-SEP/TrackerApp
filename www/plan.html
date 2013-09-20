@@ -78,6 +78,7 @@
 	</section>
 	
 	<script src="js/init.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
 		
 		$(function()
@@ -135,12 +136,23 @@
 				
 				OTP.plan(req).done(function(data)
 				{
-					console.log(data);
-					var route;
-					plan.empty().append(route = $('<div>').attr('id', 'route'));
-					route.add = UI.addItinerary;
-					route.add(data.itineraries[0]);
-					route.accordion({collapsible:true});
+					var stripped = (function(ser) {
+						return ser;
+					})(data);
+					
+					var serialized = $.toJSON(data);
+					
+					localStorage['OTP data'] = serialized;
+					
+					window.location = "OTPresult.html";
+					/*
+					 * console.log(data);
+					 * var route;
+					 * plan.empty().append(route = $('<div>').attr('id', 'route'));
+					 * route.add = UI.addItinerary;
+					 * route.add(data.itineraries[0]);
+					 * route.accordion({collapsible:true});
+					 */
 				}).fail(function(error, message)
 				{
 					plan.empty()
