@@ -32,10 +32,15 @@
 			font-size: 2em;
 			text-align:center;
 		}
+		a {
+			text-decoration: none;
+			color: black;
+			
+		}
 	</style>
 </head>
 <body>
-	<h1>Waar wil je naartoe?</h1>
+	<h1 id="question">Bla</h1>
 	<section>
 		<p>
 			<label><input type="text" id="loc"></label>
@@ -44,7 +49,7 @@
 	</section>
 	
 	<section>
-	    <div id="suggestion1" style="margin-bottom:4px;" class="clonedInput" name="Goog">Google optie
+	    <div id="suggestion1" style="margin-bottom:4px;" class="clonedInput" name="Goog">Google option
 	    </div>
 	</section>
 	<script>
@@ -52,6 +57,23 @@
 		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"];
 		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"];
 		var totalPositions = 5; // changing this will result in errors!
+		var permanentStorage = window.localStorage;
+		var tempStorage = window.sessionStorage;
+		var mode;
+		
+		function getURLParameter(sParam)
+		{
+	    	var sPageURL = window.location.search.substring(1);
+	    	var sURLVariables = sPageURL.split('&');
+	    	for (var i = 0; i < sURLVariables.length; i++)
+	    	{
+	        	var sParameterName = sURLVariables[i].split('=');
+	        	if (sParameterName[0] == sParam)
+	        	{
+	            	return sParameterName[1];
+	        	}
+	    	}
+		}
 		
 		function LsteinDistance(s, t, delCost, insCost, subsCost) // from s to t
 		{
@@ -83,13 +105,21 @@
             var newNum  = new Number(id);
 
             var newElem = $('#suggestion' + num).clone().attr('id', 'suggestion' + newNum);
-     		newElem.html("<div class=\"suggestion\">"+ location + "</div>");
+     		//newElem.html("<div class=\"suggestion\">"+ location + "</div>");
             $('#suggestion' + num).after(newElem);
 		}
 		
 		function changeSuggestion(id, location){
             var elem = $('#suggestion' + id);
      		elem.html("<div class=\"suggestion\">"+ location + "</div>");
+     		elem.click(function(e){
+     			if(mode == "from"){
+     				tempStorage.setItem("from", location);
+     			} else {
+     				tempStorage.setItem("to", location);
+     			}
+     			window.location = "plan.html";
+     		});
 		}
 		
 		function setVisibleSuggestion(id, vis){
@@ -139,7 +169,7 @@
 			while(filled < 5 && minDist <= maxTolerance){
 				for(var i = 0; i < favorites.length; i++){
 					if(LsteinDistances[i] == minDist && filled < 5){
-						changeSuggestion(filled+2,LsteinDistances[i] + " " + favorites[i]);
+						changeSuggestion(filled+2,favorites[i]);
 						setVisibleSuggestion(filled+2,true);
 						filled ++;
 					}
@@ -169,7 +199,7 @@
 			while(filled < positionsLeft && minDist <= maxTolerance){
 				for(var i = 0; i < prevused.length; i++){
 					if(LsteinDistances[i] == minDist && filled < 5){
-						changeSuggestion(filled+7,LsteinDistances[i] + " " + prevused[i]);
+						changeSuggestion(filled+7,prevused[i]);
 						setVisibleSuggestion(filled+7,true);
 						filled ++;
 					}
@@ -188,14 +218,21 @@
 		$(function()
 		{
 			
-			System.getLocation().done(function(coords)
-			{
-				Geo.decode(coords).done(function(coords, name)
+			mode = getURLParameter("mode");
+	
+			if(mode == "from"){
+				System.getLocation().done(function(coords)
 				{
-					changeSuggestion(12,name);
-					setVisibleSuggestion(12,true);
+					Geo.decode(coords).done(function(coords, name)
+					{
+						changeSuggestion(12,name);
+						setVisibleSuggestion(12,true);
+					});
 				});
-			});
+				$('#question').html("Waarvandaan wil je reizen?");
+			} else {
+				$('#question').html("Waar wil je naartoe?");
+			}
 			
 			addSuggestion(12,"Huidige locatie");
 			setVisibleSuggestion(12,false);
@@ -213,6 +250,8 @@
 			addSuggestion(2,"Fav 1");
 			
 			updateSuggestions();
+			
+			
 			//removeSuggestion(2);
 			//removeSuggestion(2);
 			/*System.getLocation().done(function(coords)
@@ -224,6 +263,7 @@
 			});*/
 			
 			var loc = $('#loc');
+			loc.focus();
 			loc.keypress(function(event)
 			{
 				updateSuggestions();
