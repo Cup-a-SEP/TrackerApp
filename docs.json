@@ -1,0 +1,7 @@
+{
+    "source": {
+    	"includePattern": ".+\\.js$",
+        "includePattern": "www",
+        "excludePattern": "www/OpenLayers,www/js/lib"
+    },
+}

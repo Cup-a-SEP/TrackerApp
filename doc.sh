@@ -1,1 +1,1 @@
-yuidoc -o docs -x OpenLayers,lib .
+jsdoc www -r -d docs -c docs.json
