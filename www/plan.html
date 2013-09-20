@@ -2,14 +2,17 @@
 <html>
 <head>
 	<title>OTP test</title>
-	<script src="jquery-1.8.3.min.js"></script>
-	<script src="system.js"></script>
-	<script src="geocode.js"></script>
-	<script src="otp.js"></script>
+
+	<meta charset="utf-8"/>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/otp.js"></script>
+	<script src="js/ui.js"></script>
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-	<script src="js/jquery-1.9.1.js"></script>
-	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -31,40 +34,50 @@
 	</style>
 </head>
 <body>
-	<h1>OTP test</h1>
+	<div id="header">	<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+						<span id="center">Frits</span> 
+						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
 	<section>
-		<form>
-			<p>
+		<form class="headerbuffer">
+			<div class="licht">
 				<label>Van: <input type="text" id="from"></label>
-				<input type="hidden" name="fromPlace">
-				<div id="fromName">...</div>
-			</p>
-			<p>
+				<input type="hidden" name="fromPlace"><p>
+			</div>
+			<div class="donker">
 				<label>Naar: <input type="text" id="to"></label>
-				<input type="hidden" name="toPlace">
-				<div id="toName">...</div>
-			</p>
-			<p>
+				<input type="hidden" name="toPlace"><p>
+			</div>
+			<div class="licht">
 				<label>Plan: <select name="arriveBy">
 					<option value="false">vertrek</option>
 					<option value="true">aankomst</option>
 				</select></label>
-			</p>
-			<p>
+			</div>
+			<div class="donker">
 				<label>Date: <input type="date" name="date"></label>
-			</p>
-			<p>
+			</div>
+			<div class="licht">
 				<label>Time: <input type="time" name="time"></label>
-			</p>
-			<p>
+			</div>
+			<div class="donker">
 				<label>Voorkeur: <select name="preferLeastTransfers">
 					<option value="false">snelste route</option>
 					<option value="true">minst aantal overstappen</option>
 				</select></label>
-			</p>
-			<p>
+			</div>
+			<div class="licht">
+				<label>Modaliteiten:</label> 
+				<div align="center">
+					<img src="img/bus.png" class="icon" id="bus">
+					<img src="img/trein.png" class="icon" id="trein">
+					<img src="img/tram.png" class="icon" id="tram">
+					<img src="img/metro.png" class="icon" id="metro">
+					<img src="img/veerpont.png" class="icon" id="veerpont">
+				</div>
+			</div>
+			<div class="donker">
 				<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
-			</p>
+			</div>
 			<input type="submit" value="Plan">
 		</form>
 	</section>
@@ -72,77 +85,145 @@
 	<section id="plan">
 	</section>
 	
+	<script src="js/init.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
 		
-		function addItinerary(itinerary)
-		{
-			var toAppend = '<h3><img src="../www/img/'+ itinerary.mode + '.png" width="20" height="20"> ';
-			
-			// titel:
-			toAppend = toAppend.concat(itinerary.mode.toLowerCase()).concat(' ').concat(itinerary.route);
-			toAppend = toAppend.concat('<span class="time">');
-			
-			var startTime = new Date(itinerary.startTime);
-			var startHours = startTime.getHours();
-			var startMinutes = startTime.getMinutes();
-			var startTime2 = startHours + ':' + (startMinutes<10?'0':'') + startMinutes;
-			
-			var endTime = new Date(itinerary.endTime);
-			var endHours = endTime.getHours();
-			var endMinutes = endTime.getMinutes();
-			var endTime2 = endHours + ':' + (endMinutes<10?'0':'') + endMinutes;
-			
-			toAppend = toAppend.concat(startTime2).concat(' -> ').concat(endTime2);
-			toAppend = toAppend.concat('</span>');
-			toAppend = toAppend.concat('</h3><div>')
-			
-			// zichtbaar bij uitklappen:
-			toAppend = toAppend.concat(itinerary.from.name.concat(' -> ').concat(itinerary.to.name));
-			
-			toAppend = toAppend.concat('</div>');
-			$("#accordion").append(toAppend);
-		}
+
+		/**
+		 * index 0: bus
+		 * index 1: trein
+		 * index 2: tram
+		 * index 3: metro
+		 * index 4: veerpont 
+		 */
+		var modalities = new Array();
+		var permanentStorage = window.localStorage;
+		var tempStorage = window.sessionStorage;
 		
 		$(function()
-		{
+		{	
+			for(var i = 0; i < 5; i++){
+				modalities[i] = true;
+			}
+			
 			$("input[name='date']").val(System.getDate());
 			$("input[name='time']").val(System.getTime());
+
 			System.getLocation().done(function(coords)
 			{
 				Geo.decode(coords).done(function(coords, name)
 				{
 					from.val(name);
+					$("input[name='fromPlace']").val(coords);
+					$('#fromName').text(name);
 				});
 			});
 			
+			var bus = $('#bus');
+			bus.click(function(event){
+				if (modalities[0]) {
+					bus.css({opacity:0.30});
+					modalities[0] = false;
+				} else {
+					bus.css({opacity:1});
+					modalities[0] = true;
+				}
+			});
+			
+			var trein = $('#trein');
+			trein.click(function(event){
+				if (modalities[1]) {
+					trein.css({opacity:0.30});
+					modalities[1] = false;					
+				} else {
+					trein.css({opacity:1});
+					modalities[1] = true;
+				}
+			});
+			
+			var tram = $('#tram');
+			tram.click(function(event){
+				if (modalities[2]) {
+					tram.css({opacity:0.30});
+					modalities[2] = false;
+				} else {
+					tram.css({opacity:1});
+					modalities[2] = true;
+				}
+			});
+			
+			var metro = $('#metro');
+			metro.click(function(event){
+				if (modalities[3]) {				
+					metro.css({opacity:0.30});
+					modalities[3] = false;
+				} else {
+					metro.css({opacity:1});
+					modalities[3] = true;
+				}
+			});
+			
+			var veerpont = $('#veerpont');
+			veerpont.click(function(event){
+				if (modalities[4]) {
+					veerpont.css({opacity:0.30});
+					modalities[4] = false;
+				} else {
+					veerpont.css({opacity:1});
+					modalities[4] = true;
+				}
+			});
+			
 			var from = $('#from');
-			from.keypress(function(event)
-			{
+			
+			var sessionFrom = tempStorage.getItem("from");
+			if(sessionFrom != null){
+				from.val(sessionFrom);
 				setTimeout(function()
 				{
 					Geo.code(from.val()).done(function(coords, name)
 					{
 						$("input[name='fromPlace']").val(coords);
-						$('#fromName').text(name);
 					});
 				}, 0);
+			}
+			
+			from.click(function(){
+				window.location = "location.html?mode=from";
 			});
 			
+			if(from.val() == ""){
+				System.getLocation().done(function(coords)
+				{
+					Geo.decode(coords).done(function(coords, name)
+					{
+						from.val(name);
+						$("input[name='fromPlace']").val(coords);
+						$('#fromName').text(name);
+					});
+				});
+			}
+			
 			var to = $('#to');
-			to.keypress(function()
-			{
+			var sessionTo = tempStorage.getItem("to");
+			if(sessionTo != null){
+				to.val(sessionTo);
 				setTimeout(function()
 				{
 					Geo.code(to.val()).done(function(coords, name)
 					{
 						$("input[name='toPlace']").val(coords);
-						$('#toName').text(name);
 					});
 				}, 0);
+			}
+			to.click(function(){
+				console.log("Hey!");
+				window.location = "location.html?mode=to";
 			});
 			
-			
 			var form = $('form');
+			var plan = $('#plan');
 			form.submit(function()
 			{
 				var req = {};
@@ -151,17 +232,32 @@
 					req[obj.name] = obj.value;
 				});
 				
+				plan.empty().append($('<h1>').text('Loading...'));
+				
 				OTP.plan(req).done(function(data)
 				{
-					$('#plan').empty();
-					//console.log(data);
-					$("#plan").append('<div id="accordion"></div>');
-		
-					//console.log(data.plan.itineraries[0].legs);
-					for(var i = 0; i < data.itineraries[0].legs.length; i++){
-						addItinerary(data.itineraries[0].legs[i]);
-					}
-					$( "#accordion" ).accordion({collapsible:true});
+					var stripped = (function(ser) {
+						return ser;
+					})(data);
+					
+					var serialized = $.toJSON(data);
+					
+					localStorage['OTP data'] = serialized;
+					
+					window.location = "OTPresult.html";
+					/*
+					 * console.log(data);
+					 * var route;
+					 * plan.empty().append(route = $('<div>').attr('id', 'route'));
+					 * route.add = UI.addItinerary;
+					 * route.add(data.itineraries[0]);
+					 * route.accordion({collapsible:true});
+					 */
+				}).fail(function(error, message)
+				{
+					plan.empty()
+						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
+						.append($('<h2>').text(message));
 				});
 				
 				return false;

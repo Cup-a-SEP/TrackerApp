@@ -1,3 +1,0 @@
-[submodule "www/res"]
-	path = www/res
-	url = ssh://git@cup-a-sep.nl/var/git/res.git

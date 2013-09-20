@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Map test</title>
-	<script src="jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="cordova.js"></script>
 	<script src="OpenLayers/OpenLayers.mobile.js"></script>
 	<style type="text/css">
 		html, body {
@@ -20,8 +21,9 @@
 </head>
 <body>
 	<h1>Map test</h1>
-	<div id="map"></div>
+	<div id="map">&nbsp;</div>
 	<h1 id="speed">Speed:</h1>
+	<script src="js/init.js"></script>
 	<script type="text/javascript">
 		function Map(id)
 		{
@@ -31,25 +33,26 @@
 			this.proj.to = new OpenLayers.Projection("EPSG:900913");
 			this.layer = new OpenLayers.Layer.OSM();
 			this.map.addLayer(this.layer);
+			this.move(51.4474477,5.4873561);
 		}
 		
-		Map.prototype.move = function(lng, lat)
+		Map.prototype.move = function(lat, lng)
 		{
 			this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
-		}
+		};
 		
 		$(function()
 		{
 			var map = new Map('map');
 			
-			setInterval(function()
+			function update(pos)
 			{
-				navigator.geolocation.getCurrentPosition(function(pos)
-				{
-					map.move(pos.coords.longitude, pos.coords.latitude);
-					$('#speed').text('Speed: ' + pos.coords.speed + ' Alt: ' + pos.coords.altitude);
-				});
-			}, 1000);
+				map.move(pos.coords.latitude, pos.coords.longitude);
+				$('#speed').text('Speed: ' + pos.coords.speed + ' Alt: ' + pos.coords.altitude);
+			}
+			
+			navigator.geolocation.getCurrentPosition(update);
+			navigator.geolocation.watchPosition(update, undefined, { timeout: 30000 });
 		});
 	</script>
 </body>

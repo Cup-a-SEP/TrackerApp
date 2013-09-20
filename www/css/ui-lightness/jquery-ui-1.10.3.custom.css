@@ -1175,3 +1175,144 @@ body .ui-tooltip {
 	filter: Alpha(Opacity=20);
 	border-radius: 5px;
 }
+
+/* gewoon css */
+body {
+	background-color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+}
+
+#header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 47px;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 8px 0px red;
+	-moz-box-shadow: 0px 0px 8px 0px blue;
+	box-shadow: 0px 0px 8px 0px #000000;
+	background-color: #C7ED5F;
+	color: #358219;
+	font-family: verdana;
+	font-size: 20px;
+		box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				inset;
+  	border: 1px black solid;
+}
+
+#left {
+	padding: 5px;
+	margin: 5px;
+	float: left;
+}
+
+#center {
+	
+	font-size: 40px;
+}
+#right {
+	float: right;
+	padding: 5px;
+	margin: 5px;
+}
+
+#vraagteken {
+	border: 1px #09363B solid;
+	border-radius: 15px;
+	color: #FFFFFF;
+	background-color: #24C0D1;
+	padding-left: 7px;
+	padding-right: 7px;
+	box-shadow:inset 0 0 10px #167782;
+}
+
+#fav {
+	border: 1px #CC3535 solid;
+	border-radius: 15px;
+	color: red;
+	background-color: #F5EED5;
+	padding-left: -1px;
+	padding-right: -1px;
+	box-shadow: inset 0 0 10px #FF73F6;
+}
+
+#back {
+	border: 1px #1E8C1B solid;
+	border-top-left-radius: 30px 20px;
+	border-bottom-left-radius: 30px 20px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	color: #3D543C;
+	background-color: #D3DBD3;
+	padding-left:2px;
+	padding-right:2px;
+	box-shadow: inset 0 0 10px #1E8C1B;
+	font-family: Arial;
+}
+
+.licht {
+	background-color: #E3E1E3;
+	color: #370838;
+	border: 1px black solid;
+	font-family: Arial;
+	padding: 10px;
+	margin: -1px;
+}
+
+.donker {
+	background-color: #636363;
+	color: #F5F5F5;
+	padding: 10px;
+	margin: -1px;
+	border: 1px black solid;
+	font-family: Arial;
+}
+
+body {
+	background-color: #636363;
+	color: #F5F5F5;
+}
+
+.headerbuffer {
+	margin-top: 48px;
+}
+
+.icon {
+	width: 48px;
+	height: 60px;
+}
+
+.ui-accordion-header{
+   background: #D7FF73;
+   box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#BFAB37 /*A88718 /*BFAB37 /*97BD39, 8AB325*/
+  				inset;
+  	border: 1px black solid;
+  	color: #358219;
+}
+
+.ui-accordion-content{
+	background: #F0FAB6; /*F0FFC9;*/
+	color: #53693D;
+	
+}
+
+.ui-state-active {
+	color: #6E096E;
+	background-color: #E8FFB8;
+	box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#81C4E6 /*97BD39*/
+  				inset;
+}
+
+.ui-icon {
+	color: red;
+}
+
