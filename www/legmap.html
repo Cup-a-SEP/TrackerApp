@@ -19,13 +19,15 @@
 						<span id="center">Frits</span> 
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
 	
-	<section id="map" style="margin-top: 3em">
-	</section>
+	<div id="mapDiv" style="width: 100%; height: 600px; margin-top: 3em;">
+		<p>.</p>
+	</div>
 	
 	<script src="js/init.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="OpenLayers/OpenLayers.js"></script>
-	<script>
+	<script type="text/javascript">
+		var map;
 		function Map(id)
 		{
 			this.map = new OpenLayers.Map(id);
@@ -34,22 +36,60 @@
 			this.proj.to = new OpenLayers.Projection("EPSG:900913");
 			this.layer = new OpenLayers.Layer.OSM();
 			this.map.addLayer(this.layer);
-			//this.move(51.4474477,5.4873561);
+			this.move(51.4474477,5.4873561);
 		}
 		
-		$(function() 
+		Map.prototype.move = function(lat, lng)
+			{
+				this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
+			};
+		
+		$(function()
 			{
 				var i = localStorage['ShowMap'];
 				var string = localStorage['OTP data'];
 				
 				var data = $.evalJSON(string);
 				
-				console.log(i);
-				
 				var leg = data.itineraries[0].legs[i];
-				console.log(leg.legGeometry.points);
 				
-				Map("map");
+				var geometry = leg.legGeometry.points;
+				
+				console.log(geometry);
+				
+				map = new Map("mapDiv");
+				
+				var format = new OpenLayers.Format.EncodedPolyline();
+				
+				var points = format.read(geometry);
+				/*
+				var bounds;
+				
+				//console.log(points);
+				
+				if(points.constructor != Array){
+					points = [points];
+				}
+				
+				for(var i=0; i<points.length; ++i) {
+                    if (!bounds) {
+                        bounds = points[i].geometry.getBounds();
+                    } else {
+                        bounds.extend(points[i].geometry.getBounds());
+                    }
+
+                }
+				
+				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer");
+				
+				map.map.addLayer(vectorLayer);
+				
+				vectorLayer.addFeatures(points);
+				
+				var point = points[0].geometry.components[0];
+				
+				map.map.zoomToExtent(bounds);
+				*/
 			}
 		);
 	</script>
