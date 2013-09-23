@@ -1255,7 +1255,7 @@ body {
 
 .licht {
 	background-color: #E3E1E3;
-	color: #370838;
+	color: black;
 	border: 1px black solid;
 	font-family: Arial;
 	padding: 10px;
@@ -1263,7 +1263,7 @@ body {
 }
 
 .donker {
-	background-color: #636363;
+	background-color: #969696;
 	color: #F5F5F5;
 	padding: 10px;
 	margin: -1px;
@@ -1272,7 +1272,7 @@ body {
 }
 
 body {
-	background-color: #636363;
+	background-color: #969696;
 	color: #F5F5F5;
 }
 
