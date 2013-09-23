@@ -27,13 +27,15 @@
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="OpenLayers/OpenLayers.js"></script>
 	<script type="text/javascript">
+		var geometric = new OpenLayers.Projection("EPSG:4326");
+		var mercator = new OpenLayers.Projection("EPSG:900913");
 		var map;
 		function Map(id)
 		{
 			this.map = new OpenLayers.Map(id);
 			this.proj = {};
-			this.proj.from = new OpenLayers.Projection("EPSG:4326");
-			this.proj.to = new OpenLayers.Projection("EPSG:900913");
+			this.proj.from = geometric;
+			this.proj.to = mercator;
 			this.layer = new OpenLayers.Layer.OSM();
 			this.map.addLayer(this.layer);
 			this.move(51.4474477,5.4873561);
@@ -55,41 +57,40 @@
 				
 				var geometry = leg.legGeometry.points;
 				
-				console.log(geometry);
-				
 				map = new Map("mapDiv");
 				
 				var format = new OpenLayers.Format.EncodedPolyline();
 				
 				var points = format.read(geometry);
-				/*
+				
 				var bounds;
 				
-				//console.log(points);
-				
-				if(points.constructor != Array){
-					points = [points];
-				}
-				
-				for(var i=0; i<points.length; ++i) {
-                    if (!bounds) {
-                        bounds = points[i].geometry.getBounds();
-                    } else {
-                        bounds.extend(points[i].geometry.getBounds());
-                    }
-
-                }
-				
 				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer");
+				var markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
-				map.map.addLayer(vectorLayer);
+				map.map.addLayers([markerLayer, vectorLayer]);
 				
-				vectorLayer.addFeatures(points);
+				// Convert the points from Geometric to Mercator coordinates:
+				// Convert the Feature to an Array of Points
+				var pointArray = points.geometry.components;
+				var pointArray2 = new Array();
 				
-				var point = points[0].geometry.components[0];
+				// Calculate the Mercator coordinates for each point and put it in a new Point, and append it to the Array
+				$.each(pointArray, function(i, e){
+					var ll = new OpenLayers.LonLat(e.x, e.y).transform(geometric, mercator);
+					
+					pointArray2.push(new OpenLayers.Geometry.Point(ll.lon, ll.lat));
+				});
 				
+				// Create a new Feature of the Mercator Points
+				var feature = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(pointArray2));
+				
+				vectorLayer.addFeatures([feature]);
+				markerLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(pointArray2[0].x, pointArray2[0].y)));
+				markerLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(pointArray2[pointArray2.length-1].x, pointArray2[pointArray2.length-1].y)));
+				
+				bounds = feature.geometry.getBounds();
 				map.map.zoomToExtent(bounds);
-				*/
 			}
 		);
 	</script>
