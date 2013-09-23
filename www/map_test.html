@@ -25,35 +25,40 @@
 	<h1 id="speed">Speed:</h1>
 	<script src="js/init.js"></script>
 	<script type="text/javascript">
-		function Map(id)
-		{
-			this.map = new OpenLayers.Map(id);
-			this.proj = {};
-			this.proj.from = new OpenLayers.Projection("EPSG:4326");
-			this.proj.to = new OpenLayers.Projection("EPSG:900913");
-			this.layer = new OpenLayers.Layer.OSM();
-			this.map.addLayer(this.layer);
-			this.move(51.4474477,5.4873561);
-		}
+		document.addEventListener("deviceready", onDeviceReady, false);
 		
-		Map.prototype.move = function(lat, lng)
+		function onDeviceReady()
 		{
-			this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
-		};
-		
-		$(function()
-		{
-			var map = new Map('map');
-			
-			function update(pos)
+			function Map(id)
 			{
-				map.move(pos.coords.latitude, pos.coords.longitude);
-				$('#speed').text('Speed: ' + pos.coords.speed + ' Alt: ' + pos.coords.altitude);
+				this.map = new OpenLayers.Map(id);
+				this.proj = {};
+				this.proj.from = new OpenLayers.Projection("EPSG:4326");
+				this.proj.to = new OpenLayers.Projection("EPSG:900913");
+				this.layer = new OpenLayers.Layer.OSM();
+				this.map.addLayer(this.layer);
+				this.move(51.4474477,5.4873561);
 			}
 			
-			navigator.geolocation.getCurrentPosition(update);
-			navigator.geolocation.watchPosition(update, undefined, { timeout: 30000 });
-		});
+			Map.prototype.move = function(lat, lng)
+			{
+				this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
+			};
+			
+			$(function()
+			{
+				var map = new Map('map');
+				
+				function update(pos)
+				{
+					map.move(pos.coords.latitude, pos.coords.longitude);
+					$('#speed').text('Speed: ' + pos.coords.speed + ' Alt: ' + pos.coords.altitude);
+				}
+				
+				navigator.geolocation.getCurrentPosition(update);
+				navigator.geolocation.watchPosition(update, undefined, { timeout: 30000 });
+			});
+		}
 	</script>
 </body>
 </html>

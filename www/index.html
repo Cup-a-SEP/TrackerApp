@@ -1,164 +1,46 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Frits</title>
-    </head>
-    <body>
-    	<div id="header"><span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
-						<span id="center">Frits</span> 
-						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
-        <div class="headerbuffer">
-            <h4 id="headertekst">Wat wil je doen?</h4>
-            <!--<div id="deviceready" class="blink">
-                <p class="event listening">Wait for it...</p>
-                <p class="event received">Ready to rumble!</p>
-            </div>-->
+
+<head>
+	<title>Frits</title>
+	<meta charset="utf-8" />
+	<!--<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+	<div id="header"><span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+	<span id="center">Frits</span> 
+	<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
+	
+	<div class="headerbuffer">
+		<h4 id="headertekst">Wat wil je doen?</h4>
 			<a href="plan.html" class="divbutton"><p class="button">Plan je route</p></a>
 			<a href="testdecoder.html" class="divbutton"><p class="button">Test de JSON decoder</p></a>
 			<a href="storage_test.html" class="divbutton"><p class="button">Test Data Storage</p></a>
 			<a href="map_test.html" class="divbutton"><p class="button">Test Map</p></a>
 			<a href="location.html" class="divbutton"><p class="button">Test de locatie kiezer!</p></a>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script><!-- TODO: file does not exist-->
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-        
-        //TODO: Dit hele ding verplaatsen naar een JS bestand....
-        app.initialize();
-
-        // Wait for device API libraries to load
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        ///////////////////////////////// ACCELERATION /////////////////////////////////////
-        // The watch id references the current `watchAcceleration`
-        var watchID = null;
-        var alertActive = false;
-
-        // Stop watching the acceleration
-        //
-        function stopWatch() {
-            console.log("Test stop");
-            if (watchID) {
-                navigator.accelerometer.clearWatch(watchID);
-                watchID = null;
-            }
-        }
-
-        // onSuccess: Get a snapshot of the current acceleration
-        //
-        function onAccSuccess(acceleration) {
-            //console.log("Test accsuccess");
-            var g = 9.81;
-            if( acceleration.x > 1.5*g || acceleration.x < -1.5*g || acceleration.y > 1.5*g || acceleration.y < -1.5*g){
-                showAlert("Stop shaking me!");
-            }
-            if(acceleration.z > 1.5*g){
-                showAlert("I am not supposed to be thrown, you know");
-                navigator.notification.beep(1);
-            }
-            if(acceleration.z < 0.1*g){
-                showAlert("Did you just drop me?");
-            }
-        }
-
-        // onError: Failed to get the acceleration
-        //
-        function onAccError() {
-            console.log("Test AccError!");
-        }
-        //////////////////////////// ACCELERATION ////////////////////////////////////////
-
-        //
-        // device APIs are available
-        //
-        function onDeviceReady() {
-            // Register the event listener
-            console.log("Test Device ready");
-            document.addEventListener("backbutton", onBackButton, false);
-            startWatch();
-        }
-        
-        function onBackButton()
-        {
-        	console.log('The user wants to close the app.');
-        	navigator.app.exitApp();
-        }
-        
-        
-        // Start watching the acceleration
-        //
-        function startWatch() {
-
-            console.log("Test start watch");
-            // Update acceleration every 0.1 second
-            //watchID = navigator.accelerometer.watchAcceleration(onAccSuccess, onAccError, { frequency: 100 });
-        }
-        
-        function onConfirm(buttonIndex) { // yup = 2, nope = 1
-            console.log("Buttondinges: " + buttonIndex);
-            if(buttonIndex === 2){
-                navigator.app.exitApp();
-            } else {
-                showAlert("Yay, thnx! :3");
-            }
-        }
-        //
-        // Handle the back button
-        //
-        function onBackKeyDown() {
-            navigator.notification.confirm(
-                'You sure you want to go back?', // message
-                 onConfirm,            // callback to invoke with index of button pressed
-                'Hey! Listen!',           // title
-                'Nope,Yup'         // buttonLabels
-            );
-        }
-
-        // alert dialog dismissed
-        function alertDismissed() {
-            // do something
-            console.log("Test Alertdismissed");
-            alertActive = false;
-        }
-
-        // Show a custom alertDismissed
-        //
-        function showAlert(s) {
-            if(!alertActive){
-                alertActive = true;
-                console.log("Test Alert");
-                navigator.notification.alert(
-                    s,                                  // message
-                    alertDismissed,                     // callback
-                    'Hey! Listen!',                     // title
-                    'Sorry! I won\'t do it anymore!'    // buttonName
-                );
-            }
-        }
-
-        </script>
-    </body>
+	</div>
+	
+	<script type="text/javascript">
+		app.initialize();
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady()
+		{
+			console.log("Test Device ready");
+			document.addEventListener("backbutton", onBackButton, false);
+			startWatch();
+		}
+		
+		function onBackButton()
+		{
+			console.log('The user wants to close the app.');
+			navigator.app.exitApp();
+		}
+	</script>
+</body>
 </html>
