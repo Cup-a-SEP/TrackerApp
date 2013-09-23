@@ -78,7 +78,9 @@
 			<input type="submit" value="Plan" id="submitButton">
 		</form>
 	</section>
-	
+	<section id="plan">
+		
+	</section>
 	<script src="js/init.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
@@ -239,7 +241,7 @@
 				}).fail(function(error, message)
 				{
 					plan.empty()
-						.append($('<h1 style=\"margin-top: -50px\">').text('Sorry! De OV-gids van Frits is kapot! :('))
+						.append($('<h1 style=\"margin-top: 50px\">').text('Sorry! De OV-gids van Frits is kapot! :('))
 						.append($('<h3>').text(message));
 				});
 				
