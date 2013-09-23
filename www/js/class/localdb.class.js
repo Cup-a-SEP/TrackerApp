@@ -135,11 +135,7 @@ var LocalDB = Class.create({
 		var updates = '';
 		jQuery.each(values, function (col, val) {
 			updates += ', `' + col + '` = \'' + val + '\'';
-		});
-
-		
-		//TODOvar sqlquery = 'INSERT INTO ' + tableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
-		
+		});		
 		
 		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates.substring(2) + ' WHERE `id` = \'' + id + '\'';
 
@@ -192,9 +188,7 @@ var LocalDB = Class.create({
 				}, 
 				function() { //Success function
 					console.log('success');
-					//var localDBResultObj = new LocalDBResult(false);
-					//this(localDBResultObj);
-				}//.bind(callback)
+				}
 			);
 		}
 	},
@@ -206,8 +200,7 @@ var LocalDB = Class.create({
 	 */	
 	initDbStruct: function(db) {
 		database.transaction(
-			
-			
+
 			//Replace this code TODO
 		  function (tx) {
 		  	tx.executeSql('CREATE TABLE tbl_name (key int unique, name text)',

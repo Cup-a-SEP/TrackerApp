@@ -114,11 +114,11 @@ h1 {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	height: 47px;
+	height: 7%;
 	text-align: center;
-	-webkit-box-shadow: 0px 0px 8px 0px red;
+	/*-webkit-box-shadow: 0px 0px 8px 0px red;
 	-moz-box-shadow: 0px 0px 8px 0px blue;
-	box-shadow: 0px 0px 8px 0px #000000;
+	box-shadow: 0px 0px 8px 0px #000000;*/
 	background-color: #C7ED5F;
 	color: #358219;
 	font-family: verdana;
@@ -127,7 +127,7 @@ h1 {
  				0 -24px 40px
   				-10px /* spread */
   				inset;
-  	border: 1px black solid;
+  	/*border: 1px black solid;*/
   	text-transform: none;
 }
 
@@ -159,7 +159,7 @@ h1 {
 
 #center {
 	
-	font-size: 40px;
+	font-size: 250%;
 }
 #right {
 	float: right;
@@ -203,7 +203,7 @@ h1 {
 
 
 .headerbuffer {
-	margin-top: 68px;
+	margin-top: 20%;
 	text-align: center;
 	text-transform: none;
 	font-family: Helvetica;
@@ -227,6 +227,14 @@ h1 {
 	text-decoration: none;
 	color: #358219;
 }
+
+.headerbuffer p.button {
+	line-height:180%;
+	font-size: 2.5em;
+}
+
+#header span {
+	line-height:150%;
 
 .cog {
 	width: 5%;
