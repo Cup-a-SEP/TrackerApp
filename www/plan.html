@@ -104,16 +104,6 @@
 			$("input[name='date']").val(System.getDate());
 			$("input[name='time']").val(System.getTime());
 
-			System.getLocation().done(function(coords)
-			{
-				Geo.decode(coords).done(function(coords, name)
-				{
-					from.val(name);
-					$("input[name='fromPlace']").val(coords);
-					$('#fromName').text(name);
-				});
-			});
-			
 			var bus = $('#bus');
 			bus.click(function(event){
 				if (modalities[0]) {
@@ -181,13 +171,7 @@
 						$("input[name='fromPlace']").val(coords);
 					});
 				}, 0);
-			}
-			
-			from.click(function(){
-				window.location = "location.html?mode=from";
-			});
-			
-			if(from.val() == ""){
+			} else {
 				System.getLocation().done(function(coords)
 				{
 					Geo.decode(coords).done(function(coords, name)
@@ -198,6 +182,10 @@
 					});
 				});
 			}
+			
+			from.click(function(){
+				window.location = "location.html?mode=from";
+			});
 			
 			var to = $('#to');
 			var sessionTo = tempStorage.getItem("to");

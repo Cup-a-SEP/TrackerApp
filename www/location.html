@@ -9,6 +9,7 @@
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="init.js"></script>
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -118,7 +119,7 @@
      			} else {
      				tempStorage.setItem("to", location);
      			}
-     			window.location = "plan.html";
+     			window.history.back();
      		});
 		}
 		
