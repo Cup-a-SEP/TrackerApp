@@ -41,7 +41,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		// zichtbaar bij uitklappen:
 		var div = $('<div>')
 			.append($('<p>').text(leg.from.name + ' -> ' + leg.to.name))
-			.append($('<div>')
+			.append($('<div id="legmap' + i + '">')
 				.append($('<p>').text("Map")))
 			;
 		

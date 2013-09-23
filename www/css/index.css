@@ -213,4 +213,17 @@ h1 {
 	color: #3D4036;
 }
 
+.divbutton a {
+	text-decoration: none;
+	color: #358219;
+}
 
+.divbutton a:visited {
+	text-decoration: none;
+	color: #358219;
+}
+
+.divbutton {
+	text-decoration: none;
+	color: #358219;
+}

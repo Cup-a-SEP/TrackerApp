@@ -19,40 +19,39 @@
 						<span id="center">Frits</span> 
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
 	
-	<section id="plan" style="margin-top: 3em">
+	<section id="map" style="margin-top: 3em">
 	</section>
 	
 	<script src="js/init.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
+	<script src="OpenLayers/OpenLayers.js"></script>
 	<script>
-		var plan = $('#plan');
-		var data;
-		$(function()
+		function Map(id)
+		{
+			this.map = new OpenLayers.Map(id);
+			this.proj = {};
+			this.proj.from = new OpenLayers.Projection("EPSG:4326");
+			this.proj.to = new OpenLayers.Projection("EPSG:900913");
+			this.layer = new OpenLayers.Layer.OSM();
+			this.map.addLayer(this.layer);
+			//this.move(51.4474477,5.4873561);
+		}
+		
+		$(function() 
 			{
+				var i = localStorage['ShowMap'];
 				var string = localStorage['OTP data'];
-				data = $.evalJSON(string);
 				
-				var route;
-				plan.empty().append(route = $('<div>').attr('id', 'route'));
+				var data = $.evalJSON(string);
 				
-				route.add = UI.addItinerary;
-				route.add(data.itineraries[0]);
-				route.accordion({collapsible:true});
+				console.log(i);
 				
-				var legLength = data.itineraries[0].legs.length;
+				var leg = data.itineraries[0].legs[i];
+				console.log(leg.legGeometry.points);
 				
-				for(var i = 0; i < legLength; i++ ) {
-					$('#legmap' + i).click(function(){
-						clickMap(this.id.substring(6));
-					});
-				}
+				Map("map");
 			}
 		);
-		
-		function clickMap(i) {
-			localStorage['ShowMap'] = i;
-			window.location = "legmap.html";
-		}
 	</script>
 </body>
 </html>
