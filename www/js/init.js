@@ -15,3 +15,11 @@ function onBackButton()
 	console.log('The user want\'s to go back...');
 	history.back();
 }
+
+
+$(function()
+{
+	$('#back').click(function(){
+		onBackButton();
+	});
+});
