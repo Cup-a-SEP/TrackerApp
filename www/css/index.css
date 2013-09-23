@@ -235,4 +235,8 @@ h1 {
 
 #header span {
 	line-height:150%;
+
+.cog {
+	width: 5%;
+	height: 5%;
 }

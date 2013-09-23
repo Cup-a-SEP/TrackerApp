@@ -33,7 +33,7 @@
 <body>
 	<div id="header">	<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
 						<span id="center">Frits</span> 
-						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
+						<span id="right">| <img src="img/gray-cogwheel-md.png" class="cog"> | <span id="vraagteken">?</span> |</span></div>
 	<section>
 		<form class="headerbuffer">
 			<div class="licht">
@@ -75,7 +75,7 @@
 			<div class="donker">
 				<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
 			</div>
-			<input type="submit" value="Plan">
+			<input type="submit" value="Plan" id="submitButton">
 		</form>
 	</section>
 	
@@ -214,7 +214,8 @@
 					req[obj.name] = obj.value;
 				});
 				
-				plan.empty().append($('<h1>').text('Loading...'));
+				$('#submitButton').remove();
+				plan.empty().append("<h1 style=\"margin-top: -50px\">Loading...</h1>");
 				
 				OTP.plan(req).done(function(data)
 				{
@@ -238,8 +239,8 @@
 				}).fail(function(error, message)
 				{
 					plan.empty()
-						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
-						.append($('<h2>').text(message));
+						.append($('<h1 style=\"margin-top: -50px\">').text('Sorry! De OV-gids van Frits is kapot! :('))
+						.append($('<h3>').text(message));
 				});
 				
 				return false;
