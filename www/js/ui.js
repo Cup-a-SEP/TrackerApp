@@ -35,7 +35,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 				.css('height', 20))
 	
 		// titel:
-			.append(leg.mode.toLowerCase() + ' ' + leg.route)
+			.append(leg.mode.toLowerCase() + ' ' + leg.route + ' ')
 			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' -> ' + UI.formatTime(leg.endTime)));
 		
 		// zichtbaar bij uitklappen:
