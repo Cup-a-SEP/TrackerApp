@@ -36,46 +36,48 @@
 						<span id="right">| <span id="vraagteken">?</span> |</span></div>
 	<section>
 		<form class="headerbuffer">
-			<div class="licht" id="fromdiv">
-				<label>Van: <input type="text" id="from"></label>
-				<input type="hidden" name="fromPlace"><p>
-			</div>
-			<div class="donker" id="todiv">
-				<label>Naar: <input type="text" id="to"></label>
-				<input type="hidden" name="toPlace"><p>
-			</div>
-			<div class="licht">
-				<label>Plan: <select name="arriveBy">
-					<option value="false">vertrek</option>
-					<option value="true">aankomst</option>
-				</select></label>
-			</div>
-			<div class="donker">
-				<label>Date: <input type="date" name="date"></label>
-			</div>
-			<div class="licht">
-				<label>Time: <input type="time" name="time"></label>
-			</div>
-			<div class="donker">
-				<label>Voorkeur: <select name="preferLeastTransfers">
-					<option value="false">snelste route</option>
-					<option value="true">minst aantal overstappen</option>
-				</select></label>
-			</div>
-			<div class="licht">
-				<label>Modaliteiten:</label> 
-				<div align="center">
-					<img src="img/bus.png" class="icon" id="bus">
-					<img src="img/rail.png" class="icon" id="trein">
-					<img src="img/tram.png" class="icon" id="tram">
-					<img src="img/subway.png" class="icon" id="metro">
-					<img src="img/ferry.png" class="icon" id="veerpont">
+			<div class="eiland" class="shadow">
+				<div class="licht" id="fromdiv">
+					<label><label id="vanLabel">Van</label><input type="text" id="from" value="..."></label>
+						<input type="hidden" name="fromPlace">
+				</div><div id="suggestionsfromdiv"></div>
+				<div class="donker" id="todiv">
+					<label>Naar <input type="text" id="to" value="..."></label>
+					<input type="hidden" name="toPlace">
 				</div>
+				<div class="licht">
+					<label>Plan: <select name="arriveBy">
+						<option value="false">vertrek</option>
+						<option value="true">aankomst</option>
+					</select></label>
+				</div>
+				<div class="donker">
+					<label>Date: <input type="date" name="date"></label>
+				</div>
+				<div class="licht">
+					<label>Time: <input type="time" name="time"></label>
+				</div>
+				<div class="donker">
+					<label>Voorkeur: <select name="preferLeastTransfers">
+						<option value="false">snelste route</option>
+						<option value="true">minst aantal overstappen</option>
+					</select></label>
+				</div>
+				<div class="licht">
+					<label>Modaliteiten:</label> 
+					<div align="center">
+						<img src="img/bus.png" class="icon" id="bus">
+						<img src="img/rail.png" class="icon" id="trein">
+						<img src="img/tram.png" class="icon" id="tram">
+						<img src="img/subway.png" class="icon" id="metro">
+						<img src="img/ferry.png" class="icon" id="veerpont">
+					</div>
+				</div>
+				<div class="donker">
+					<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
+				</div>
+				<input type="submit" value="Plan" id="submitButton">
 			</div>
-			<div class="donker">
-				<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
-			</div>
-			<input type="submit" value="Plan" id="submitButton">
 		</form>
 	</section>
 	<section id="plan">
@@ -286,10 +288,10 @@
 			// totalPositions + 1 -> 2*totalPositions: previously used
 			// 2*totalPositions + 1: current location
 			for(var i = 0; i <= 2*totalPositions; i++){
-				addSuggestion('fromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
+				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
 				addSuggestion('todiv', 'suggestionto', i, 'testingText' + i, 'to');
 			}
-			addSuggestion('fromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
+			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
 			
 			System.getLocation().done(function(coords)
 			{
