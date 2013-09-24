@@ -27,69 +27,130 @@
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="OpenLayers/OpenLayers.js"></script>
 	<script type="text/javascript">
+		/**
+		 * Coordinate System Projections, for ease of use
+		 */
 		var geometric = new OpenLayers.Projection("EPSG:4326");
 		var mercator = new OpenLayers.Projection("EPSG:900913");
-		var map;
+		
+		/**
+		 * Definition of the Style of a drawn Line 
+		 */
+		var lineStyle = {
+			style: {
+				strokeColor: "#ff0000",
+				strokeWidth: 5
+			}
+		};
+		
+		/**
+		 * Definitions for the Icon to be used by Markers 
+		 */
+		var size = new OpenLayers.Size(21,25);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var markerIcon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+		
+		/**
+		 * Creates a new Map object, with an OpenLayers Map, a new OSM Layer,
+		 * and objects representing the used Projection.
+		 * 
+		 * @constructor
+		 * @this {Map}
+		 * @param {String} id The id of the HTML div element in which the map will be put
+		 */
 		function Map(id)
 		{
 			this.map = new OpenLayers.Map(id);
-			this.proj = {};
-			this.proj.from = geometric;
-			this.proj.to = mercator;
 			this.layer = new OpenLayers.Layer.OSM();
 			this.map.addLayer(this.layer);
-			this.move(51.4474477,5.4873561);
+			this.proj = {};
+			this.proj.from = geometric;
+			this.proj.to = this.map.getProjection();
 		}
 		
-		Map.prototype.move = function(lat, lng)
-			{
-				this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
-			};
+		/**
+		 * Gets the Route Data and Leg Nr. from local storage and extracts the current Leg
+		 * 
+		 * @returns {String} the legGeometry of the Leg
+		 */
+		function getLegGeometry() {
+			var i = localStorage['ShowMap'];
+			var string = localStorage['OTP data'];
+			
+			var data = $.evalJSON(string);
+			
+			return data.itineraries[0].legs[i].legGeometry.points;
+		}
 		
+		/**
+		 * Converts the given geometry string to a Feature Vector, which can immediately be
+		 * imported in the Vector Layer of a Map
+		 * 
+		 * @param {String} geometry The legGeometry of the Leg
+		 * @returns {[OpenLayers.Feature.Vector]} an array of Feature Vectors  
+		 */
+		function getFeatures(geometry) {
+			var format = new OpenLayers.Format.EncodedPolyline();
+			
+			var features = format.read(geometry);
+			
+			if(features.constructor != Array) {
+				features = [features];
+			}
+			
+			return features;
+		}
+		
+		/**
+		 * The initialization function of the page, which gets the leg info and geometry,
+		 * creates a map and displays the leg on the map, after which it zooms to an appropriate
+		 * level and pans to the appropriate location.
+		 */
 		$(function()
 			{
-				var i = localStorage['ShowMap'];
-				var string = localStorage['OTP data'];
+				var geometry = getLegGeometry();
 				
-				var data = $.evalJSON(string);
+				var features = getFeatures(geometry);
 				
-				var leg = data.itineraries[0].legs[i];
+				var map = new Map("mapDiv");
+				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
+				var markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
-				var geometry = leg.legGeometry.points;
-				
-				map = new Map("mapDiv");
-				
-				var format = new OpenLayers.Format.EncodedPolyline();
-				
-				var points = format.read(geometry);
+				map.map.addLayers([vectorLayer, markerLayer]);
 				
 				var bounds;
 				
-				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer");
-				var markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
-				
-				map.map.addLayers([markerLayer, vectorLayer]);
-				
-				// Convert the points from Geometric to Mercator coordinates:
-				// Convert the Feature to an Array of Points
-				var pointArray = points.geometry.components;
-				var pointArray2 = new Array();
-				
-				// Calculate the Mercator coordinates for each point and put it in a new Point, and append it to the Array
-				$.each(pointArray, function(i, e){
-					var ll = new OpenLayers.LonLat(e.x, e.y).transform(geometric, mercator);
+				// Convert the Features points to coordinates used by the Map
+				$.each(features, function(i, e){
+					e = e.geometry.transform(geometric, map.proj.to);
 					
-					pointArray2.push(new OpenLayers.Geometry.Point(ll.lon, ll.lat));
+					//Expand the current bounds to include the feature
+					if(!bounds) {
+						bounds = e.getBounds();
+					} else {
+						bounds.extend(e.getBounds());
+					}
 				});
 				
-				// Create a new Feature of the Mercator Points
-				var feature = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(pointArray2));
+				// Add the Features to the Map
+				vectorLayer.addFeatures(features);
 				
-				vectorLayer.addFeatures([feature]);
-				markerLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(pointArray2[0].x, pointArray2[0].y)));
-				markerLayer.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(pointArray2[pointArray2.length-1].x, pointArray2[pointArray2.length-1].y)));
+				// Get the First and Last points of the Leg
+				var points = features[0].geometry.components;
+				var point1 = points[0];
+				var point2 = points[points.length-1];
 				
-				bounds = feature.geometry.getBounds();
+				// Add the points as Markers
+				markerLayer.addMarker(new OpenLayers.Marker(
+					new OpenLayers.LonLat(point1.x, point1.y), 
+					markerIcon.clone())
+				);
+				markerLayer.addMarker(new OpenLayers.Marker(
+					new OpenLayers.LonLat(point2.x, point2.y), 
+					markerIcon.clone())
+				);
+				
+				// Zoom to exactly show the leg
 				map.map.zoomToExtent(bounds);
 			}
 		);
