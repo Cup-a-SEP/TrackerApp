@@ -27,10 +27,15 @@
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="OpenLayers/OpenLayers.js"></script>
 	<script type="text/javascript">
+		/**
+		 * Coordinate System Projections, for ease of use
+		 */
 		var geometric = new OpenLayers.Projection("EPSG:4326");
 		var mercator = new OpenLayers.Projection("EPSG:900913");
-		var map;
 		
+		/**
+		 * Definition of the Style of a drawn Line 
+		 */
 		var lineStyle = {
 			style: {
 				strokeColor: "#ff0000",
@@ -38,6 +43,9 @@
 			}
 		};
 		
+		/**
+		 * Definitions for the Icon to be used by Markers 
+		 */
 		var size = new OpenLayers.Size(21,25);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var markerIcon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
@@ -45,6 +53,10 @@
 		/**
 		 * Creates a new Map object, with an OpenLayers Map, a new OSM Layer,
 		 * and objects representing the used Projection.
+		 * 
+		 * @constructor
+		 * @this {Map}
+		 * @param {String} id The id of the HTML div element in which the map will be put
 		 */
 		function Map(id)
 		{
@@ -56,39 +68,57 @@
 			this.proj.to = this.map.getProjection();
 		}
 		
+		/**
+		 * Gets the Route Data and Leg Nr. from local storage and extracts the current Leg
+		 * 
+		 * @returns {String} the legGeometry of the Leg
+		 */
+		function getLegGeometry() {
+			var i = localStorage['ShowMap'];
+			var string = localStorage['OTP data'];
+			
+			var data = $.evalJSON(string);
+			
+			return data.itineraries[0].legs[i].legGeometry.points;
+		}
+		
+		/**
+		 * Converts the given geometry string to a Feature Vector, which can immediately be
+		 * imported in the Vector Layer of a Map
+		 * 
+		 * @param {String} geometry The legGeometry of the Leg
+		 * @returns {[OpenLayers.Feature.Vector]} an array of Feature Vectors  
+		 */
+		function getFeatures(geometry) {
+			var format = new OpenLayers.Format.EncodedPolyline();
+			
+			var features = format.read(geometry);
+			
+			if(features.constructor != Array) {
+				features = [features];
+			}
+			
+			return features;
+		}
+		
+		/**
+		 * The initialization function of the page, which gets the leg info and geometry,
+		 * creates a map and displays the leg on the map, after which it zooms to an appropriate
+		 * level and pans to the appropriate location.
+		 */
 		$(function()
 			{
-				// Get the Leg Nr. and the Plan Data
-				var i = localStorage['ShowMap'];
-				var string = localStorage['OTP data'];
+				var geometry = getLegGeometry();
 				
-				// Convert the Plan Data to a JS Object
-				var data = $.evalJSON(string);
+				var features = getFeatures(geometry);
 				
-				// Get the legGeometry
-				var geometry = data.itineraries[0].legs[i].legGeometry.points;
-				
-				map = new Map("mapDiv");
-				
-				// Create a converter for the legGeometry to Feature(s)
-				var format = new OpenLayers.Format.EncodedPolyline();
-				
-				// Read the Feature(s) from the legGeometry
-				var features = format.read(geometry);
-				
-				// Convert to an Array of Features if not already
-				if(features.constructor != Array) {
-					features = [features];
-				}
-				
-				var bounds;
-				
-				// Create Layers for the Markers and Lines
+				var map = new Map("mapDiv");
 				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
 				var markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
-				// Add the Layers to the Map
 				map.map.addLayers([vectorLayer, markerLayer]);
+				
+				var bounds;
 				
 				// Convert the Features points to coordinates used by the Map
 				$.each(features, function(i, e){
