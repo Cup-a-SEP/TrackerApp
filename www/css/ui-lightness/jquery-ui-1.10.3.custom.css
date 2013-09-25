@@ -1426,13 +1426,24 @@ body {
 #datetime {
 	border: 2px solid #424242;
 	padding: 10px;
-	border-radius: 15px;
+	border-radius: 30px;
 	background-color: white;
+	box-shadow: 2000px 0px 0px -1900px #BFBFBF inset;
+	padding-bottom: 10px;
 }
 
 #vertrekding {
 	float: left;
-	
+}
+
+#datumding {
+	float:none;
+	width: 30%;
+	margin-left: 20px;
+}
+#tijdding {
+	float: right;
+	width: 30%;
 }
 
 
