@@ -38,16 +38,16 @@
 						<span id="right"><span id="vraagteken">?</span></span></div>
 	<section>
 		<form class="headerbuffer">
-			<div class="eiland" class="shadow">
-				<div class="licht" id="fromdiv">
+			<div class="optie2" class="shadow">
+				<div class="divborder" id="fromdiv">
 					<label>Van<input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
 				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
-				<div class="donker" id="todiv">
+				<div class="divborder" id="todiv">
 					<label>Naar <input type="text" id="to" value="..."></label>
 					<input type="hidden" name="toPlace">
 				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
-				<div class="licht" id="datetime">
+				<div class="divborder" id="datetime">
 					<select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
@@ -56,13 +56,13 @@
 					<input type="time" name="time" id="tijdding">
 					<!--<input type="datetime" name = "datetime"> // echt, wat is het nut van dit ding? -->
 				</div>		
-				<div class="donker">
-					<label>Voorkeur: <select name="preferLeastTransfers">
+				<div class="divborder" id="voorkeur">
+					<label>Voorkeur: <select name="preferLeastTransfers" id="voorkeurding">
 						<option value="false">snelste route</option>
 						<option value="true">minst aantal overstappen</option>
 					</select></label>
 				</div>
-				<div class="licht">
+				<div class="divborder" id="modaliteiten">
 					<label>Modaliteiten:</label> 
 					<div align="center">
 						<img src="img/bus.png" class="icon" id="bus">
@@ -72,10 +72,12 @@
 						<img src="img/ferry.png" class="icon" id="ferry">
 					</div>
 				</div>
-				<div class="donker">
+				<div class="divborder" id="rolstoel">
 					<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
 				</div>
-				<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
+				<div id="planknop">
+					<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
+				</div>
 			</div>
 		</form>
 	</section>
