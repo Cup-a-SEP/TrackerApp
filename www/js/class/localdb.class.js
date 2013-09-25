@@ -1,6 +1,8 @@
 //LocalDB Class
 //See: http://prototypejs.org/learn/class-inheritance.html
 
+// If this code works, it was written by Jeroen van de Ven. If not, I don't know who wrote it.
+
 /**
  * Class to aid access to the local database on a device. Also contains the table structure.
  */
@@ -157,11 +159,12 @@ var LocalDB = Class.create({
 	
 
 	/**
-	 * Perform a query on the database. Disregards current table.
-	 * 
-	 * @param {String} sqlQuery The query to be executed
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
-	 */	
+	 * This method leverages collective synergy to drive "outside of the box"
+	 * thinking and formulate key objectives into a win-win game plan with a
+	 * quality-driven approach that focuses on empowering key players to drive-up
+	 * their core competencies and increase expectations with an all-around
+	 * initiative to drive down the bottom-line.
+	 */
 	query: function(sqlQuery, dbResultCallback) {
 		
 		if (!this.pError) {
@@ -177,6 +180,7 @@ var LocalDB = Class.create({
 				requestCallback(localDBResultObj);
 			};
 			
+			/////////////////////////////////////// this is a well commented line
 			this.dbResultCallback = dbResultCallback;
 			this.pDbo.transaction(
 				function(tx) { //Transaction function

@@ -84,15 +84,7 @@
 	</section>
 	<script src="js/init.js"></script>
 	<script>
-		
-
-		/**
-		 * index 0: bus
-		 * index 1: trein
-		 * index 2: tram
-		 * index 3: metro
-		 * index 4: veerpont 
-		 */
+		// Modality button states
 		var modalities =
 		{
 			bus: true,
@@ -102,17 +94,12 @@
 			ferry: true
 		};
 		
-		var permanentStorage = window.localStorage;
-		var tempStorage = window.sessionStorage;
-		
-		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"]; // dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
-		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"]; // dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
+		// dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
+		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"];
+		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"];
 		var curLocation = "";
 		var totalPositions = 5; // maximum amount of suggestions shown per location
 		
-
-			
-
 		$(function()
 		{	
 			// Initialize date/time input boxes
@@ -120,13 +107,13 @@
 			$("input[name='time']").val(System.getTime());
 			
 			// Initialize modality buttons
-			$.each(modalities, function(name, value)
+			$.each(modalities, function(name)
 			{
 				var mod = $('#' + name);
 				mod.click(function()
 				{
-					modalities[name] = !value;
-					mod.css('opacity', value ? .3 : 1);
+					modalities[name] = !modalities[name];
+					mod.css('opacity', modalities[name] ? 1 : .3);
 				});
 			});
 			
@@ -145,7 +132,7 @@
 			});
 			
 			var to = $('#to');
-			var sessionTo = tempStorage.getItem("to");
+			var sessionTo = sessionStorage.getItem("to");
 			if(sessionTo != null){
 				to.val(sessionTo);
 				setTimeout(function()
@@ -177,10 +164,10 @@
 					req[obj.name] = obj.value;
 				});
 				
-				req[mode] = $.map(modalities, function(x,i)
+				req[mode] = $.map(modalities, function(value, name)
 				{
-					if (x)
-						return modality_names[i];
+					if (value)
+						return name.toUpperCase();
 				}).join(',');
 				
 				$('#submitButton').remove();
