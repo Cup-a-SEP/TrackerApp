@@ -18,6 +18,7 @@ UI.formatTime = function UIFormatTime(time)
 
 /**
  * Adds a formatted itinerary to a element
+ * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 
  * @this jQuery
  */
