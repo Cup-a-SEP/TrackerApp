@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input test</title>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/ui.js"></script>
+</head>
+<body>
+	<section>
+		<h1>Input test</h1>
+		<form>
+			<input id="input" type="text" list="cities" style="width: 30em;">
+			<datalist id="cities">
+				<option>Eindhoven</option>
+				<option>Utrecht</option>
+				<option>Groningen</option>
+				<option>Breda</option>
+				<option>Tilburg</option>
+			</datalist>
+		</form>
+	</section>
+	<script>
+	
+		$(function()
+		{
+			var top = $('<option>');
+			var input = $('#input');
+			
+			$('#cities').prepend(top);
+			input.keypress(function()
+			{
+				setTimeout(function()
+				{
+					Geo.code(input.val()).done(function(coords, address)
+					{
+						top.text(address);
+					});
+				}, 0);
+			});
+		});
+	</script>
+</body>
+</html>
