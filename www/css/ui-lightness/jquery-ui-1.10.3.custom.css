@@ -1408,13 +1408,13 @@ body {
 }
 
 #datetime {
-	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
+	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset;
 	padding-bottom: 10px;
 }
 
 #vertrekding {
 	float: left;
-	width: 30%;
+	width: 23%;
 }
 
 #datumding {
@@ -1424,11 +1424,11 @@ body {
 }
 #tijdding {
 	float: right;
-	width: 18%;
+	width: 16%;
 }
 
 #voorkeur {
-	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
+	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset;
 	padding-bottom: 10px;
 	margin-top: 10px;
 	color: black;
