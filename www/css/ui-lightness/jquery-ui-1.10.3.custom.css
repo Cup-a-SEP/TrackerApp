@@ -1414,17 +1414,17 @@ body {
 
 #vertrekding {
 	float: left;
-	width: 23%;
+	width: 25%;
 }
 
 #datumding {
 	float:none;
-	width: 22%;
+	width: 24%;
 	margin-left: 20px;
 }
 #tijdding {
 	float: right;
-	width: 16%;
+	width: 18%;
 }
 
 #voorkeur {
