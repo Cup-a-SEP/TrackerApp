@@ -96,10 +96,10 @@
 		var permanentStorage = window.localStorage;
 		var tempStorage = window.sessionStorage;
 		
-		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"]; // dummy
-		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"]; // dummy
+		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"]; // dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
+		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"]; // dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
 		var curLocation = "";
-		var totalPositions = 5;
+		var totalPositions = 5; // maximum amount of suggestions shown per location
 		
 		function initModalities(){
 			
@@ -175,10 +175,12 @@
 			var from = $('#from');
 			
 			from.click(function(){
+				// show the suggestions
 				updateSuggestions('from');
 			});
 			from.keypress(function(event)
 			{
+				// wait one millisecond; this way, $('#from').val() will be up to date
 				setTimeout(function(){updateSuggestions('from');},1);
 			});
 			
@@ -195,10 +197,12 @@
 				}, 0);
 			}
 			to.click(function(){
+				// show the suggestions
 				updateSuggestions('to');
 			});
 			to.keypress(function(event)
 			{
+				// wait one millisecond; this way, $('#to').val() will be up to date
 				setTimeout(function(){updateSuggestions('to');},1);
 			});
 			
@@ -252,8 +256,10 @@
 			});
 		});
 		
-		function LsteinDistance(s, t, delCost, insCost, subsCost) // from s to t
+		// gives the Lebenstein distance from s to t with the given delete, insert and substitution costs
+		function LsteinDistance(s, t, delCost, insCost, subsCost)
 		{
+			// use Dynamic Programming, d[i][j] = the cost from s.substring(i) to t.substring(j)
 			var d = new Array(s.length + 1);
 			for(var i = 0; i < d.length; i++){
 				d[i] = new Array(t.length + 1);
@@ -277,7 +283,12 @@
 			return d[s.length][t.length];
 		}
 		
+		// initialize the location choosers
 		function initLocationChoosers(){
+			// all suggestions have the following form:
+			// id: suggestion + to/from + idNumber
+			
+			// each div around the 
 			// location numbers:
 			// 0: Google geocode
 			// 1 -> totalPositions: favorites
