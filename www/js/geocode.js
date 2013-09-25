@@ -10,7 +10,7 @@ var Geo = {};
  * @readOnly
  * @type string
  */
-Geo.ServerPath = 'http://maps.googleapis.com/maps/api/geocode/json';
+Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
 
 /**
  * Converts an human readable location to geo-coordinates
@@ -21,6 +21,7 @@ Geo.code = function Geocode(address)
 {
 	var def = $.Deferred();
 	
+	
 	$.getJSON(Geo.ServerPath,
 	{
 		address: address,
@@ -30,7 +31,7 @@ Geo.code = function Geocode(address)
 	{
 		if (data.status == 'OK')
 		{
-			data.results = Geo.filterCountry(data.results, 'NL');
+			data.results = Geo.filterType(Geo.matchCountry(data.results,'NL'), 'companyname');
 			if (data.results.length < 1)
 				def.reject('ZERO_RESULTS');
 			else
@@ -83,19 +84,34 @@ Geo.decode = function Geodecode(latlng)
 };
 
 /**
- * Removes all unspecified countries from a Geocode result.
- * @param {object} result - Geocode result
+ * Removes all unspecified countries from a Geocode results.
+ * @param {object} results - Geocode results
  * @param {string} country - country code that is should be left in the results
- * @return {object} Geocode result (filtered by country)
+ * @return {object} Geocode results (filtered by country)
  */
-Geo.filterCountry = function(result, country)
-{
-	return $.grep(result, function(x)
+Geo.matchCountry = function(results, country)
+{	
+	return $.grep(results, function(x)
 	{
 		return $.map(x.address_components, function(y)
 		{
 			if ($.inArray('country',y.types) >= 0)
 				return y.short_name;
 		})[0] == country;
+	});
+};
+
+
+/**
+ * Removes all results in which types contains type.
+ * @param {object} results - Geocode results
+ * @param {string} type - type that should be removed from the results
+ * @return {object} Geocode results (filtered by country)
+ */
+Geo.filterType = function(results, type)
+{
+	return $.grep(results, function(x)
+	{
+		return $.inArray(type,x.types) == -1;
 	});
 };
