@@ -31,32 +31,28 @@
 	</style>
 </head>
 <body>
-	<div id="header">	<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+	<div id="header">	<span id="left">| <span id="back">&lt;</span>|</span>  
 						<span id="center">Frits</span> 
 						<span id="right">| <span id="vraagteken">?</span> |</span></div>
 	<section>
 		<form class="headerbuffer">
 			<div class="eiland" class="shadow">
 				<div class="licht" id="fromdiv">
-					<label><label id="vanLabel">Van</label><input type="text" id="from" value="..."></label>
+					<label><label class="vannaarLabel">Van</label><input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
-				</div><div id="suggestionsfromdiv"></div>
+				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
 				<div class="donker" id="todiv">
-					<label>Naar <input type="text" id="to" value="..."></label>
+					<label><label class="vannaarLabel">Naar</label> <input type="text" id="to" value="..."></label>
 					<input type="hidden" name="toPlace">
-				</div>
-				<div class="licht">
-					<label>Plan: <select name="arriveBy">
+				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
+				<div class="licht" id="datetime">
+					<select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
-					</select></label>
-				</div>
-				<div class="donker">
-					<label>Date: <input type="date" name="date"></label>
-				</div>
-				<div class="licht">
-					<label>Time: <input type="time" name="time"></label>
-				</div>
+					</select>
+					<input type="date" name="date">
+					<input type="time" name="time">
+				</div>		
 				<div class="donker">
 					<label>Voorkeur: <select name="preferLeastTransfers">
 						<option value="false">snelste route</option>
@@ -76,7 +72,7 @@
 				<div class="donker">
 					<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
 				</div>
-				<input type="submit" value="Plan" id="submitButton">
+				<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
 			</div>
 		</form>
 	</section>
@@ -289,7 +285,7 @@
 			// 2*totalPositions + 1: current location
 			for(var i = 0; i <= 2*totalPositions; i++){
 				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
-				addSuggestion('todiv', 'suggestionto', i, 'testingText' + i, 'to');
+				addSuggestion('suggestionstodiv', 'suggestionto', i, 'testingText' + i, 'to');
 			}
 			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
 			
@@ -312,7 +308,7 @@
 			var id = idName+idNumber;
 			$('#' + location).append($('<div>').attr('id',id).text(""));
 			var elem = $('#' + id);
-			elem.append($('<h1>').text(text));
+			elem.append($('<p>').text(text));
 			elem.click(function(e){
 				$('#' + toChange).val(text);
 				for(var i = 0; i <= 2*totalPositions+1; i++){
@@ -326,7 +322,7 @@
 			var id = idName+idNumber;
 			var elem = $('#' + id);
 			elem.empty();
-			elem.append($('<h1>').text(text));
+			elem.append($('<p>').text(text));
 			elem.click(function(e){
 				$('#' + toChange).val(text);
 				for(var i = 0; i <= 2*totalPositions+1; i++){

@@ -98,7 +98,7 @@ body {
         left top,
         left bottom,
         color-stop(0, #dafcfe/**97F6FC*/),
-        color-stop(0.71, #e0faf9/**2AACC9*/)
+        color-stop(0.71, #8dd4e8/**2AACC9*/)
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
