@@ -1241,16 +1241,16 @@ body {
 }
 
 #back {
-	border: 1px #1E8C1B solid;
+	border: 1px #7DD1C3 solid;
 	border-top-left-radius: 30px 20px;
 	border-bottom-left-radius: 30px 20px;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
-	color: #3D543C;
-	background-color: #D3DBD3;
+	color: #424242;
+	background-color: #20E3C2;
 	padding-left:2px;
 	padding-right:2px;
-	box-shadow: inset 0 0 10px #1E8C1B;
+	box-shadow: inset 0 0 10px 5px #D7F7F2;
 	font-family: Arial;
 }
 
@@ -1338,7 +1338,7 @@ body {
 }
 
 .eiland {
-	border: 2px #1F4499 solid;
+	border: 2px #424242 solid;
 	border-radius: 25px;
 	padding: 20px;
 	margin: 15px;
@@ -1408,26 +1408,27 @@ body {
 }
 
 #datetime {
-	box-shadow: 2000px 0px 0px -1900px #BFBFBF inset;
+	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
 	padding-bottom: 10px;
 }
 
 #vertrekding {
 	float: left;
+	width: 30%;
 }
 
 #datumding {
 	float:none;
-	width: 30%;
+	width: 22%;
 	margin-left: 20px;
 }
 #tijdding {
 	float: right;
-	width: 25%;
+	width: 18%;
 }
 
 #voorkeur {
-	box-shadow: 2000px 0px 0px -1900px #BFBFBF inset;
+	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
 	padding-bottom: 10px;
 	margin-top: 10px;
 	color: black;
@@ -1452,7 +1453,7 @@ body {
 }
 
 #rolstoel {
-	box-shadow: 2000px 0px 0px -1900px #BFBFBF inset;
+	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
 	margin-bottom: 10px;
 }
 
@@ -1460,4 +1461,6 @@ body {
 	margin-bottom: -35px;
 }
 
-
+#voorkeurding {
+	width: 60%;
+}
