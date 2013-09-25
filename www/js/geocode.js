@@ -21,7 +21,6 @@ Geo.code = function Geocode(address)
 {
 	var def = $.Deferred();
 	
-	
 	$.getJSON(Geo.ServerPath,
 	{
 		address: address,

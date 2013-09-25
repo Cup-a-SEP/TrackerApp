@@ -5,7 +5,9 @@
 
 	<meta charset="utf-8"/>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
@@ -67,10 +69,10 @@
 					<label>Modaliteiten:</label> 
 					<div align="center">
 						<img src="img/bus.png" class="icon" id="bus">
-						<img src="img/rail.png" class="icon" id="trein">
+						<img src="img/rail.png" class="icon" id="rail">
 						<img src="img/tram.png" class="icon" id="tram">
-						<img src="img/subway.png" class="icon" id="metro">
-						<img src="img/ferry.png" class="icon" id="veerpont">
+						<img src="img/subway.png" class="icon" id="subway">
+						<img src="img/ferry.png" class="icon" id="ferry">
 					</div>
 				</div>
 				<div class="donker">
@@ -84,7 +86,6 @@
 		
 	</section>
 	<script src="js/init.js"></script>
-	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
 		
 
@@ -95,8 +96,15 @@
 		 * index 3: metro
 		 * index 4: veerpont 
 		 */
-		var modalities = new Array();
-		var modality_names = ["BUS", "RAIL", "TRAM", "SUBWAY", "FERRY"];
+		var modalities =
+		{
+			bus: true,
+			rail: true,
+			tram: true,
+			subway: true,
+			ferry: true
+		};
+		
 		var permanentStorage = window.localStorage;
 		var tempStorage = window.sessionStorage;
 		
@@ -105,75 +113,26 @@
 		var curLocation = "";
 		var totalPositions = 5;
 		
-		function initModalities(){
+
 			
-			for(var i = 0; i < 5; i++){
-				modalities[i] = true;
-			}
-			
-			var bus = $('#bus');
-			bus.click(function(event){
-				if (modalities[0]) {
-					bus.css({opacity:0.30});
-					modalities[0] = false;
-				} else {
-					bus.css({opacity:1});
-					modalities[0] = true;
-				}
-			});
-			
-			var trein = $('#trein');
-			trein.click(function(event){
-				if (modalities[1]) {
-					trein.css({opacity:0.30});
-					modalities[1] = false;
-				} else {
-					trein.css({opacity:1});
-					modalities[1] = true;
-				}
-			});
-			
-			var tram = $('#tram');
-			tram.click(function(event){
-				if (modalities[2]) {
-					tram.css({opacity:0.30});
-					modalities[2] = false;
-				} else {
-					tram.css({opacity:1});
-					modalities[2] = true;
-				}
-			});
-			
-			var metro = $('#metro');
-			metro.click(function(event){
-				if (modalities[3]) {				
-					metro.css({opacity:0.30});
-					modalities[3] = false;
-				} else {
-					metro.css({opacity:1});
-					modalities[3] = true;
-				}
-			});
-			
-			var veerpont = $('#veerpont');
-			veerpont.click(function(event){
-				if (modalities[4]) {
-					veerpont.css({opacity:0.30});
-					modalities[4] = false;
-				} else {
-					veerpont.css({opacity:1});
-					modalities[4] = true;
-				}
-			});
-		}
 
 		$(function()
 		{	
-			
+			// Initialize date/time input boxes
 			$("input[name='date']").val(System.getDate());
 			$("input[name='time']").val(System.getTime());
 			
-			initModalities();
+			// Initialize modality buttons
+			$.each(modalities, function(name, value)
+			{
+				var mod = $('#' + name);
+				mod.click(function()
+				{
+					modalities[name] = !value;
+					mod.css('opacity', value ? .3 : 1);
+				});
+			});
+			
 			initLocationChoosers();
 			
 			var from = $('#from');
@@ -256,31 +215,6 @@
 			});
 		});
 		
-		function LsteinDistance(s, t, delCost, insCost, subsCost) // from s to t
-		{
-			var d = new Array(s.length + 1);
-			for(var i = 0; i < d.length; i++){
-				d[i] = new Array(t.length + 1);
-			}
-			d[0][0] = 0;
-			for (var i = 1; i <= s.length; i++){
-				d[i][0] = i*delCost;
-			}
-			for(var i = 1; i <= t.length; i++){
-				d[0][i] = i*insCost;
-			}
-			for(var j = 1; j <= t.length; j++){
-				for(var i = 1; i <= s.length; i++){
-					if(s.charAt(i-1) == t.charAt(j-1)){
-						d[i][j] = d[i-1][j-1];
-					} else {
-						d[i][j] = Math.min(d[i-1][j] + delCost, Math.min(d[i][j-1]+insCost, d[i-1][j-1] + subsCost));
-					}
-				}
-			}
-			return d[s.length][t.length];
-		}
-		
 		function initLocationChoosers(){
 			// location numbers:
 			// 0: Google geocode
@@ -346,9 +280,6 @@
 		
 		function updateSuggestions(location){
 			var maxTolerance = 3;
-			var delCost = 2;
-			var insCost = 0;
-			var subsCost = 1;
 			
 			var filled = 1;
 			var curTyped = $('#' + location).val();
@@ -372,7 +303,7 @@
 			var LsteinDistances = new Array();
 			var minDist = 1000;
 			for(var i = 0; i < favorites.length; i++){
-				LsteinDistances[i] = LsteinDistance(curTyped, favorites[i], delCost, insCost, subsCost);
+				LsteinDistances[i] = Misc.lDistance(curTyped, favorites[i]);
 				if(minDist > LsteinDistances[i]){
 					minDist = LsteinDistances[i];
 				}
@@ -401,7 +332,7 @@
 			LsteinDistances = new Array();
 			minDist = 1000;
 			for(var i = 0; i < prevused.length; i++){
-				LsteinDistances[i] = LsteinDistance(curTyped, prevused[i], delCost, insCost, subsCost);
+				LsteinDistances[i] = Misc.lDistance(curTyped, prevused[i]);
 				if(minDist > LsteinDistances[i]){
 					minDist = LsteinDistances[i];
 				}
