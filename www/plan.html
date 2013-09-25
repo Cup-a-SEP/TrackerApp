@@ -38,11 +38,11 @@
 		<form class="headerbuffer">
 			<div class="eiland" class="shadow">
 				<div class="licht" id="fromdiv">
-					<label><label class="vannaarLabel">Van</label><input type="text" id="from" value="..."></label>
+					<label>Van<input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
 				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
 				<div class="donker" id="todiv">
-					<label><label class="vannaarLabel">Naar</label> <input type="text" id="to" value="..."></label>
+					<label>Naar <input type="text" id="to" value="..."></label>
 					<input type="hidden" name="toPlace">
 				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
 				<div class="licht" id="datetime">
@@ -52,6 +52,7 @@
 					</select>
 					<input type="date" name="date">
 					<input type="time" name="time">
+					<input type="datetime" name = "datetime">
 				</div>		
 				<div class="donker">
 					<label>Voorkeur: <select name="preferLeastTransfers">
@@ -181,7 +182,7 @@
 			from.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#from').val() will be up to date
-				setTimeout(function(){updateSuggestions('from');},1);
+				setTimeout(function(){updateSuggestions('from');},1000);
 			});
 			
 			var to = $('#to');
@@ -203,7 +204,7 @@
 			to.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#to').val() will be up to date
-				setTimeout(function(){updateSuggestions('to');},1);
+				setTimeout(function(){updateSuggestions('to');},1000);
 			});
 			
 			var form = $('form');
@@ -359,7 +360,7 @@
 			
 			var filled = 1;
 			var curTyped = $('#' + location).val();
-			
+			console.log(curTyped);
 			//current location already up to date (assuming user does not move)
 			
 			//google location
