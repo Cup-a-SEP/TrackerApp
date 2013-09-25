@@ -1414,7 +1414,7 @@ body {
 
 #vertrekding {
 	float: left;
-	width: 26%;
+	width: /**26*/23%;
 }
 
 #datumding {
@@ -1463,4 +1463,9 @@ body {
 
 #voorkeurding {
 	width: 60%;
+}
+
+.optie2 {
+	padding: 20px;
+	font-family: arial;
 }
