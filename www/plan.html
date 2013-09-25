@@ -33,20 +33,26 @@
 	</style>
 </head>
 <body>
-	<div id="header">	<span id="left"><span id="back">&lt;</span></span>  
+	<!-- dit is de header -->
+	<div id="header">	<span id="left"><span id="back">&lt;</span></span>
 						<span id="center">Frits</span> 
 						<span id="right"><span id="vraagteken">?</span></span></div>
 	<section>
+		<!-- de rest van het formulier-->
 		<form class="headerbuffer">
-			<div class="optie2" class="shadow">
+			<!-- encapsulerende (is dat een woord?) div die alle invoervelden encapsuleert -->
+			<div class="eiland" class="shadow">
+				<!-- "Van"-invoerveld -->
 				<div class="divborder" id="fromdiv">
 					<label>Van<input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
 				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
+				<!-- "Naar"-invoerveld -->
 				<div class="divborder" id="todiv">
-					<label>Naar <input type="text" id="to" value="..."></label>
+					<label>Naar<input type="text" id="to" value="..."></label>
 					<input type="hidden" name="toPlace">
 				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
+				<!-- Datum/tijd-invoervelden enzo -->
 				<div class="divborder" id="datetime">
 					<select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
@@ -54,14 +60,16 @@
 					</select>
 					<input type="date" name="date" id="datumding"> <span id="om">om</span>
 					<input type="time" name="time" id="tijdding">
-					<!--<input type="datetime" name = "datetime"> // echt, wat is het nut van dit ding? -->
+					<!--<input type="datetime" name = "datetime"> echt, wat is het nut van dit ding? -->
 				</div>		
+				<!-- Voorkeur keuzeding -->
 				<div class="divborder" id="voorkeur">
 					<label>Voorkeur: <select name="preferLeastTransfers" id="voorkeurding">
 						<option value="false">snelste route</option>
 						<option value="true">minst aantal overstappen</option>
 					</select></label>
 				</div>
+				<!-- modaliteiten enzo -->
 				<div class="divborder" id="modaliteiten">
 					<label>Modaliteiten:</label> 
 					<div align="center">
@@ -72,9 +80,11 @@
 						<img src="img/ferry.png" class="icon" id="ferry">
 					</div>
 				</div>
+				<!-- Rolstoel checkbox-->
 				<div class="divborder" id="rolstoel">
 					<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
 				</div>
+				<!-- knopje-->
 				<div id="planknop">
 					<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
 				</div>
