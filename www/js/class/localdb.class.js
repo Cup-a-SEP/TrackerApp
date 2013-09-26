@@ -207,7 +207,7 @@ var LocalDB = Class.create({
 
 			//Replace this code TODO
 		  function (tx) {
-		  	tx.executeSql('CREATE TABLE tbl_name (key int unique, name text)',
+		  	tx.executeSql(LocalDBDefault,
 		    [],
 		    function (tx, res) {
 		      alert("Table Created Successfully");
@@ -280,3 +280,17 @@ var LocalDBResult = Class.create({
 		return this.pResultData.insertId;
 	},
 });
+
+/**
+ * Default database
+ * @attribute LocalDBDefault
+ * @readOnly
+ * @type string 
+ */
+var LocalDBDefault = "CREATE TABLE `locations` ("
+                   + "  `name` VARCHAR NOT NULL,"
+                   + "  `latlon` VARCHAR NULL DEFAULT NULL,"
+                   + "  `times` INTEGER NULL DEFAULT 0,"
+                   + "  `fav` bit NULL DEFAULT FALSE,"
+                   + "  PRIMARY KEY ()"
+                   + ");";
