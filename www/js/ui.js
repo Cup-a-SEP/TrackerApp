@@ -28,28 +28,28 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	
 	function addLeg(i, leg)
 	{
-		var h3 = $('<h3>')
+		var h3 = jQuery('<h3>')
 		
 		// plaatje:
-			.append($('<img>').attr('src', 'img/' + leg.mode + '.png')
+			.append(jQuery('<img>').attr('src', 'img/' + leg.mode + '.png')
 				.css('width', 20)
 				.css('height', 20))
 	
 		// titel:
 			.append(leg.mode.toLowerCase() + ' ' + leg.route + ' ')
-			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' -> ' + UI.formatTime(leg.endTime)));
+			.append(jQuery('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' -> ' + UI.formatTime(leg.endTime)));
 		
 		// zichtbaar bij uitklappen:
-		var div = $('<div>')
-			.append($('<p>').text(leg.from.name + ' -> ' + leg.to.name))
-			.append($('<div id="legmap' + i + '">')
-				.append($('<p>').text("Map")))
+		var div = jQuery('<div>')
+			.append(jQuery('<p>').text(leg.from.name + ' -> ' + leg.to.name))
+			.append(jQuery('<div id="legmap' + i + '">')
+				.append(jQuery('<p>').text("Map")))
 			;
 		
 		self.append(h3).append(div);
 	}
 	
-	$.each(itinerary.legs, addLeg);
+	jQuery.each(itinerary.legs, addLeg);
 	return self;
 };
 		

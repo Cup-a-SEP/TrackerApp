@@ -51,9 +51,9 @@ OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
  */
 OTP.plan = function OTPPlan(request)
 {
-	var def = $.Deferred();
+	var def = jQuery.Deferred();
 	
-	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
+	jQuery.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
 		if (!data.error)
 			def.resolve(data.plan);

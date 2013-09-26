@@ -36,9 +36,9 @@ Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
  */
 Geo.code = function Geocode(address)
 {
-	var def = $.Deferred();
+	var def = jQuery.Deferred();
 	
-	$.getJSON(Geo.ServerPath,
+	jQuery.getJSON(Geo.ServerPath,
 	{
 		address: address,
 		sensor: true,
@@ -73,9 +73,9 @@ Geo.code = function Geocode(address)
  */
 Geo.decode = function Geodecode(latlng)
 {
-	var def = $.Deferred();
+	var def = jQuery.Deferred();
 	
-	$.getJSON(Geo.ServerPath,
+	jQuery.getJSON(Geo.ServerPath,
 	{
 		latlng: latlng,
 		sensor: true
@@ -84,7 +84,7 @@ Geo.decode = function Geodecode(latlng)
 		if (data.status == 'OK')
 		{
 			var addresses = data.results[0].formatted_address;//data.results[0].address_components;
-			//addresses = $.map(addresses, function(x) { return x.long_name; });
+			//addresses = jQuery.map(addresses, function(x) { return x.long_name; });
 			var loc = data.results[0].geometry.location;
 			def.resolve(''+loc.lat+','+loc.lng, addresses);
 		}
@@ -106,11 +106,11 @@ Geo.decode = function Geodecode(latlng)
  */
 Geo.matchCountry = function(results, country)
 {	
-	return $.grep(results, function(x)
+	return jQuery.grep(results, function(x)
 	{
-		return $.map(x.address_components, function(y)
+		return jQuery.map(x.address_components, function(y)
 		{
-			if ($.inArray('country',y.types) >= 0)
+			if (jQuery.inArray('country',y.types) >= 0)
 				return y.short_name;
 		})[0] == country;
 	});
@@ -125,8 +125,8 @@ Geo.matchCountry = function(results, country)
  */
 Geo.filterType = function(results, type)
 {
-	return $.grep(results, function(x)
+	return jQuery.grep(results, function(x)
 	{
-		return $.inArray(type,x.types) == -1;
+		return jQuery.inArray(type,x.types) == -1;
 	});
 };
