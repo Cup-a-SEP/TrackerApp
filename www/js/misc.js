@@ -21,8 +21,15 @@ var Misc = {};
 Misc.lDistance = function MiscLDistance(src, dst, cost)
 {
 	cost = cost || Misc.lDistance.DefaultCost;
+	
+	console.log("START");
+	console.log(src);
+	console.log(dst);
+	console.log(cost);
+	console.log("EIND");
+	
 	var d = new Array(src.length + 1);
-	for (var i = 0; i < dst.length; ++i)
+	for (var i = 0; i <= src.length; ++i)
 		d[i] = new Array(dst.length + 1);
 	
 	d[0][0] = 0;
