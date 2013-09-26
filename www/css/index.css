@@ -120,10 +120,10 @@ body {
 	-moz-box-shadow: 0px 0px 8px 0px blue;
 	box-shadow: 0px 0px 8px 0px #000000;*/
 	background-color: #E8F7C1;
-	color: #637173; /**#358219;*/
+	color: #358219; /**#358219;*/
 	font-family: verdana;
 	font-size: 20px;
-		box-shadow: rgba(0,0,0,0.4)
+		box-shadow: 0px -1px 0px 1px #E8F7C1 inset, rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
   				#C6FF36/**72E823*/
@@ -173,7 +173,7 @@ body {
 	text-decoration: none;
 	border-radius: 15px;
 	background-color: #E8F7C1;
-	box-shadow: rgba(0,0,0,0.4)
+	box-shadow: 0px -1px 0px 1px #E8F7C1 inset, rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
   				#C6FF36
