@@ -46,7 +46,8 @@
 				<div class="divborder" id="fromdiv">
 					<label>Van<input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
-				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
+				</div>
+				<div id="suggestionsfromdiv" class="suggestionsdiv"></div>
 				<!-- "Naar"-invoerveld -->
 				<div class="divborder" id="todiv">
 					<label>Naar<input type="text" id="to" value="..."></label>
@@ -114,6 +115,9 @@
 		
 		$(function()
 		{	
+			
+			$('#suggestionsfromdiv').hide();
+			$('#suggestionstodiv').hide();
 			// Initialize date/time input boxes
 			$("input[name='date']").val(System.getDate());
 			$("input[name='time']").val(System.getTime());
@@ -140,7 +144,7 @@
 			from.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#from').val() will be up to date
-				setTimeout(function(){updateSuggestions('from');},1000);
+				setTimeout(function(){updateSuggestions('from');},1);
 			});
 			
 			var to = $('#to');
@@ -162,7 +166,7 @@
 			to.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#to').val() will be up to date
-				setTimeout(function(){updateSuggestions('to');},1000);
+				setTimeout(function(){updateSuggestions('to');},1);
 			});
 			
 			var form = $('form');
@@ -226,8 +230,8 @@
 			// totalPositions + 1 -> 2*totalPositions: previously used
 			// 2*totalPositions + 1: current location
 			for(var i = 0; i <= 2*totalPositions; i++){
-				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
-				addSuggestion('suggestionstodiv', 'suggestionto', i, 'testingText' + i, 'to');
+				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, '', 'from');
+				addSuggestion('suggestionstodiv', 'suggestionto', i, '', 'to');
 			}
 			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
 			
@@ -246,20 +250,14 @@
 			});
 		}
 		
+		// example: addSuggestion('suggestionsfromdiv', 'suggestionfrom', 'Eindhoven', 'from')
 		function addSuggestion(location, idName, idNumber, text, toChange){
 			var id = idName+idNumber;
 			$('#' + location).append($('<div>').attr('id',id).text(""));
-			var elem = $('#' + id);
-			elem.append($('<p>').text(text));
-			elem.click(function(e){
-				$('#' + toChange).val(text);
-				for(var i = 0; i <= 2*totalPositions+1; i++){
-					$('#' + idName + i).hide();
-				}
-			});
-			elem.hide();
+			$('#' + id).hide();
 		}
 		
+		// example: changeSuggestion('suggestionfrom',0,'Eindhoven','from')
 		function changeSuggestion(idName, idNumber, text, toChange){
 			var id = idName+idNumber;
 			var elem = $('#' + id);
@@ -270,9 +268,11 @@
 				for(var i = 0; i <= 2*totalPositions+1; i++){
 					$('#' + idName + i).hide();
 				}
+				$('#suggestions' + toChange + 'div').hide();
 			});
 		}
 		
+		// example: setVisibleSuggestion('suggestionfrom0', true)
 		function setVisibleSuggestion(id, vis){
 			var elem = $('#' + id);
 			if(vis){
@@ -282,6 +282,7 @@
 			}
 		}
 		
+		// example: updatesuggestions('from')
 		function updateSuggestions(location){
 			var maxTolerance = 3;
 			
@@ -364,6 +365,8 @@
 			if(location == 'from' && curLocation != ""){
 				setVisibleSuggestion("suggestionfrom" + (totalPositions*2+1),true);
 			}
+			
+			$('#suggestions' + location + 'div').show();
 		}
 	</script>
 </body>
