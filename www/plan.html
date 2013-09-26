@@ -58,8 +58,8 @@
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="date" name="date" id="datumding"> <span id="om">om</span>
-					<input type="time" name="time" id="tijdding">
+					<input type="datetime-local" name="datetime" id="datumding"> <!-- id="datumding"> <span id="om">om</span>
+					<input type="time" name="time" id="tijdding">-->
 					<!--<input type="datetime" name = "datetime"> echt, wat is het nut van dit ding? -->
 				</div>		
 				<!-- Voorkeur keuzeding -->
@@ -115,9 +115,7 @@
 		$(function()
 		{	
 			// Initialize date/time input boxes
-			$("input[name='date']").val(System.getDate());
-			$("input[name='time']").val(System.getTime());
-			
+			$("input[name='datetime']").val(System.getDateTime());
 			// Initialize modality buttons
 			$.each(modalities, function(name)
 			{
