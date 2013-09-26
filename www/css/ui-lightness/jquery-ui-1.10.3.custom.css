@@ -1196,7 +1196,7 @@ body {
 	color: #358219;
 	font-family: verdana;
 	font-size: 20px;
-		box-shadow: rgba(0,0,0,0.4)
+		box-shadow: 0px -1px 0px 1px #E8F7C1 inset, rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
   				#C6FF36
@@ -1338,7 +1338,7 @@ body {
 }
 
 .eiland {
-	border: 2px #424242 solid;
+	border: 1px #424242 solid;
 	border-radius: 25px;
 	padding: 20px;
 	margin: 15px;
@@ -1354,17 +1354,17 @@ body {
   				font-family:Arial;
   				  	-moz-box-shadow:    3px 3px 25px 6px #1A627A;
   					-webkit-box-shadow: 3px 3px 25px 6px #1A627A;
-  					box-shadow:         3px 3px 25px 6px #1A627A;
+  					box-shadow:         3px 3px 25px 6px #1A627A, 0px 0px 0px 2px #E2F5B3 inset, 0px 0px 25px 10px #C6FF36 inset;
 }
 
 #fromdiv {
-	box-shadow: 2000px 0px 0px -1940px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1940px #BFBFBF inset;
 }
 
 .vannaarLabel {
 	background-color: #BFBFBF;
-	border-right: 2px solid #424242;
-	border-bottom:2px solid #424242;
+	border-right: 1px solid #424242;
+	border-bottom:1px solid #424242;
 	padding: 10px 10px 11px 10px;
 	margin-left: -10px;
 	border-top-left-radius: 30px 30px;
@@ -1374,7 +1374,7 @@ body {
 
 
 #todiv {
-	box-shadow: 2000px 0px 0px -1940px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #e8e8e8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1940px #BFBFBF inset;
 }
 
 #from {
@@ -1393,22 +1393,23 @@ body {
 
 .suggestionsdiv {
 	background-color: #EDF5BA/*dafcfe*/;
-	border-right: 2px solid black;
-	border-bottom: 2px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
 	padding: 10px 10px 11px 10px;
 	border-top-left-radius: 30px 30px;
 	border-bottom-left-radius: 30px 30px;
 	border-radius: 30px;
-	border: 2px solid #424242/*41B0E8*/;
+	border: 1px solid #424242/*41B0E8*/;
 	color: #424242;
-	margin-top: -2px;
+	margin-top: -1px;
 	/**padding-left: 59px; align suggestions with input field */
 	font-size: 16px;
 	margin-bottom:10px;
+	box-shadow: 0px 0px 0px 2px #EDF5BA inset, -5px -5px 25px 2px #CAF09C inset;
 }
 
 #datetime {
-	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1920px #BFBFBF inset;
 	padding-bottom: 10px;
 }
 
@@ -1419,8 +1420,8 @@ body {
 
 #datumding {
 	float:none;
-	width: 24%;
-	margin-left: 20px;
+	width: 60%;
+	margin-left: 27px;
 }
 #tijdding {
 	float: right;
@@ -1428,7 +1429,7 @@ body {
 }
 
 #voorkeur {
-	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1920px #BFBFBF inset;
 	padding-bottom: 10px;
 	margin-top: 10px;
 	color: black;
@@ -1436,11 +1437,12 @@ body {
 
 #modaliteiten {
 	margin-top: 10px;
+	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, -5px -5px 24px 3px rgba(0,0,0,0.2) inset;
 	/**box-shadow: 0px 2000px 0px -1973px #BFBFBF inset;*/
 }
 
 .divborder {
-	border: 2px solid #424242;
+	border: 1px solid #424242;
 	padding: 10px;
 	border-radius: 30px;
 	background-color: white;
@@ -1453,7 +1455,7 @@ body {
 }
 
 #rolstoel {
-	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1915px #BFBFBF inset;
 	margin-bottom: 10px;
 }
 

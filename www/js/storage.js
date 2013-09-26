@@ -1,3 +1,57 @@
+/**
+ * Storage related functionality
+ * @namespace Storage 
+ */
+var Storage = {};
+
+/**
+ * Location storage for previous used and favourite locations.
+ * @namespace Storage.Locations 
+ */
+Storage.Locations = {};
+
+Storage.Locations.DB = new LocalDB('locations');
+
+/**
+ * Adds a new location to the stored ones
+ * @param {String} name   - Location name
+ * @param {String} latlng - Geoposition coordinates concated with a comma
+ * @param {Boolean} fav   - Is this locations favourited (or just previously used). 
+ */
+Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
+{
+	var res = Storage.Locations.DB.match({ name: name });
+	if (res.pRows < 1 || (!this.pResultData.rows.item(0).fav && fav))
+	{
+		// Todo: update times and fav
+	}
+	else
+		Storage.Locations.DB.insert(
+		{
+			name: name,
+			latlng: latlng,
+			fav: !!fav	
+		});
+};
+
+
+$(function(){
+	
+	
+	var localDbObj = new LocalDB('table');
+
+	
+	//Tests: LocalDB.insert
+	//Expected output: a number
+	localDbObj.insert(
+		{a:22, b:23},
+		function(localDbResultObj) { 
+			console.log(localDbResultObj.insertId()); 
+		}
+	);
+
+});
+
 /*
 LocalDB Examples:
 
@@ -44,6 +98,4 @@ localDbObj.deleteOne(
 	function(localDbResultObj) { 
 		console.log(localDbResultObj.rowsAffected());
 	}
-);
-
-*/
+);*/

@@ -33,37 +33,46 @@
 	</style>
 </head>
 <body>
-	<div id="header">	<span id="left"><span id="back">&lt;</span></span>  
+	<!-- dit is de header -->
+	<div id="header">	<span id="left"><span id="back">&lt;</span></span>
 						<span id="center">Frits</span> 
 						<span id="right"><span id="vraagteken">?</span></span></div>
 	<section>
+		<!-- de rest van het formulier-->
 		<form class="headerbuffer">
-			<div class="optie2" class="shadow">
+			<!-- encapsulerende (is dat een woord?) div die alle invoervelden encapsuleert -->
+			<div class="eiland" class="shadow">
+				<!-- "Van"-invoerveld -->
 				<div class="divborder" id="fromdiv">
 					<label>Van<input type="text" id="from" value="..."></label>
 						<input type="hidden" name="fromPlace">
-				</div><div id="suggestionsfromdiv" class="suggestionsdiv"></div>
+				</div>
+				<div id="suggestionsfromdiv" class="suggestionsdiv"></div>
+				<!-- "Naar"-invoerveld -->
 				<div class="divborder" id="todiv">
-					<label>Naar <input type="text" id="to" value="..."></label>
+					<label>Naar<input type="text" id="to" value="..."></label>
 					<input type="hidden" name="toPlace">
 				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
+				<!-- Datum/tijd-invoervelden enzo -->
 				<div class="divborder" id="datetime">
 					<select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="date" name="date" id="datumding"> <span id="om">om</span>
-					<input type="time" name="time" id="tijdding">
-					<!--<input type="datetime" name = "datetime"> // echt, wat is het nut van dit ding? -->
+					<input type="datetime-local" name="datetime" id="datumding"> <!-- id="datumding"> <span id="om">om</span>
+					<input type="time" name="time" id="tijdding">-->
+					<!--<input type="datetime" name = "datetime"> echt, wat is het nut van dit ding? -->
 				</div>		
+				<!-- Voorkeur keuzeding -->
 				<div class="divborder" id="voorkeur">
-					<label>Voorkeur: <select name="preferLeastTransfers" id="voorkeurding">
+					<label>Voorkeur<select name="preferLeastTransfers" id="voorkeurding">
 						<option value="false">snelste route</option>
 						<option value="true">minst aantal overstappen</option>
 					</select></label>
 				</div>
+				<!-- modaliteiten enzo -->
 				<div class="divborder" id="modaliteiten">
-					<label>Modaliteiten:</label> 
+					<label>Modaliteiten</label> 
 					<div align="center">
 						<img src="img/bus.png" class="icon" id="bus">
 						<img src="img/rail.png" class="icon" id="rail">
@@ -72,9 +81,11 @@
 						<img src="img/ferry.png" class="icon" id="ferry">
 					</div>
 				</div>
+				<!-- Rolstoel checkbox-->
 				<div class="divborder" id="rolstoel">
-					<label>Rolstoel: <input type="checkbox" name="wheelchair" value="true"></label>
+					<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
 				</div>
+				<!-- knopje-->
 				<div id="planknop">
 					<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
 				</div>
@@ -104,10 +115,11 @@
 		
 		$(function()
 		{	
-			// Initialize date/time input boxes
-			$("input[name='date']").val(System.getDate());
-			$("input[name='time']").val(System.getTime());
 			
+			$('#suggestionsfromdiv').hide();
+			$('#suggestionstodiv').hide();
+			// Initialize date/time input boxes
+			$("input[name='datetime']").val(System.getDate() + ' ' + System.getTime());
 			// Initialize modality buttons
 			$.each(modalities, function(name)
 			{
@@ -130,7 +142,7 @@
 			from.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#from').val() will be up to date
-				setTimeout(function(){updateSuggestions('from');},1000);
+				setTimeout(function(){updateSuggestions('from');},1);
 			});
 			
 			var to = $('#to');
@@ -152,7 +164,7 @@
 			to.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#to').val() will be up to date
-				setTimeout(function(){updateSuggestions('to');},1000);
+				setTimeout(function(){updateSuggestions('to');},1);
 			});
 			
 			var form = $('form');
@@ -216,8 +228,8 @@
 			// totalPositions + 1 -> 2*totalPositions: previously used
 			// 2*totalPositions + 1: current location
 			for(var i = 0; i <= 2*totalPositions; i++){
-				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
-				addSuggestion('suggestionstodiv', 'suggestionto', i, 'testingText' + i, 'to');
+				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, '', 'from');
+				addSuggestion('suggestionstodiv', 'suggestionto', i, '', 'to');
 			}
 			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
 			
@@ -236,20 +248,14 @@
 			});
 		}
 		
+		// example: addSuggestion('suggestionsfromdiv', 'suggestionfrom', 'Eindhoven', 'from')
 		function addSuggestion(location, idName, idNumber, text, toChange){
 			var id = idName+idNumber;
 			$('#' + location).append($('<div>').attr('id',id).text(""));
-			var elem = $('#' + id);
-			elem.append($('<p>').text(text));
-			elem.click(function(e){
-				$('#' + toChange).val(text);
-				for(var i = 0; i <= 2*totalPositions+1; i++){
-					$('#' + idName + i).hide();
-				}
-			});
-			elem.hide();
+			$('#' + id).hide();
 		}
 		
+		// example: changeSuggestion('suggestionfrom',0,'Eindhoven','from')
 		function changeSuggestion(idName, idNumber, text, toChange){
 			var id = idName+idNumber;
 			var elem = $('#' + id);
@@ -260,9 +266,11 @@
 				for(var i = 0; i <= 2*totalPositions+1; i++){
 					$('#' + idName + i).hide();
 				}
+				$('#suggestions' + toChange + 'div').hide();
 			});
 		}
 		
+		// example: setVisibleSuggestion('suggestionfrom0', true)
 		function setVisibleSuggestion(id, vis){
 			var elem = $('#' + id);
 			if(vis){
@@ -272,7 +280,9 @@
 			}
 		}
 		
+		// example: updatesuggestions('from')
 		function updateSuggestions(location){
+			$('#suggestions' + location + 'div').show();
 			var maxTolerance = 3;
 			
 			var filled = 1;
@@ -354,6 +364,8 @@
 			if(location == 'from' && curLocation != ""){
 				setVisibleSuggestion("suggestionfrom" + (totalPositions*2+1),true);
 			}
+			
+			$('#suggestions' + location + 'div').show();
 		}
 	</script>
 </body>

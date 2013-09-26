@@ -22,7 +22,13 @@ var LocalDB = Class.create({
 	dbResultCallback: undefined,
 	
 	//Methods
-	
+	onDbCreate: function (db) {
+	  //Attach the database because "window.openDatabase" would not have returned it
+		this.pDbo = db;
+		console.log('wut');
+		this.initDbStruct(db);
+	},
+		
 	/**
 	 * Initialize a LocalDB instance for a specified table and database structure version
 	 * 
@@ -37,18 +43,10 @@ var LocalDB = Class.create({
 		}
 		this.pTableName = tableName; 
 		//console.log('Connecting to table ' + pTableName + ' version ' + pDbVersion);
-		
-    //This method is only called once (the first time the database is created)
-    //Source: https://developer.blackberry.com/html5/api/database.html
-		var onDBCreate = function (db) {
-		  //Attach the database because "window.openDatabase" would not have returned it
-			this.pDbo = database;
-			this.initDbStruct(db);
-		};
-		
+
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
-			this.pDbo = window.openDatabase("FritsOVLocalDatabase2", this.pDbVersion, "FritsOV Local Database", 1000, onDBCreate);
+			this.pDbo = window.openDatabase("FritsOVLocalDatabase12", this.pDbVersion, "FritsOV Local Database", 1000, this.onDbCreate.bind(this));
 		} catch (e) {
 			//(Most likely) database version mismatch
 			if (e.code == 11) {
@@ -60,12 +58,18 @@ var LocalDB = Class.create({
 			}
 		}
 	},
-
+	
+	/**
+	 * Callback function called on completion of the query
+	 * @callback LocalDB~Callback
+	 * @param {LocalDBResult} object - Database result
+	 */
+	
 	/**
 	 * Select a single row from the current table
 	 * 
 	 * @param {int} id Row ID in the database table
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback 
 	 */	
 	selectOne: function(id, dbResultCallback) {
 
@@ -78,7 +82,7 @@ var LocalDB = Class.create({
 	 * Select a single row from the current table
 	 * 
 	 * @param {int} limit Limit of the amount of rows returned. A value of -1 disables the limit.
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	selectAll: function(limit, dbResultCallback) {		
 		
@@ -91,7 +95,7 @@ var LocalDB = Class.create({
 	 * Select rows from the current table that match a certain value for a certain column
 	 * 
 	 * @param {object} values Column-value pairs to search for in the database
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	match: function(values, dbResultCallback) {
 		var wheres = '';
@@ -108,7 +112,7 @@ var LocalDB = Class.create({
 	 * Inserts a row into the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	insert: function(values, dbResultCallback) {		
 		var cols = '', vals = '';
@@ -131,7 +135,7 @@ var LocalDB = Class.create({
 	 * Updates a row in the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	update: function(id, values, dbResultCallback) {		
 		var updates = '';
@@ -148,7 +152,7 @@ var LocalDB = Class.create({
 	 * Deletes a row into the current table.
 	 * 
 	 * @param {int} id Row ID in the database table
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	deleteOne: function(id, dbResultCallback) {
 
@@ -203,19 +207,19 @@ var LocalDB = Class.create({
 	 * @param {database} db The WebSQL database objectc
 	 */	
 	initDbStruct: function(db) {
-		database.transaction(
-
+		db.transaction(
 			//Replace this code TODO
 		  function (tx) {
-		  	tx.executeSql('CREATE TABLE tbl_name (key int unique, name text)',
-		    [],
-		    function (tx, res) {
-		      alert("Table Created Successfully");
-		    },
-		    function (tx, err) {
-		      alert("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message);
-	      });
-	    }
+		  	tx.executeSql(LocalDBStruct,
+				  [],
+				  function (tx, res) {
+				    console.log("Table Created Successfully");
+				  },
+				  function (tx, err) {
+				    console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message + "TODO: make it so that the database is deleted if populating the structure fails. now you need to change the db name or this function will not be executed again.");
+			    }
+			  );
+			}
 	  );
 	},
 	
@@ -280,3 +284,11 @@ var LocalDBResult = Class.create({
 		return this.pResultData.insertId;
 	},
 });
+
+/**
+ * Default database structure
+ * @attribute LocalDBDefault
+ * @readOnly
+ * @type string 
+ */
+var LocalDBStruct = 'CREATE TABLE IF NOT EXISTS `location` (name unique, latlon, times, fav)';//zet maar op 1 regel das wel te doen.

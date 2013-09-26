@@ -10,7 +10,24 @@ var Geo = {};
  * @readOnly
  * @type string
  */
+
+//alternatively use google maps geocoding
 Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
+//Geo.ServerPath = 'http://maps.googleapis.com/maps/api/geocode/json';
+
+/**
+ * Callback for success in geo requests
+ * @callback Geo~DoneCallback
+ * @param {String} coords  - The received coordinates in "lat,long" format
+ * @param {string} address - The received location name
+ */
+
+/**
+ * Callback for failure in geo requests
+ * @callback Geo~FailCallback
+ * @param          errorCode    - An error identifier
+ * @param {String} errorMessage - A human readable error message.
+ */
 
 /**
  * Converts an human readable location to geo-coordinates
@@ -35,8 +52,7 @@ Geo.code = function Geocode(address)
 				def.reject('ZERO_RESULTS');
 			else
 			{
-				var addresses = data.results[0].formatted_address;//data.results[0].address_components;
-				//addresses = $.map(addresses, function(x) { return x.long_name; });
+				var addresses = data.results[0].formatted_address;
 				var loc = data.results[0].geometry.location;
 				def.resolve(''+loc.lat+','+loc.lng, addresses);
 			}
@@ -85,7 +101,7 @@ Geo.decode = function Geodecode(latlng)
 /**
  * Removes all unspecified countries from a Geocode results.
  * @param {object} results - Geocode results
- * @param {string} country - country code that is should be left in the results
+ * @param {string} country - country code that should be kept in the results
  * @return {object} Geocode results (filtered by country)
  */
 Geo.matchCountry = function(results, country)
@@ -105,7 +121,7 @@ Geo.matchCountry = function(results, country)
  * Removes all results in which types contains type.
  * @param {object} results - Geocode results
  * @param {string} type - type that should be removed from the results
- * @return {object} Geocode results (filtered by country)
+ * @return {object} Geocode results (filtered by type)
  */
 Geo.filterType = function(results, type)
 {
