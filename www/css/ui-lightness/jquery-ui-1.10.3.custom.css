@@ -1405,6 +1405,7 @@ body {
 	/**padding-left: 59px; align suggestions with input field */
 	font-size: 16px;
 	margin-bottom:10px;
+	box-shadow: 5px -5px 25px 2px #CAF09C inset;
 }
 
 #datetime {
