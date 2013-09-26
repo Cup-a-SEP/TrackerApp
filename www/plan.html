@@ -130,7 +130,7 @@
 			from.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#from').val() will be up to date
-				setTimeout(function(){updateSuggestions('from');},1000);
+				setTimeout(function(){updateSuggestions('from');},1);
 			});
 			
 			var to = $('#to');
@@ -152,7 +152,7 @@
 			to.keypress(function(event)
 			{
 				// wait one millisecond; this way, $('#to').val() will be up to date
-				setTimeout(function(){updateSuggestions('to');},1000);
+				setTimeout(function(){updateSuggestions('to');},1);
 			});
 			
 			var form = $('form');
@@ -216,8 +216,8 @@
 			// totalPositions + 1 -> 2*totalPositions: previously used
 			// 2*totalPositions + 1: current location
 			for(var i = 0; i <= 2*totalPositions; i++){
-				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, 'testingText' + i, 'from');
-				addSuggestion('suggestionstodiv', 'suggestionto', i, 'testingText' + i, 'to');
+				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, '', 'from');
+				addSuggestion('suggestionstodiv', 'suggestionto', i, '', 'to');
 			}
 			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
 			
@@ -239,6 +239,7 @@
 		function addSuggestion(location, idName, idNumber, text, toChange){
 			var id = idName+idNumber;
 			$('#' + location).append($('<div>').attr('id',id).text(""));
+			// TODO: gedeelte hieronder onnodig?
 			var elem = $('#' + id);
 			elem.append($('<p>').text(text));
 			elem.click(function(e){
