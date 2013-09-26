@@ -6,9 +6,12 @@
 	<meta charset="utf-8"/>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
+	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
+	<script src="js/class/localdb.class.js"></script>
+	<script src="js/storage.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
 	<script src="js/ui.js"></script>
@@ -55,12 +58,12 @@
 				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
 				<!-- Datum/tijd-invoervelden enzo -->
 				<div class="divborder" id="datetime">
-					<select name="arriveBy" id="vertrekding">
+					<div id="ditmoetopdezelfdelijn"><select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="datetime-local" name="datetime" id="datumding"> <!-- id="datumding"> <span id="om">om</span>
-					<input type="time" name="time" id="tijdding">-->
+					<input type="date" name="date" id="datumding">
+					<input type="time" name="time" id="tijdding"></div>
 					<!--<input type="datetime" name = "datetime"> echt, wat is het nut van dit ding? -->
 				</div>		
 				<!-- Voorkeur keuzeding -->
