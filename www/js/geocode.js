@@ -16,6 +16,20 @@ Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
 //Geo.ServerPath = 'http://maps.googleapis.com/maps/api/geocode/json';
 
 /**
+ * Callback for success in geo requests
+ * @callback Geo~DoneCallback
+ * @param {String} coords  - The received coordinates in "lat,long" format
+ * @param {string} address - The received location name
+ */
+
+/**
+ * Callback for failure in geo requests
+ * @callback Geo~FailCallback
+ * @param          errorCode    - An error identifier
+ * @param {String} errorMessage - A human readable error message.
+ */
+
+/**
  * Converts an human readable location to geo-coordinates
  * @param {string} address - A human readable location designation
  * @return {object} jQuery deferred object

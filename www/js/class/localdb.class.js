@@ -60,12 +60,18 @@ var LocalDB = Class.create({
 			}
 		}
 	},
-
+	
+	/**
+	 * Callback function called on completion of the query
+	 * @callback LocalDB~Callback
+	 * @param {LocalDBResult} object - Database result
+	 */
+	
 	/**
 	 * Select a single row from the current table
 	 * 
 	 * @param {int} id Row ID in the database table
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback 
 	 */	
 	selectOne: function(id, dbResultCallback) {
 
@@ -78,7 +84,7 @@ var LocalDB = Class.create({
 	 * Select a single row from the current table
 	 * 
 	 * @param {int} limit Limit of the amount of rows returned. A value of -1 disables the limit.
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	selectAll: function(limit, dbResultCallback) {		
 		
@@ -91,7 +97,7 @@ var LocalDB = Class.create({
 	 * Select rows from the current table that match a certain value for a certain column
 	 * 
 	 * @param {object} values Column-value pairs to search for in the database
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	match: function(values, dbResultCallback) {
 		var wheres = '';
@@ -108,7 +114,7 @@ var LocalDB = Class.create({
 	 * Inserts a row into the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	insert: function(values, dbResultCallback) {		
 		var cols = '', vals = '';
@@ -131,7 +137,7 @@ var LocalDB = Class.create({
 	 * Updates a row in the current table.
 	 * 
 	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	update: function(id, values, dbResultCallback) {		
 		var updates = '';
@@ -148,7 +154,7 @@ var LocalDB = Class.create({
 	 * Deletes a row into the current table.
 	 * 
 	 * @param {int} id Row ID in the database table
-	 * @param {function(LocalDBResult object)} dbResultCallback Callback function called on completion of the query
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
 	 */	
 	deleteOne: function(id, dbResultCallback) {
 
