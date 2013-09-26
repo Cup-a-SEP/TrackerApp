@@ -1422,7 +1422,7 @@ body {
 	border-radius: 10px;
 }
 
-#datumding {
+#date {
 	float:right;
 	margin: 5px;
 	margin-left: 27px;
@@ -1430,7 +1430,7 @@ body {
 	border-radius: 5px;
 	margin-top: 1px;
 }
-#tijdding {
+#time {
 	float: right;
 	margin: 5px;
 	width:53%;
@@ -1472,7 +1472,7 @@ body {
 	margin-bottom: -35px;
 }
 
-#voorkeurding {
+#preferenceDropdownThing {
 	width: 53%;
 	border-radius: 10px;
 	margin-top: -1px;
