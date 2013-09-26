@@ -1196,7 +1196,7 @@ body {
 	color: #358219;
 	font-family: verdana;
 	font-size: 20px;
-		box-shadow: rgba(0,0,0,0.4)
+		box-shadow: 0px -1px 0px 1px #E8F7C1 inset, rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
   				#C6FF36
@@ -1354,11 +1354,11 @@ body {
   				font-family:Arial;
   				  	-moz-box-shadow:    3px 3px 25px 6px #1A627A;
   					-webkit-box-shadow: 3px 3px 25px 6px #1A627A;
-  					box-shadow:         3px 3px 25px 6px #1A627A, 0px 0px 25px 10px #C6FF36 inset;
+  					box-shadow:         3px 3px 25px 6px #1A627A, 0px 0px 0px 3px #D6F781 inset, 0px 0px 25px 10px #C6FF36 inset;
 }
 
 #fromdiv {
-	box-shadow: 2000px 0px 0px -1940px #BFBFBF inset, 5px -5px 10px 2px #DFDFDF inset;
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, 2000px 0px 0px -1940px #BFBFBF inset, -5px -5px 10px 2px #DFDFDF inset;
 }
 
 .vannaarLabel {
@@ -1374,7 +1374,7 @@ body {
 
 
 #todiv {
-	box-shadow: 2000px 0px 0px -1940px #BFBFBF inset, 5px -5px 10px 2px #DFDFDF inset;
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, 2000px 0px 0px -1940px #BFBFBF inset, -5px -5px 10px 2px #DFDFDF inset;
 }
 
 #from {
@@ -1405,11 +1405,11 @@ body {
 	/**padding-left: 59px; align suggestions with input field */
 	font-size: 16px;
 	margin-bottom:10px;
-	box-shadow: 5px -5px 25px 2px #CAF09C inset;
+	box-shadow: 0px 0px 0px 2px #EDF5BA inset, -5px -5px 25px 2px #CAF09C inset;
 }
 
 #datetime {
-	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset, 5px -5px 10px 2px #DFDFDF inset;
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, 2000px 0px 0px -1920px #BFBFBF inset, -5px -5px 10px 2px #DFDFDF inset;
 	padding-bottom: 10px;
 }
 
@@ -1429,7 +1429,7 @@ body {
 }
 
 #voorkeur {
-	box-shadow: 2000px 0px 0px -1920px #BFBFBF inset, 5px -5px 10px 2px #DFDFDF inset;
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, 2000px 0px 0px -1920px #BFBFBF inset, -5px -5px 10px 2px #DFDFDF inset;
 	padding-bottom: 10px;
 	margin-top: 10px;
 	color: black;
@@ -1437,7 +1437,7 @@ body {
 
 #modaliteiten {
 	margin-top: 10px;
-	box-shadow: 5px -5px 24px 3px #CDCDCD inset
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, -5px -5px 24px 3px #CDCDCD inset;
 	/**box-shadow: 0px 2000px 0px -1973px #BFBFBF inset;*/
 }
 
@@ -1455,7 +1455,7 @@ body {
 }
 
 #rolstoel {
-	box-shadow: 2000px 0px 0px -1915px #BFBFBF inset, 5px -5px 10px 2px #DFDFDF inset;
+	box-shadow: -1px -1px 0px 1px #FFFFFF inset, 2000px 0px 0px -1915px #BFBFBF inset, -5px -5px 10px 2px #DFDFDF inset;
 	margin-bottom: 10px;
 }
 
