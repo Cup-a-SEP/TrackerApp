@@ -119,7 +119,7 @@
 			$('#suggestionsfromdiv').hide();
 			$('#suggestionstodiv').hide();
 			// Initialize date/time input boxes
-			$("input[name='datetime']").val(System.getDateTime());
+			$("input[name='datetime']").val(System.getDate() + ' ' + System.getTime());
 			// Initialize modality buttons
 			$.each(modalities, function(name)
 			{
@@ -282,6 +282,7 @@
 		
 		// example: updatesuggestions('from')
 		function updateSuggestions(location){
+			$('#suggestions' + location + 'div').show();
 			var maxTolerance = 3;
 			
 			var filled = 1;
