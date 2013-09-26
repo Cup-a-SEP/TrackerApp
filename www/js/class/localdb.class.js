@@ -42,7 +42,7 @@ var LocalDB = Class.create({
     //Source: https://developer.blackberry.com/html5/api/database.html
 		var onDBCreate = function (db) {
 		  //Attach the database because "window.openDatabase" would not have returned it
-			this.pDbo = database;
+			this.pDbo = db;
 			this.initDbStruct(db);
 		};
 		
