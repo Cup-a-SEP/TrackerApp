@@ -4,9 +4,9 @@
 	<title>OTP test</title>
 
 	<meta charset="utf-8"/>
+	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
-	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
@@ -36,67 +36,70 @@
 	</style>
 </head>
 <body>
-	<!-- dit is de header -->
-	<div id="header">	<span id="left"><span id="back">&lt;</span></span>
-						<span id="center">Frits</span> 
-						<span id="right"><span id="vraagteken">?</span></span></div>
+	<div id="header">
+		<span id="left"><span id="back">&lt;</span></span>
+		<span id="center">Frits</span> 
+		<span id="right"><span id="vraagteken">?</span></span>
+	</div>
 	<section>
-		<!-- de rest van het formulier-->
-		<form class="headerbuffer">
-			<!-- encapsulerende (is dat een woord?) div die alle invoervelden encapsuleert -->
+		<div class="headerbuffer">
+			
 			<div class="eiland" class="shadow">
-				<!-- "Van"-invoerveld -->
-				<div class="divborder" id="fromdiv">
-					<label>Van<input type="text" id="from" value="..."></label>
-						<input type="hidden" name="fromPlace">
-				</div>
-				<div id="suggestionsfromdiv" class="suggestionsdiv"></div>
-				<!-- "Naar"-invoerveld -->
-				<div class="divborder" id="todiv">
-					<label>Naar<input type="text" id="to" value="..."></label>
-					<input type="hidden" name="toPlace">
-				</div><div id="suggestionstodiv" class="suggestionsdiv"></div>
-				<!-- Datum/tijd-invoervelden enzo -->
-				<div class="divborder" id="datetime">
-					<div id="ditmoetopdezelfdelijn"><select name="arriveBy" id="vertrekding">
+			
+			<div class="divborder" id="fromdiv">
+				<label>Van<input type="text" id="from" value="..."></label>
+				<input type="hidden" name="fromPlace">
+			</div>
+			<div id="sugfrom" class="suggestionsdiv"></div>
+			
+			<div class="divborder" id="todiv">
+				<label>Naar<input type="text" id="to" value="..."></label>
+				<input type="hidden" name="toPlace">
+			</div>
+			<div id="sugto" class="suggestionsdiv"></div>
+			
+			<div class="divborder" id="datetime">
+				<div id="ditmoetopdezelfdelijn">
+					<select name="arriveBy" id="vertrekding">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
 					<input type="date" name="date" id="datumding">
-					<input type="time" name="time" id="tijdding"></div>
-					<!--<input type="datetime" name = "datetime"> echt, wat is het nut van dit ding? -->
-				</div>		
-				<!-- Voorkeur keuzeding -->
-				<div class="divborder" id="voorkeur">
-					<label>Voorkeur<select name="preferLeastTransfers" id="voorkeurding">
-						<option value="false">snelste route</option>
-						<option value="true">minst aantal overstappen</option>
-					</select></label>
+					<input type="time" name="time" id="tijdding">
 				</div>
-				<!-- modaliteiten enzo -->
-				<div class="divborder" id="modaliteiten">
-					<label>Modaliteiten</label> 
-					<div align="center">
-						<img src="img/bus.png" class="icon" id="bus">
-						<img src="img/rail.png" class="icon" id="rail">
-						<img src="img/tram.png" class="icon" id="tram">
-						<img src="img/subway.png" class="icon" id="subway">
-						<img src="img/ferry.png" class="icon" id="ferry">
-					</div>
-				</div>
-				<!-- Rolstoel checkbox-->
-				<div class="divborder" id="rolstoel">
-					<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
-				</div>
-				<!-- knopje-->
-				<div id="planknop">
-					<span id="fav">&hearts;</span> <input type="submit" value="Plan" id="submitButton">
-				</div>
+			</div>	
+				
+			<div class="divborder" id="voorkeur">
+				<label>Voorkeur<select name="preferLeastTransfers" id="voorkeurding">
+					<option value="false">snelste route</option>
+					<option value="true">minst aantal overstappen</option>
+				</select></label>
 			</div>
-		</form>
+			
+			<div class="divborder" id="modaliteiten">
+				<label>Modaliteiten<div align="center">
+					<img src="img/bus.png" class="icon" id="bus">
+					<img src="img/rail.png" class="icon" id="rail">
+					<img src="img/tram.png" class="icon" id="tram">
+					<img src="img/subway.png" class="icon" id="subway">
+					<img src="img/ferry.png" class="icon" id="ferry">
+				</div></label>
+			</div>
+			
+			<div class="divborder" id="rolstoel">
+				<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
+			</div>
+			
+			<div id="planknop">
+				<span id="fav">&hearts;</span>
+				<input type="submit" value="Plan" id="submitButton">
+			</div>
+			
+			</div><!-- einde eiland -->
+			
+		</div>
 	</section>
 	<section id="plan">
-		
 	</section>
 	<script src="js/init.js"></script>
 	<script>
@@ -117,12 +120,14 @@
 		var totalPositions = 5; // maximum amount of suggestions shown per location
 		
 		$(function()
-		{	
+		{
+			// Initialize to/from input boxes
+			$('#sugfrom').hide();
+			$('#sugto').hide();
 			
-			$('#suggestionsfromdiv').hide();
-			$('#suggestionstodiv').hide();
 			// Initialize date/time input boxes
 			$("input[name='datetime']").val(System.getDate() + ' ' + System.getTime());
+			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
 			{
@@ -137,7 +142,6 @@
 			initLocationChoosers();
 			
 			var from = $('#from');
-			
 			from.click(function(){
 				// show the suggestions
 				updateSuggestions('from');
@@ -172,7 +176,6 @@
 			
 			var form = $('form');
 			var plan = $('#plan');
-			
 			form.submit(function()
 			{
 				var req = {};
@@ -181,7 +184,7 @@
 					req[obj.name] = obj.value;
 				});
 				
-				req[mode] = $.map(modalities, function(value, name)
+				req.mode = $.map(modalities, function(value, name)
 				{
 					if (value)
 						return name.toUpperCase();
