@@ -1,0 +1,4750 @@
+www/input_test.html
+ *  [70c58c2] 2013-09-25 by Ferry Timmers: Input test
+ *  [27a2e15] 2013-09-25 by Ferry Timmers: Added an input test
+
+
+www/index.html
+ *  [27a2e15] 2013-09-25 by Ferry Timmers: Added an input test
+ *  [6c01092] 2013-09-25 by Jeroen: Minor changes to whitespace
+ *  [3b67fc7] 2013-09-23 by Unknown: Tandwiel weggehaald
+ *  [ace3753] 2013-09-23 by Unknown: Fix van  back button van de header
+ *  [c6ce571] 2013-09-23 by Jeroen: Niks
+ *  [d5f3908] 2013-09-23 by Unknown: Tandwieltje toegevoegd
+ *  [318e142] 2013-09-23 by Jeroen: Changed some CSS
+ *  [336e908] 2013-09-23 by Unknown: Fix van index, was fout gemerged
+ *  [896d362] 2013-09-23 by Unknown: Conflict gefixt
+ *  [4f78cc7] 2013-09-23 by Unknown: Back button fixed
+ *  [91f4d7a] 2013-09-23 by Unknown: Hele button klikbaar gemaakt
+ *  [3409384] 2013-09-20 by Ferry Timmers: Refactored index.html
+ *  [02af289] 2013-09-20 by Ferry Timmers: Debug message when user closes the app
+ *  [3d52001] 2013-09-19 by Unknown: Locatie suggestie gever
+ *  [3d6d93c] 2013-09-19 by Ferry Timmers: Moved event init from onload in index.html
+ *  [cbfa790] 2013-09-19 by Ferry Timmers: Back button in index test
+ *  [30c9a0f] 2013-09-19 by Unknown: Wat dingen verplaatst en letters veranderd enzo
+ *  [930a4ed] 2013-09-19 by Unknown: Startscherm gemaakt
+ *  [8660b33] 2013-09-19 by Ferry Timmers: Removed modules
+ *  [b001226] 2013-09-19 by Ferry Timmers: Back button first attempt
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+ *  [5939db1] 2013-09-17 by Jeroen: Changed phonegap.js to cordova.js
+ *  [350e837] 2013-09-17 by Jeroen: Storage test page iteration 2
+ *  [a771017] 2013-09-17 by Jeroen: Createde storage js file and storage test page
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+ *  [86cb2b9] 2013-09-13 by Unknown: Blabla test
+ *  [e0fc6ed] 2013-09-12 by Unknown: Test Commit Florian
+ *  [5315d21] 2013-09-12 by Jeroen: Test commit nummer honderd
+ *  [20d9e3a] 2013-09-12 by Unknown: For those of you about to Rock!
+ *  [3827e11] 2013-09-12 by Jeroen: Porno
+
+
+www/storage_test.html
+ *  [27a2e15] 2013-09-25 by Ferry Timmers: Added an input test
+ *  [a0ec42c] 2013-09-18 by Jeroen: Changes in script locations in storage test page
+ *  [d9f2edb] 2013-09-17 by Jeroen: Storage test iteration 4
+ *  [350e837] 2013-09-17 by Jeroen: Storage test page iteration 2
+ *  [a771017] 2013-09-17 by Jeroen: Createde storage js file and storage test page
+
+
+www/css/ui-lightness/jquery-ui-1.10.3.custom.css
+ *  [1518f1a] 2013-09-25 by Unknown: Tweede optie interface
+ *  [ef2689b] 2013-09-25 by Unknown: Breedte van datum/tijd ding veranderd
+ *  [8905f4a] 2013-09-25 by Unknown: Breedtes van tijd/datum dingen veranderd
+ *  [db42118] 2013-09-25 by Unknown: Breedte veranderd van tekstvelden
+ *  [36c9c4c] 2013-09-25 by Unknown: Breedtes veranderd enzo
+ *  [a8ecb25] 2013-09-25 by Unknown: Borders enzo om alles heen gezet
+ *  [0289daa] 2013-09-25 by Unknown: Hippe balk om vertrek/aankomst ding heen gezet
+ *  [aeb2adf] 2013-09-25 by Unknown: Van- & Naar-box verticale lijn weg
+ *  [ef212d6] 2013-09-25 by Unknown: Fixed input fields
+ *  [b3e6af9] 2013-09-25 by Unknown: CSS aangepast enzo en dingen hip gemaakt
+ *  [de67a3e] 2013-09-24 by Unknown: Nieuwe layout
+ *  [d5f3908] 2013-09-23 by Unknown: Tandwieltje toegevoegd
+ *  [d980199] 2013-09-23 by Unknown: Donkergrijs iets lichter gemaakt
+ *  [0f4a020] 2013-09-20 by Unknown: Show route css gemaakt
+ *  [9f5bfc9] 2013-09-20 by Unknown: Icoontjes iets groter gemaakt
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+ *  [5e00f05] 2013-09-19 by Unknown: Favourite button nog nog smaller gemaakt
+ *  [c8ca133] 2013-09-19 by Unknown: Favourite button nog smaller gemaakt
+ *  [a5dd7df] 2013-09-19 by Unknown: Favourite button smaller gemaakt
+ *  [520f88d] 2013-09-19 by Unknown: CSS toegevoegd enzo
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/plan.html
+ *  [1518f1a] 2013-09-25 by Unknown: Tweede optie interface
+ *  [36c9c4c] 2013-09-25 by Unknown: Breedtes veranderd enzo
+ *  [a8ecb25] 2013-09-25 by Unknown: Borders enzo om alles heen gezet
+ *  [0289daa] 2013-09-25 by Unknown: Hippe balk om vertrek/aankomst ding heen gezet
+ *  [1fe64c2] 2013-09-25 by Ferry Timmers: Refactoring plan.html deel2
+ *  [a5947d2] 2013-09-25 by Unknown: Verticale lijn weg bij van- en naar-label (deel 2)
+ *  [eaa6b52] 2013-09-25 by Ferry Timmers: Refactored plan.html (deel 1 van de 100 aaarghhh)
+ *  [f8f1d88] 2013-09-25 by Unknown: Documentatie locationChoosers (deels)
+ *  [b3e6af9] 2013-09-25 by Unknown: CSS aangepast enzo en dingen hip gemaakt
+ *  [de67a3e] 2013-09-24 by Unknown: Nieuwe layout
+ *  [4edf458] 2013-09-24 by Unknown: Put the choosing of the location into the enter information screen
+ *  [fec353a] 2013-09-23 by Unknown: Fix "loading..." height
+ *  [3b67fc7] 2013-09-23 by Unknown: Tandwiel weggehaald
+ *  [ace3753] 2013-09-23 by Unknown: Fix van  back button van de header
+ *  [d5f3908] 2013-09-23 by Unknown: Tandwieltje toegevoegd
+ *  [470f967] 2013-09-23 by Unknown: Plan button weg na plannen
+ *  [4f78cc7] 2013-09-23 by Unknown: Back button fixed
+ *  [060af1e] 2013-09-20 by Unknown: Added link to new page to display a Map of the leg
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+ *  [d519cbe] 2013-09-20 by Unknown: Location chooser
+ *  [919df88] 2013-09-20 by Unknown: Put result of Route Query (Itinerary and legs) on new page
+ *  [0bc98ca] 2013-09-19 by Ferry Timmers: Documentation cordova include
+ *  [930a4ed] 2013-09-19 by Unknown: Startscherm gemaakt
+ *  [0d0dd58] 2013-09-19 by Unknown: Kleine aanpassingen zodat het misschien hopelijk op het scherm past
+ *  [b001226] 2013-09-19 by Ferry Timmers: Back button first attempt
+ *  [520f88d] 2013-09-19 by Unknown: CSS toegevoegd enzo
+ *  [d64f9d6] 2013-09-19 by Ferry Timmers: Moved UI itinerary functions to seperate file
+ *  [0b4f34d] 2013-09-19 by Ferry Timmers: Added lading and error messages for planning routes
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+ *  [cb2a9b7] 2013-09-17 by Ferry Timmers: Refactored OTP function
+ *  [4995594] 2013-09-17 by Ferry Timmers: Refactored geocoding
+ *  [82e311e] 2013-09-16 by Ferry Timmers: Fixed de standaard tijd in de planner (van GMT naar local)
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/class/localdb.class.js
+ *  [5701b8b] 2013-09-25 by Jeroen: My chair sucks
+ *  [318e142] 2013-09-23 by Jeroen: Changed some CSS
+ *  [bfb80c3] 2013-09-20 by Jeroen: Localdb.class.js first finished version
+ *  [f4cba9a] 2013-09-19 by Jeroen: Localdb.class.js wip iteration
+ *  [4d6c7be] 2013-09-19 by Jeroen: Localdb.class.js wip iteration
+ *  [8f3df92] 2013-09-18 by Jeroen: Localdb.class.js version 2
+ *  [8e10b30] 2013-09-18 by Jeroen: Created js/class folder and placed localdb.class.js. Issue: Local DB access class
+
+
+www/js/system.js
+ *  [5701b8b] 2013-09-25 by Jeroen: My chair sucks
+ *  [e2635d3] 2013-09-20 by Ferry Timmers: Documentation
+ *  [d64f9d6] 2013-09-19 by Ferry Timmers: Moved UI itinerary functions to seperate file
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+
+
+www/js/ui.js
+ *  [5701b8b] 2013-09-25 by Jeroen: My chair sucks
+ *  [b714ea1] 2013-09-24 by Unknown: Added Space between leg Route and Time
+ *  [060af1e] 2013-09-20 by Unknown: Added link to new page to display a Map of the leg
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [e2635d3] 2013-09-20 by Ferry Timmers: Documentation
+ *  [d64f9d6] 2013-09-19 by Ferry Timmers: Moved UI itinerary functions to seperate file
+
+
+www/js/geocode.js
+ *  [eaa6b52] 2013-09-25 by Ferry Timmers: Refactored plan.html (deel 1 van de 100 aaarghhh)
+ *  [177376c] 2013-09-25 by Unknown: FilterType added switched from google maps geocode to bag42 geocode
+ *  [e2635d3] 2013-09-20 by Ferry Timmers: Documentation
+ *  [696d5ec] 2013-09-20 by Ferry Timmers: Docs systeem verandering
+ *  [cbfa790] 2013-09-19 by Ferry Timmers: Back button in index test
+ *  [0bc98ca] 2013-09-19 by Ferry Timmers: Documentation cordova include
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+
+
+www/js/misc.js
+ *  [eaa6b52] 2013-09-25 by Ferry Timmers: Refactored plan.html (deel 1 van de 100 aaarghhh)
+
+
+www/css/index.css
+ *  [b3e6af9] 2013-09-25 by Unknown: CSS aangepast enzo en dingen hip gemaakt
+ *  [de67a3e] 2013-09-24 by Unknown: Nieuwe layout
+ *  [d5f3908] 2013-09-23 by Unknown: Tandwieltje toegevoegd
+ *  [318e142] 2013-09-23 by Jeroen: Changed some CSS
+ *  [91f4d7a] 2013-09-23 by Unknown: Hele button klikbaar gemaakt
+ *  [30c9a0f] 2013-09-19 by Unknown: Wat dingen verplaatst en letters veranderd enzo
+ *  [930a4ed] 2013-09-19 by Unknown: Startscherm gemaakt
+ *  [70fc0ec] 2013-09-17 by Jeroen: Improved css again
+ *  [f251e29] 2013-09-17 by Jeroen: .app css changed to adapt to display resolution on my/anyone's phone
+
+
+www/legmap.html
+ *  [9859498] 2013-09-25 by Florian Oosterhof: Git Username Test
+ *  [90d19cf] 2013-09-24 by Unknown: Refactored a little, and made documentation compliant with JSDoc
+ *  [cdc7bce] 2013-09-24 by Unknown: Moved Line Style definition up, and added definition for icon, size and offset for Marker Icons.
+ *  [989394f] 2013-09-24 by Unknown: Modularized the used Projections, added definable styles for the line and commented code
+ *  [005cdf7] 2013-09-24 by Unknown: Added Markers to start and end points, and a line depicting the route to be walked, cycled or taken by the modality, according to the legGeometry
+ *  [08827f4] 2013-09-23 by Unknown: Showing map and decoding geometry are done.
+ *  [060af1e] 2013-09-20 by Unknown: Added link to new page to display a Map of the leg
+
+
+www/location.html
+ *  [4edf458] 2013-09-24 by Unknown: Put the choosing of the location into the enter information screen
+ *  [4f78cc7] 2013-09-23 by Unknown: Back button fixed
+ *  [d519cbe] 2013-09-20 by Unknown: Location chooser
+ *  [3d52001] 2013-09-19 by Unknown: Locatie suggestie gever
+
+
+www/js/init.js
+ *  [ace3753] 2013-09-23 by Unknown: Fix van  back button van de header
+ *  [e2635d3] 2013-09-20 by Ferry Timmers: Documentation
+ *  [d2b8051] 2013-09-19 by Ferry Timmers: Added debug message to backbutton event
+ *  [b001226] 2013-09-19 by Ferry Timmers: Back button first attempt
+
+
+www/img/gray-cogwheel-md.png
+ *  [d5f3908] 2013-09-23 by Unknown: Tandwieltje toegevoegd
+
+
+www/OTPresult.html
+ *  [060af1e] 2013-09-20 by Unknown: Added link to new page to display a Map of the leg
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [919df88] 2013-09-20 by Unknown: Put result of Route Query (Itinerary and legs) on new page
+
+
+www/map_test.html
+ *  [5fda873] 2013-09-20 by Ferry Timmers: Test in map test (on load weirdness)
+ *  [0bc98ca] 2013-09-19 by Ferry Timmers: Documentation cordova include
+ *  [b001226] 2013-09-19 by Ferry Timmers: Back button first attempt
+ *  [aea937a] 2013-09-19 by Ferry Timmers: Minor fix in map test (include)
+ *  [9d1c7a5] 2013-09-18 by Ferry Timmers: Map test updated
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/img/walk.png
+ *  [bb5343e] 2013-09-20 by Unknown: Vierkant gemaakt
+ *  [15c033d] 2013-09-20 by Unknown: Walk
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/img/ferry.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/ferry_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/metro.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/metro_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/rail.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/rail_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/subway.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/subway_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+
+
+www/img/trein.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/trein_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/veerpont.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/veerpont_inactive.png
+ *  [2b9321c] 2013-09-20 by Unknown: Changed Leg Display and renamed Icons
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/js/storage.js
+ *  [bfb80c3] 2013-09-20 by Jeroen: Localdb.class.js first finished version
+ *  [f4cba9a] 2013-09-19 by Jeroen: Localdb.class.js wip iteration
+ *  [8f3df92] 2013-09-18 by Jeroen: Localdb.class.js version 2
+ *  [a0ec42c] 2013-09-18 by Jeroen: Changes in script locations in storage test page
+ *  [d9f2edb] 2013-09-17 by Jeroen: Storage test iteration 4
+ *  [b479ab1] 2013-09-17 by Jeroen: Storage test iteration 3 - error on reading db
+ *  [350e837] 2013-09-17 by Jeroen: Storage test page iteration 2
+ *  [a771017] 2013-09-17 by Jeroen: Createde storage js file and storage test page
+
+
+www/js/otp.js
+ *  [e2635d3] 2013-09-20 by Ferry Timmers: Documentation
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+
+
+docs.json
+ *  [63aab82] 2013-09-20 by Ferry Timmers: Setting of docs fixed
+ *  [f051eb2] 2013-09-20 by Ferry Timmers: Doc script updated
+ *  [696d5ec] 2013-09-20 by Ferry Timmers: Docs systeem verandering
+
+
+doc.sh
+ *  [f051eb2] 2013-09-20 by Ferry Timmers: Doc script updated
+ *  [696d5ec] 2013-09-20 by Ferry Timmers: Docs systeem verandering
+ *  [64a5ac9] 2013-09-19 by Ferry Timmers: Added documentation script
+
+
+www/img/bus.png
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/img/bus2.png
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/bus_inactive.png
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/tram.png
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/img/tram_inactive.png
+ *  [6f04eff] 2013-09-20 by Unknown: Icoontjes voor modaliteiten toegevoegd
+
+
+www/config.xml
+ *  [9ad04f4] 2013-09-20 by Ferry Timmers: Uitroeptekens in de naam vind cordova NIET LEUK
+ *  [9d1c7a5] 2013-09-18 by Ferry Timmers: Map test updated
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+ *  [d9f2edb] 2013-09-17 by Jeroen: Storage test iteration 4
+ *  [726bd4f] 2013-09-17 by Jeroen: Fixed typo in config.xml
+ *  [ffc212f] 2013-09-17 by Jeroen: Config.xml naam veranderd
+ *  [b6995b7] 2013-09-16 by Ferry Timmers: Server ip changed to domain
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/lib/jquery.json-2.4.min.js
+ *  [01fc062] 2013-09-20 by Ferry Timmers: Added json plugin for jquery
+
+
+.gitignore
+ *  [64a5ac9] 2013-09-19 by Ferry Timmers: Added documentation script
+ *  [1168ce8] 2013-09-19 by Ferry Timmers: Ouderhoud
+ *  [a6e1989] 2013-09-17 by Jeroen: Custom .gitignore
+ *  [e0fc6ed] 2013-09-12 by Unknown: Test Commit Florian
+
+
+www/res/icon/android/icon-36-ldpi.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/android/icon-48-mdpi.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/android/icon-72-hdpi.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/android/icon-96-xhdpi.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/bada-wac/icon-48-type5.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/bada-wac/icon-50-type3.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/bada-wac/icon-80-type4.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/bada/icon-128.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/blackberry/icon-80.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/ios/icon-57-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/ios/icon-57.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/ios/icon-72-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/ios/icon-72.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/tizen/icon-128.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/webos/icon-64.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/windows-phone/icon-173-tile.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/windows-phone/icon-48.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/icon/windows-phone/icon-62-tile.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-hdpi-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-hdpi-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-ldpi-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-ldpi-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-mdpi-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-mdpi-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-xhdpi-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/android/screen-xhdpi-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/bada-wac/screen-type3.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/bada-wac/screen-type4.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/bada-wac/screen-type5.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/bada/screen-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/blackberry/screen-225.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-ipad-landscape-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-ipad-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-ipad-portrait-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-ipad-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-iphone-landscape-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-iphone-landscape.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-iphone-portrait-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-iphone-portrait-568h-2x.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/ios/screen-iphone-portrait.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/tizen/README.md
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/webos/screen-64.png
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res/screen/windows-phone/screen-portrait.jpg
+ *  [9c07efe] 2013-09-19 by Ferry Timmers: Res gemerged met hoofd repo
+
+
+www/res
+ *  [1168ce8] 2013-09-19 by Ferry Timmers: Ouderhoud
+ *  [ae31879] 2013-09-09 by Server: Added resource submodule
+
+
+.gitmodules
+ *  [8660b33] 2013-09-19 by Ferry Timmers: Removed modules
+ *  [ae31879] 2013-09-09 by Server: Added resource submodule
+
+
+www/geocode.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+ *  [cb2a9b7] 2013-09-17 by Ferry Timmers: Refactored OTP function
+ *  [4995594] 2013-09-17 by Ferry Timmers: Refactored geocoding
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/jquery-1.8.3.min.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/jquery.min.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/lib/jquery-1.8.3.min.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+
+
+www/otp.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [7203d5c] 2013-09-17 by Ferry Timmers: OTP added mode, fixes
+ *  [cb2a9b7] 2013-09-17 by Ferry Timmers: Refactored OTP function
+ *  [b6995b7] 2013-09-16 by Ferry Timmers: Server ip changed to domain
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/system.js
+ *  [e38821c] 2013-09-19 by Ferry Timmers: Refactoring project file structure
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+www/OpenLayers/lib/Firebug/errorIcon.png
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/firebug.css
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/firebug.html
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/firebug.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/firebugx.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/infoIcon.png
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/license.txt
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/readme.txt
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/Firebug/warningIcon.png
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/ArcXML/Features.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/CSWGetDomain/v2_0_2.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/CSWGetRecords/v2_0_2.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Filter/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Filter/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Filter/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GML/Base.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GML/v2.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GML/v3.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSCommon/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSCommon/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSContext/v0_3_1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SLD/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SLD/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SLD/v1_0_0_GeoServer.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SOSCapabilities/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WCSCapabilities/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WCSCapabilities/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WCSCapabilities/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFSCapabilities/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFSCapabilities/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFSCapabilities/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFST/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFST/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFST/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMC/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMC/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMC/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_1_1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_1_1_WMSC.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_3.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities/v1_3_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSDescribeLayer/v1_1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMTSCapabilities/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WPSCapabilities/v1_0_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/XLS/v1.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/XLS/v1_1_0.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/XML/VersionedOGC.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Google/v3.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Vector/RootContainer.js
+ *  [a493978] 2013-09-18 by Ferry Timmers: Map test toegevoegd
+
+
+www/OpenLayers/OpenLayers.debug.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/OpenLayers.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/OpenLayers.light.debug.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/OpenLayers.light.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/OpenLayers.mobile.debug.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/OpenLayers.mobile.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/arrows.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/layer-switcher-maximize.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/layer-switcher-minimize.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/marker.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/measuring-stick-off.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/measuring-stick-on.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/panning-hand-off.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/panning-hand-on.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/slider.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/zoom-world.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/art/zoombar.svg
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/authors.txt
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/Thumbs.db
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/blank.gif
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/cloud-popup-relative.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/drag-rectangle-off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/drag-rectangle-on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/east-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/layer-switcher-maximize.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/layer-switcher-minimize.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/marker-blue.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/marker-gold.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/marker-green.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/marker.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/measuring-stick-off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/measuring-stick-on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/north-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/panning-hand-off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/panning-hand-on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/slider.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/south-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/west-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/zoom-minus-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/zoom-plus-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/zoom-world-mini.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/img/zoombar.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Animation.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Bounds.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Class.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Date.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Element.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/LonLat.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Pixel.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/BaseTypes/Size.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Console.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ArgParser.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Attribution.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Button.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/CacheRead.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/CacheWrite.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/DragFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/DragPan.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/DrawFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/EditingToolbar.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Geolocate.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/GetFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Graticule.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/KeyboardDefaults.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/LayerSwitcher.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Measure.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ModifyFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/MousePosition.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/NavToolbar.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Navigation.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/NavigationHistory.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/OverviewMap.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Pan.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/PanPanel.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/PanZoom.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/PanZoomBar.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Panel.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Permalink.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/PinchZoom.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/SLDSelect.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Scale.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ScaleLine.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/SelectFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Snapping.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Split.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/TouchNavigation.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/TransformFeature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/UTFGrid.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/WMSGetFeatureInfo.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/WMTSGetFeatureInfo.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/Zoom.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ZoomBox.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ZoomIn.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ZoomOut.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ZoomPanel.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Control/ZoomToMaxExtent.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Events.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Events/buttonclick.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Events/featureclick.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Feature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Feature/Vector.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter/Comparison.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter/FeatureId.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter/Function.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter/Logical.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Filter/Spatial.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/ArcXML.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Atom.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/CQL.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/CSWGetDomain.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/CSWGetRecords.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Context.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/EncodedPolyline.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Filter.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GML.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GPX.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GeoJSON.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/GeoRSS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/JSON.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/KML.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OGCExceptionReport.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OSM.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSCommon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/OWSContext.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/QueryStringFilter.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SLD.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SOSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SOSGetFeatureOfInterest.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/SOSGetObservation.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/Text.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WCSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WCSGetCoverage.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFSDescribeFeatureType.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WFST.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WKT.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMC.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSDescribeLayer.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMSGetFeatureInfo.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WMTSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WPSCapabilities.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WPSDescribeProcess.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/WPSExecute.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/XLS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Format/XML.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/Collection.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/Curve.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/LineString.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/LinearRing.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/MultiLineString.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/MultiPoint.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/MultiPolygon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/Point.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Geometry/Polygon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Box.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Click.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Drag.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Feature.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Hover.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Keyboard.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/MouseWheel.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Path.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Pinch.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Point.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/Polygon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Handler/RegularPolygon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Icon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Kinetic.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ar.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/be-tarask.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/bg.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/br.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ca.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/cs-CZ.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/da-DK.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/de.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/el.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/en-CA.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/en.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/es.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/fi.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/fr.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/fur.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/gl.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/gsw.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/hr.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/hsb.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/hu.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ia.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/id.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/io.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/is.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/it.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ja.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/km.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ksh.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/lt.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/nb.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/nds.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/nl.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/nn.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/oc.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/pl.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/pt-BR.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/pt.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ro.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/ru.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/sk.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/sv-SE.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/te.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/vi.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/zh-CN.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Lang/zh-TW.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/ArcGIS93Rest.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/ArcGISCache.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/ArcIMS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Bing.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Boxes.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/EventPane.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/FixedZoomLevels.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/GeoRSS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Google.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Grid.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/HTTPRequest.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Image.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/KaMap.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/KaMapCache.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/MapGuide.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/MapServer.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Markers.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/OSM.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/PointGrid.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/PointTrack.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/SphericalMercator.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/TMS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Text.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/TileCache.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/UTFGrid.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Vector.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/WMS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/WMTS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/WorldWind.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/XYZ.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Layer/Zoomify.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Map.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Marker.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Marker/Box.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Popup.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Popup/Anchored.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Popup/Framed.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Popup/FramedCloud.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Projection.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/CSW.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/CSW/v2_0_2.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/HTTP.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/SOS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/SOS/v1_0_0.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/Script.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/WFS.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/WFS/v1.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/WFS/v1_0_0.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Protocol/WFS/v1_1_0.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Renderer.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Renderer/Canvas.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Renderer/Elements.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Renderer/SVG.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Renderer/VML.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Request.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Request/XMLHttpRequest.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Rule.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/SingleFile.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Spherical.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/BBOX.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Cluster.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Filter.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Fixed.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Paging.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Refresh.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Strategy/Save.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Style.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Style2.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/StyleMap.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer/Line.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer/Point.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer/Polygon.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer/Raster.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Symbolizer/Text.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Tile.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Tile/Image.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Tile/Image/IFrame.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Tile/UTFGrid.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/TileManager.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Tween.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Util.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/Util/vendorPrefix.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/WPSClient.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/OpenLayers/WPSProcess.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/Rico/Color.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/Rico/Corner.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/Rico/license.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/lib/deprecated.js
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/license.txt
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/licenses/APACHE-2.0.txt
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/licenses/BSD-LICENSE.txt
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/licenses/MIT-LICENSE.txt
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/notes/2.12.md
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/notes/2.13.md
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/readme.md
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/google.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/google.tidy.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/ie6-style.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/ie6-style.tidy.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/Thumbs.db
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/add_point_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/add_point_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/blank.gif
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/close.gif
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/drag-rectangle-off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/drag-rectangle-on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_line_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_line_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_point_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_point_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_polygon_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/draw_polygon_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/editing_tool_bar.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/move_feature_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/move_feature_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/navigation_history.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/overview_replacement.gif
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/pan-panel-NOALPHA.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/pan-panel.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/pan_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/pan_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/panning-hand-off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/panning-hand-on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/remove_point_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/remove_point_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/ruler.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/save_features_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/save_features_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/view_next_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/view_next_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/view_previous_off.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/view_previous_on.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/zoom-panel-NOALPHA.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/img/zoom-panel.png
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/style.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/style.mobile.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/style.mobile.tidy.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/OpenLayers/theme/default/style.tidy.css
+ *  [815e609] 2013-09-18 by Ferry Timmers: OpenLayers toegevoegd
+
+
+www/js/jquery-1.9.1.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/jquery-ui-1.10.3.custom.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/jquery-ui-1.10.3.custom.min.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/js/lib/jquery-1.9.1.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+
+
+www/js/lib/jquery-ui-1.10.3.custom.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+
+
+www/js/lib/jquery-ui-1.10.3.custom.min.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+
+
+www/js/lib/prototype-1.7.1.js
+ *  [1091193] 2013-09-18 by Jeroen: Moved library files to js/lib/ and added prototype.js.
+
+
+plugins/org.apache.cordova.core.geolocation/.fetch.json
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/CHANGELOG.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/LICENSE
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/README.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/Coordinates/coordinates.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/Position/position.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/PositionError/positionError.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/geolocation.clearWatch.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/geolocation.getCurrentPosition.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/geolocation.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/geolocation.watchPosition.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/parameters/geolocation.options.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/parameters/geolocationError.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/docs/parameters/geolocationSuccess.md
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/plugin.xml
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/android/CordovaLocationListener.java
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/android/GPSListener.java
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/android/GeoBroker.java
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/android/NetworkListener.java
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/blackberry10/index.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/ios/CDVLocation.h
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/ios/CDVLocation.m
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/src/wp/GeoLocation.cs
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/.DS_Store
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/HtmlReporter.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/HtmlReporterHelpers.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/ReporterView.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/SpecView.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/SuiteView.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/html/TrivialReporter.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/index.html
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/jasmine.css
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/jasmine.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/pages/.DS_Store
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/pages/geolocation.html
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/test-runner.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/tests/.DS_Store
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/autotest/tests/geolocation.tests.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/cordova-incl.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/index.html
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/location/index.html
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/main.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/test/master.css
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/www/Coordinates.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/www/Position.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/www/PositionError.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/org.apache.cordova.core.geolocation/www/geolocation.js
+ *  [b3c025f] 2013-09-17 by Ferry Timmers: Added system function: time, date and location
+
+
+plugins/android.json
+ *  [a771017] 2013-09-17 by Jeroen: Createde storage js file and storage test page
+
+
+www/css/ui-lightness/images/animated-overlay.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_flat_10_000000_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-icons_222222_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-icons_228ef1_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-icons_ef8c08_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-icons_ffd27a_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/images/ui-icons_ffffff_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/css/ui-lightness/jquery-ui-1.10.3.custom.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/AUTHORS.txt
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/Gruntfile.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/MIT-LICENSE.txt
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/README.md
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/collapsible.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/custom-icons.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/fillspace.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/hoverintent.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/no-auto-height.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/accordion/sortable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/categories.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/combobox.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/custom-data.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/folding.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/images/jquery_32x32.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/images/jqueryui_32x32.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/images/sizzlejs_32x32.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/images/transparent_1x1.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/images/ui-anim_basic_16x16.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/london.xml
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/maxheight.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/multiple-remote.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/multiple.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/remote-jsonp.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/remote-with-cache.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/remote.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/search.php
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/autocomplete/xml.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/checkbox.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/icons.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/radio.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/splitbutton.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/button/toolbar.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/alt-field.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/animation.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/buttonbar.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/date-formats.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/date-range.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/dropdown-month-year.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/icon-trigger.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/images/calendar.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/inline.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/jquery.ui.datepicker-ar.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/jquery.ui.datepicker-fr.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/jquery.ui.datepicker-he.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/jquery.ui.datepicker-zh-TW.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/localization.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/min-max.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/multiple-calendars.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/other-months.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/datepicker/show-week.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/demos.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/animated.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/modal-confirmation.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/modal-form.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/modal-message.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/dialog/modal.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/constrain-movement.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/cursor-style.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/delay-start.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/events.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/handle.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/revert.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/scroll.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/snap-to.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/sortable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/draggable/visual-feedback.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/accepted-elements.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras2.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras2_min.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras3.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras3_min.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras4.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras4_min.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/images/high_tatras_min.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/photo-manager.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/propagation.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/revert.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/shopping-cart.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/droppable/visual-feedback.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/calendar.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/demo-config-on-tile.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/demo-config-on.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/demo-spindown-closed.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/demo-spindown-open.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/icon-docs-info.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/images/pbar-ani.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/menu/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/menu/icons.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/menu/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/cycler.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/images/earth.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/images/flight.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/images/rocket.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/position/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/progressbar/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/progressbar/images/pbar-ani.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/progressbar/indeterminate.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/progressbar/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/progressbar/label.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/animate.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/aspect-ratio.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/constrain-area.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/delay-start.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/helper.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/max-min.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/snap-to-grid.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/synchronous-resize.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/textarea.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/resizable/visual-feedback.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/selectable/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/selectable/display-grid.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/selectable/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/selectable/serialize.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/colorpicker.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/hotelrooms.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/multiple-vertical.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/range-vertical.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/range.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/rangemax.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/rangemin.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/side-scroll.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/slider-vertical.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/slider/steps.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/connect-lists-through-tabs.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/connect-lists.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/delay-start.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/display-grid.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/empty-lists.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/items.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/placeholder.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/sortable/portlets.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/currency.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/decimal.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/latlong.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/overflow.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/spinner/time.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/ajax.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/ajax/content1.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/ajax/content2.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/ajax/content3-slow.php
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/ajax/content4-broken.php
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/bottom.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/collapsible.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/manipulation.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/mouseover.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/sortable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tabs/vertical.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/ajax/content1.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/ajax/content2.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/custom-animation.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/custom-content.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/custom-style.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/forms.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/images/st-stephens.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/images/tower-bridge.jpg
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/tracking.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/tooltip/video-player.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/widget/default.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/demos/widget/index.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/accordion.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/autocomplete.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/button.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/datepicker.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/dialog.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/draggable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/droppable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/jQuery.widget.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/menu.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/mouse.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/position.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/progressbar.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/resizable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/selectable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/slider.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/sortable.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/spinner.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/tabs.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/docs/tooltip.html
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/globalize.culture.de-DE.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/globalize.culture.ja-JP.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/globalize.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/jquery.mousewheel.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/jshint.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/qunit.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/external/qunit.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/jquery-1.9.1.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/package.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/animated-overlay.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_flat_75_ffffff_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_glass_65_ffffff_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_glass_75_dadada_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-icons_222222_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-icons_2e83ff_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-icons_454545_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-icons_888888_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/images/ui-icons_cd0a0a_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery-ui.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.accordion.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.all.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.autocomplete.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.base.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.button.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.core.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.datepicker.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.dialog.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.menu.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.progressbar.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.resizable.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.selectable.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.slider.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.spinner.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.tabs.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.theme.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/jquery.ui.tooltip.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/animated-overlay.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-icons_222222_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-icons_2e83ff_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-icons_454545_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-icons_888888_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/images/ui-icons_cd0a0a_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery-ui.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.accordion.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.autocomplete.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.button.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.core.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.datepicker.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.dialog.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.menu.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.progressbar.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.resizable.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.selectable.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.slider.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.spinner.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.tabs.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.theme.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/base/minified/jquery.ui.tooltip.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/animated-overlay.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_flat_10_000000_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-icons_222222_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-icons_228ef1_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-icons_ef8c08_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-icons_ffd27a_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/images/ui-icons_ffffff_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery-ui.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.accordion.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.all.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.autocomplete.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.base.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.button.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.core.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.datepicker.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.dialog.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.menu.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.progressbar.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.resizable.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.selectable.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.slider.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.spinner.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.tabs.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.theme.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/jquery.ui.tooltip.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/animated-overlay.gif
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_diagonals-thick_20_666666_40x40.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_flat_10_000000_40x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_glass_100_f6f6f6_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_glass_100_fdf5ce_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_glass_65_ffffff_1x400.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-icons_222222_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-icons_228ef1_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-icons_ef8c08_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-icons_ffd27a_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/images/ui-icons_ffffff_256x240.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery-ui.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.accordion.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.autocomplete.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.button.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.core.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.datepicker.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.dialog.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.menu.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.progressbar.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.resizable.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.selectable.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.slider.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.spinner.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.tabs.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.theme.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/themes/ui-lightness/minified/jquery.ui.tooltip.min.css
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.accordion.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.autocomplete.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.button.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.core.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.datepicker.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.dialog.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.draggable.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.droppable.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.menu.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.mouse.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.position.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.progressbar.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.resizable.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.selectable.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.slider.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.sortable.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.spinner.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.tabs.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.tooltip.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui.widget.jquery.json
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery-ui-i18n.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-af.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ar-DZ.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ar.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-az.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-be.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-bg.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-bs.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ca.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-cs.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-cy-GB.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-da.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-de.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-el.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-en-AU.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-en-GB.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-en-NZ.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-eo.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-es.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-et.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-eu.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fa.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fi.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fo.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CA.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CH.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-fr.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-gl.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-he.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-hi.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-hr.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-hu.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-hy.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-id.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-is.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-it.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ja.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ka.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-kk.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-km.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ko.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ky.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-lb.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-lt.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-lv.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-mk.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ml.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ms.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-nb.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-nl-BE.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-nl.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-nn.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-no.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-pl.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-pt-BR.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-pt.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-rm.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ro.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ru.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sk.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sl.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sq.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sr-SR.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sr.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-sv.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-ta.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-th.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-tj.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-tr.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-uk.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-vi.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-zh-HK.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/i18n/jquery.ui.datepicker-zh-TW.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery-ui.custom.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.accordion.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.autocomplete.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.button.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.core.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.datepicker.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.dialog.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.draggable.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.droppable.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.menu.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.mouse.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.position.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.progressbar.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.resizable.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.selectable.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.slider.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.sortable.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.spinner.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.tabs.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.tooltip.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/jquery.ui.widget.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery-ui-i18n.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-af.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar-DZ.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-az.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-be.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bg.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bs.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ca.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cs.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cy-GB.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-da.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-de.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-el.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-AU.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-GB.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-NZ.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eo.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-es.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-et.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eu.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fa.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fi.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fo.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CA.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CH.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-gl.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-he.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hi.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hr.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hu.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hy.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-id.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-is.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-it.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ja.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ka.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-kk.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-km.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ko.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ky.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lb.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lt.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lv.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-mk.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ml.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ms.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nb.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl-BE.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nn.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-no.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pl.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt-BR.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-rm.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ro.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ru.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sk.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sl.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sq.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr-SR.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sv.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ta.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-th.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tj.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tr.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-uk.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-vi.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-CN.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-HK.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-TW.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery-ui.custom.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.accordion.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.autocomplete.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.button.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.core.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.datepicker.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.dialog.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.draggable.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.droppable.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.menu.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.mouse.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.position.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.progressbar.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.resizable.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.selectable.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.slider.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.sortable.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.spinner.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.tabs.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.tooltip.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/development-bundle/ui/minified/jquery.ui.widget.min.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+www/spec/lib/jasmine-1.2.0/jasmine-html.js
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+ *  [0178c57] 2013-09-12 by Jeroen: Added semicolon to jasmine
+
+
+www/splash.png
+ *  [0a6fdca] 2013-09-13 by Unknown: Eerste demo
+
+
+.project
+ *  [e0fc6ed] 2013-09-12 by Unknown: Test Commit Florian
+ *  [186039f] 2013-09-12 by Jeroen: Uhhhhh .project bestand gestaged denk ik
+ *  [20d9e3a] 2013-09-12 by Unknown: For those of you about to Rock!
+ *  [8f0301c] 2013-09-12 by Ferry Timmers: Project file gestaged
+
+
+merges/.gitignore
+ *  [4188be1] 2013-09-09 by Ferry Timmers: Added git ignore directives for empty directories
+
+
+platforms/.gitignore
+ *  [4188be1] 2013-09-09 by Ferry Timmers: Added git ignore directives for empty directories
+
+
+plugins/dummy
+ *  [4188be1] 2013-09-09 by Ferry Timmers: Added git ignore directives for empty directories
+
+

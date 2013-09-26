@@ -22,7 +22,13 @@ var LocalDB = Class.create({
 	dbResultCallback: undefined,
 	
 	//Methods
-	
+	onDbCreate: function (db) {
+	  //Attach the database because "window.openDatabase" would not have returned it
+		this.pDbo = db;
+		console.log('wut');
+		this.initDbStruct(db);
+	},
+		
 	/**
 	 * Initialize a LocalDB instance for a specified table and database structure version
 	 * 
@@ -37,18 +43,10 @@ var LocalDB = Class.create({
 		}
 		this.pTableName = tableName; 
 		//console.log('Connecting to table ' + pTableName + ' version ' + pDbVersion);
-		
-    //This method is only called once (the first time the database is created)
-    //Source: https://developer.blackberry.com/html5/api/database.html
-		var onDBCreate = function (db) {
-		  //Attach the database because "window.openDatabase" would not have returned it
-			this.pDbo = db;
-			this.initDbStruct(db);
-		};
-		
+
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
-			this.pDbo = window.openDatabase("FritsOVLocalDatabase2", this.pDbVersion, "FritsOV Local Database", 1000, onDBCreate);
+			this.pDbo = window.openDatabase("FritsOVLocalDatabase12", this.pDbVersion, "FritsOV Local Database", 1000, this.onDbCreate.bind(this));
 		} catch (e) {
 			//(Most likely) database version mismatch
 			if (e.code == 11) {
@@ -209,19 +207,19 @@ var LocalDB = Class.create({
 	 * @param {database} db The WebSQL database objectc
 	 */	
 	initDbStruct: function(db) {
-		database.transaction(
-
+		db.transaction(
 			//Replace this code TODO
 		  function (tx) {
-		  	tx.executeSql(LocalDBDefault,
-		    [],
-		    function (tx, res) {
-		      alert("Table Created Successfully");
-		    },
-		    function (tx, err) {
-		      alert("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message);
-	      });
-	    }
+		  	tx.executeSql(LocalDBStruct,
+				  [],
+				  function (tx, res) {
+				    console.log("Table Created Successfully");
+				  },
+				  function (tx, err) {
+				    console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message + "TODO: make it so that the database is deleted if populating the structure fails. now you need to change the db name or this function will not be executed again.");
+			    }
+			  );
+			}
 	  );
 	},
 	
@@ -288,15 +286,9 @@ var LocalDBResult = Class.create({
 });
 
 /**
- * Default database
+ * Default database structure
  * @attribute LocalDBDefault
  * @readOnly
  * @type string 
  */
-var LocalDBDefault = "CREATE TABLE `locations` ("
-                   + "  `name` VARCHAR NOT NULL,"
-                   + "  `latlon` VARCHAR NULL DEFAULT NULL,"
-                   + "  `times` INTEGER NULL DEFAULT 0,"
-                   + "  `fav` bit NULL DEFAULT FALSE,"
-                   + "  PRIMARY KEY ()"
-                   + ");";
+var LocalDBStruct = 'CREATE TABLE IF NOT EXISTS `location` (name unique, latlon, times, fav)';//zet maar op 1 regel das wel te doen.
