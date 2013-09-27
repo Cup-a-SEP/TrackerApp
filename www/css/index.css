@@ -134,7 +134,7 @@ body {
   				-10px /* spread */
   				#C6FF36/**72E823*/
   				inset;
-  	border: 1px black solid;
+  	border-bottom: 1px black solid;
   	text-transform: none;
 }
 
