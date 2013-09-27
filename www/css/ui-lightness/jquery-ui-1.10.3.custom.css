@@ -1451,12 +1451,11 @@ body {
 }
 
 /**
- * 	
+ * 	div-box that contains the location suggestions.
+ *  It appears when you start typing in a destination or a starting location.
  */
 .suggestionsdiv {
 	background-color: #EDF5BA/*dafcfe*/;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
 	padding: 10px 10px 11px 10px;
 	border-top-left-radius: 30px 30px;
 	border-bottom-left-radius: 30px 30px;
@@ -1467,22 +1466,33 @@ body {
 	/**padding-left: 59px; align suggestions with input field */
 	font-size: 16px;
 	margin-bottom:10px;
-	box-shadow: 0px 0px 0px 2px #EDF5BA inset, 
-				-5px -5px 25px 2px #CAF09C inset;
+	box-shadow: 0px 0px 0px 2px #EDF5BA inset, /** light green line on the inside of the border of the div */
+				-5px -5px 25px 2px #CAF09C inset; /** slightly darker green shadowy gradient thing on the inside of the div */
 }
 
+/**
+ * div-box encapsulating the timepicker and datechooser
+ */
 #datetime {
-	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1910px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, /** white border on the inside of the div */
+				-5px -5px 10px 2px rgba(0,0,0,0.2) inset, /** light grey gradienty shadowy stuff on the inside of the div */
+				2000px 0px 0px -1910px #BFBFBF inset; /** the grey part on the left side of the div */
 	padding: 10px;
 	padding-bottom: 75px;
 }
 
-#vertrekding {
+/**
+ * 	dropdown-box that allows the user to choose whether the time/date he selects should be the arrival time or the time of departure
+ */
+#arriveBy {
 	float: left;
 	width: 30%;
 	border-radius: 10px;
 }
 
+/**
+ * 	date picker
+ */
 #date {
 	float:right;
 	margin: 5px;
@@ -1491,6 +1501,10 @@ body {
 	border-radius: 5px;
 	margin-top: 1px;
 }
+
+/**
+ * 	time chooser
+ */
 #time {
 	float: right;
 	margin: 5px;
@@ -1498,19 +1512,31 @@ body {
 	border-radius: 5px;
 }
 
+/**
+ *  div-box that allows the user to choose between the fastest route or the least amount of transfers
+ */
 #voorkeur {
-	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1910px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #E8E8E8 inset, /** white border on the inside of the div */
+				-5px -5px 10px 2px rgba(0,0,0,0.2) inset, /** light grey gradienty shadowy stuff on the inside of the div */
+				000px 0px 0px -1910px #BFBFBF inset; /** the grey part on the left side of the div */
 	padding-bottom: 10px;
 	margin-top: 10px;
 	color: black;
 }
 
+/**
+ * 	div-box that contains the modality icons
+ */
 #modaliteiten {
 	margin-top: 10px;
-	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, -5px -5px 24px 3px rgba(0,0,0,0.2) inset;
+	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, /** white border on the inside of the div */
+				-5px -5px 24px 3px rgba(0,0,0,0.2) inset; /** light grey gradienty shadowy stuff on the inside of the div */
 	/**box-shadow: 0px 2000px 0px -1973px #BFBFBF inset;*/
 }
 
+/**
+ * 	class for all the divs in the island
+ */
 .divborder {
 	border: 1px solid #424242;
 	padding: 10px;
@@ -1520,21 +1546,36 @@ body {
 	color: black;
 }
 
+/**
+ * 	div for the wheelchair thing
+ */
 #rolstoel {
-	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, -5px -5px 10px 2px rgba(0,0,0,0.2) inset, 2000px 0px 0px -1910px #BFBFBF inset;
+	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, /** white border on the inside of the div */
+				-5px -5px 10px 2px rgba(0,0,0,0.2) inset, /** light grey gradienty shadowy stuff on the inside of the div */
+				2000px 0px 0px -1910px #BFBFBF inset; /** the grey part on the left side of the div */
 	margin-bottom: 10px;
 }
 
+/**
+ * 	button for planning a trip
+ */
 #planknop {
 	margin-bottom: -35px;
 }
 
+/**
+ * 	dropdownbox for the preference. 
+ * Using this, the user can choose between the fastest route and the least amount of transfers
+ */
 #preferenceDropdownThing {
 	width: 53%;
 	border-radius: 10px;
 	margin-top: -1px;
 }
 
+/**
+ * 	replace "eiland" in plan.html for another option for the interface
+ */
 .optie2 {
 	padding: 20px;
 	font-family: arial;
