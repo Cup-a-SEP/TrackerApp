@@ -33,6 +33,10 @@
 		.time {
 			float:right;
 		}
+		
+		#sugto, #sugfrom {
+			display: none;
+		}
 	</style>
 </head>
 <body>
@@ -120,17 +124,27 @@
 			{
 				$('#from').val(address);
 				$('#fromPlace').val(coords);
-				sugfrom.close();
 			});
 			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 			{
 				$('#to').val(address);
 				$('#toPlace').val(coords);
-				sugto.close();
 			});
 			
-			$('#from').click(function() { sugfrom.open(); });
-			$('#to').click(function() { sugto.open(); });
+			// Debug
+			sugfrom.list = sugto.list =
+			{
+				'Eindhoven': '0,0',
+				'Utrecht': '0,0',
+				'Tilburg': '0,0',
+				'Groningen': '0,0',
+				'Breda': '0,0',
+				'Eindhoven station': '0,0',
+				'Eindhoven TUe': '0,0',
+				'Meppel': '0,0',
+				'Maaskantje': '0,0',
+				'Enkhuizen': '0,0'
+			};
 			
 			// Initialize date/time input boxes
 			$('#date').val(System.getDate());

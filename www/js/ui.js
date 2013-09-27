@@ -53,30 +53,33 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	return self;
 };
 
+/**
+ * Creates a suggestion box from a text box
+ * @constructor Suggestion
+ * @param {jQuery}           target    - element which will be replaced by the suggestion box
+ * @param {jQuery}           input     - textbox element which provides the input
+ * @param {Number}           size      - number of suggestions
+ * @param {Boolean}          geolocate - true if the suggestions should also include current geo-position
+ * @param {Geo~DoneCallback} callback  - callback executed when user clicks a suggestion
+ * 
+ * @property {Number} size - number of suggestions
+ * @property {Object} list - suggestion list object with address => "lat,lng"
+ */
 UI.Suggestion = function(target, input, size, geolocate, callback)
 {
 	var self = this;
 	this.target = target;
 	this.source = input;
 	this.size = size;
-	this.list =
-	{
-		'Eindhoven': '0,0',
-		'Utrecht': '0,0',
-		'Tilburg': '0,0',
-		'Groningen': '0,0',
-		'Breda': '0,0',
-		'Eindhoven station': '0,0',
-		'Eindhoven TUe': '0,0',
-		'Meppel': '0,0',
-		'Maaskantje': '0,0',
-		'Enkhuizen': '0,0'
-	};
+	this.list = {};
+	this.callback = callback || Function();
 	
+	input.click(function() { self.open(); });
+	input.blur(function() { setTimeout(function() { self.close(); }, 1000); });
+	
+	// Geo location and location resolving variables
 	this.here = undefined;
 	this.there = undefined;
-	
-	this.callback = callback || Function();
 	
 	function hereError(code, message)
 	{
@@ -125,6 +128,10 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	});
 };
 
+/**
+ * Updates the suggestion box (when list or input has changed)
+ * @memberof UI.Suggestion
+ */
 UI.Suggestion.prototype.update = function UISuggestionUpdate()
 {
 	var self = this;
@@ -142,7 +149,11 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	if (this.there)
 		this.target.append($('<p>')
 			.text(this.there.address)
-			.click(function() { self.callback(self.there.coords, self.there.address); }));
+			.click(function()
+			{
+				self.callback(self.there.coords, self.there.address);
+				self.close();
+			}));
 	
 	for (var i = 0; i < number; ++i)
 	{
@@ -152,26 +163,43 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 			.text(names[i])
 			.click((function(i)
 			{
-				return function() { self.callback(list[names[i]], names[i]); };
+				return function()
+				{
+					 self.callback(list[names[i]], names[i]);
+					 self.close();
+				};
 			})(i)));
 	}
 	
 	if (this.here)
 		this.target.append($('<p>')
 			.text('Huidige locatie')
-			.click(function() { self.callback(self.here.coords, self.here.address); }));
+			.click(function()
+			{
+				self.callback(self.here.coords, self.here.address);
+				self.close();
+			}));
 	else if (this.here !== false)
 		this.target.append($('<p>').text('Zoeken...'));
 };
 
-
+/**
+ * Opens the suggestion box
+ * @memberof UI.Suggestion
+ * @return this 
+ */
 UI.Suggestion.prototype.open = function UISuggestionOpen()
 {
 	this.target.show();
 	return this;
 };
 
-UI.Suggestion.prototype.close = function UISuggestionOpen()
+/**
+ * Closes the suggestion box
+ * @memberof UI.Suggestion
+ * @return this
+ */
+UI.Suggestion.prototype.close = function UISuggestionClose()
 {
 	this.target.hide();
 	return this;
