@@ -1332,8 +1332,8 @@ body {
  * 	icons for the different modalities
  */
 .icon {
-	width: 48px;
-	height: 60px;
+	width: 42px; /*48*/
+	height: 52px; /*60*/
 }
 
 .ui-accordion-header{
