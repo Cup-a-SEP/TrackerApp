@@ -1549,7 +1549,7 @@ body {
 /**
  * 	div for the wheelchair thing
  */
-#rolstoel {
+#wheelchairdiv {
 	box-shadow: -1px -1px 0px 0.5px #FFFFFF inset, /** white border on the inside of the div */
 				-5px -5px 10px 2px rgba(0,0,0,0.2) inset, /** light grey gradienty shadowy stuff on the inside of the div */
 				2000px 0px 0px -1910px #BFBFBF inset; /** the grey part on the left side of the div */
@@ -1567,7 +1567,7 @@ body {
  * 	dropdownbox for the preference. 
  * Using this, the user can choose between the fastest route and the least amount of transfers
  */
-#preferenceDropdownThing {
+#preferenceDropdown {
 	width: 53%;
 	border-radius: 10px;
 	margin-top: -1px;

@@ -48,24 +48,6 @@ Storage.Locations.store = function StorageLocationsStore(name, latlng, times, fa
 		});
 };
 
-
-$(function(){
-	
-	
-	var localDbObj = new LocalDB('table');
-
-	
-	//Tests: LocalDB.insert
-	//Expected output: a number
-	localDbObj.insert(
-		{a:22, b:23},
-		function(localDbResultObj) { 
-			console.log(localDbResultObj.insertId()); 
-		}
-	);
-
-});
-
 /*
 LocalDB Examples:
 
