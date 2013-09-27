@@ -194,7 +194,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
  */
 UI.Suggestion.prototype.open = function UISuggestionOpen()
 {
-	this.target.show();
+	this.target.slideDown();
 	return this;
 };
 
@@ -205,6 +205,6 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
  */
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
-	this.target.hide();
+	this.target.slideUp();
 	return this;
 };
