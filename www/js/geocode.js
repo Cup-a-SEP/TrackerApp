@@ -32,13 +32,13 @@ Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
 /**
  * Converts an human readable location to geo-coordinates
  * @param {string} address - A human readable location designation
- * @return {object} jQuery deferred object
+ * @return {object}  deferred object
  */
 Geo.code = function Geocode(address)
 {
-	var def = jQuery.Deferred();
+	var def = $.Deferred();
 	
-	jQuery.getJSON(Geo.ServerPath,
+	$.getJSON(Geo.ServerPath,
 	{
 		address: address,
 		sensor: true,
@@ -69,13 +69,13 @@ Geo.code = function Geocode(address)
 /**
  * Converts geo-coordinates to an human readable location
  * @param {string} latlng - A geo-location coordinate latitude,longitude
- * @return {object} jQuery deferred object
+ * @return {object}  deferred object
  */
 Geo.decode = function Geodecode(latlng)
 {
-	var def = jQuery.Deferred();
+	var def = $.Deferred();
 	
-	jQuery.getJSON(Geo.ServerPath,
+	$.getJSON(Geo.ServerPath,
 	{
 		latlng: latlng,
 		sensor: true
@@ -84,7 +84,7 @@ Geo.decode = function Geodecode(latlng)
 		if (data.status == 'OK')
 		{
 			var addresses = data.results[0].formatted_address;//data.results[0].address_components;
-			//addresses = jQuery.map(addresses, function(x) { return x.long_name; });
+			//addresses = .map(addresses, function(x) { return x.long_name; });
 			var loc = data.results[0].geometry.location;
 			def.resolve(''+loc.lat+','+loc.lng, addresses);
 		}
@@ -106,11 +106,11 @@ Geo.decode = function Geodecode(latlng)
  */
 Geo.matchCountry = function(results, country)
 {	
-	return jQuery.grep(results, function(x)
+	return $.grep(results, function(x)
 	{
-		return jQuery.map(x.address_components, function(y)
+		return $.map(x.address_components, function(y)
 		{
-			if (jQuery.inArray('country',y.types) >= 0)
+			if ($.inArray('country',y.types) >= 0)
 				return y.short_name;
 		})[0] == country;
 	});
@@ -125,8 +125,8 @@ Geo.matchCountry = function(results, country)
  */
 Geo.filterType = function(results, type)
 {
-	return jQuery.grep(results, function(x)
+	return $.grep(results, function(x)
 	{
-		return jQuery.inArray(type,x.types) == -1;
+		return $.inArray(type,x.types) == -1;
 	});
 };

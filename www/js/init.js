@@ -17,9 +17,9 @@ function onBackButton()
 }
 
 
-jQuery(function()
+$(function()
 {
-	jQuery('#back').click(function(){
+	$('#back').click(function(){
 		onBackButton();
 	});
 });

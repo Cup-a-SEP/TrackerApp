@@ -47,20 +47,20 @@
 			<div class="eiland" class="shadow">
 			
 			<div class="divborder" id="fromdiv">
-				<label>Van<input type="text" id="from" value="..."></label>
+				<label>Van<input type="text" id="from" placeholder="..."></label>
 				<input type="hidden" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
-				<label>Naar<input type="text" id="to" value="..."></label>
+				<label>Naar<input type="text" id="to" placeholder="..."></label>
 				<input type="hidden" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="datetime">
 				<div id="ditmoetopdezelfdelijn">
-					<select name="arriveBy" id="vertrekding">
+					<select name="arriveBy" id="arriveBy">
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
@@ -113,20 +113,28 @@
 			ferry: true
 		};
 		
-		// dummy 'database', used for the suggestions. Sorted: the first item should be the one most used
-		var favorites = ["Eindhoven", "Eindhoven station", "Eindhoven TUe", "Meppel", "Maaskantje", "Enkhuizen"];
-		var prevused = ["Maaskantje friettent", "Maaskantje bowling", "Eindhoven PSV stadion", "Madurodam"];
-		var curLocation = "";
-		var totalPositions = 5; // maximum amount of suggestions shown per location
-		
 		$(function()
 		{
 			// Initialize to/from input boxes
-			$('#sugfrom').hide();
-			$('#sugto').hide();
+			var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
+			{
+				$('#from').val(address);
+				$('#fromPlace').val(coords);
+				sugfrom.close();
+			});
+			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
+			{
+				$('#to').val(address);
+				$('#toPlace').val(coords);
+				sugto.close();
+			});
+			
+			$('#from').click(function() { sugfrom.open(); });
+			$('#to').click(function() { sugto.open(); });
 			
 			// Initialize date/time input boxes
-			$("input[name='datetime']").val(System.getDate() + ' ' + System.getTime());
+			$('#date').val(System.getDate());
+			$('#time').val(System.getTime());
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
@@ -137,41 +145,6 @@
 					modalities[name] = !modalities[name];
 					mod.css('opacity', modalities[name] ? 1 : .3);
 				});
-			});
-			
-			initLocationChoosers();
-			
-			var from = $('#from');
-			from.click(function(){
-				// show the suggestions
-				updateSuggestions('from');
-			});
-			from.keypress(function(event)
-			{
-				// wait one millisecond; this way, $('#from').val() will be up to date
-				setTimeout(function(){updateSuggestions('from');},1);
-			});
-			
-			var to = $('#to');
-			var sessionTo = sessionStorage.getItem("to");
-			if(sessionTo != null){
-				to.val(sessionTo);
-				setTimeout(function()
-				{
-					Geo.code(to.val()).done(function(coords, name)
-					{
-						$("input[name='toPlace']").val(coords);
-					});
-				}, 0);
-			}
-			to.click(function(){
-				// show the suggestions
-				updateSuggestions('to');
-			});
-			to.keypress(function(event)
-			{
-				// wait one millisecond; this way, $('#to').val() will be up to date
-				setTimeout(function(){updateSuggestions('to');},1);
 			});
 			
 			var form = $('form');
@@ -222,157 +195,6 @@
 				return false;
 			});
 		});
-		
-		function initLocationChoosers(){
-			// all suggestions have the following form:
-			// id: suggestion + to/from + idNumber
-			
-			// each div around the 
-			// location numbers:
-			// 0: Google geocode
-			// 1 -> totalPositions: favorites
-			// totalPositions + 1 -> 2*totalPositions: previously used
-			// 2*totalPositions + 1: current location
-			for(var i = 0; i <= 2*totalPositions; i++){
-				addSuggestion('suggestionsfromdiv', 'suggestionfrom', i, '', 'from');
-				addSuggestion('suggestionstodiv', 'suggestionto', i, '', 'to');
-			}
-			addSuggestion('suggestionsfromdiv', 'suggestionfrom', 2*totalPositions+1, 'Huidige locatie', 'from');
-			
-			System.getLocation().done(function(coords)
-			{
-				Geo.decode(coords).done(function(coords, name)
-				{
-					var from = $('#from');
-					if(from.val() == ""){
-						from.val(name);
-						$("input[name='fromPlace']").val(coords);
-						$('#fromName').text("Huidige locatie");
-					}
-					curLocation = name;
-				});
-			});
-		}
-		
-		// example: addSuggestion('suggestionsfromdiv', 'suggestionfrom', 'Eindhoven', 'from')
-		function addSuggestion(location, idName, idNumber, text, toChange){
-			var id = idName+idNumber;
-			$('#' + location).append($('<div>').attr('id',id).text(""));
-			$('#' + id).hide();
-		}
-		
-		// example: changeSuggestion('suggestionfrom',0,'Eindhoven','from')
-		function changeSuggestion(idName, idNumber, text, toChange){
-			var id = idName+idNumber;
-			var elem = $('#' + id);
-			elem.empty();
-			elem.append($('<p>').text(text));
-			elem.click(function(e){
-				$('#' + toChange).val(text);
-				for(var i = 0; i <= 2*totalPositions+1; i++){
-					$('#' + idName + i).hide();
-				}
-				$('#suggestions' + toChange + 'div').hide();
-			});
-		}
-		
-		// example: setVisibleSuggestion('suggestionfrom0', true)
-		function setVisibleSuggestion(id, vis){
-			var elem = $('#' + id);
-			if(vis){
-				elem.show();
-			} else {
-				elem.hide();
-			}
-		}
-		
-		// example: updatesuggestions('from')
-		function updateSuggestions(location){
-			$('#suggestions' + location + 'div').show();
-			var maxTolerance = 3;
-			
-			var filled = 1;
-			var curTyped = $('#' + location).val();
-			console.log(curTyped);
-			//current location already up to date (assuming user does not move)
-			
-			//google location
-			setTimeout(function()
-			{
-				Geo.code(curTyped).done(function(coords, name)
-				{
-					$("input[name='" + location + "']").val(coords);
-					changeSuggestion('suggestion'+ location, 0, name, location);
-					setVisibleSuggestion('suggestion'+ location + '0',true);
-				}).fail(function(code,message){
-					setVisibleSuggestion('suggestion'+ location + '0',false);
-				});
-			}, 0);
-			
-			//favorites
-			var LsteinDistances = new Array();
-			var minDist = 1000;
-			for(var i = 0; i < favorites.length; i++){
-				LsteinDistances[i] = Misc.lDistance(curTyped, favorites[i]);
-				if(minDist > LsteinDistances[i]){
-					minDist = LsteinDistances[i];
-				}
-			}
-			
-			while(filled < totalPositions && minDist <= maxTolerance){
-				for(var i = 0; i < favorites.length; i++){
-					if(LsteinDistances[i] == minDist && filled < totalPositions){
-						changeSuggestion("suggestion"+location,filled,favorites[i],location);
-						setVisibleSuggestion("suggestion"+location+filled,true);
-						filled ++;
-					}
-				}
-				minDist ++;
-				if(filled == favorites.length){
-					break;
-				}
-			}
-			for(var i = filled; i <= totalPositions; i++){
-				setVisibleSuggestion("suggestion"+location+i,false);
-			}
-			
-			//previously used
-			var prevUsedFilled = 0;
-			
-			LsteinDistances = new Array();
-			minDist = 1000;
-			for(var i = 0; i < prevused.length; i++){
-				LsteinDistances[i] = Misc.lDistance(curTyped, prevused[i]);
-				if(minDist > LsteinDistances[i]){
-					minDist = LsteinDistances[i];
-				}
-			}
-			
-			while(filled < totalPositions && minDist <= maxTolerance){
-				for(var i = 0; i < prevused.length; i++){
-					if(LsteinDistances[i] == minDist && filled < totalPositions){
-						changeSuggestion("suggestion"+location,prevUsedFilled+totalPositions,prevused[i],location);
-						setVisibleSuggestion("suggestion"+location+(prevUsedFilled+totalPositions),true);
-						filled ++;
-						prevUsedFilled ++;
-					}
-				}
-				minDist ++;
-				if(filled == prevused.length){
-					break;
-				}
-			}
-			for(var i = prevUsedFilled+1; i <= totalPositions; i++){
-				setVisibleSuggestion("suggestion"+location+(i+totalPositions),false);
-			}
-			
-			//GPS
-			if(location == 'from' && curLocation != ""){
-				setVisibleSuggestion("suggestionfrom" + (totalPositions*2+1),true);
-			}
-			
-			$('#suggestions' + location + 'div').show();
-		}
 	</script>
 </body>
 </html>
