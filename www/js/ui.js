@@ -74,7 +74,11 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	this.list = {};
 	this.callback = callback || Function();
 	
-	input.click(function() { self.open(); });
+	input.click(function()
+	{
+		self.open();
+		self.update();
+	});
 	input.blur(function() { setTimeout(function() { self.close(); }, 1000); });
 	
 	// Geo location and location resolving variables
