@@ -52,13 +52,11 @@
 			
 			<div class="divborder" id="fromdiv">
 				<label>Van<input type="text" id="from" placeholder="..."></label>
-				<input type="hidden" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
 				<label>Naar<input type="text" id="to" placeholder="..."></label>
-				<input type="hidden" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
 			
@@ -96,14 +94,14 @@
 			
 			<div id="planknop">
 				<span id="fav">&hearts;</span>
-				<input type="submit" value="Plan" id="submitButton">
+				<button id="plan">Plan</button>
 			</div>
 			
 			</div><!-- einde eiland -->
 			
 		</div>
 	</section>
-	<section id="plan">
+	<section id="status">
 	</section>
 	<script src="js/init.js"></script>
 	<script>
@@ -117,18 +115,22 @@
 			ferry: true
 		};
 		
+		// Coordinates of places
+		var fromPlace = '';
+		var toPlace = '';
+		
 		$(function()
 		{
 			// Initialize to/from input boxes
 			var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
 			{
 				$('#from').val(address);
-				$('#fromPlace').val(coords);
+				fromPlace = coords;
 			});
 			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 			{
 				$('#to').val(address);
-				$('#toPlace').val(coords);
+				toPlace = coords;
 			});
 			
 			// Debug
@@ -161,47 +163,40 @@
 				});
 			});
 			
-			var form = $('form');
-			var plan = $('#plan');
-			form.submit(function()
+			// Send request to planner
+			$('#plan').click(function()
 			{
-				var req = {};
-				$.each(form.serializeArray(), function(i, obj)
+				var req =
 				{
-					req[obj.name] = obj.value;
-				});
+					fromPlace: fromPlace,
+					toPlace: toPlace,
+					time: $('#time').val(),
+					date: $('#date').val(),
+					arriveBy: $('#arriveBy').val(),
+					preferLeastTransfers: $('input[name="preferLeastTransfers"]').val(),
+					wheelchair: $('input[name="wheelchair"]').val(),
+					mode: $.map(modalities, function(value, name)
+					{
+						if (value)
+							return name.toUpperCase();
+					}).join(',')
+				};
 				
-				req.mode = $.map(modalities, function(value, name)
-				{
-					if (value)
-						return name.toUpperCase();
-				}).join(',');
-				
-				$('#submitButton').remove();
-				plan.empty().append($('<h1>').text("Loading..."));
+				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
 				OTP.plan(req).done(function(data)
 				{
-					var stripped = (function(ser) {
+					var stripped = (function(ser)
+					{
 						return ser;
 					})(data);
 					
-					var serialized = $.toJSON(data);
-					
-					localStorage['OTP data'] = serialized;
+					localStorage['OTP data'] = $.toJSON(data);
 					
 					window.location = "OTPresult.html";
-					/*
-					 * console.log(data);
-					 * var route;
-					 * plan.empty().append(route = $('<div>').attr('id', 'route'));
-					 * route.add = UI.addItinerary;
-					 * route.add(data.itineraries[0]);
-					 * route.accordion({collapsible:true});
-					 */
 				}).fail(function(error, message)
 				{
-					plan.empty()
+					$('#status').empty()
 						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
 						.append($('<h3>').text(message));
 				});
