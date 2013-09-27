@@ -35,7 +35,7 @@ Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 };
 
 
-jQuery(function(){
+$(function(){
 	
 	
 	var localDbObj = new LocalDB('table');

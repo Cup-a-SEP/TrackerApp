@@ -23,7 +23,6 @@ System.getDate = function SystemGetDate()
 {
 	function pad(x) { return x < 10 ? '0' + x : x; }
 	var dt = new Date();
-	/* IF DOLPHINS ARE SO SMART, HOW COME THEY LIVE IN IGLOOS? */
 	return dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
 };
 

@@ -2040,7 +2040,7 @@ Ajax.PeriodicalUpdater = Class.create(Ajax.Base, {
     return Element.extend(element);
   }
 
-  GLOBAL.$ = $;
+  GLOBAL._$ = _$;
 
 
   if (!GLOBAL.Node) GLOBAL.Node = {};

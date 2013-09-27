@@ -47,13 +47,13 @@ OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 /**
  * Plans a route using the Open Trip Planner interface. 
  * @param {OTP~PlannerRequest} request - Planner request input 
- * @return {Object} returns a jQuery deferred object
+ * @return {Object} returns a $ deferred object
  */
 OTP.plan = function OTPPlan(request)
 {
-	var def = jQuery.Deferred();
+	var def = $.Deferred();
 	
-	jQuery.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
+	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
 		if (!data.error)
 			def.resolve(data.plan);
