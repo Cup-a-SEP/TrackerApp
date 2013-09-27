@@ -22,10 +22,9 @@
 		<!--<p class="button"><a href="testdecoder.html">Test de JSON decoder</a></p>
 		<p class="button"><a href="storage_test.html">Test Data Storage</a></p>-->
 		<!--<p class="button"><a href="location.html">Test de locatie kiezer!</a></p>-->
-
-			<a href="plan.html" class="divbutton"><p class="button">Plan je route</p></a>
-			<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>
-			<a href="map_test.html" class="divbutton"><p class="button">Test Map</p></a>
+		<a href="plan.html" class="divbutton"><p class="button">Plan je route</p></a>
+		<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>
+		<a href="map_test.html" class="divbutton"><p class="button">Test Map</p></a>
 	</div>
 	
 	<script type="text/javascript">
@@ -45,6 +44,11 @@
 			console.log('The user wants to close the app.');
 			navigator.app.exitApp();
 		}
+		
+		$(function()
+		{
+			document.addEventListener("backbutton", onBackButton, false);
+		});
 	</script>
 </body>
 </html>
