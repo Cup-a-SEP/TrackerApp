@@ -72,7 +72,7 @@
 			</div>	
 				
 			<div class="divborder" id="voorkeur">
-				<label>Voorkeur<select name="preferLeastTransfers" id="preferenceDropdownThing">
+				<label>Voorkeur<select name="preferLeastTransfers" id="preferenceDropdown">
 					<option value="false">snelste route</option>
 					<option value="true">minst aantal overstappen</option>
 				</select></label>
@@ -88,7 +88,7 @@
 				</div></label>
 			</div>
 			
-			<div class="divborder" id="rolstoel">
+			<div class="divborder" id="wheelchairdiv">
 				<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
 			</div>
 			
@@ -173,14 +173,15 @@
 					time: $('#time').val(),
 					date: $('#date').val(),
 					arriveBy: $('#arriveBy').val(),
-					preferLeastTransfers: $('input[name="preferLeastTransfers"]').val(),
-					wheelchair: $('input[name="wheelchair"]').val(),
+					preferLeastTransfers: $('#preferenceDropdown').val(),
+					wheelchair: $('#wheelchair').is(':checked'),
 					mode: $.map(modalities, function(value, name)
 					{
 						if (value)
 							return name.toUpperCase();
 					}).join(',')
 				};
+				console.log(req);
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
