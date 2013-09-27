@@ -21,12 +21,17 @@
 </head>
 <body>
 	<h1>Map test</h1>
-	<div id="mapDiv">&nbsp;</div>
+	<div id="mapDiv" style="height: 300px; width:100%">&nbsp;</div>
 	<h1 id="speed">Speed:</h1>
+	<script src="OpenLayers/OpenLayers.js"></script>
+	<script src="js/lib/jquery-1.9.1.js"></script>
 	<script src="js/init.js"></script>
 	<script src="js/geolocation.js"> </script>
 	<script src="js/calculateSpeed.js"> </script>
 	<script type="text/javascript">
+	
+		var geometric = new OpenLayers.Projection("EPSG:4326");
+		var mercator = new OpenLayers.Projection("EPSG:900913");
 		
 		var size = new OpenLayers.Size(21,25);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
@@ -37,18 +42,12 @@
 		function Map(id)
 		{
 			this.map = new OpenLayers.Map(id);
-			this.proj = {};
-			this.proj.from = new OpenLayers.Projection("EPSG:4326");
-			this.proj.to = new OpenLayers.Projection("EPSG:900913");
 			this.layer = new OpenLayers.Layer.OSM();
 			this.map.addLayer(this.layer);
-			this.move(51.4474477,5.4873561);
+			this.proj = {};
+			this.proj.from = geometric;
+			this.proj.to = this.map.getProjection();
 		}
-		
-		Map.prototype.move = function(lat, lng)
-		{
-			this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
-		};
 		
 		function update(position) {
 			markerLayer.addMarker(new OpenLayers.Marker(
@@ -59,6 +58,8 @@
 			bounds = markerLayer.getDataExtent();
 			
 			map.map.zoomToExtent(bounds);
+			
+			$('#speed').text('Speed: ' + localStorage['walkSpeed']);
 		}
 		
 		$(function()
