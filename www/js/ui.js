@@ -76,8 +76,8 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	
 	input.click(function()
 	{
-		self.open();
 		self.update();
+		self.open();
 	});
 	input.blur(function() { setTimeout(function() { self.close(); }, 1000); });
 	
