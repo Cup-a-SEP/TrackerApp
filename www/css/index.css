@@ -85,6 +85,9 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+/**
+ * 	general CSS for the body
+ */
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -110,6 +113,9 @@ body {
     width:100%;
 }
 
+/**
+ * 	fixed header bar at the top of the screen 
+ */
 #header {
 	position: fixed;
 	top: 0;
@@ -132,6 +138,9 @@ body {
   	text-transform: none;
 }
 
+/** 
+ * question mark icon 
+ */
 #vraagteken {
 	border: 1px #09363B solid;
 	border-radius: 15px;
@@ -142,6 +151,9 @@ body {
 	box-shadow:inset 0 0 10px #167782;
 }
 
+/* 
+ * the heart icon used to add a route to favourites 
+ */
 #fav {
 	border: 1px #CC3535 solid;
 	border-radius: 15px;
@@ -152,22 +164,35 @@ body {
 	box-shadow: inset 0 0 10px #FF73F6;
 }
 
+/** 
+ * 	elements in the header that need to be aligned to the left side 
+ */
 #left {
 	padding: 5px;
 	margin: 5px;
 	float: left;
 }
 
+/**
+ * elements in the header that need to be aligned to the center 
+ */
 #center {
 	
 	font-size: 36px;
 }
+
+/** 
+ * 	elements in the header that need to be aligned to the right side 
+ */
 #right {
 	float: right;
 	padding: 5px;
 	margin: 5px;
 }
 
+/** 
+ * 	CSS for the buttons on the home screen 
+ */
 .button {
 	border: 1px #358219 solid;
 	text-decoration: none;
@@ -180,15 +205,17 @@ body {
   				inset;
 }
 
+/**
+ * 	CSS for buttons that are also links
+ */
 .button a {
 	text-decoration: none;
 		color: #268769;
 }
 
-.button a:active {
-
-}
-
+/**
+ * 	CSS for active buttons
+ */
 .button:active {
 	box-shadow: rgba(0,0,0,0.4)
  				0 -24px 40px
@@ -196,6 +223,10 @@ body {
   				#DDEDB2
   				inset;
 }
+
+/**
+ * refers to the paragraphs in the headerbuffer
+ */
 .headerbuffer p {
 	width: 70%;
 	float: middle;
@@ -203,7 +234,10 @@ body {
 	margin-bottom: 15px;
 }
 
-
+/**
+ * moves everything except for the header 48 pixels downwards, so the 
+ * header won't cover any relevant parts of the screen
+ */
 .headerbuffer {
 	margin-top: 80px;
 	text-align: center;
@@ -211,10 +245,16 @@ body {
 	font-family: Helvetica;
 }
 
+/**
+ * 	text colour of the header
+ */
 #headertekst {
 	color: #388ea6;
 }
 
+/**
+ * 	
+ */
 .divbutton a {
 	text-decoration: none;
 	color: #358219;
@@ -225,10 +265,14 @@ body {
 	color: #358219;
 }
 
+/**
+ * 	CSS for the buttons
+ */
 .divbutton {
 	text-decoration: none;
 	color: #358219;
 }
+
 /**
 .headerbuffer p.button {
 	line-height:180%;
