@@ -291,4 +291,4 @@ var LocalDBResult = Class.create({
  * @readOnly
  * @type string 
  */
-var LocalDBStruct = 'CREATE TABLE IF NOT EXISTS `location` (name unique, latlon, times, fav)';//zet maar op 1 regel das wel te doen.
+var LocalDBStruct = 'CREATE TABLE IF NOT EXISTS `locations` (name unique, latlon, times, fav)';//zet maar op 1 regel das wel te doen.
