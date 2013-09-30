@@ -21,44 +21,60 @@
 </head>
 <body>
 	<h1>Map test</h1>
-	<div id="map">&nbsp;</div>
+	<div id="mapDiv" style="height: 300px; width:100%">&nbsp;</div>
 	<h1 id="speed">Speed:</h1>
+	<script src="OpenLayers/OpenLayers.js"></script>
+	<script src="js/lib/jquery-1.9.1.js"></script>
 	<script src="js/init.js"></script>
+	<script src="js/geolocation.js"> </script>
+	<script src="js/calculateSpeed.js"> </script>
 	<script type="text/javascript">
-		document.addEventListener("deviceready", onDeviceReady, false);
+	
+		var geometric = new OpenLayers.Projection("EPSG:4326");
+		var mercator = new OpenLayers.Projection("EPSG:900913");
 		
-		function onDeviceReady()
+		var size = new OpenLayers.Size(21,25);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var markerIcon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+		var map;
+		var bounds;
+		
+		function Map(id)
 		{
-			function Map(id)
-			{
-				this.map = new OpenLayers.Map(id);
-				this.proj = {};
-				this.proj.from = new OpenLayers.Projection("EPSG:4326");
-				this.proj.to = new OpenLayers.Projection("EPSG:900913");
-				this.layer = new OpenLayers.Layer.OSM();
-				this.map.addLayer(this.layer);
-				this.move(51.4474477,5.4873561);
-			}
-			
-			Map.prototype.move = function(lat, lng)
-			{
-				this.map.setCenter(new OpenLayers.LonLat(lng,lat).transform(this.proj.from, this.proj.to), 18);
-			};
-			
-			$(function()
-			{
-				var map = new Map('map');
-				
-				function update(pos)
-				{
-					map.move(pos.coords.latitude, pos.coords.longitude);
-					$('#speed').text('Speed: ' + pos.coords.speed + ' Alt: ' + pos.coords.altitude);
-				}
-				
-				navigator.geolocation.getCurrentPosition(update);
-				navigator.geolocation.watchPosition(update, undefined, { timeout: 30000 });
-			});
+			this.map = new OpenLayers.Map(id);
+			this.layer = new OpenLayers.Layer.OSM();
+			this.map.addLayer(this.layer);
+			this.proj = {};
+			this.proj.from = geometric;
+			this.proj.to = this.map.getProjection();
 		}
+		
+		function update(position) {
+			markerLayer.addMarker(new OpenLayers.Marker(
+			new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(geometric, map.proj.to), 
+				markerIcon.clone())
+			);
+			
+			bounds = markerLayer.getDataExtent();
+			
+			map.map.zoomToExtent(bounds);
+			
+			$('#speed').text('Speed: ' + localStorage['walkSpeed']);
+		}
+		
+		$(function()
+		{
+			
+			map = new Map("mapDiv");
+			markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
+			
+			map.map.addLayers([markerLayer]);
+			
+			map.map.zoomToMaxExtent();
+			
+			startTrackPoll();
+		}
+		);
 	</script>
 </body>
 </html>

@@ -23,6 +23,8 @@ function onSuccessPoll(position) {
 	} else {
 		pos = position;
 		i = i + 1;
+		
+		update(position);
 	}
 }
 
