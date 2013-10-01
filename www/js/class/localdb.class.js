@@ -17,6 +17,7 @@ var LocalDB = Class.create({
 	pDbVersion: undefined,
 	pDbo: undefined,
 	pTableName: undefined,
+	pTableStruct: undefined,
 	pError: false,
 	
 	dbResultCallback: undefined,
@@ -25,28 +26,30 @@ var LocalDB = Class.create({
 	onDbCreate: function (db) {
 	  //Attach the database because "window.openDatabase" would not have returned it
 		this.pDbo = db;
-		console.log('wut');
-		this.initDbStruct(db);
+		this.initDbStruct();
 	},
 		
 	/**
 	 * Initialize a LocalDB instance for a specified table and database structure version
 	 * 
 	 * @param {String} tableName Name of the table to connect to
+	 * @param {String} tableStruct - A create table structure query
 	 * @param {String} dbVersion Version of the data structure expected on the device
 	 */
-	initialize: function(tableName, dbVersion) {
+	initialize: function(tableName, tableStruct, dbVersion) {
 		if (undefined == dbVersion) {
 			this.pDbVersion = this.cDefaultDbVersion;
 		} else {
 			this.pDbVersion = dbVersion;
 		}
 		this.pTableName = tableName; 
+		this.pTableStruct = tableStruct;
 		//console.log('Connecting to table ' + pTableName + ' version ' + pDbVersion);
 
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
-			this.pDbo = window.openDatabase("FritsOVLocalDatabase12", this.pDbVersion, "FritsOV Local Database", 1000, this.onDbCreate.bind(this));
+			this.pDbo = window.openDatabase("FritsOVLocalDatabase", this.pDbVersion, "FritsOV Local Database", 1000, this.onDbCreate.bind(this));
+			this.initDbStruct() // Just force table creation every time (it has the IF EXISTS so it's fine)
 		} catch (e) {
 			//(Most likely) database version mismatch
 			if (e.code == 11) {
@@ -149,6 +152,28 @@ var LocalDB = Class.create({
 	},
 
 	/**
+	 * Updates a row in the current table using a match.
+	 * 
+	 * @param {object} values Column-value pairs to insert for this row
+	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 */	
+	updateMatch: function(values, match, dbResultCallback) {		
+		var updates = '';
+		jQuery.each(values, function (col, val) {
+			updates += ', `' + col + '` = \'' + val + '\'';
+		});
+		
+		var wheres = '';
+		jQuery.each(match, function (col, val) {
+			wheres += ' AND `' + col + '` = \'' + val + '\'';
+		});
+		
+		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates.substring(2) + ' WHERE ' + wheres.substring(5);
+
+		return this.query(sqlquery, dbResultCallback);
+	},
+
+	/**
 	 * Deletes a row into the current table.
 	 * 
 	 * @param {int} id Row ID in the database table
@@ -206,17 +231,18 @@ var LocalDB = Class.create({
 	 * The database did not exist yet, create the structure here.
 	 * @param {database} db The WebSQL database objectc
 	 */	
-	initDbStruct: function(db) {
-		db.transaction(
+	initDbStruct: function() {
+		var struct = this.pTableStruct;
+		this.pDbo.transaction(
 			//Replace this code TODO
 		  function (tx) {
-		  	tx.executeSql(LocalDBStruct,
+		  	tx.executeSql(struct,
 				  [],
 				  function (tx, res) {
 				    console.log("Table Created Successfully");
 				  },
 				  function (tx, err) {
-				    console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message + "TODO: make it so that the database is deleted if populating the structure fails. now you need to change the db name or this function will not be executed again.");
+				    console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message);
 			    }
 			  );
 			}
@@ -238,7 +264,7 @@ var LocalDBResult = Class.create({
 	
 	
 	//Properties
-	pResultDataObj: undefined,
+	pResultData: undefined,
 	pSqlQuery: undefined,
 	pRows: -1,
 	
@@ -258,13 +284,10 @@ var LocalDBResult = Class.create({
 	
 	toObject: function() {
 		
-		var obj = {};
+		var obj = [];
 		
-		var item = undefined;
 		for (var i = 0; i < this.pRows; i++){
-			//results.rows.item(i).id + " a =  " + results.rows.item(i).a + " b =  " + results.rows.item(i).b + " c =  " + results.rows.item(i).c);
-			item = this.pResultData.rows.item(i);
-			obj[item.id] = item;
+			obj.push(this.pResultData.rows.item(i));
 		}
 		return obj;
 	},
@@ -284,11 +307,3 @@ var LocalDBResult = Class.create({
 		return this.pResultData.insertId;
 	},
 });
-
-/**
- * Default database structure
- * @attribute LocalDBDefault
- * @readOnly
- * @type string 
- */
-var LocalDBStruct = 'CREATE TABLE IF NOT EXISTS `locations` (name unique, latlon, times, fav)';//zet maar op 1 regel das wel te doen.

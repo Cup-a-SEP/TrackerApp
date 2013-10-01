@@ -7,6 +7,8 @@ var OTP = {};
 /**
 * A OTP server requets for planning trips 
 * @typedef {Object} OTP~PlannerRequest 
+* @property {String}  from                        - De plaats waar vandaan wordt gepland in text (niet onderdeel van OTP)
+* @property {String}  to                          - De plaats waar naartoe wordt gepland in text (niet onderdeel van OTP)
 * @property {String}  fromPlace                   - De plaats waar vandaan wordt gepland in WGS 84 (lon,lat) coördinaten. Bijvoorbeeld 52.09060823332514,5.111281871795654.
 * @property {String}  toPlace                     - De plaats waar naartoe wordt gepland in WGS 84 (lon,lat) coördinaten. Bijvoorbeeld 52.252699045023974,6.169391870498657.
 * @property {String}  date                        - De datum van vertrek (of aankomst wanneer arriveBy true is). Notatie is YYYY-MM-DD, dus bijvoorbeeld 2013-08-31.
