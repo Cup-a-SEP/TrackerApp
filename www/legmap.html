@@ -23,6 +23,8 @@
 		<p>.</p>
 	</div>
 	
+	<button id="routeButton" onclick="showRoute()" style="margin-top: 3em">Show Route</button>
+	
 	<script src="js/init.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="OpenLayers/OpenLayers.js"></script>
@@ -102,6 +104,12 @@
 			return features;
 		}
 		
+		var featues;
+		var map;
+		var markerLayer;
+		var vectorLayer;
+		var bounds;
+		
 		/**
 		 * The initialization function of the page, which gets the leg info and geometry,
 		 * creates a map and displays the leg on the map, after which it zooms to an appropriate
@@ -111,15 +119,15 @@
 			{
 				var geometry = getLegGeometry();
 				
-				var features = getFeatures(geometry);
+				features = getFeatures(geometry);
 				
-				var map = new Map("mapDiv");
-				var vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
-				var markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
+				map = new Map("mapDiv");
+				vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
+				markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
 				map.map.addLayers([vectorLayer, markerLayer]);
 				
-				var bounds;
+				bounds;
 				
 				// Convert the Features points to coordinates used by the Map
 				$.each(features, function(i, e){
@@ -134,27 +142,34 @@
 				});
 				
 				// Add the Features to the Map
-				vectorLayer.addFeatures(features);
-				
-				// Get the First and Last points of the Leg
-				var points = features[0].geometry.components;
-				var point1 = points[0];
-				var point2 = points[points.length-1];
-				
-				// Add the points as Markers
-				markerLayer.addMarker(new OpenLayers.Marker(
-					new OpenLayers.LonLat(point1.x, point1.y), 
-					markerIcon.clone())
-				);
-				markerLayer.addMarker(new OpenLayers.Marker(
-					new OpenLayers.LonLat(point2.x, point2.y), 
-					markerIcon.clone())
-				);
-				
-				// Zoom to exactly show the leg
-				map.map.zoomToExtent(bounds);
+				showRoute();
 			}
 		);
+		
+		function showRoute() {
+			console.log('show');
+			vectorLayer.addFeatures(features);
+			
+			// Get the First and Last points of the Leg
+			var points = features[0].geometry.components;
+			var point1 = points[0];
+			var point2 = points[points.length-1];
+			
+			// Add the points as Markers
+			markerLayer.addMarker(new OpenLayers.Marker(
+				new OpenLayers.LonLat(point1.x, point1.y), 
+				markerIcon.clone())
+			);
+			markerLayer.addMarker(new OpenLayers.Marker(
+				new OpenLayers.LonLat(point2.x, point2.y), 
+				markerIcon.clone())
+			);
+			
+			map.map.addLayers([vectorLayer, markerLayer]);
+			
+			// Zoom to exactly show the leg
+			map.map.zoomToExtent(bounds);
+		}
 	</script>
 </body>
 </html>
