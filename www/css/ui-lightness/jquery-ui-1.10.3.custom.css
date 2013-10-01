@@ -1580,3 +1580,20 @@ body {
 	padding: 20px;
 	font-family: arial;
 }
+
+/**
+ * 	The header above the list of legs of an itinerary in legmap.html. 
+ */
+#itineraryHeader {
+	background-color: #EDF5BA/*dafcfe*/;
+	border-top-left-radius: 30px 30px;
+	border-bottom-left-radius: 30px 30px;
+	border-radius: 5px;
+	border: 1px solid #424242/*41B0E8*/;
+	color: #424242;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 16px;
+	box-shadow: 0px 0px 0px 2px #EDF5BA inset, /** light green line on the inside of the border of the div */
+				-5px -5px 25px 2px #CAF09C inset; /** slightly darker green shadowy gradient thing on the inside of the div */
+}
