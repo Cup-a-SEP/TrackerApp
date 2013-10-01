@@ -17,6 +17,16 @@ UI.formatTime = function UIFormatTime(time)
 };
 
 /**
+ * Formats a location name so it does not contain double spaces
+ * @param name - A Location name
+ * @return The name without double spaces 
+ */
+UI.formatName = function UIFormatName(name)
+{
+	return name.replace(/\s+/, ' ').trim();
+};
+
+/**
  * Adds a formatted itinerary to a element
  * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 

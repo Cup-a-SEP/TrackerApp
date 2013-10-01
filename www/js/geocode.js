@@ -54,7 +54,7 @@ Geo.code = function Geocode(address)
 			{
 				var addresses = data.results[0].formatted_address;
 				var loc = data.results[0].geometry.location;
-				def.resolve(''+loc.lat+','+loc.lng, addresses);
+				def.resolve(''+loc.lat+','+loc.lng, UI.formatName(addresses));
 			}
 		}
 		else
@@ -86,7 +86,7 @@ Geo.decode = function Geodecode(latlng)
 			var addresses = data.results[0].formatted_address;//data.results[0].address_components;
 			//addresses = .map(addresses, function(x) { return x.long_name; });
 			var loc = data.results[0].geometry.location;
-			def.resolve(''+loc.lat+','+loc.lng, addresses);
+			def.resolve(''+loc.lat+','+loc.lng, UI.formatName(addresses));
 		}
 		else
 			def.reject(data.status);
