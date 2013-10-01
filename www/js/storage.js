@@ -68,7 +68,7 @@ Storage.Locations.list = function StorageLocationsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times` LIMIT " + number + ";", function(res)
+	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times`" + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
 	{
 		def.resolve(res.toObject());
 	});
