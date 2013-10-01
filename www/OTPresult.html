@@ -19,7 +19,9 @@
 						<span id="center">Frits</span> 
 						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
 	
-	<section id="plan" style="margin-top: 3em">
+	<div id="itineraryHeader" style="margin-top: 3em">
+	</div>
+	<section id="plan">
 	</section>
 	
 	<script src="js/init.js"></script>
@@ -33,7 +35,17 @@
 				data = $.evalJSON(string);
 				
 				var route;
-				plan.empty().append(route = $('<div>').attr('id', 'route'));
+				
+				var from = data.from.name;
+				var to = data.to.name;
+				var start = UI.formatTime(data.itineraries[0].startTime);
+				var end = UI.formatTime(data.itineraries[0].endTime);
+				
+				$('#itineraryHeader').empty().append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to))
+					.click(function() {
+						clickMap(-1);
+					});
+				plan.append(route = $('<div>').attr('id', 'route'));
 				
 				route.add = UI.addItinerary;
 				route.add(data.itineraries[0]);
