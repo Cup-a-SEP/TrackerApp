@@ -16,6 +16,8 @@
 		<script src="js/ui.js"></script>
 		
 		<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+		<link href="css/index.css" rel="stylesheet">
+		<link href="css/settings.css" rel="stylesheet">
 		<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	
 		<title>settings</title>
@@ -31,13 +33,26 @@
 		<section>
 			<div class="headerbuffer">
 				<div class="eiland" class="shadow">
-					
-					<div class="divborder" id="alarm">
-						<label>Alarm</label><br>
-						<div class="divborder">
+					<h1 id="headertekst">Instellingen</h1>
+
+					<div class="settings-section"id="alarm">
+						<h2>Alarm</h2><br>
+						<div class="settings-subsection">
 							<label>Vertrekalarm </label><input type="checkbox" name="depart" value="true"><br>
+						</div>
+						<div class="settings-subsection">
 							<label>Instapalarm</label><input type="checkbox" name="getin" value="true"><br>
+						</div>
+						<div class="settings-subsection">
 							<label>Uitstapalarm</label><input type="checkbox" name="getoff" value="true">
+						</div>
+					</div>
+					
+					
+					<div class="settings-section"id="alarm">
+						<h2>Andere dingen</h2><br>
+						<div class="settings-subsection">
+							<label>Ding </label><input type="checkbox" name="depart" value="true"><br>
 						</div>
 					</div>
 				</div>
