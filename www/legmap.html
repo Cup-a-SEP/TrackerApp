@@ -95,13 +95,13 @@
 		function getFeatures(geometry) {
 			var format = new OpenLayers.Format.EncodedPolyline();
 			
-			var features = format.read(geometry);
+			var feature = format.read(geometry);
 			
-			if(features.constructor != Array) {
-				features = [features];
+			if(feature.constructor != Array) {
+				feature = new Array(feature);
 			}
 			
-			return features;
+			return feature;
 		}
 		
 		var featues;
@@ -110,6 +110,44 @@
 		var vectorLayer;
 		var bounds;
 		
+		function transformFeatureCoordinates() {
+			$.each(features, function(i, e) {
+				e = e.geometry.transform(geometric, map.proj.to);
+				//Expand the current bounds to include the feature
+				if (!bounds) {
+					bounds = e.getBounds();
+				} else {
+					bounds.extend(e.getBounds());
+				}
+			});
+		}
+		
+		/**
+		 * Gets data for the specified leg and saves it in the specified variables
+		 */
+		function showLeg() {
+			var geometry = getLegGeometry();
+			features = getFeatures(geometry);
+			
+			// Convert the Features points to coordinates used by the Map
+			transformFeatureCoordinates();
+		}
+		
+		function showEntireRoute() {
+			var string = localStorage['OTP data'];
+			var data = $.evalJSON(string);
+			features = new Array();
+			
+			$.each(data.itineraries[0].legs, function(i, e) {
+				var feature = getFeatures(e.legGeometry.points);
+				$.each(feature, function(i2, e2) {
+					features.push(e2);
+				});
+			});
+			
+			transformFeatureCoordinates();
+		}
+		
 		/**
 		 * The initialization function of the page, which gets the leg info and geometry,
 		 * creates a map and displays the leg on the map, after which it zooms to an appropriate
@@ -117,53 +155,46 @@
 		 */
 		$(function()
 			{
-				var geometry = getLegGeometry();
-				
-				features = getFeatures(geometry);
-				
 				map = new Map("mapDiv");
 				vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
 				markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
 				map.map.addLayers([vectorLayer, markerLayer]);
 				
-				bounds;
+				var legNr = localStorage['ShowMap'];
 				
-				// Convert the Features points to coordinates used by the Map
-				$.each(features, function(i, e){
-					e = e.geometry.transform(geometric, map.proj.to);
-					
-					//Expand the current bounds to include the feature
-					if(!bounds) {
-						bounds = e.getBounds();
-					} else {
-						bounds.extend(e.getBounds());
-					}
-				});
-				
+				if(legNr == -1) {
+					showEntireRoute();
+				} else {
+					showLeg();
+				}
+
 				// Add the Features to the Map
 				showRoute();
 			}
 		);
 		
+		function addMarker(point) {
+			markerLayer.addMarker(new OpenLayers.Marker(
+				new OpenLayers.LonLat(point.x, point.y), 
+				markerIcon.clone())
+			);
+		}
+		
 		function showRoute() {
-			console.log('show');
 			vectorLayer.addFeatures(features);
 			
-			// Get the First and Last points of the Leg
-			var points = features[0].geometry.components;
-			var point1 = points[0];
-			var point2 = points[points.length-1];
+			// Get the First point of the route
+			var point1 = features[0].geometry.components[0];
 			
-			// Add the points as Markers
-			markerLayer.addMarker(new OpenLayers.Marker(
-				new OpenLayers.LonLat(point1.x, point1.y), 
-				markerIcon.clone())
-			);
-			markerLayer.addMarker(new OpenLayers.Marker(
-				new OpenLayers.LonLat(point2.x, point2.y), 
-				markerIcon.clone())
-			);
+			// Add the point as Marker
+			addMarker(point1);
+			
+			// Add the last point of each feature as Marker
+			$.each(features, function(i, e) {
+				var l = e.geometry.components.length;
+				addMarker(e.geometry.components[l-1]);
+			});
 			
 			map.map.addLayers([vectorLayer, markerLayer]);
 			

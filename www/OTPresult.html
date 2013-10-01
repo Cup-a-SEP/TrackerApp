@@ -41,7 +41,10 @@
 				var start = UI.formatTime(data.itineraries[0].startTime);
 				var end = UI.formatTime(data.itineraries[0].endTime);
 				
-				$('#itineraryHeader').empty().append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to));
+				$('#itineraryHeader').empty().append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to))
+					.click(function() {
+						clickMap(-1);
+					});
 				plan.append(route = $('<div>').attr('id', 'route'));
 				
 				route.add = UI.addItinerary;
