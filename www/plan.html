@@ -179,7 +179,11 @@
 			// Send request to planner
 			$('#plan').click(function()
 			{
-				var req = $('form').serializeArray();
+				var req = {};
+				$.each($('form').serializeArray(), function(i, item)
+				{
+					req[item.name] = item.value;
+				});
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
