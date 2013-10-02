@@ -36,15 +36,31 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 {
 	var self = this;
 	
+	function getLegMode(i) {
+		if( i < 0 || i >= itinerary.legs.length) {
+			return '';
+		} else {
+			return itinerary.legs[i].mode;
+		}
+	}
+	
 	function addLeg(i, leg)
 	{
 		var startTime = UI.formatTime(leg.startTime);
 		var endTime = UI.formatTime(leg.endTime);
 		var fromName = leg.from.name;
 		var toName = leg.to.name;
+		
 		if(leg.mode == 'RAIL') {
-			fromName = fromName + ' - Perron ' + leg.from.platformCode;
-			toName = toName + '  - Perron ' + leg.to.platformCode;
+			fromName = 'Station ' + fromName + ' - Perron ' + leg.from.platformCode;
+			toName = 'Station ' + toName + '  - Perron ' + leg.to.platformCode;
+		} else {
+			if(getLegMode(i-1) == 'RAIL') {
+				fromName = 'Station ' + fromName;
+			}
+			if(getLegMode(i+1) == 'RAIL') {
+				toName = 'Station ' + toName;
+			}
 		}
 		
 		var modeName = function(mode) {
@@ -70,7 +86,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		// titel:
 			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' - ' + UI.formatTime(leg.endTime)))
 			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
-		console.log(modeName('WALK'));
+			
 		// zichtbaar bij uitklappen:
 		var div = $('<div>')
 			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(endTime + ': ' + toName))

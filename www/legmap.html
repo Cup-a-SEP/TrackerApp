@@ -74,15 +74,15 @@
 		/**
 		 * Gets the Route Data and Leg Nr. from local storage and extracts the current Leg
 		 * 
+		 * @param {Integer} legNr The number of the leg to be shown
 		 * @returns {String} the legGeometry of the Leg
 		 */
-		function getLegGeometry() {
-			var i = localStorage['ShowMap'];
+		function getLegGeometry(legNr) {
 			var string = localStorage['OTP data'];
 			
 			var data = $.evalJSON(string);
 			
-			return data.itineraries[0].legs[i].legGeometry.points;
+			return data.itineraries[0].legs[legNr].legGeometry.points;
 		}
 		
 		/**
@@ -104,12 +104,24 @@
 			return feature;
 		}
 		
+		/**
+		 * Variables that are used over multiple methods:
+		 * features: the list of Features, lines to be drawn
+		 * map: the Map which is shown
+		 * markerLayer: the layer to which markers are added
+		 * vectorLayer: the layer to which lines are added
+		 * bounds: the bounds in which all markers and lines are
+		 */
 		var featues;
 		var map;
 		var markerLayer;
 		var vectorLayer;
 		var bounds;
 		
+		/**
+		 * Transforms all coordinates in the list of features to the projection of
+		 * the map, assuming they are geometric coordinates 
+		 */
 		function transformFeatureCoordinates() {
 			$.each(features, function(i, e) {
 				e = e.geometry.transform(geometric, map.proj.to);
@@ -123,16 +135,19 @@
 		}
 		
 		/**
-		 * Gets data for the specified leg and saves it in the specified variables
+		 * Initializes the features to contain the data of a single leg
 		 */
-		function showLeg() {
-			var geometry = getLegGeometry();
+		function showLeg(legNr) {
+			var geometry = getLegGeometry(legNr);
 			features = getFeatures(geometry);
 			
 			// Convert the Features points to coordinates used by the Map
 			transformFeatureCoordinates();
 		}
 		
+		/**
+		 * Initializes the features to contain the data of the entire route 
+		 */
 		function showEntireRoute() {
 			var string = localStorage['OTP data'];
 			var data = $.evalJSON(string);
@@ -155,18 +170,21 @@
 		 */
 		$(function()
 			{
+				// Initialize the map and its layers
 				map = new Map("mapDiv");
 				vectorLayer = new OpenLayers.Layer.Vector("Vector Layer", lineStyle);
 				markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
 				
 				map.map.addLayers([vectorLayer, markerLayer]);
 				
+				// Get the leg number, to see whether we should show the entire map
+				// or just a single leg
 				var legNr = localStorage['ShowMap'];
 				
 				if(legNr == -1) {
 					showEntireRoute();
 				} else {
-					showLeg();
+					showLeg(legNr);
 				}
 
 				// Add the Features to the Map
@@ -174,6 +192,11 @@
 			}
 		);
 		
+		/**
+		 * Adds a marker to the map on the specified point
+		 * 
+		 * @param {Point} point The point to which the marker should be added 
+		 */
 		function addMarker(point) {
 			markerLayer.addMarker(new OpenLayers.Marker(
 				new OpenLayers.LonLat(point.x, point.y), 
@@ -181,13 +204,17 @@
 			);
 		}
 		
+		/**
+		 * Shows the specified features and for each feature a marker at the starting
+		 * point and ending point 
+		 */
 		function showRoute() {
 			vectorLayer.addFeatures(features);
 			
 			// Get the First point of the route
 			var point1 = features[0].geometry.components[0];
 			
-			// Add the point as Marker
+			// Add the starting point as Marker
 			addMarker(point1);
 			
 			// Add the last point of each feature as Marker
@@ -198,7 +225,7 @@
 			
 			map.map.addLayers([vectorLayer, markerLayer]);
 			
-			// Zoom to exactly show the leg
+			// Zoom to exactly show the features
 			map.map.zoomToExtent(bounds);
 		}
 	</script>
