@@ -24,3 +24,40 @@ h1#headertekst {
 	margin-top: 10px;
 	font-size: 1.8rem;
 }
+
+.settings-subsection div.ui-field-contain.ui-body {
+	margin: 0;
+}
+
+.settings-subsection div.ui-controlgroup-controls {
+	width: 100%; /*otherwise the two buttons go on different lines -- dont ask*/
+}
+
+.settings-subsection fieldset {
+	/*width: 30%;*/
+	display: inline;
+	vertical-align: 10%;
+}
+
+
+header {
+ text-align: justify; 
+ max-height:3rem;
+}
+ header:after{
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 0;
+    font-size:0;
+    line-height:0;
+}
+
+.settings-subsection div.ui-slider {
+	
+	width: 100% !important /*verdomme!*/;
+}
+
+.settings-subsection div.ui-slider-track {
+	margin-right: 0;
+}
