@@ -25,7 +25,9 @@
 		<span id="right">| O | <span id="vraagteken">?</span> |</span>
 	</div>
 	
-	<section id="plan" style="margin-top: 3em">
+	<div id="itineraryHeader" style="margin-top: 3em">
+	</div>
+	<section id="plan">
 	</section>
 	
 	<script src="js/init.js"></script>
@@ -39,6 +41,18 @@
 			var req = $.evalJSON(localStorage['OTP request']);
 			var data = $.evalJSON(localStorage['OTP data']);
 			
+			var from = data.from.name;
+			var to = data.to.name;
+			var start = UI.formatTime(data.itineraries[0].startTime);
+			var end = UI.formatTime(data.itineraries[0].endTime);
+			
+			$('#itineraryHeader').empty().append($('<h3>')
+					.text(start + ' ' + from + ' - ' + end + ' ' + to))
+				.click(function()
+				{
+					clickMap(-1);
+				});
+			
 			var route;
 			$('#plan').empty().append(route = $('<div>').attr('id', 'route'));
 			
@@ -47,7 +61,6 @@
 			route.accordion({collapsible:true});
 			
 			var legLength = data.itineraries[0].legs.length;
-			
 			for(var i = 0; i < legLength; ++i)
 			{
 				$('#legmap' + i).click(function()

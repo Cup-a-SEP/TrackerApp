@@ -38,6 +38,28 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	
 	function addLeg(i, leg)
 	{
+		var startTime = UI.formatTime(leg.startTime);
+		var endTime = UI.formatTime(leg.endTime);
+		var fromName = leg.from.name;
+		var toName = leg.to.name;
+		if(leg.mode == 'RAIL') {
+			fromName = fromName + ' - Perron ' + leg.from.platformCode;
+			toName = toName + '  - Perron ' + leg.to.platformCode;
+		}
+		
+		var modeName = function(mode) {
+			modes = {	'WALK': 'Lopen',
+						'BUS': 'Bus',
+						'RAIL': '',
+						'FERRY': 'Veerpond',
+						'TRAM': 'Tram',
+						'SUBWAY': 'Metro'};
+			if(!$.inArray(mode, modes)) {
+				return mode.toLowerCase();
+			} else {
+				return modes[mode];
+			}
+		};
 		var h3 = $('<h3>')
 		
 		// plaatje:
@@ -46,14 +68,15 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 				.css('height', 20))
 	
 		// titel:
-			.append(leg.mode.toLowerCase() + ' ' + leg.route + ' ')
-			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' -> ' + UI.formatTime(leg.endTime)));
-		
+			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' - ' + UI.formatTime(leg.endTime)))
+			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
+		console.log(modeName('WALK'));
 		// zichtbaar bij uitklappen:
 		var div = $('<div>')
-			.append($('<p>').text(leg.from.name + ' -> ' + leg.to.name))
+			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(endTime + ': ' + toName))
 			.append($('<div id="legmap' + i + '">')
-				.append($('<p>').text("Map")))
+				.append($('<div class="button">')
+					.append("<p>Show Map</p>")));
 			;
 		
 		self.append(h3).append(div);
