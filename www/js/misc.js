@@ -39,10 +39,17 @@ Misc.lDistance = function MiscLDistance(src, dst, cost)
 	{
 		for (var i = 1; i <= src.length; ++i)
 		{
-			if (src.charAt(i-1) == dst.charAt(j-1))
-				d[i][j] = d[i-1][j-1];
-			else
-				d[i][j] = Math.min(d[i-1][j] + cost.del, Math.min(d[i][j-1] + cost.ins, d[i-1][j-1] + cost.subs));
+			if (i == src.length){
+				if (src.charAt(i-1) == dst.charAt(j-1))
+					d[i][j] = Math.min(d[i-1][j-1], d[i][j-1]);
+				else 
+					d[i][j] = Math.min(d[i-1][j] + cost.del, Math.min(d[i][j-1], d[i-1][j-1] + cost.subs));
+			} else {
+				if (src.charAt(i-1) == dst.charAt(j-1))
+					d[i][j] = d[i-1][j-1];
+				else 
+					d[i][j] = Math.min(d[i-1][j] + cost.del, Math.min(d[i][j-1] + cost.ins, d[i-1][j-1] + cost.subs));
+			}
 		}
 	}
 	return d[src.length][dst.length];
@@ -57,6 +64,6 @@ Misc.lDistance = function MiscLDistance(src, dst, cost)
 Misc.lDistance.DefaultCost =
 {
 	del: 2,
-	ins: 0,
+	ins: 1,
 	subs: 1
 };
