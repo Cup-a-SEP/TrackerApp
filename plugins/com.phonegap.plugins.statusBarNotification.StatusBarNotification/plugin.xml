@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.phonegap.plugins.statusBarNotification.StatusBarNotification"
+    version="0.0.1">
+    <name>StatusBarNotification</name>
+
+	<asset src="www/statusbarnotification.js" target="statusbarnotification.js" />
+
+	<platform name="android">
+    <config-file target="res/xml/config.xml" parent="plugins">
+      <plugin name="StatusBarNotification" value="com.phonegap.plugins.statusBarNotification.StatusBarNotification" />
+    </config-file>
+    
+    <source-file src="StatusBarNotification.java" target-dir="src/com/phonegap/plugins/statusBarNotification/" />
+    <source-file src="StatusNotificationIntent.java" target-dir="src/com/phonegap/plugins/statusBarNotification/" />
+
+    <source-file src="../../res/android/drawable-hdpi/notification.png" target-dir="res/drawable-hdpi/" />
+    <source-file src="../../res/android/drawable-mdpi/notification.png" target-dir="res/drawable-mdpi/" />
+    <source-file src="../../res/android/drawable-xhdpi/notification.png" target-dir="res/drawable-xhdpi/" />
+		
+  </platform>
+</plugin>

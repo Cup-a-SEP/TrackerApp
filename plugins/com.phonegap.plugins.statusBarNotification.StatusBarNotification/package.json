@@ -1,0 +1,12 @@
+{
+  "name": "statusbar-notification-cordova-plugin",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "0.4.0rc7",
+    "grunt-preprocess": "~2.0.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
