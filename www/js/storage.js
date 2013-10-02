@@ -90,6 +90,8 @@ Storage.Trips.init = function StorageTripsInit()
 	this.db = new LocalDB('trips', 'CREATE TABLE IF NOT EXISTS `trips` (`from` TEXT NOT NULL, `fromPlace` TEXT, '
 	                                                                 + '`to` TEXT NOT NULL, `toPlace` TEXT, '
 	                                                                 + '`time` TEXT NOT NULL, `date` TEXT NOT NULL, '
+	                                                                 + '`expectedDepartureTime` INTEGER NOT NULL, '
+	                                                                 + '`expectedArrivalTime` INTEGER NOT NULL, '
 	                                                                 + '`arriveBy` INTEGER, `mode` TEXT, '
 	                                                                 + '`wheelchair` INTEGER, `preferLeastTransfers` INTEGER, '
 	                                                                 + 'PRIMARY KEY (`from`, `to`, `time`, `date`) );',
