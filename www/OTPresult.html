@@ -29,7 +29,7 @@
 	</div>
 	<section id="plan">
 	</section>
-	
+	<div id="planbutton">Track deze route</div>
 	<script src="js/init.js"></script>
 	<script>
 		
@@ -68,6 +68,11 @@
 					clickMap(this.id.substring(6));
 				});
 			}
+			
+			$('#planbutton').click(function(){
+				Storage.Trips.store(req, data.itineraries[0].legs[0].startTime);
+				window.location = "index.html";
+			});
 		});
 		
 		function clickMap(i)
