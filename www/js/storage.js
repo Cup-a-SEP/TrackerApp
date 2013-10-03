@@ -112,6 +112,23 @@ Storage.Trips.store = function StorageTripsStore(trip)
 };
 
 /**
+ * Retrieves the a number of trips sorted by expected arrival time
+ * @param {Number} number - number of trip entries to retrieve
+ * @return {Object} jQuery deferred object 
+ */
+Storage.Trips.list = function StorageLocationsList(number)
+{
+	var def = $.Deferred();
+	
+	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedArrivalTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
+	{
+		def.resolve(res.toObject());
+	});
+	
+	return def;
+};
+
+/**
  * Store a planned trip
  * @param {OTP~PlannerRequest} trip -  A planner request object to remove (only from, to time and date matter) 
  */
