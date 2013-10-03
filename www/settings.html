@@ -30,51 +30,71 @@
 	<body>
 		<div id="header">
 			<span id="left"><span id="back">&lt;</span></span>
-			<span id="center">Frits</span> 
+			<span id="center">Frits</span>
 			<span id="right"><span id="vraagteken">?</span></span>
 		</div>
-		
+
 		<section>
 			<div class="headerbuffer">
 				<div class="eiland" class="shadow">
 					<h1 id="headertekst">Instellingen</h1>
 
 					<div class="settings-section"id="alarm">
-						<h2>Alarm</h2><br>
+						<h2>Alarm</h2>
+						<br>
 						<div class="settings-subsection">
-							<label>Vertrekalarm </label><input type="checkbox" name="depart" value="true"><br>
+							<label>Vertrekalarm </label>
+							<input type="checkbox" name="depart" value="true">
+							<br>
 						</div>
 						<div class="settings-subsection">
-							<label>Instapalarm</label><input type="checkbox" name="getin" value="true"><br>
+							<label>Instapalarm</label>
+							<input type="checkbox" name="getin" value="true">
+							<br>
 						</div>
 						<div class="settings-subsection">
-							<label>Uitstapalarm</label><input type="checkbox" name="getoff" value="true">
+							<label>Uitstapalarm</label>
+							<input type="checkbox" name="getoff" value="true">
 						</div>
 					</div>
-					
-					
+
 					<div class="settings-section"id="alarm">
-						<h2>Nieuw ontwerp (over te nemen):</h2><br>
+						<h2>Nieuw ontwerp (over te nemen):</h2>
+						<br>
 						<div class="settings-subsection">
 							<div data-role="fieldcontain">
 								<header>
-								<label>Alarmalarm</label>
-								<fieldset data-role="controlgroup" data-type="horizontal">
-									<input type="radio" id="radio-choice-1" name="radio">
-									<label for="radio-choice-1">Aan</label>
-									<input type="radio" id="radio-choice-2" name="radio" checked>
-									<label for="radio-choice-2">Uit</label>
-								</fieldset
+									<label>Alarmalarm</label>
+									<fieldset data-role="controlgroup" data-type="horizontal">
+										<input type="radio" id="radio-choice-1" name="radio">
+										<label for="radio-choice-1">Aan</label>
+										<input type="radio" id="radio-choice-2" name="radio" checked>
+										<label for="radio-choice-2">Uit</label>
+									</fieldset
 								</header>
 							</div>
-						  <div data-role="fieldcontain" class="customsliderclass">
-			          <input id="sliderid" type="range" name="slider" value="5" min="1" max="60" data-highlight="true" data-mini="true">
-			        </div>
+							<div data-role="fieldcontain" class="customsliderclass">
+								<input id="sliderid" type="range" name="slider" value="5" min="1" max="60" data-highlight="true" data-mini="true">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		
+		<script src="js/init.js"></script>
+		<script>
+			$(function()
+			{
+				// Todo: Sla waarden op
+				/*
+				 * localStorage['Alarm departure setting']
+				 * localStorage['Alarm departure time']
+				 * localStorage['Alarm embark setting']
+				 * localStorage['Alarm embark time']
+				 * localStorage['Alarm alight setting']
+				 * localStorage['Alarm alight time']
+				 */
+			});
+		</script>
 	</body>
 </html>

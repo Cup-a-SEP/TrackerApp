@@ -120,7 +120,7 @@ Storage.Trips.list = function StorageTripsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.selectAll(number, undefined, 'ORDER BY Date(`expectedDepartureTime`) DESC').done(function(res)
+	this.db.selectAll(number, undefined, 'ORDER BY `expectedDepartureTime`').done(function(res)
 	{
 		def.resolve(res.toObject());
 	}).fail(function(err) { def.reject(err); });
@@ -136,7 +136,7 @@ Storage.Trips.next = function StorageTripsNext()
 {
 	var def = $.Deferred();
 	
-	this.db.selectAll(1, undefined, 'ORDER BY Date(`expectedDepartureTime`) DESC').done(function(res)
+	this.db.selectAll(1, undefined, 'ORDER BY `expectedDepartureTime`').done(function(res)
 	{
 		def.resolve(res.toObject()[0]);
 	}).fail(function(err) { def.reject(err); });
