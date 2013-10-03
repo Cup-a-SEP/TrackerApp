@@ -92,7 +92,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(endTime + ': ' + toName))
 			.append($('<div id="legmap' + i + '">')
 				.append($('<div class="button">')
-					.append("<p>Show Map</p>")));
+					.append("<p>Open map</p>")));
 			;
 		
 		self.append(h3).append(div);

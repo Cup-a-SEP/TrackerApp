@@ -20,12 +20,11 @@
 </head>
 <body>
 	<div id="header">
-		<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+		<span id="left"><span id="back">&lt;</span></span>  
 		<span id="center">Frits</span> 
-		<span id="right">| O | <span id="vraagteken">?</span> |</span>
+		<span id="right"><span id="vraagteken">?</span></span>
 	</div>
-	
-	<div id="itineraryHeader" style="margin-top: 3em">
+	<div id="itineraryHeader" style="margin-top: 3.2em">
 	</div>
 	<section id="plan">
 	</section>
@@ -73,8 +72,10 @@
 				var it = data.itineraries[0];
 				req.expectedDepartureTime = it.legs[0].startTime;
 				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
-				Storage.Trips.store(req);
-				window.location = "index.html";
+				Storage.Trips.store(req).always(function()
+				{
+					window.location = "index.html";
+				});
 			});
 		});
 		

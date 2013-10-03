@@ -46,7 +46,7 @@
 		<span id="right"><span id="vraagteken">?</span></span>
 	</div>
 	<section>
-		<form class="headerbuffer">
+		<form class="headerbuffer" id="form">
 			
 			<div class="eiland" class="shadow">
 			
@@ -97,14 +97,13 @@
 			
 			<div id="planknop">
 				<span id="fav">&hearts;</span>
+				<div id="status"></div>
 				<button id="plan">Plan</button>
 			</div>
 			
 			</div><!-- einde eiland -->
 			
 		</form>
-	</section>
-	<section id="status">
 	</section>
 	<script src="js/init.js"></script>
 	<script>
@@ -177,10 +176,12 @@
 			});
 			
 			// Send request to planner
-			$('#plan').click(function()
+			$('#plan').click(function(event)
 			{
+				event.preventDefault();
+				
 				var req = {};
-				$.each($('form').serializeArray(), function(i, item)
+				$.each($('#form').serializeArray(), function(i, item)
 				{
 					req[item.name] = item.value;
 				});
