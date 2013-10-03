@@ -30,7 +30,7 @@ Storage.Locations.init = function()
 Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 {
 	var self = this;
-	this.db.match({ name: name }).done(function(res)
+	this.db.selectMatch({ name: name }).done(function(res)
 	{
 		if (res.pRows >= 1)
 		{
@@ -120,7 +120,7 @@ Storage.Trips.list = function StorageLocationsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedDepartureTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";").done(function(res)
+	this.db.selectAll(number, undefined, 'ORDER BY `expectedDepartureTime` DESC').done(function(res)
 	{
 		def.resolve(res.toObject());
 	}).fail(function(err) { def.reject(err); });
@@ -134,10 +134,13 @@ Storage.Trips.list = function StorageLocationsList(number)
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)
 {
-	this.db.query("DELETE FROM `trips` WHERE `from` = '" + trip.from + "' "
-	                                    + "AND `to` = '" + trip.to + "' "
-	                                    + "AND `time` = '" + trip.time + "' "
-	                                    + "AND `date` = '" + trip.date + "';");
+	this.db.deleteMatch(
+	{
+		from: trip.from,
+		to: trip.to,
+		time: trip.time,
+		date: trip.date,
+	});
 };
 
 /*

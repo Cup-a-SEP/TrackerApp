@@ -91,7 +91,7 @@ var LocalDB = Class.create({
 		{
 			return '`' + field + '`';
 		}).join(', ') : '*';
-		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + ' WHERE id=\'' + id + '\';';
+		var sqlquery = 'SELECT ' + fields + ' FROM `' + this.pTableName + '` WHERE id=\'' + id + '\';';
 		
 		return this.query(sqlquery);
 	},
@@ -101,15 +101,19 @@ var LocalDB = Class.create({
 	 * 
 	 * @param {Number} limit - Limit of the amount of rows returned. A value of -1 disables the limit.
 	 * @param {Array} fields - List of fields to select (optional) 
+	 * @param {String} sql   - Additional SQL parameters (optional)
 	 * @return {Object} A jQuery deferred object
 	 */	
-	selectAll: function(limit, fields)
+	selectAll: function(limit, fields, sql)
 	{
 		fields = fields ? $.map(fields, function(i, field)
 		{
 			return '`' + field + '`';
 		}).join(', ') : '*';
-		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + (limit > -1 ? (' LIMIT ' + limit + '\';') : ';');
+		
+		var sqlquery = 'SELECT ' + fields + ' FROM `' + this.pTableName + '`'
+			+ (limit > -1 && limit < Infinity ? (' LIMIT ' + limit + '\'') : '')
+			+ (sql ? ' ' + sql + ';' : ';');
 		
 		return this.query(sqlquery);
 	},
@@ -133,7 +137,7 @@ var LocalDB = Class.create({
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
 
-		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
+		var sqlquery = 'SELECT ' + fields + ' FROM `' + this.pTableName + '` WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
 		
 		return this.query(sqlquery);
 	},
@@ -153,7 +157,7 @@ var LocalDB = Class.create({
 			vals.push('\'' + val + '\'');
 		});
 
-		var sqlquery = 'INSERT INTO ' + this.pTableName + ' (' + cols.join(', ') + ') VALUES (' + vals.join(', ') + ');';
+		var sqlquery = 'INSERT INTO `' + this.pTableName + '` (' + cols.join(', ') + ') VALUES (' + vals.join(', ') + ');';
 		
 		return this.query(sqlquery);
 	},
@@ -173,7 +177,7 @@ var LocalDB = Class.create({
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(', ');
 		
-		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates + ' WHERE `id` = \'' + id + '\';';
+		var sqlquery = 'UPDATE `' + this.pTableName + '` SET ' + updates + ' WHERE `id` = \'' + id + '\';';
 
 		return this.query(sqlquery);
 	},
@@ -198,7 +202,7 @@ var LocalDB = Class.create({
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
 		
-		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
+		var sqlquery = 'UPDATE `' + this.pTableName + '` SET ' + updates + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
 
 		return this.query(sqlquery);
 	},
@@ -211,7 +215,7 @@ var LocalDB = Class.create({
 	 */	
 	deleteById: function(id) {
 
-		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE id=\'' + id + '\';';
+		var sqlquery = 'DELETE FROM `' + this.pTableName + '` WHERE id=\'' + id + '\';';
 	
 		return this.query(sqlquery);
 	},
@@ -230,7 +234,7 @@ var LocalDB = Class.create({
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
 		
-		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
+		var sqlquery = 'DELETE FROM `' + this.pTableName + '` WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
 	
 		return this.query(sqlquery);
 	},
