@@ -1337,29 +1337,29 @@ body {
 }
 
 .ui-accordion-header{
-   background: #D7FF73;
+   background: #CEE9ED;
    box-shadow: rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
-  				#BFAB37 /*A88718 /*BFAB37 /*97BD39, 8AB325*/
+  				#80B7BF /*A88718 /*BFAB37 /*97BD39, 8AB325*/
   				inset;
   	border: 1px black solid;
-  	color: #358219;
+  	color: #2F7082;
 }
 
 .ui-accordion-content{
-	background: #F0FAB6; /*F0FFC9;*/
-	color: #53693D;
-	
+	background: #EDF5BA/*F0FAB6*/; /*F0FFC9;*/
+	color: #4B6E3F;
+	border: 1px solid black
 }
 
 .ui-state-active {
-	color: #6E096E;
-	background-color: #E8FFB8;
+	color: #358219;
+	background-color: #CEE9ED/*E2F7AB*/;
 	box-shadow: rgba(0,0,0,0.4)
  				0 -24px 40px
   				-10px /* spread */
-  				#81C4E6 /*97BD39*/
+  				#E2F7AB/*EFF7DA*/ /*97BD39*/
   				inset;
 }
 
@@ -1432,7 +1432,7 @@ body {
  * 	input field for the starting location of a trip
  */
 #from {
-	border-radius: 50px;
+	border-radius: 10px;
 	margin-top: 1px;
 	padding-left:5px;
 	border: 0px;
@@ -1459,7 +1459,7 @@ body {
 	padding: 10px 10px 11px 10px;
 	border-top-left-radius: 30px 30px;
 	border-bottom-left-radius: 30px 30px;
-	border-radius: 30px;
+	border-radius: 15px;
 	border: 1px solid #424242/*41B0E8*/;
 	color: #424242;
 	margin-top: -1px;
@@ -1486,7 +1486,7 @@ body {
  */
 #arriveBy {
 	float: left;
-	width: 30%;
+	width: 70px;
 	border-radius: 10px;
 }
 
@@ -1540,7 +1540,7 @@ body {
 .divborder {
 	border: 1px solid #424242;
 	padding: 10px;
-	border-radius: 30px;
+	border-radius: 15px;
 	background-color: white;
 	margin-top: 10px;
 	color: black;
@@ -1585,31 +1585,79 @@ body {
 	border: 1px #358219 solid;
 	text-decoration: none;
 	border-radius: 15px;
-	background-color: #dafcfe /*E8F7C1*/;
-	box-shadow: 0px -1px 0px 1px #dafcfe inset, rgba(0,0,0,0.4)
- 				0 -24px 40px
-  				-10px /* spread */
-  				#26A6D1/* old and better: C6FF36*/
-  				inset;
-  	padding: 5px;
-  	width: 70%;
   	margin-left: auto;
   	margin-right: auto;
-  	color: white;
+  	color: #358219;
+  	background-color: #E2F7AB /*E8F7C1*/;
+	box-shadow: 0px -1px 0px 0.5px #E8F7C1 inset, rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#B7DB5C/* old and better: C6FF36*/
+  				inset;
+  	text-align: center;
+  	width: 200px;
 }
+
 /**
  * 	The header above the list of legs of an itinerary in legmap.html. 
  */
 #itineraryHeader {
 	background-color: #EDF5BA/*dafcfe*/;
-	border-top-left-radius: 30px 30px;
-	border-bottom-left-radius: 30px 30px;
-	border-radius: 5px;
-	border: 1px solid #424242/*41B0E8*/;
-	color: #424242;
+	border-radius: 15px;
+	border: 1px solid #358219/*41B0E8*/;
+	color: #358219;
 	text-align: center;
 	font-family: sans-serif;
 	font-size: 16px;
-	box-shadow: 0px 0px 0px 2px #EDF5BA inset, /** light green line on the inside of the border of the div */
-				-5px -5px 25px 2px #CAF09C inset; /** slightly darker green shadowy gradient thing on the inside of the div */
+	box-shadow: 0px -1px 0px 0.5px #E8F7C1 inset, rgba(0,0,0,0.4)
+				0 -24px 40px
+  				-10px /* spread */
+  				#B7DB5C/* old and better: C6FF36*/
+  				inset;;
+	width: 95%;
+	margin: 4px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#planbutton {
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 20%;
+	border-radius: 15px;
+	border: 1px #358219 solid;
+	text-decoration: none;
+	border-radius: 15px;
+	background-color: #E2F7AB /*E8F7C1*/;
+	box-shadow: 0px -1px 0px 0.5px #E8F7C1 inset, rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#B7DB5C/* old and better: C6FF36*/
+  				inset;
+	font-family: helvetica;
+	color: #358219;
+}
+
+.eilandLight {
+	border: 1px #424242 solid;
+	border-radius: 25px;
+	padding: 20px;
+	margin: 15px;
+	margin-top: 65px;
+	background-color: #E2F7AB;
+	color: #567A49;
+			/**box-shadow: rgba(0,0,0,0.4)
+ 				0 -24px 200px
+  				-10px /* spread 
+  				#C6FF36 /*97BD39
+  				inset;*/
+  	font-family:Arial;
+  	-moz-box-shadow:    3px 3px 25px 6px #26A6D1;
+  	-webkit-box-shadow: 3px 3px 25px 6px #26A6D1;
+  	box-shadow:         3px 3px 25px 6px #26A6D1, /** dark blue drop shadow on the outside of the island old: 1A627A */
+  						0px 0px 0px 2px #E2F5B3 inset, /** light green border on the inside of the island */
+  						0px 0px 60px 10px #D0F07D/* old, slightly brighter green colour, that I secretly like better: C6FF368*/ inset; /** slightly darker green gradient thing on the inside of the island */
 }
