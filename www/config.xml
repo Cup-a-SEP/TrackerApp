@@ -1,12 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.hello-world" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Frits</name>
+    <name short="Frits" xml:lang="nl">Frits de OV-gids</name>
     <description>
-        Frits de OV-gids
+        Een multi-modale reisplanner met interactieve reisinformatie.
     </description>
     <author email="info@cup-a-sep.nl" href="http://cup-a-sep.nl">
-        PhoneGap Team
+        Cup-a-SEP Team
     </author>
+    <license>
+    	This software is proprietary.
+    </license>
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.AccelListener" />
@@ -15,11 +18,11 @@
         <param name="android-package" value="org.apache.cordova.Notification" />
     </feature>
     <feature name="Storage">
-			<param name="android-package" value="org.apache.cordova.Storage" />
-		</feature>
+		<param name="android-package" value="org.apache.cordova.Storage" />
+	</feature>
     <feature name="Geolocation">
     	<param name="android-package" value="org.apache.cordova.GeoBroker" />
-		</feature>
+	</feature>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
