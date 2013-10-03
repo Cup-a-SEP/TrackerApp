@@ -17,9 +17,8 @@ Storage.Locations = {};
  */
 Storage.Locations.init = function()
 {
-	this.db = new LocalDB('locations',
-		"CREATE TABLE IF NOT EXISTS `locations` (`name` TEXT UNIQUE, `latlng` TEXT, `times` INTEGER, `fav` INTEGER);",
-		Storage.Version);
+	this.db = new LocalDB("CREATE TABLE IF NOT EXISTS `locations` "
+		+ "(`name` TEXT UNIQUE, `latlng` TEXT, `times` INTEGER, `fav` INTEGER);", Storage.Version);
 };
 
 /**
@@ -31,7 +30,7 @@ Storage.Locations.init = function()
 Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 {
 	var self = this;
-	this.db.match({ name: name }, function(res)
+	this.db.match({ name: name }).done(function(res)
 	{
 		if (res.pRows >= 1)
 		{
@@ -68,10 +67,11 @@ Storage.Locations.list = function StorageLocationsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times`" + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
+	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times`"
+		+ (number < Infinity ? "LIMIT " + number : '') + ";").done(function(res)
 	{
 		def.resolve(res.toObject());
-	});
+	}).fail(function(err) { def.reject(err); });
 	
 	return def;
 };
@@ -87,15 +87,15 @@ Storage.Trips = {};
  */
 Storage.Trips.init = function StorageTripsInit()
 {
-	this.db = new LocalDB('trips', 'CREATE TABLE IF NOT EXISTS `trips` (`from` TEXT NOT NULL, `fromPlace` TEXT, '
-	                                                                 + '`to` TEXT NOT NULL, `toPlace` TEXT, '
-	                                                                 + '`time` TEXT NOT NULL, `date` TEXT NOT NULL, '
-	                                                                 + '`expectedDepartureTime` INTEGER NOT NULL, '
-	                                                                 + '`expectedArrivalTime` INTEGER NOT NULL, '
-	                                                                 + '`arriveBy` INTEGER, `mode` TEXT, '
-	                                                                 + '`wheelchair` INTEGER, `preferLeastTransfers` INTEGER, '
-	                                                                 + 'PRIMARY KEY (`from`, `to`, `time`, `date`) );',
-	                                                                 Storage.Version);
+	this.db = new LocalDB('CREATE TABLE IF NOT EXISTS `trips` (`from` TEXT NOT NULL, `fromPlace` TEXT, '
+	                                                        + '`to` TEXT NOT NULL, `toPlace` TEXT, '
+	                                                        + '`time` TEXT NOT NULL, `date` TEXT NOT NULL, '
+	                                                        + '`expectedDepartureTime` INTEGER NOT NULL, '
+	                                                        + '`expectedArrivalTime` INTEGER NOT NULL, '
+	                                                        + '`arriveBy` INTEGER, `mode` TEXT, '
+	                                                        + '`wheelchair` INTEGER, `preferLeastTransfers` INTEGER, '
+	                                                        + 'PRIMARY KEY (`from`, `to`, `time`, `date`) );',
+	                                                        Storage.Version);
 };
 
 /**
@@ -112,7 +112,7 @@ Storage.Trips.store = function StorageTripsStore(trip)
 };
 
 /**
- * Retrieves the a number of trips sorted by expected arrival time
+ * Retrieves the a number of trips sorted by expected departure time
  * @param {Number} number - number of trip entries to retrieve
  * @return {Object} jQuery deferred object 
  */
@@ -120,10 +120,10 @@ Storage.Trips.list = function StorageLocationsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedArrivalTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
+	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedDepartureTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";").done(function(res)
 	{
 		def.resolve(res.toObject());
-	});
+	}).fail(function(err) { def.reject(err); });
 	
 	return def;
 };
