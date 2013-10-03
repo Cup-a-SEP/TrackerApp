@@ -23,7 +23,8 @@ var LocalDB = Class.create({
 	dbResultCallback: undefined,
 	
 	//Methods
-	onDbCreate: function (db) {
+	onDbCreate: function (db)
+	{
 	  //Attach the database because "window.openDatabase" would not have returned it
 		this.pDbo = db;
 		this.initDbStruct();
@@ -32,19 +33,22 @@ var LocalDB = Class.create({
 	/**
 	 * Initialize a LocalDB instance for a specified table and database structure version
 	 * 
-	 * @param {String} tableName Name of the table to connect to
 	 * @param {String} tableStruct - A create table structure query
-	 * @param {String} dbVersion Version of the data structure expected on the device
+	 * @param {String} dbVersion   - Version of the data structure expected on the device
 	 */
-	initialize: function(tableName, tableStruct, dbVersion) {
-		if (undefined == dbVersion) {
+	initialize: function(tableStruct, dbVersion)
+	{
+		if (undefined == dbVersion)
 			this.pDbVersion = this.cDefaultDbVersion;
-		} else {
+		else
 			this.pDbVersion = dbVersion;
-		}
-		this.pTableName = tableName; 
+		
+		var table = tableStruct.match(/`([^`]+)`/);
+		if (table == null)
+			throw new TypeError('Table structure is invalid!');
+		
+		this.pTableName = table[1]; 
 		this.pTableStruct = tableStruct;
-		//console.log('Connecting to table ' + pTableName + ' version ' + pDbVersion);
 
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
@@ -64,191 +68,237 @@ var LocalDB = Class.create({
 	
 	/**
 	 * Callback function called on completion of the query
-	 * @callback LocalDB~Callback
+	 * @callback LocalDB~Success
 	 * @param {LocalDBResult} object - Database result
 	 */
 	
 	/**
-	 * Select a single row from the current table
+	 * Callback function called on failure of the query
+	 * @callback LocalDB~Error
+	 * @param {String} error - Error message
+	 */
+	
+	/**
+	 * Select a single row from the current table by id
 	 * 
-	 * @param {int} id Row ID in the database table
-	 * @param {LocalDB~Callback} dbResultCallback 
-	 */	
-	selectOne: function(id, dbResultCallback) {
-
-		var sqlquery = 'SELECT * FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'';
+	 * @param {Number} id    - Row ID in the database table
+	 * @param {Array} fields - List of fields to select (optional) 
+	 * @return {Object} A jQuery deferred object
+	 */
+	selectById: function(id, fields)
+	{
+		fields = fields ? $.map(fields, function(i, field)
+		{
+			return '`' + field + '`';
+		}).join(', ') : '*';
+		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + ' WHERE id=\'' + id + '\';';
 		
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 	
 	/**
 	 * Select a single row from the current table
 	 * 
-	 * @param {int} limit Limit of the amount of rows returned. A value of -1 disables the limit.
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Number} limit - Limit of the amount of rows returned. A value of -1 disables the limit.
+	 * @param {Array} fields - List of fields to select (optional) 
+	 * @return {Object} A jQuery deferred object
 	 */	
-	selectAll: function(limit, dbResultCallback) {		
+	selectAll: function(limit, fields)
+	{
+		fields = fields ? $.map(fields, function(i, field)
+		{
+			return '`' + field + '`';
+		}).join(', ') : '*';
+		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + (limit > -1 ? (' LIMIT ' + limit + '\';') : ';');
 		
-		var sqlquery = 'SELECT * FROM ' + this.pTableName + (limit > -1 ? (' LIMIT ' + limit + '\'') : '');
-		
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 
 	/**
 	 * Select rows from the current table that match a certain value for a certain column
 	 * 
-	 * @param {object} values Column-value pairs to search for in the database
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Object} match - Column-value pairs to search for in the database
+	 * @param {String} sql   - Additional SQL parameters (optional)
+	 * @return {Object} A jQuery deferred object
 	 */	
-	match: function(values, dbResultCallback) {
-		var wheres = '';
-		jQuery.each(values, function (col, val) {
-			wheres += ' AND `' + col + '` = \'' + val + '\'';
-		});
-
-		var sqlquery = 'SELECT * FROM ' + this.pTableName + ' WHERE ' + wheres.substring(5);
+	selectMatch: function(match, fields, sql)
+	{
+		fields = fields ? $.map(fields, function(i, field)
+		{
+			return '`' + field + '`';
+		}).join(', ') : '*';
 		
-		return this.query(sqlquery, dbResultCallback);
+		var wheres = jQuery.map(match, function (col, val)
+		{
+			return '`' + col + '` = \'' + val + '\'';
+		}).join(' AND ');
+
+		var sqlquery = 'SELECT ' + fields + ' FROM ' + this.pTableName + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
+		
+		return this.query(sqlquery);
 	},
 
 	/**
 	 * Inserts a row into the current table.
 	 * 
-	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Object} values - Column-value pairs to insert for this row
+	 * @return {Object} A jQuery deferred object
 	 */	
-	insert: function(values, dbResultCallback) {		
-		var cols = '', vals = '';
-		jQuery.each(values, function (col, val) {
-			cols += ', `' + col + '`';
-			vals += ', \'' + val + '\'';
+	insert: function(values)
+	{		
+		var cols = [], vals = [];
+		jQuery.each(values, function (col, val)
+		{
+			cols.push('`' + col + '`');
+			vals.push('\'' + val + '\'');
 		});
-		//console.log(values);
-		
-		
-		//this.query('CREATE TABLE IF NOT EXISTS jemoeder (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, a, b, c)', function() {console.log('blaat');});
 
-		var sqlquery = 'INSERT INTO ' + this.pTableName + ' (' + cols.substring(2) + ') VALUES (' + vals.substring(2) + ')';
+		var sqlquery = 'INSERT INTO ' + this.pTableName + ' (' + cols.join(', ') + ') VALUES (' + vals.join(', ') + ');';
 		
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 
 
 	/**
-	 * Updates a row in the current table.
+	 * Updates a row in the current table by id.
 	 * 
-	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Number} id     - Id of record to update
+	 * @param {Object} values - Column-value pairs to insert for this row
+	 * @return {Object} A jQuery deferred object
 	 */	
-	update: function(id, values, dbResultCallback) {		
-		var updates = '';
-		jQuery.each(values, function (col, val) {
-			updates += ', `' + col + '` = \'' + val + '\'';
-		});		
+	updateById: function(id, values)
+	{
+		var updates = jQuery.map(values, function (col, val)
+		{
+			return '`' + col + '` = \'' + val + '\'';
+		}).join(', ');
 		
-		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates.substring(2) + ' WHERE `id` = \'' + id + '\'';
+		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates + ' WHERE `id` = \'' + id + '\';';
 
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 
 	/**
 	 * Updates a row in the current table using a match.
 	 * 
-	 * @param {object} values Column-value pairs to insert for this row
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Object} values - Column-value pairs to insert for this row
+	 * @param {Object} match  - Column-value pairs to search for in the database
+	 * @param {String} sql    - Additional SQL parameters (optional)
+	 * @return {Object} A jQuery deferred object
 	 */	
-	updateMatch: function(values, match, dbResultCallback) {		
-		var updates = '';
-		jQuery.each(values, function (col, val) {
-			updates += ', `' + col + '` = \'' + val + '\'';
-		});
+	updateMatch: function(values, match, sql)
+	{
+		var updates = jQuery.map(values, function (col, val)
+		{
+			return '`' + col + '` = \'' + val + '\'';
+		}).join(', ');
 		
-		var wheres = '';
-		jQuery.each(match, function (col, val) {
-			wheres += ' AND `' + col + '` = \'' + val + '\'';
-		});
+		var wheres = jQuery.map(match, function (col, val)
+		{
+			return '`' + col + '` = \'' + val + '\'';
+		}).join(' AND ');
 		
-		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates.substring(2) + ' WHERE ' + wheres.substring(5);
+		var sqlquery = 'UPDATE ' + this.pTableName + ' SET ' + updates + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
 
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 
 	/**
-	 * Deletes a row into the current table.
+	 * Deletes a row into the current table by id.
 	 * 
-	 * @param {int} id Row ID in the database table
-	 * @param {LocalDB~Callback} dbResultCallback Callback function called on completion of the query
+	 * @param {Number} id Row ID in the database table
+	 * @return {Object} A jQuery deferred object
 	 */	
-	deleteOne: function(id, dbResultCallback) {
+	deleteById: function(id) {
 
-		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE id=\'' + id + '\'';
+		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE id=\'' + id + '\';';
 	
-		return this.query(sqlquery, dbResultCallback);
+		return this.query(sqlquery);
 	},
 	
+	/**
+	 * Deletes a row into the current table by match.
+	 * 
+	 * @param {Object} values - Column-value pairs to search for in the database
+	 * @param {String} sql    - Additional SQL parameters (optional)
+	 * @return {Object} A jQuery deferred object
+	 */	
+	deleteMatch: function(match, sql)
+	{
+		var wheres = jQuery.map(match, function (col, val)
+		{
+			return '`' + col + '` = \'' + val + '\'';
+		}).join(' AND ');
+		
+		var sqlquery = 'DELETE FROM ' + this.pTableName + ' WHERE ' + wheres + (sql ? ' ' + sql + ';' : ';');
+	
+		return this.query(sqlquery);
+	},
 
 	/**
-	 * This method leverages collective synergy to drive "outside of the box"
-	 * thinking and formulate key objectives into a win-win game plan with a
-	 * quality-driven approach that focuses on empowering key players to drive-up
-	 * their core competencies and increase expectations with an all-around
-	 * initiative to drive down the bottom-line.
+	 * Executes a raw SQL query.
+	 * 
+	 * @param {String} sqlQuery - A SQL query (what a surprise)
+	 * @return {Object} A jQuery deferred object
 	 */
-	query: function(sqlQuery, dbResultCallback) {
-		
-		if (!this.pError) {
+	query: function(sqlQuery)
+	{
+		var def = $.Deferred();
 			
-			if ('function' == typeof dbResultCallback) {
-				var requestCallback = dbResultCallback;
-			} else {
-				var requestCallback = function(){};
-			}
-			
-			var queryExecuteCallback = function(tx, result) {
-				var localDBResultObj = new LocalDBResult(sqlQuery, result);
-				requestCallback(localDBResultObj);
-			};
-			
-			/////////////////////////////////////// this is a well commented line
-			this.dbResultCallback = dbResultCallback;
-			this.pDbo.transaction(
-				function(tx) { //Transaction function
-					tx.executeSql(sqlQuery, [], queryExecuteCallback);
-					console.log(sqlQuery);
-				}, 
-				function(err) { //Error function
-					console.log(err);
-				}, 
-				function() { //Success function
-					console.log('success');
-				}
-			);
+		if (this.pError)
+		{
+			def.reject('Invalid database or table initialization failed!');
+			return def;
 		}
+		
+		this.pDbo.transaction(
+			function transaction(tx)
+			{
+				console.log(sqlQuery);
+				tx.executeSql(sqlQuery, [], function result(tx, result)
+				{
+					def.result = new LocalDBResult(sqlQuery, result);
+				});
+			}, 
+			function error(err)
+			{
+				console.log(err);
+				def.reject(err);
+			}, 
+			function success()
+			{
+				console.log('success');
+				def.resolve(def.result);
+			}
+		);
+		
+		return def;
 	},
-
 
 	/**
 	 * The database did not exist yet, create the structure here.
 	 * @param {database} db The WebSQL database objectc
 	 */	
-	initDbStruct: function() {
-		var struct = this.pTableStruct;
+	initDbStruct: function()
+	{
+		var self = this;
 		this.pDbo.transaction(
-			//Replace this code TODO
-		  function (tx) {
-		  	tx.executeSql(struct,
-				  [],
-				  function (tx, res) {
-				    console.log("Table Created Successfully");
-				  },
-				  function (tx, err) {
-				    console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message);
-			    }
-			  );
+			function (tx)
+			{
+				tx.executeSql(self.pTableStruct, [],
+					function (tx, res)
+					{
+						console.log("Table `" + self.pTableName + "` created Successfully");
+					},
+					function (tx, err)
+					{
+						console.log("ERROR - Table creation failed - code: " + err.code + ", message: " + err.message);
+						self.pError = true;
+					}
+				);
 			}
-	  );
+		);
 	},
-	
 });
 
 //LocalDBResult Class
