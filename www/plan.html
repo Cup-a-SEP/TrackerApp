@@ -46,18 +46,18 @@
 		<span id="right"><span id="vraagteken">?</span></span>
 	</div>
 	<section>
-		<form class="headerbuffer">
+		<form class="headerbuffer" id="form">
 			
 			<div class="eiland" class="shadow">
 			
 			<div class="divborder" id="fromdiv">
-				<label>Van<input type="text" id="from" name="from" placeholder="..." autocomplete="off"></label>
+				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
 				<input type="hidden" id="fromPlace" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
-				<label>Naar<input type="text" id="to" name="to" placeholder="..." autocomplete="off"></label>
+				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
 				<input type="hidden" id="toPlace" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
@@ -97,14 +97,13 @@
 			
 			<div id="planknop">
 				<span id="fav">&hearts;</span>
+				<div id="status"></div>
 				<button id="plan">Plan</button>
 			</div>
 			
 			</div><!-- einde eiland -->
 			
 		</form>
-	</section>
-	<section id="status">
 	</section>
 	<script src="js/init.js"></script>
 	<script>
@@ -177,10 +176,12 @@
 			});
 			
 			// Send request to planner
-			$('#plan').click(function()
+			$('#plan').click(function(event)
 			{
+				event.preventDefault();
+				
 				var req = {};
-				$.each($('form').serializeArray(), function(i, item)
+				$.each($('#form').serializeArray(), function(i, item)
 				{
 					req[item.name] = item.value;
 				});
