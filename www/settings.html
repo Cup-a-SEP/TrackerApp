@@ -2,22 +2,28 @@
 <html lang="en">
 	<head>
 
-		<meta charset="utf-8"/>
+		<meta charset="utf-8"/>	
+				
+		<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+		<link href="css/index.css" rel="stylesheet">
+		<link href="css/settings.css" rel="stylesheet">
+		<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet">
+
 		<script src="js/lib/prototype-1.7.1.js"></script>
 		<script src="js/lib/jquery-1.8.3.min.js"></script>
 		<script src="js/lib/jquery.json-2.4.min.js"></script>
+		<script src="js/lib/jquery.mobile-1.3.2.min.js"></script>
 		<script src="cordova.js"></script>
-		<script src="js/misc.js"></script>
+		<!--<script src="js/misc.js"></script>
 		<script src="js/system.js"></script>
 		<script src="js/class/localdb.class.js"></script>
 		<script src="js/storage.js"></script>
 		<script src="js/geocode.js"></script>
 		<script src="js/otp.js"></script>
 		<script src="js/ui.js"></script>
-		
-		<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 		<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
-	
+		<script src="js/slider.js"></script>-->
+				
 		<title>settings</title>
 	</head>
 
@@ -31,13 +37,39 @@
 		<section>
 			<div class="headerbuffer">
 				<div class="eiland" class="shadow">
-					
-					<div class="divborder" id="alarm">
-						<label>Alarm</label><br>
-						<div class="divborder">
+					<h1 id="headertekst">Instellingen</h1>
+
+					<div class="settings-section"id="alarm">
+						<h2>Alarm</h2><br>
+						<div class="settings-subsection">
 							<label>Vertrekalarm </label><input type="checkbox" name="depart" value="true"><br>
+						</div>
+						<div class="settings-subsection">
 							<label>Instapalarm</label><input type="checkbox" name="getin" value="true"><br>
+						</div>
+						<div class="settings-subsection">
 							<label>Uitstapalarm</label><input type="checkbox" name="getoff" value="true">
+						</div>
+					</div>
+					
+					
+					<div class="settings-section"id="alarm">
+						<h2>Nieuw ontwerp (over te nemen):</h2><br>
+						<div class="settings-subsection">
+							<div data-role="fieldcontain">
+								<header>
+								<label>Alarmalarm</label>
+								<fieldset data-role="controlgroup" data-type="horizontal">
+									<input type="radio" id="radio-choice-1" name="radio">
+									<label for="radio-choice-1">Aan</label>
+									<input type="radio" id="radio-choice-2" name="radio" checked>
+									<label for="radio-choice-2">Uit</label>
+								</fieldset
+								</header>
+							</div>
+						  <div data-role="fieldcontain" class="customsliderclass">
+			          <input id="sliderid" type="range" name="slider" value="5" min="1" max="60" data-highlight="true" data-mini="true">
+			        </div>
 						</div>
 					</div>
 				</div>

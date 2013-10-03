@@ -49,7 +49,7 @@ var LocalDB = Class.create({
 		//Open connection to the database on the device. Failure here may indicate compatibility issues.
 		try {
 			this.pDbo = window.openDatabase("FritsOVLocalDatabase", this.pDbVersion, "FritsOV Local Database", 1000, this.onDbCreate.bind(this));
-			this.initDbStruct() // Just force table creation every time (it has the IF EXISTS so it's fine)
+			this.initDbStruct(); // Just force table creation every time (it has the IF EXISTS so it's fine)
 		} catch (e) {
 			//(Most likely) database version mismatch
 			if (e.code == 11) {

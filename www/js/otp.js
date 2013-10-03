@@ -13,6 +13,8 @@ var OTP = {};
 * @property {String}  toPlace                     - De plaats waar naartoe wordt gepland in WGS 84 (lon,lat) coördinaten. Bijvoorbeeld 52.252699045023974,6.169391870498657.
 * @property {String}  date                        - De datum van vertrek (of aankomst wanneer arriveBy true is). Notatie is YYYY-MM-DD, dus bijvoorbeeld 2013-08-31.
 * @property {String}  time                        - De tijd van vertrek (of aankomst wanneer arriveBy true is). Notatie is HH:MM, dus bijvoorbeeld 13:15.
+* @property {Number}  expectedDepartureTime       - Verwachte datum/tijd  van vertrek (time code) (niet onderdeel van OTP)
+* @property {Number}  expectedArrivalTime         - Verwachte datum/tijd  van aankomst (time code) (niet onderdeel van OTP)
 * @property {Boolean} arriveBy                    - Plant vanaf vertrektijd en datum wanneer deze waarde false is, plant vanaf aankomsttijd en datum wanneer deze waarde true is.
 * @property {String}  mode                        - De modaliteiten die gebruikt mogen worden. Geldige waarden zijn: WALK, BICYCLE, CAR, TRAM, SUBWAY, RAIL, BUS, FERRY, CABLE_CAR, GONDOLA, FUNICULAR, TRANSIT, TRAINISH, BUSISH, (LEG_SWITCH, CUSTOM_MOTOR_VEHICLE)
 * @property {Boolean} wheelchair                  - Geeft aan dat de gebruiker een rolstoelvriendelijke reis wil planner wanneer deze waarde true is.

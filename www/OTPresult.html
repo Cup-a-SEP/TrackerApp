@@ -4,9 +4,13 @@
 	<title>OTP test</title>
 
 	<meta charset="utf-8"/>
+	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/system.js"></script>
+	<script src="js/class/localdb.class.js"></script>
+	<script src="js/storage.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
 	<script src="js/ui.js"></script>
@@ -15,41 +19,67 @@
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
 </head>
 <body>
-	<div id="header">	<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
-						<span id="center">Frits</span> 
-						<span id="right">| O | <span id="vraagteken">?</span> |</span></div>
+	<div id="header">
+		<span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+		<span id="center">Frits</span> 
+		<span id="right">| O | <span id="vraagteken">?</span> |</span>
+	</div>
 	
-	<section id="plan" style="margin-top: 3em">
+	<div id="itineraryHeader" style="margin-top: 3em">
+	</div>
+	<section id="plan">
 	</section>
-	
+	<div id="planbutton">Track deze route</div>
 	<script src="js/init.js"></script>
-	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script>
-		var plan = $('#plan');
-		var data;
-		$(function()
-			{
-				var string = localStorage['OTP data'];
-				data = $.evalJSON(string);
-				
-				var route;
-				plan.empty().append(route = $('<div>').attr('id', 'route'));
-				
-				route.add = UI.addItinerary;
-				route.add(data.itineraries[0]);
-				route.accordion({collapsible:true});
-				
-				var legLength = data.itineraries[0].legs.length;
-				
-				for(var i = 0; i < legLength; i++ ) {
-					$('#legmap' + i).click(function(){
-						clickMap(this.id.substring(6));
-					});
-				}
-			}
-		);
 		
-		function clickMap(i) {
+		$(function()
+		{
+			// Initialize database
+			Storage.Trips.init();
+			
+			var req = $.evalJSON(localStorage['OTP request']);
+			var data = $.evalJSON(localStorage['OTP data']);
+			
+			var from = data.from.name;
+			var to = data.to.name;
+			var start = UI.formatTime(data.itineraries[0].startTime);
+			var end = UI.formatTime(data.itineraries[0].endTime);
+			
+			$('#itineraryHeader').empty().append($('<h3>')
+					.text(start + ' ' + from + ' - ' + end + ' ' + to))
+				.click(function()
+				{
+					clickMap(-1);
+				});
+			
+			var route;
+			$('#plan').empty().append(route = $('<div>').attr('id', 'route'));
+			
+			route.add = UI.addItinerary;
+			route.add(data.itineraries[0]);
+			route.accordion({collapsible:true});
+			
+			var legLength = data.itineraries[0].legs.length;
+			for(var i = 0; i < legLength; ++i)
+			{
+				$('#legmap' + i).click(function()
+				{
+					clickMap(this.id.substring(6));
+				});
+			}
+			
+			$('#planbutton').click(function(){
+				var it = data.itineraries[0];
+				req.expectedDepartureTime = it.legs[0].startTime;
+				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
+				Storage.Trips.store(req);
+				window.location = "index.html";
+			});
+		});
+		
+		function clickMap(i)
+		{
 			localStorage['ShowMap'] = i;
 			window.location = "legmap.html";
 		}

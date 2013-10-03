@@ -46,17 +46,19 @@
 		<span id="right"><span id="vraagteken">?</span></span>
 	</div>
 	<section>
-		<div class="headerbuffer">
+		<form class="headerbuffer">
 			
 			<div class="eiland" class="shadow">
 			
 			<div class="divborder" id="fromdiv">
-				<label>Van<input type="text" id="from" placeholder="..."></label>
+				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
+				<input type="hidden" id="fromPlace" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
-				<label>Naar<input type="text" id="to" placeholder="..."></label>
+				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
+				<input type="hidden" id="toPlace" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
 			
@@ -66,13 +68,13 @@
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="date" name="date" id="date">
-					<input type="time" name="time" id="time">
+					<input type="date" id="date" name="date">
+					<input type="time" id="time" name="time">
 				</div>
 			</div>	
 				
 			<div class="divborder" id="voorkeur">
-				<label>Voorkeur<select name="preferLeastTransfers" id="preferenceDropdown">
+				<label>Voorkeur<select id="preferenceDropdown" name="preferLeastTransfers">
 					<option value="false">snelste route</option>
 					<option value="true">minst aantal overstappen</option>
 				</select></label>
@@ -86,6 +88,7 @@
 					<img src="img/subway.png" class="icon" id="subway">
 					<img src="img/ferry.png" class="icon" id="ferry">
 				</div></label>
+				<input type="hidden" id="mode" name="mode" value="WALK,TRANSIT">
 			</div>
 			
 			<div class="divborder" id="wheelchairdiv">
@@ -99,7 +102,7 @@
 			
 			</div><!-- einde eiland -->
 			
-		</div>
+		</form>
 	</section>
 	<section id="status">
 	</section>
@@ -116,33 +119,42 @@
 			ferry: true
 		};
 		
-		// Coordinates of places
-		var fromPlace = '';
-		var toPlace = '';
-		
 		$(function()
 		{
+			// Initialize database
+			Storage.Locations.init();
+			
 			// Initialize to/from input boxes
 			var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
 			{
 				$('#from').val(address);
-				fromPlace = coords;
+				$('#fromPlace').val(coords);
 			});
 			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 			{
 				$('#to').val(address);
-				toPlace = coords;
+				$('#toPlace').val(coords);
 			});
 			
-			// Debug
-			sugfrom.list = sugto.list =
+			$('#from').keyup(function() { $('#fromPlace').val(''); });
+			$('#to').keyup(function() { $('#toPlace').val(''); });
+			
+			// Initialize suggestions list
+			sugfrom.list = sugto.list = {};
+			Storage.Locations.list(Infinity).done(function(res)
 			{
+				$.each(res, function(i, item)
+				{
+					sugto.list[item.name] = item.latlng;
+				});
+			});
+			/*{
 				'Eindhoven': '51.44302,5.479576',
 				'Utrecht': '52.089398,5.109861',
 				'Tilburg': '51.55972,5.087558',
 				'Groningen': '53.210766,6.564099',
 				'Breda': '51.595067,4.780053',
-			};
+			};*/
 			
 			// Initialize date/time input boxes
 			$('#date').val(System.getDate());
@@ -156,30 +168,30 @@
 				{
 					modalities[name] = !modalities[name];
 					mod.css('opacity', modalities[name] ? 1 : .3);
+					$('#mode').val($.map(modalities, function(value, name)
+					{
+						if (value)
+							return name.toUpperCase();
+					}).join(','));
 				});
 			});
 			
 			// Send request to planner
 			$('#plan').click(function()
 			{
-				var req =
+				var req = {};
+				$.each($('form').serializeArray(), function(i, item)
 				{
-					fromPlace: fromPlace,
-					toPlace: toPlace,
-					time: $('#time').val(),
-					date: $('#date').val(),
-					arriveBy: $('#arriveBy').val(),
-					preferLeastTransfers: $('#preferenceDropdown').val(),
-					wheelchair: $('#wheelchair').is(':checked'),
-					mode: $.map(modalities, function(value, name)
-					{
-						if (value)
-							return name.toUpperCase();
-					}).join(',')
-				};
-				console.log(req);
+					req[item.name] = item.value;
+				});
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
+				
+				// Save locations
+				if (req.fromPlace)
+					Storage.Locations.store(req.from, req.fromPlace, false);
+				if (req.toPlace)
+					Storage.Locations.store(req.to, req.toPlace, false);
 				
 				OTP.plan(req).done(function(data)
 				{
@@ -188,6 +200,8 @@
 						return ser;
 					})(data);
 					
+					// Save planner data
+					localStorage['OTP request'] = $.toJSON(req);
 					localStorage['OTP data'] = $.toJSON(data);
 					
 					window.location = "OTPresult.html";

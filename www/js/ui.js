@@ -17,6 +17,16 @@ UI.formatTime = function UIFormatTime(time)
 };
 
 /**
+ * Formats a location name so it does not contain double spaces
+ * @param name - A Location name
+ * @return The name without double spaces 
+ */
+UI.formatName = function UIFormatName(name)
+{
+	return name.replace(/\s+/, ' ').trim();
+};
+
+/**
  * Adds a formatted itinerary to a element
  * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 
@@ -26,8 +36,46 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 {
 	var self = this;
 	
+	function getLegMode(i) {
+		if( i < 0 || i >= itinerary.legs.length) {
+			return '';
+		} else {
+			return itinerary.legs[i].mode;
+		}
+	}
+	
 	function addLeg(i, leg)
 	{
+		var startTime = UI.formatTime(leg.startTime);
+		var endTime = UI.formatTime(leg.endTime);
+		var fromName = leg.from.name;
+		var toName = leg.to.name;
+		
+		if(leg.mode == 'RAIL') {
+			fromName = 'Station ' + fromName + ' - Perron ' + leg.from.platformCode;
+			toName = 'Station ' + toName + '  - Perron ' + leg.to.platformCode;
+		} else {
+			if(getLegMode(i-1) == 'RAIL') {
+				fromName = 'Station ' + fromName;
+			}
+			if(getLegMode(i+1) == 'RAIL') {
+				toName = 'Station ' + toName;
+			}
+		}
+		
+		var modeName = function(mode) {
+			modes = {	'WALK': 'Lopen',
+						'BUS': 'Bus',
+						'RAIL': '',
+						'FERRY': 'Veerpond',
+						'TRAM': 'Tram',
+						'SUBWAY': 'Metro'};
+			if(!$.inArray(mode, modes)) {
+				return mode.toLowerCase();
+			} else {
+				return modes[mode];
+			}
+		};
 		var h3 = $('<h3>')
 		
 		// plaatje:
@@ -36,14 +84,15 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 				.css('height', 20))
 	
 		// titel:
-			.append(leg.mode.toLowerCase() + ' ' + leg.route + ' ')
-			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' -> ' + UI.formatTime(leg.endTime)));
-		
+			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' - ' + UI.formatTime(leg.endTime)))
+			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
+			
 		// zichtbaar bij uitklappen:
 		var div = $('<div>')
-			.append($('<p>').text(leg.from.name + ' -> ' + leg.to.name))
+			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(endTime + ': ' + toName))
 			.append($('<div id="legmap' + i + '">')
-				.append($('<p>').text("Map")))
+				.append($('<div class="button">')
+					.append("<p>Show Map</p>")));
 			;
 		
 		self.append(h3).append(div);

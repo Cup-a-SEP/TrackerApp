@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Frits</title>
+	<meta charset="utf-8" />
+	<!--<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/lib/prototype-1.7.1.js"></script>
+	<script type="text/javascript" src="js/class/localdb.class.js"></script>
+	<script type="text/javascript" src="js/storage.js"></script>
+
+</head>
+<body>
+	<div id="header"><span id="left">| <span id="back">&lt;</span> | <span id="fav">&hearts;</span> |</span>  
+	<span id="center">Frits</span> 
+
+	<span id="right">| <span id="vraagteken">?</span> |</span></div>
+	
+	<div class="headerbuffer">
+		<h4 id="headertekst">Wat wil je doen?</h4>
+			<a><p class="button">Plan je route</p></a>
+			<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>
+			<a href="map_test.html" class="divbutton"><p class="button">Test Map</p></a>
+	</div>
+	
+	<script type="text/javascript">
+		app.initialize();
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady()
+		{
+			console.log("Test Device ready");
+			document.addEventListener("backbutton", onBackButton, false);
+			startWatch();
+		}
+		
+		function onBackButton()
+		{
+			console.log('The user wants to close the app.');
+			navigator.app.exitApp();
+		}
+	</script>
+</body>
+</html>

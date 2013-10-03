@@ -68,7 +68,7 @@ Storage.Locations.list = function StorageLocationsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times` LIMIT " + number + ";", function(res)
+	this.db.query("SELECT `name`, `latlng`, `fav` FROM `locations` ORDER BY `fav` DESC, `times`" + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
 	{
 		def.resolve(res.toObject());
 	});
@@ -90,6 +90,8 @@ Storage.Trips.init = function StorageTripsInit()
 	this.db = new LocalDB('trips', 'CREATE TABLE IF NOT EXISTS `trips` (`from` TEXT NOT NULL, `fromPlace` TEXT, '
 	                                                                 + '`to` TEXT NOT NULL, `toPlace` TEXT, '
 	                                                                 + '`time` TEXT NOT NULL, `date` TEXT NOT NULL, '
+	                                                                 + '`expectedDepartureTime` INTEGER NOT NULL, '
+	                                                                 + '`expectedArrivalTime` INTEGER NOT NULL, '
 	                                                                 + '`arriveBy` INTEGER, `mode` TEXT, '
 	                                                                 + '`wheelchair` INTEGER, `preferLeastTransfers` INTEGER, '
 	                                                                 + 'PRIMARY KEY (`from`, `to`, `time`, `date`) );',
@@ -107,6 +109,23 @@ Storage.Trips.store = function StorageTripsStore(trip)
 	trip.wheelchair = (trip.wheelchair ? '1' : '0');
 	trip.preferLeastTransfers = (trip.preferLeastTransfers ? '1' : '0');
 	this.db.insert(trip);
+};
+
+/**
+ * Retrieves the a number of trips sorted by expected arrival time
+ * @param {Number} number - number of trip entries to retrieve
+ * @return {Object} jQuery deferred object 
+ */
+Storage.Trips.list = function StorageLocationsList(number)
+{
+	var def = $.Deferred();
+	
+	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedArrivalTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";", function(res)
+	{
+		def.resolve(res.toObject());
+	});
+	
+	return def;
 };
 
 /**
