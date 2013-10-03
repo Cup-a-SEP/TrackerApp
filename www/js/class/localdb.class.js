@@ -112,8 +112,8 @@ var LocalDB = Class.create({
 		}).join(', ') : '*';
 		
 		var sqlquery = 'SELECT ' + fields + ' FROM `' + this.pTableName + '`'
-			+ (limit > -1 && limit < Infinity ? (' LIMIT ' + limit + '\'') : '')
-			+ (sql ? ' ' + sql + ';' : ';');
+			+ (sql ? ' ' + sql : '')
+			+ (limit > -1 && limit < Infinity ? ' LIMIT ' + limit + ';' : ';');
 		
 		return this.query(sqlquery);
 	},

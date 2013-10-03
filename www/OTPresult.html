@@ -72,8 +72,10 @@
 				var it = data.itineraries[0];
 				req.expectedDepartureTime = it.legs[0].startTime;
 				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
-				Storage.Trips.store(req);
-				window.location = "index.html";
+				Storage.Trips.store(req).always(function()
+				{
+					window.location = "index.html";
+				});
 			});
 		});
 		

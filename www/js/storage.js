@@ -37,7 +37,7 @@ Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 			var row = res.firstRow();
 			if (latlng === undefined) latlng = row.latlng;
 			if (fav === undefined) fav = row.fav;
-			self.db.updateMatch(
+			return self.db.updateMatch(
 			{
 				latlng: latlng,
 				times: Number(row.times) + 1,
@@ -48,7 +48,7 @@ Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 			});
 		}
 		else
-			self.db.insert(
+			return self.db.insert(
 			{
 				name: name,
 				latlng: latlng,
@@ -108,21 +108,37 @@ Storage.Trips.store = function StorageTripsStore(trip)
 	trip.arriveBy = (trip.arriveBy ? '1' : '0');
 	trip.wheelchair = (trip.wheelchair ? '1' : '0');
 	trip.preferLeastTransfers = (trip.preferLeastTransfers ? '1' : '0');
-	this.db.insert(trip);
+	return this.db.insert(trip);
 };
 
 /**
- * Retrieves the a number of trips sorted by expected departure time
+ * Retrieves  a number of trips sorted by expected departure time
  * @param {Number} number - number of trip entries to retrieve
  * @return {Object} jQuery deferred object 
  */
-Storage.Trips.list = function StorageLocationsList(number)
+Storage.Trips.list = function StorageTripsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.selectAll(number, undefined, 'ORDER BY `expectedDepartureTime` DESC').done(function(res)
+	this.db.selectAll(number, undefined, 'ORDER BY Date(`expectedDepartureTime`) DESC').done(function(res)
 	{
 		def.resolve(res.toObject());
+	}).fail(function(err) { def.reject(err); });
+	
+	return def;
+};
+
+/**
+ * Retrieves the first trip sorted by expected departure time
+ * @return {Object} jQuery deferred object 
+ */
+Storage.Trips.next = function StorageTripsNext()
+{
+	var def = $.Deferred();
+	
+	this.db.selectAll(1, undefined, 'ORDER BY Date(`expectedDepartureTime`) DESC').done(function(res)
+	{
+		def.resolve(res.toObject()[0]);
 	}).fail(function(err) { def.reject(err); });
 	
 	return def;
@@ -134,7 +150,7 @@ Storage.Trips.list = function StorageLocationsList(number)
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)
 {
-	this.db.deleteMatch(
+	return this.db.deleteMatch(
 	{
 		from: trip.from,
 		to: trip.to,
