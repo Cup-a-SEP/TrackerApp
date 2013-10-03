@@ -7,6 +7,7 @@
 	<!--<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -23,22 +24,61 @@
 		Tests:
 	</div>
 	<script type="text/javascript">
-		function createDBTest() {
-			/*var db = new LocalDB(
-				'testDB1', 
-				"CREATE TABLE IF NOT EXISTS `locations`" + 
-					"(`name` TEXT UNIQUE, " + 
-					"`latlng` TEXT, " +
-					"`times` INTEGER, " + 
-					"`fav` INTEGER);",
+		function testDB() {
+			return new LocalDB(
+				'test', 
+				"CREATE TABLE IF NOT EXISTS `test`" + 
+					"(`int` INTEGER, " + 
+					"`text` TEXT, " +
+					"`bool` BOOLEAN);",
 				1
 			);
-			*/
-			return false;
+		}
+		
+		var db = null;
+		var result = null;
+		
+		function createDBTest() {
+			db = testDB();
+			return db != false;
+		}
+		
+		function insertTestPass() {
+			result = false;
+			
+			db.insert( { int: 0, text: 'TestInsert', bool: false} , 
+				function(obj) {
+					result = true;
+				}
+			);
+			
+			return result;
+		}
+		
+		function insertTestFail() {
+			result = true;
+
+			db.insert( { int: 0, text: 'TestInsert', bool: false, failParam: 'Fail'} , 
+				function(obj) {
+					result = false;
+				}
+			);
+			
+			return result;
+		}
+		
+		function removeTestPass() {
+			result = false;
+			
+			db.insert( { int: 0, text: 'TestInsert', bool: false} , 
+				function(obj) {
+					db.remove( {})
+				}
+			);
 		}
 		
 		function generateDBACTestReport(tests) {
-			var result = '<table>';
+			var result = '<table border="2">';
 			$.each(tests, 
 				function(i, e) {
 					result = result + '<tr>' + 
@@ -57,11 +97,15 @@
 			{
 				name: 'Create', 
 				test: createDBTest
-			}/*,
-			{
-				name: 'Insert',
-				test: insertTest
 			},
+			{
+				name: 'Insert Pass',
+				test: insertTestPass
+			},
+			{
+				name: 'Insert Fail',
+				test: insertTestFail
+			}/*,
 			{
 				name: 'Remove',
 				test: removeTest
