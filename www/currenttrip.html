@@ -1,7 +1,9 @@
-<!doctype html>
+<!DOCTYPE HTML> 
 <html>
 <head>
 	<title>Current trip</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+	<link href='css/swipestyle.css' rel='stylesheet'/>
 
 	<meta charset="utf-8"/>
 	<script src="js/lib/prototype-1.7.1.js"></script>
@@ -15,10 +17,30 @@
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
 	<script src="js/ui.js"></script>
+
+	<script src="js/lib/jquery-1.9.1.js"></script>
+	<script src='js/swipe.js'></script>
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+		
 	<style type="text/css">
+		
+		.swipe {
+		  overflow: hidden;
+		  visibility: hidden;
+		  position: relative;
+		}
+		.swipe-wrap {
+		  overflow: hidden;
+		  position: relative;
+		}
+		.swipe-wrap > div {
+		  float:left;
+		  width:100%;
+		  position: relative;
+		}
+		
 		section {
 			width: 100%;
 		}
@@ -27,7 +49,7 @@
 			width: 75%;
 			float: right;
 		}
-		button, select {
+		select {
 			float: right;
 		}
 		.time {
@@ -45,9 +67,9 @@
 		}
 		.divbutton {
 			text-decoration: none;
-			/*color: #358219;*/
 		}
 	</style>
+
 </head>
 <body>
 	<div id="header">
@@ -55,36 +77,75 @@
 		<span id="center">Frits</span> 
 		<span id="right"><span id="vraagteken">?</span></span>
 	</div>
+	
 	<section>
 		<div class="headerbuffer">
-			
 			<div class="eilandLight" class="shadow">
+				
+				<h1>Current trip</h1>
+				<div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+			    	<div class='swipe-wrap'>
+					    <div>
+							<label>Bus 156</label><br>
+							<label>13:37 -> 14:14</label><br>
+							<label>Rachelsmolen, Eindhoven -> Hoofdstraat, Schijndel</label><br><br>
+							<label>Kaart</label>
+						</div>
+					    <div>
+							<label>Loop</label><br>
+							<label>13:37 -> 14:14</label><br>
+							<label>Lorem ipsum -> dolor sit</label><br><br>
+							<label>Kaart</label>
+						</div>
+					    <div>
+							<label>Trein richting schiphol</label><br>
+							<label>13:37 -> 14:14</label><br>
+							<label>Eindh spoor 1 -> Utrecht spoor 3a</label><br><br>
+							<label>Kaart</label>
+						</div>
+					    <div>
+							<label>Loop</label><br>
+							<label>13:37 -> 14:14</label><br>
+							<label>Nog een klein stukkie!</label><br><br>
+							<label>Kaart</label>
+						</div>
+				  	</div>
+				</div>
+							
+				<div style='text-align:center;padding-top:20px;'>
+				  <button onclick='mySwipe.prev()'>prev</button> 
+				  <button onclick='mySwipe.next()'>next</button>
+				</div>
+					
+				<div class="divborder">
+					<label>Iets met het volgende alarm</label><br>
+					<label>Iets om het alarm aan/uit te zetten</label>
+				</div>
+				
+				<a href="index.html" class="divbutton"><p class="button">Terug naar hoofdmenu</p></a>
+				<a href="index.html" class="divbutton"><p class="button">Annuleer deze reis</p></a>
 			
-			<div class="divborder" id="currentleg">
-				<label>Bus 156</label><br>
-				<label>13:37 -> 14:14</label><br>
-				<label>Rachelsmolen, Eindhoven -> Hoofdstraat, Schijndel</label>
-			</div>
-			<div class="divborder">
-				<label>Iets met het volgende alarm</label><br>
-				<label>Iets om het alarm aan/uit te zetten</label>
-			</div>
-			
-			<a href="index.html" class="divbutton"><p class="button">Terug naar hoofdmenu</p></a>
-			<a href="index.html" class="divbutton"><p class="button">Annuleer deze reis</p></a>
 			</div><!-- einde eiland -->
-			
 		</div>
 	</section>
-	<section id="status">
-	</section>
-	<script src="js/init.js"></script>
-	<script>
-		
-		$(function()
-		{
 
-		});
+	<script>
+	
+	// pure JS
+	var elem = document.getElementById('mySwipe');
+	window.mySwipe = Swipe(elem, {
+	   //startSlide: 4,
+	   //auto: 3000,
+	   continuous: false,
+	   //disableScroll: false,
+	   //stopPropagation: false,
+	   //callback: function(index, element) {},
+	   //transitionEnd: function(index, element) {}
+	});
+	
+	// with jQuery
+	// window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+	
 	</script>
 </body>
 </html>
