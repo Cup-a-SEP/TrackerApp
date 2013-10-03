@@ -20,6 +20,7 @@ var Misc = {};
  */
 Misc.lDistance = function MiscLDistance(src, dst, cost)
 {
+	if (!src) return 0;
 	src = String(src).toLowerCase();
 	dst = String(dst).toLowerCase();
 	cost = cost || Misc.lDistance.DefaultCost;

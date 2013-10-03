@@ -30,14 +30,14 @@ Storage.Locations.init = function()
 Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 {
 	var self = this;
-	this.db.match({ name: name }).done(function(res)
+	this.db.selectMatch({ name: name }).done(function(res)
 	{
 		if (res.pRows >= 1)
 		{
 			var row = res.firstRow();
 			if (latlng === undefined) latlng = row.latlng;
 			if (fav === undefined) fav = row.fav;
-			self.db.updateMatch(
+			return self.db.updateMatch(
 			{
 				latlng: latlng,
 				times: Number(row.times) + 1,
@@ -48,7 +48,7 @@ Storage.Locations.store = function StorageLocationsStore(name, latlng, fav)
 			});
 		}
 		else
-			self.db.insert(
+			return self.db.insert(
 			{
 				name: name,
 				latlng: latlng,
@@ -108,21 +108,37 @@ Storage.Trips.store = function StorageTripsStore(trip)
 	trip.arriveBy = (trip.arriveBy ? '1' : '0');
 	trip.wheelchair = (trip.wheelchair ? '1' : '0');
 	trip.preferLeastTransfers = (trip.preferLeastTransfers ? '1' : '0');
-	this.db.insert(trip);
+	return this.db.insert(trip);
 };
 
 /**
- * Retrieves the a number of trips sorted by expected departure time
+ * Retrieves  a number of trips sorted by expected departure time
  * @param {Number} number - number of trip entries to retrieve
  * @return {Object} jQuery deferred object 
  */
-Storage.Trips.list = function StorageLocationsList(number)
+Storage.Trips.list = function StorageTripsList(number)
 {
 	var def = $.Deferred();
 	
-	this.db.query("SELECT `from`, `fromPlace`, `to`, `toPlace`, `time`, `date`, `expectedDepartureTime`, `expectedArrivalTime`, `arriveBy`, `wheelchair` FROM `trips` ORDER BY `expectedDepartureTime` DESC " + (number < Infinity ? "LIMIT " + number : '') + ";").done(function(res)
+	this.db.selectAll(number, undefined, 'ORDER BY `expectedDepartureTime`').done(function(res)
 	{
 		def.resolve(res.toObject());
+	}).fail(function(err) { def.reject(err); });
+	
+	return def;
+};
+
+/**
+ * Retrieves the first trip sorted by expected departure time
+ * @return {Object} jQuery deferred object 
+ */
+Storage.Trips.next = function StorageTripsNext()
+{
+	var def = $.Deferred();
+	
+	this.db.selectAll(1, undefined, 'ORDER BY `expectedDepartureTime`').done(function(res)
+	{
+		def.resolve(res.toObject()[0]);
 	}).fail(function(err) { def.reject(err); });
 	
 	return def;
@@ -134,10 +150,13 @@ Storage.Trips.list = function StorageLocationsList(number)
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)
 {
-	this.db.query("DELETE FROM `trips` WHERE `from` = '" + trip.from + "' "
-	                                    + "AND `to` = '" + trip.to + "' "
-	                                    + "AND `time` = '" + trip.time + "' "
-	                                    + "AND `date` = '" + trip.date + "';");
+	return this.db.deleteMatch(
+	{
+		from: trip.from,
+		to: trip.to,
+		time: trip.time,
+		date: trip.date,
+	});
 };
 
 /*
