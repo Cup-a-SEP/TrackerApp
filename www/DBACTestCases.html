@@ -7,6 +7,7 @@
 	<!--<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
@@ -23,28 +24,93 @@
 		Tests:
 	</div>
 	<script type="text/javascript">
-		function createDBTest() {
-			/*var db = new LocalDB(
-				'testDB1', 
-				"CREATE TABLE IF NOT EXISTS `locations`" + 
-					"(`name` TEXT UNIQUE, " + 
-					"`latlng` TEXT, " +
-					"`times` INTEGER, " + 
-					"`fav` INTEGER);",
-				1
-			);
-			*/
-			return false;
+	
+		function setResult(i, res) {
+			$('#test' + i).append(res ? 'Pass' : 'Fail');
 		}
 		
-		function generateDBACTestReport(tests) {
-			var result = '<table>';
+		function insertTestPass(db, i) {
+			return db.insert( { int: i, text: 'TestInsertPass', bool: false} ).done(
+				function() { setResult(i, true); }
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function insertTestFail(db, i) {
+			return db.insert( { int: i, text: 'TestInsertFail', bool: false, failParam: 'Fail'}).done(
+				function() { setResult(i, false); }
+			).fail(
+				function() { setResult(i, true); }
+			);
+		}
+		
+		function removeTestPass(db, i) {
+			return db.insert( { int: i, text: 'TestRemovePass', bool: false}).done(
+				function() {
+					db.deleteMatch( {text: 'TestRemovePass'} ).done(
+						function(obj) { setResult(i, obj.rowsAffected() == 1); }
+					).fail(
+						function() { setResult(i, false); }
+					);
+				}
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function removeTestFail(db, i) {
+			return db.insert( { int: i, text: 'TestRemoveFail', bool: false}).done(
+				function() {
+					db.deleteMatch( {text: 'TestRemoveFall'} ).done(
+						function(obj) { setResult(i, obj.rowsAffected() == 0); }
+					).fail(
+						function() { setResult(i, false); }
+					);
+				}
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function selectOneTest(db, i) {
+			db.insert( {text: 'SelectOneTest'});
+			return db.selectAll(1).done(
+				function(obj) {
+					console.log(obj.toObject());
+					setResult(i, obj.toObject().length == 1);
+				}
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function selectMultipleTest(db, i) {
+			db.insert( {int: -1} );
+			db.insert( {int: -2} );
+			db.insert( {int: -3} );
+			db.insert( {int: -4} );
+			db.insert( {int: -5} );
+			db.insert( {int: -6} );
+			db.insert( {int: -7} );
+			db.insert( {int: -8} );
+			return db.selectAll(5).done(
+				function(obj) {
+					setResult(i, obj.toObject().length == 5);
+				}
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function generateDBACTestTable(tests) {
+			var result = '<table border="2"><tr><td>ID</td><td>NAME</td><td>PASS/FAIL</td></tr>';
 			$.each(tests, 
 				function(i, e) {
 					result = result + '<tr>' + 
 					'<td>' + i + '</td>' + 
 					'<td>' + e.name + '</td>' + 
-					'<td>' + e.test() + '</td></tr>';
+					'<td id="test' + i + '"></td></tr>';
 				}
 			);
 			
@@ -55,16 +121,20 @@
 		{
 			var tests = [
 			{
-				name: 'Create', 
-				test: createDBTest
-			}/*,
-			{
-				name: 'Insert',
-				test: insertTest
+				name: 'Insert Pass',
+				test: insertTestPass
 			},
 			{
-				name: 'Remove',
-				test: removeTest
+				name: 'Insert Fail',
+				test: insertTestFail
+			},
+			{
+				name: 'Remove Pass',
+				test: removeTestPass
+			},
+			{
+				name: 'Remove Fail',
+				test: removeTestFail
 			},
 			{
 				name: 'Select One',
@@ -73,12 +143,41 @@
 			{
 				name: 'Select Multiple',
 				test: selectMultipleTest
-			}*/
+			}
 			];
-			var report = generateDBACTestReport(tests);
-			$('#testReport').append(report);
+			
+			$('#testReport').append(generateDBACTestTable(tests));
+			
+			startTests(tests);
 		}
 		);
+		
+		function startTests(tests) {
+			$.each(tests, 
+				function(i, e) {
+					var db = new LocalDB(
+						"CREATE TABLE IF NOT EXISTS `test" + i + "`" + 
+							"(`int` INTEGER, " + 
+							"`text` TEXT, " +
+							"`bool` BOOLEAN);",
+						1
+					)
+					.query("DROP TABLE IF EXISTS 'test" + i + "'")
+					.done(
+						function() {
+							db = new LocalDB(
+							"CREATE TABLE IF NOT EXISTS `test" + i + "`" + 
+								"(`int` INTEGER, " + 
+								"`text` TEXT, " +
+								"`bool` BOOLEAN);",
+								1
+							);
+							e.test(db, i).always(function() {db.query("DROP TABLE IF EXISTS 'test" + i + "'");});
+						}
+					);
+				}
+			);
+		}
 	</script>
 </body>
 </html>
