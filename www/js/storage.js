@@ -6,6 +6,17 @@ var Storage = {};
 
 Storage.Version = 1;
 
+Storage.init = function StorageInit()
+{
+	localStorage['Alarm departure time'] = localStorage['Alarm departure time'] || 10;
+	localStorage['Alarm embark time'] = localStorage['Alarm embark time'] || 10;
+	localStorage['Alarm alight time'] = localStorage['Alarm alight time'] || 10;
+	
+	localStorage['Alarm departure setting'] = localStorage['Alarm departure setting'] || false;
+	localStorage['Alarm embark setting'] = localStorage['Alarm embark setting'] || false;
+	localStorage['Alarm alight setting'] = localStorage['Alarm alight setting'] || false;
+};
+
 /**
  * Location storage for previous used and favourite locations.
  * @namespace Storage.Locations 
