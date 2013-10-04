@@ -70,6 +70,14 @@
 		}
 		.leg-display{
 			background-color: #FFFFFF;
+			text-align:center;
+		}
+		#prevLegButton{
+		    margin-right: 20px;
+		    width: 100px;
+		}
+		#nextLegButton{
+            width: 100px;
 		}
 	</style>
 
@@ -86,47 +94,19 @@
 			<div class="eilandLight" class="shadow">
 				
 				<h1>Current trip</h1>
+            
 				<div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
 			    	<div class='swipe-wrap'>
-					    <!--<div class='leg-display'>
-							<label>Loop</label><br>
-							<label>12:37 -> 13:37</label><br>
-							<label>Naar -> de bus</label><br><br>
-							<label>Kaart</label>
-						</div>
-					    <div class='leg-display'>
-							<label>Bus 156</label><br>
-							<label>13:37 -> 14:14</label><br>
-							<label>Rachelsmolen, Eindhoven -> Hoofdstraat, Schijndel</label><br><br>
-							<label>Kaart</label>
-						</div>
-					    <div class='leg-display'>
-							<label>Loop</label><br>
-							<label>13:37 -> 14:14</label><br>
-							<label>Lorem ipsum -> dolor sit</label><br><br>
-							<label>Kaart</label>
-						</div>
-					    <div class='leg-display'>
-							<label>Trein richting schiphol</label><br>
-							<label>13:37 -> 14:14</label><br>
-							<label>Eindh spoor 1 -> Utrecht spoor 3a</label><br><br>
-							<label>Kaart</label>
-						</div>
-					    <div class='leg-display'>
-							<label>Loop</label><br>
-							<label>13:37 -> 14:14</label><br>
-							<label>Nog een klein stukkie!</label><br><br>
-							<label>Kaart</label>
-						</div>-->
 				  	</div>
 				</div>
-				<div id="indexindicator" style='float:center;text-align:center;padding-top:20px;'></div>
-							
-				<div style='text-align:center;padding-top:20px;'>
-				  <button onclick='mySwipe.prev()'>prev</button> 
-				  <button onclick='mySwipe.next()'>next</button>
-				</div>
-					
+                
+                <div id="indexindicator" style='float:center;text-align:center;padding-top:20px;'></div>
+                
+                <div style='text-align:center;padding-top:10px;'>
+                    <button class="button" id="prevLegButton" onclick='mySwipe.prev()'>prev</button> 
+                    <button class="button" id="nextLegButton" onclick='mySwipe.next()'>next</button>
+                </div>
+                
 				<div class="divborder">
 					<label>Iets met het volgende alarm</label><br>
 					<label>Iets om het alarm aan/uit te zetten</label>
@@ -165,9 +145,9 @@
         var toAdd = "";
         for(var i = 0; i < triplength; i++){
             if(i == index){
-                toAdd = toAdd.concat("x ");
+                toAdd = toAdd.concat("&diams; ");
             } else {
-                toAdd = toAdd.concat("o ");
+                toAdd = toAdd.concat("&bull; ");
     		}
         }
 	    ii.append(toAdd);
@@ -232,9 +212,14 @@
                             .addClass("leg-display")
                             .append($('<label>').text(modeName(curleg.mode) + ' ' + curleg.route))
                             .append($('<br>'))
-                            .append($('<label>').text(fromName + ' -> ' + toName))
                             .append($('<br>'))
-                            .append($('<label>').text(UI.formatTime(curleg.startTime) + ' -> ' + UI.formatTime(curleg.endTime)))
+                            .append($('<label style="float:left">').text(fromName))
+                            .append($('<label style="float:right">').text(UI.formatTime(curleg.startTime)))
+                            .append($('<br>'))
+                            .append("&darr;")
+                            .append($('<br>'))
+                            .append($('<label style="float:left">').text(toName))
+                            .append($('<label style="float:right">').text(UI.formatTime(curleg.endTime)))
                             .append($('<br>'))
                             .append($('<br>'))
                             .append($('<div class="button" id="legmap' + i + '">')
