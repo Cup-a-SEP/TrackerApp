@@ -95,7 +95,7 @@
 			
 		}
 		
-		function generateDBACTestReport(tests) {
+		function generateDBACTestTable(tests) {
 			var result = '<table border="2"><tr><td>ID</td><td>NAME</td><td>PASS/FAIL</td></tr>';
 			$.each(tests, 
 				function(i, e) {
@@ -103,7 +103,6 @@
 					'<td>' + i + '</td>' + 
 					'<td>' + e.name + '</td>' + 
 					'<td id="test' + i + '"></td></tr>';
-					e.test(i);
 				}
 			);
 			
@@ -142,8 +141,12 @@
 				test: selectMultipleTest
 			}
 			];
-			var report = generateDBACTestReport(tests);
+			var report = generateDBACTestTable(tests);
 			$('#testReport').append(report);
+			
+			$.each(tests, function(i, e) {
+				e.test(i);
+			});
 		}
 		);
 	</script>
