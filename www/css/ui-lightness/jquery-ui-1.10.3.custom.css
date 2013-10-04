@@ -1661,3 +1661,7 @@ body {
   						0px 0px 0px 2px #E2F5B3 inset, /** light green border on the inside of the island */
   						0px 0px 60px 10px #D0F07D/* old, slightly brighter green colour, that I secretly like better: C6FF368*/ inset; /** slightly darker green gradient thing on the inside of the island */
 }
+
+.alarmtype {
+	font-size: 12px;
+}
