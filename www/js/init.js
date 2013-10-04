@@ -17,7 +17,6 @@ function onBackButton()
 }
 
 var nextOTP;
-var lastAlarm;
 
 $(function()
 {
@@ -27,11 +26,6 @@ $(function()
 	});
 	
 	Storage.init();
-	
-	// debug:
-	localStorage['Alarm departure setting'] = 'true';
-	localStorage['Alarm departure time'] = '10';
-	
 	Storage.Trips.init();
 	setTimeout(startPolling, 1000);
 });
@@ -45,6 +39,8 @@ function startPolling()
 		{
 			console.log(data);
 			nextOTP = data;
+			
+			polling();
 			setInterval(polling, 1000);
 		});
 	});
@@ -53,14 +49,15 @@ function startPolling()
 function polling()
 {
 	var now = new Date().getTime();
-	var alarm = nextOTP.itineraries[0].startTime - localStorage['Alarm departure time'];
+	var alarm = nextOTP.itineraries[0].startTime - Number(localStorage['Alarm departure time']) * 60;
+	var lastAlarm = Number(localStorage['Alarm last']);
 	
 	if (localStorage['Alarm departure setting'] == 'true')
 	{
-		if (alarm != lastAlarm && alarm < now)
+		if ((!lastAlarm || lastAlarm < alarm) && alarm < now)
 		{
 			alert('Het is tijd!!');
-			lastAlarm = alarm;
+			localStorage['Alarm last'] = lastAlarm = alarm;
 		}
 	} 
 }
