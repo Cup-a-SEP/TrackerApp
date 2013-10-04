@@ -24,67 +24,86 @@
 		Tests:
 	</div>
 	<script type="text/javascript">
-		function testDB() {
-			return new LocalDB(
-				'test', 
+		var db = null;
+		var result = null;
+		
+		function setResult(i, res) {
+			$('#test' + i).append(res ? 'Pass' : 'Fail');
+		}
+		
+		function createDBTest(i) {
+			db = new LocalDB(
 				"CREATE TABLE IF NOT EXISTS `test`" + 
 					"(`int` INTEGER, " + 
 					"`text` TEXT, " +
 					"`bool` BOOLEAN);",
 				1
 			);
+			console.log(db.pError);
+			setResult(i, !db.pError);
 		}
 		
-		var db = null;
-		var result = null;
-		
-		function createDBTest() {
-			db = testDB();
-			return db != false;
-		}
-		
-		function insertTestPass() {
-			result = false;
-			
-			db.insert( { int: 0, text: 'TestInsert', bool: false} , 
-				function(obj) {
-					result = true;
-				}
+		function insertTestPass(i) {
+			db.insert( { int: 0, text: 'TestInsertPass', bool: false} ).done(
+				function() { setResult(i, true); }
+			).fail(
+				function() { setResult(i, false); }
 			);
-			
-			return result;
 		}
 		
-		function insertTestFail() {
-			result = true;
-
-			db.insert( { int: 0, text: 'TestInsert', bool: false, failParam: 'Fail'} , 
-				function(obj) {
-					result = false;
-				}
+		function insertTestFail(i) {
+			db.insert( { int: 0, text: 'TestInsertFail', bool: false, failParam: 'Fail'}).done(
+				function() { setResult(i, false); }
+			).fail(
+				function() { setResult(i, true); }
 			);
-			
-			return result;
 		}
 		
-		function removeTestPass() {
-			result = false;
-			
-			db.insert( { int: 0, text: 'TestInsert', bool: false} , 
-				function(obj) {
-					db.remove( {})
+		function removeTestPass(i) {
+			db.insert( { int: 0, text: 'TestRemovePass', bool: false}).done(
+				function() {
+					db.deleteMatch( {text: 'TestRemovePass'} ).done(
+						function() { setResult(i, true); }
+					).fail(
+						function() { setResult(i, false); }
+					);
 				}
+			).fail(
+				function() { setResult(i, false); }
 			);
+		}
+		
+		function removeTestFail(i) {
+			db.insert( { int: 0, text: 'TestRemoveFail', bool: false}).done(
+				function() {
+					db.deleteMatch( {text: 'TestRemoveFall'} ).done(
+						function() { setResult(i, true); }
+					).fail(
+						function() { setResult(i, false); }
+					);
+				}
+			).fail(
+				function() { setResult(i, false); }
+			);
+		}
+		
+		function selectOneTest(i) {
+			
+		}
+		
+		function selectMultipleTest(i) {
+			
 		}
 		
 		function generateDBACTestReport(tests) {
-			var result = '<table border="2">';
+			var result = '<table border="2"><tr><td>ID</td><td>NAME</td><td>PASS/FAIL</td></tr>';
 			$.each(tests, 
 				function(i, e) {
 					result = result + '<tr>' + 
 					'<td>' + i + '</td>' + 
 					'<td>' + e.name + '</td>' + 
-					'<td>' + e.test() + '</td></tr>';
+					'<td id="test' + i + '"></td></tr>';
+					e.test(i);
 				}
 			);
 			
@@ -105,10 +124,14 @@
 			{
 				name: 'Insert Fail',
 				test: insertTestFail
-			}/*,
+			},
 			{
-				name: 'Remove',
-				test: removeTest
+				name: 'Remove Pass',
+				test: removeTestPass
+			},
+			{
+				name: 'Remove Fail',
+				test: removeTestFail
 			},
 			{
 				name: 'Select One',
@@ -117,7 +140,7 @@
 			{
 				name: 'Select Multiple',
 				test: selectMultipleTest
-			}*/
+			}
 			];
 			var report = generateDBACTestReport(tests);
 			$('#testReport').append(report);
