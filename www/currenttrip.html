@@ -8,7 +8,6 @@
 	<meta charset="utf-8"/>
 	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
-	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
@@ -23,7 +22,8 @@
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
-		
+	
+    <script src="js/lib/jquery.json-2.4.min.js"></script>
     <style type="text/css">
 		
 		.swipe {
@@ -206,6 +206,8 @@
 			if (curTrip){
                 OTP.plan(curTrip).done(function(data)
                 {
+                    localStorage['OTP data'] = $.toJSON(data);
+                    
                     // TODO: use a variation of ui.addItinerary instead?
                     triplength = data.itineraries[0].legs.length;
                     for(var i = 0; i < triplength; i++){
@@ -233,8 +235,15 @@
                             .append($('<label>').text(fromName + ' -> ' + toName))
                             .append($('<br>'))
                             .append($('<label>').text(UI.formatTime(curleg.startTime) + ' -> ' + UI.formatTime(curleg.endTime)))
+                            .append($('<br>'))
+                            .append($('<br>'))
+                            .append($('<div class="button" id="legmap' + i + '">')
+                                .append("<p>Open map</p>"))
                         );
-                        console.log(curleg);
+                        $('#legmap' + i + '').click(function()
+                        {
+                            clickMap(this.id.substring(6));
+                        });
                     }
                     initSwipe();
                 }).fail(function(error, message)
@@ -258,6 +267,13 @@
 			}
 		});
 	});
+	
+	
+    function clickMap(i)
+    {
+        localStorage['ShowMap'] = i;
+        window.location = "legmap.html";
+    }
 	</script>
 </body>
 </html>
