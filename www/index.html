@@ -62,6 +62,8 @@
 			{
 				if (curTrip)
 					$('#curtripdiv').append($('<h1>').text(UI.formatTime(curTrip.expectedDepartureTime)));
+				 else 
+					$('#curtripdiv').hide();
 			});
 		});
 	</script>
