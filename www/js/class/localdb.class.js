@@ -87,7 +87,7 @@ var LocalDB = Class.create({
 	 */
 	selectById: function(id, fields)
 	{
-		fields = fields ? $.map(fields, function(i, field)
+		fields = fields ? $.map(fields, function(field)
 		{
 			return '`' + field + '`';
 		}).join(', ') : '*';
@@ -106,7 +106,7 @@ var LocalDB = Class.create({
 	 */	
 	selectAll: function(limit, fields, sql)
 	{
-		fields = fields ? $.map(fields, function(i, field)
+		fields = fields ? $.map(fields, function(field)
 		{
 			return '`' + field + '`';
 		}).join(', ') : '*';
@@ -127,12 +127,12 @@ var LocalDB = Class.create({
 	 */	
 	selectMatch: function(match, fields, sql)
 	{
-		fields = fields ? $.map(fields, function(i, field)
+		fields = fields ? $.map(fields, function(field)
 		{
 			return '`' + field + '`';
 		}).join(', ') : '*';
 		
-		var wheres = jQuery.map(match, function (col, val)
+		var wheres = jQuery.map(match, function (val, col)
 		{
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
@@ -172,7 +172,7 @@ var LocalDB = Class.create({
 	 */	
 	updateById: function(id, values)
 	{
-		var updates = jQuery.map(values, function (col, val)
+		var updates = jQuery.map(values, function (val, col)
 		{
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(', ');
@@ -192,12 +192,12 @@ var LocalDB = Class.create({
 	 */	
 	updateMatch: function(values, match, sql)
 	{
-		var updates = jQuery.map(values, function (col, val)
+		var updates = jQuery.map(values, function (val, col)
 		{
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(', ');
 		
-		var wheres = jQuery.map(match, function (col, val)
+		var wheres = jQuery.map(match, function (val, col)
 		{
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
@@ -229,7 +229,7 @@ var LocalDB = Class.create({
 	 */	
 	deleteMatch: function(match, sql)
 	{
-		var wheres = jQuery.map(match, function (col, val)
+		var wheres = jQuery.map(match, function (val, col)
 		{
 			return '`' + col + '` = \'' + val + '\'';
 		}).join(' AND ');
