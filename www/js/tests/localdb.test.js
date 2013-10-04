@@ -1,6 +1,6 @@
 //Test suite for the LocalDB and LocalDBResult classes. Be sure to include localdb.test.js before using this script.
 //Prerequisites: A database with a table 'table' must be initialized.
-
+/*
 
 var localDbObj = new LocalDB('table');
 
