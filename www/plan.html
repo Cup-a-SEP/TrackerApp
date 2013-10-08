@@ -42,7 +42,7 @@
 		}
 		
 		div.datetimeholder {
-			width:80%;
+			width:65%;
 			float:right;
 		}
 		
@@ -50,6 +50,8 @@
 		div.datetimeholder input#time {
 			width:100%;
 		}
+		
+		a.delete { color: red; }
 	</style>
 </head>
 <body>
@@ -65,14 +67,14 @@
 			
 			<div class="divborder" id="fromdiv">
 				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
-				<a id="clearfrom">&times;</a>
+				<a id="clearfrom" class="delete">&times;</a>
 				<input type="hidden" id="fromPlace" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
 				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
-				<a id="clearto">&times;</a>
+				<a id="clearto" class="delete">&times;</a>
 				<input type="hidden" id="toPlace" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
@@ -83,8 +85,12 @@
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="date" id="date" name="date">
-					<input type="time" id="time" name="time">
+					<div class="datetimeholder">
+						<input type="date" id="date" name="date">
+					</div>
+					<div class="datetimeholder">
+						<input type="time" id="time" name="time">
+					</div>		
 				</div>
 			</div>	
 				
@@ -238,10 +244,10 @@
 			
 			$('#clearfrom').click(function() {
 				console.log('blaat');
-				$('#fromPlace').val('');
+				$('#from').val('');
 			});
 			$('#clearto').click(function() {
-				$('#toPlace').val('');
+				$('#to').val('');
 			});
 		});
 	</script>

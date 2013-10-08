@@ -38,6 +38,7 @@
 		<a href="index_ajax.html" class="divbutton"><p class="button">AJAX Loading test page</p></a>
 		<a href="Feedback.html" class="divbutton"><p class="button">Gimme feedback</p></a>
 		<a onClick="sbn();" class="divbutton"><p class="button">Statusbarnotification!</p></a>
+		<a onClick="note();" class="divbutton"><p class="button">Notification!</p></a>
 	</div>
 	
 	<script type="text/javascript">
@@ -65,10 +66,13 @@
 			document.addEventListener("backbutton", onBackButton, false);
 		});
 		
-		
 		function sbn() {
 			console.log('sbn');
 			window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+		}
+		
+		function note() {
+			navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
 		}
 	</script>
 </body>
