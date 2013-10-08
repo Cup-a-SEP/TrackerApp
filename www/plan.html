@@ -160,7 +160,18 @@
 			
 			// Initialize date/time input boxes
 			$('#date').datepicker()/*val(System.getDate())*/;
-			$('#time').timepicker();/*val(System.getTime())*/;
+			$('#time').timepicker()/*val(System.getTime())*/;
+			
+			var field = document.createElement('input');
+			field.setAttribute('type', 'text');
+			document.body.appendChild(field);
+			
+			setTimeout(function() {
+			    field.focus();
+			    setTimeout(function() {
+			        field.setAttribute('style', 'display:none;');
+			    }, 50);
+			}, 50);
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
