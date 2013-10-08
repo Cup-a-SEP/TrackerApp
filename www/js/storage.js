@@ -163,7 +163,7 @@ Storage.Trips.next = function StorageTripsNext()
 };
 
 /**
- * Store a planned trip
+ * Remove a planned trip
  * @param {OTP~PlannerRequest} trip -  A planner request object to remove (only from, to time and date matter) 
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)
