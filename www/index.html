@@ -4,6 +4,8 @@
 <head>
 	<title>Frits</title>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
+
 	<!--<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -11,6 +13,7 @@
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script src="js/class/localdb.class.js"></script>
 	<script src="js/storage.js"></script>
+	<script src="js/service.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script src="js/ui.js"></script>
@@ -22,11 +25,13 @@
 	<span id="right"><span id="vraagteken">?</span></span></div>
 	
 	<div class="headerbuffer">
+		<!-- DEPRECATED!!!! everything in this screen will be removed; this screen will service as a loading screen in the future! -->
 		<h4 id="headertekst">Wat wil je doen?</h4>
 		<!--<p class="button"><a href="testdecoder.html">Test de JSON decoder</a></p>
 		<p class="button"><a href="storage_test.html">Test Data Storage</a></p>-->
 		<!--<p class="button"><a href="location.html">Test de locatie kiezer!</a></p>-->
-		<a href="plan.html" class="divbutton"><p class="button">Plan je route</p></a>
+		<a href="plan.html" class="divbutton"><p class="button">Plan je route (fastclick)</p></a>
+		<a href="plan_slow.html" class="divbutton"><p class="button">Plan je route</p></a>
 		<!--<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>-->
 		<a href="settings.html" class="divbutton"><p class="button">Instellingen</p></a>
 		<a href="DBACTestCases.html" class="divbutton"><p class="button">DBAC Test Report</p></a>
@@ -44,6 +49,7 @@
 			document.addEventListener("backbutton", onBackButton, false);
 			Storage.init();
 			startWatch();
+			navigator.location = 'plan.html';
 		}
 		
 		function onBackButton()

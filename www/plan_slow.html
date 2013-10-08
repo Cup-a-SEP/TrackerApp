@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>OTP test</title>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 	<meta charset="utf-8"/>
 	<script src="js/lib/prototype-1.7.1.js"></script>
@@ -13,7 +12,6 @@
 	<script src="js/system.js"></script>
 	<script src="js/class/localdb.class.js"></script>
 	<script src="js/storage.js"></script>
-	<script src="js/service.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
 	<script src="js/ui.js"></script>
@@ -158,8 +156,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').datepicker()/*val(System.getDate())*/;
-			$('#time').timepicker({'step': 1})/*val(System.getTime())*/;
+			$('#date').val(System.getDate());
+			$('#time').val(System.getTime());
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
