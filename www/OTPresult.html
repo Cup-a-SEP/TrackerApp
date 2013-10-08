@@ -74,7 +74,7 @@
 				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
 				Storage.Trips.store(req).always(function()
 				{
-					window.location = "index.html";
+					window.location = "currenttrip.html";
 				});
 			});
 		});
