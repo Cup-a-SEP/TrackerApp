@@ -15,6 +15,13 @@ Storage.init = function StorageInit()
 	localStorage['Alarm departure setting'] = localStorage['Alarm departure setting'] || false;
 	localStorage['Alarm embark setting'] = localStorage['Alarm embark setting'] || false;
 	localStorage['Alarm alight setting'] = localStorage['Alarm alight setting'] || false;
+	
+	/*
+	 * For reference:
+	 *
+	 * localStorage['OTP request']
+	 * localStorage['OTP data']
+	 */
 };
 
 /**
@@ -156,7 +163,7 @@ Storage.Trips.next = function StorageTripsNext()
 };
 
 /**
- * Store a planned trip
+ * Remove a planned trip
  * @param {OTP~PlannerRequest} trip -  A planner request object to remove (only from, to time and date matter) 
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)

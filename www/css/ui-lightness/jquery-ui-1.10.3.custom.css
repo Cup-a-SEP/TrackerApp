@@ -1332,8 +1332,8 @@ body {
  * 	icons for the different modalities
  */
 .icon {
-	width: 42px; /*48*/
-	height: 52px; /*60*/
+	width: 38px; /*48*/
+	height: 46px; /*60*/
 }
 
 .ui-accordion-header{
@@ -1486,7 +1486,7 @@ body {
  */
 #arriveBy {
 	float: left;
-	width: 70px;
+	width: 75px;
 	border-radius: 10px;
 }
 
@@ -1497,7 +1497,7 @@ body {
 	float:right;
 	margin: 5px;
 	margin-left: 27px;
-	width: 50%;
+	width: 47%;
 	border-radius: 5px;
 	margin-top: 1px;
 }
@@ -1508,7 +1508,7 @@ body {
 #time {
 	float: right;
 	margin: 5px;
-	width:50%;
+	width:47%;
 	border-radius: 5px;
 }
 

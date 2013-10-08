@@ -40,7 +40,7 @@ Geo.code = function Geocode(address)
 	
 	$.getJSON(Geo.ServerPath,
 	{
-		address: address,
+		address: address + '*',
 		sensor: true,
 		region: 'nl'
 	}).done(function(data)

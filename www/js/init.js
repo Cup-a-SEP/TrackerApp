@@ -27,7 +27,7 @@ $(function()
 	
 	Storage.init();
 	Storage.Trips.init();
-	setTimeout(startPolling, 1000);
+	//setTimeout(startPolling, 1000);
 });
 
 function startPolling()
