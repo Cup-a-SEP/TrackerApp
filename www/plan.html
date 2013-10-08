@@ -156,8 +156,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').val(System.getDate());
-			$('#time').val(System.getTime());
+			$('#date').datepicker();
+			$('#time').timepicker();
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
