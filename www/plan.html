@@ -217,7 +217,7 @@
 					
 					// Save planner data
 					localStorage['OTP request'] = $.toJSON(req);
-					localStorage['OTP data'] = $.toJSON(data);
+					localStorage['OTP data pending'] = $.toJSON(data);
 					
 					window.location = "OTPresult.html";
 				}).fail(function(error, message)
