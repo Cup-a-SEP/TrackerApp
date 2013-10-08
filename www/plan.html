@@ -13,14 +13,14 @@
 	<script src="js/system.js"></script>
 	<script src="js/class/localdb.class.js"></script>
 	<script src="js/storage.js"></script>
-	<script src="js/service.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
+	<script src="js/service.js"></script>
 	<script src="js/ui.js"></script>
-	<script src="js/jquery.ui.timepicker.js"></script>
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/lib/jquery.ui.timepicker.js"></script>
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -39,6 +39,16 @@
 		
 		#sugto, #sugfrom {
 			display: none;
+		}
+		
+		div.datetimeholder {
+			width:80%;
+			float:right;
+		}
+		
+		div.datetimeholder input#date,
+		div.datetimeholder input#time {
+			width:100%;
 		}
 	</style>
 </head>
@@ -159,19 +169,20 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').datepicker()/*val(System.getDate())*/;
-			$('#time').timepicker()/*val(System.getTime())*/;
+			$('#date').val(System.getDate()).datepicker();
+			$('#time').val(System.getTime()).timepicker();
 			
-			var field = document.createElement('input');
-			field.setAttribute('type', 'text');
-			document.body.appendChild(field);
-			
-			setTimeout(function() {
-			    field.focus();
+			function hideKeyboard(element)
+			{
+			    element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
+			    element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
 			    setTimeout(function() {
-			        field.setAttribute('style', 'display:none;');
-			    }, 50);
-			}, 50);
+			        element.blur();  //actually close the keyboard
+			        // Remove readonly attribute after keyboard is hidden.
+			        element.removeAttr('readonly');
+			        element.removeAttr('disabled');
+			    }, 100);
+			}
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)

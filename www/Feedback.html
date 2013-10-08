@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<title>Feedback form</title>
+
+	<meta charset="utf-8"/>
+	<script src="js/lib/prototype-1.7.1.js"></script>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/class/localdb.class.js"></script>
+	<script src="js/storage.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/otp.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/ui.js"></script>
+	
+	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+</head>
+<body>
+	<div id="header">
+		<span id="left"><span id="back">&lt;</span></span>  
+		<span id="center">Frits</span> 
+		<span id="right"><span id="vraagteken">?</span></span>
+	</div>
+	<form class="headerbuffer" id="form">
+	<div class="eiland" class="shadow">
+		<select name="ComplaintSubject" id="subject" onchange="fuckingfunction()">
+			<option value="frits">Frits</option>
+			<option value="route">Route</option>
+			<option value="ovvoorziening">Voorziening</option>
+		</select><br>
+		<div id="itineraryHeader" style="display:none">
+		</div>
+		<textarea id="comment" cols="14" rows="15"> </textarea><br>
+		<button type="button" onclick="buttonClick">Submit complaint</button>
+	</div>
+	</form>
+	<script src="js/init.js"></script>
+	<script>
+		function fuckingfunction(){
+			var index =document.getElementById("subject").selectedIndex;
+			if(index == 0){
+				document.getElementById("comment").value = "Zet hier je klacht over Frits";
+				$('#itineraryHeader').empty();
+				$('#itineraryHeader').attr("style", "display : none");
+				$('#itineraryHeader').attr("style", "margin-top: 0 em");
+			} else if (index == 1){
+				if(localStorage['OTP request']==null){
+					document.getElementById("comment").value = "Plan een route voor je gaat klagen, zeikerd";
+				} else {
+				document.getElementById("comment").value = "Zet hier wat er mis is met de route";
+				document.getElementById("comment").value += localStorage['OTP request'];
+				document.getElementById("comment").value += localStorage['OTP data'];
+				
+				$('#itineraryHeader').attr("style", "display : block");
+				$('#itineraryHeader').attr("style", "margin-top: 3.2 em");
+			 	var req = $.evalJSON(localStorage['OTP request']);
+				var data = $.evalJSON(localStorage['OTP data']);
+			
+				var from = data.from.name;
+					var to = data.to.name;
+					var start = UI.formatTime(data.itineraries[0].startTime);
+					var end = UI.formatTime(data.itineraries[0].endTime);
+					$('#itineraryHeader').append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to));
+				}
+				
+			} else {
+				
+				$('#itineraryHeader').empty();
+				$('#itineraryHeader').attr("style", "display : none");
+				$('#itineraryHeader').attr("style", "margin-top: 0 em");
+				if(localStorage['OTP request']==null){
+					document.getElementById("comment").value = "Plan een route voor je gaat klagen, zeikerd";
+				} else {
+				document.getElementById("comment").value = "Selecteer de voorziening waar je een klacht over hebt";
+				document.getElementById("comment").value += localStorage['OTP request'];
+				document.getElementById("comment").value += localStorage['OTP data'];
+				}
+			}
+		}
+		$(function()
+		{
+			// Initialize database
+			Storage.Trips.init();
+			
+			
+				
+			
+		});
+		
+	</script>
+</body>
+</html>
