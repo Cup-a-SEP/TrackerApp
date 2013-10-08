@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Current trip</title>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
 	<link href='css/swipestyle.css' rel='stylesheet'/>
 
 	<meta charset="utf-8"/>
@@ -112,8 +112,7 @@
 					<label>Iets om het alarm aan/uit te zetten</label>
 				</div>
 				
-				<a href="index.html" class="divbutton"><p class="button">Terug naar hoofdmenu</p></a>
-				<a href="index.html" class="divbutton"><p class="button">Annuleer deze reis</p></a>
+				<a class="divbutton" onclick='cancelTracking()'><p class="button">Annuleer deze reis</p></a>
 			
 			</div><!-- einde eiland -->
 		</div>
@@ -153,6 +152,11 @@
 	    ii.append(toAdd);
 	}
 	
+	function cancelTracking(){
+	    localStorage['OTP data'] = "";
+	    window.location = "index.html";
+	}
+	
 	function initSwipe(){
         var elem = document.getElementById('mySwipe');
         window.mySwipe = Swipe(elem, {
@@ -179,78 +183,72 @@
     }
     
 	$(function(){
-		Storage.Trips.init();
-		Storage.Trips.next().done(function(curTrip)
-		{
-			var sw = $('.swipe-wrap');
-			if (curTrip){
-                OTP.plan(curTrip).done(function(data)
-                {
-                    localStorage['OTP data'] = $.toJSON(data);
+        var curTrip = $.evalJSON(localStorage['OTP request']);
+    
+		var sw = $('.swipe-wrap');
+		if (curTrip){
+            OTP.plan(curTrip).done(function(data)
+            {
+                localStorage['OTP data'] = $.toJSON(data);
+                
+                triplength = data.itineraries[0].legs.length;
+                for(var i = 0; i < triplength; i++){
+                    var curleg = data.itineraries[0].legs[i];
                     
-                    // TODO: use a variation of ui.addItinerary instead?
-                    triplength = data.itineraries[0].legs.length;
-                    for(var i = 0; i < triplength; i++){
-                        var curleg = data.itineraries[0].legs[i];
-                        
-                        var fromName = curleg.from.name;
-                        var toName = curleg.to.name;
-                        
-                        if(curleg.mode == 'RAIL') {
-                            fromName = 'Station ' + fromName + ' - Perron ' + curleg.from.platformCode;
-                            toName = 'Station ' + toName + '  - Perron ' + curleg.to.platformCode;
-                        } else {
-                            if(getLegMode(data.itineraries[0].legs, i-1) == 'RAIL') {
-                                fromName = 'Station ' + fromName;
-                            }
-                            if(getLegMode(data.itineraries[0].legs, i+1) == 'RAIL') {
-                                toName = 'Station ' + toName;
-                            }
+                    var fromName = curleg.from.name;
+                    var toName = curleg.to.name;
+                    
+                    if(curleg.mode == 'RAIL') {
+                        fromName = 'Station ' + fromName + ' - Perron ' + curleg.from.platformCode;
+                        toName = 'Station ' + toName + '  - Perron ' + curleg.to.platformCode;
+                    } else {
+                        if(getLegMode(data.itineraries[0].legs, i-1) == 'RAIL') {
+                            fromName = 'Station ' + fromName;
                         }
-                        
-                        sw.append($('<div>')
-                            .addClass("leg-display")
-                            .append($('<label>').text(modeName(curleg.mode) + ' ' + curleg.route))
-                            .append($('<br>'))
-                            .append($('<br>'))
-                            .append($('<label style="float:left">').text(fromName))
-                            .append($('<label style="float:right">').text(UI.formatTime(curleg.startTime)))
-                            .append($('<br>'))
-                            .append("&darr;")
-                            .append($('<br>'))
-                            .append($('<label style="float:left">').text(toName))
-                            .append($('<label style="float:right">').text(UI.formatTime(curleg.endTime)))
-                            .append($('<br>'))
-                            .append($('<br>'))
-                            .append($('<div class="button" id="legmap' + i + '">')
-                                .append("<p>Open map</p>"))
-                        );
-                        $('#legmap' + i + '').click(function()
-                        {
-                            clickMap(this.id.substring(6));
-                        });
+                        if(getLegMode(data.itineraries[0].legs, i+1) == 'RAIL') {
+                            toName = 'Station ' + toName;
+                        }
                     }
-                    initSwipe();
-                }).fail(function(error, message)
-                {
-                    // TODO: add something here to notificate the user of the failure
-                    console.log("Fail!");
-                });
-			} else {
-				sw.append($('<div class="leg-display">').html("Gefeliciteerd met het vinden van de credits!"));
-				sw.append($('<div class="leg-display">').html("Credits:"));
-				sw.append($('<div class="leg-display">').html("Opdrachtgever: <br> Paul Jansen"));
-				sw.append($('<div class="leg-display">').html("Research: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven"));
-				sw.append($('<div class="leg-display">').html("Documentatie: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
-				sw.append($('<div class="leg-display">').html("Design: <br> Henk Alkema <br> Frederique Gerritsen"));
-                sw.append($('<div class="leg-display">').html("Database: <br> Ferry Timmers <br> Jeroen van de Ven"));
-                sw.append($('<div class="leg-display">').html("CSS: <br> Henk Alkema <br> Frederique Gerritsen <br> Jeroen van de Ven"));
-				sw.append($('<div class="leg-display">').html("Javascript/JQuery: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
-				sw.append($('<div class="leg-display">').html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven"));
-				triplength = 10;
+                    
+                    sw.append($('<div>')
+                        .addClass("leg-display")
+                        .append($('<label>').text(modeName(curleg.mode) + ' ' + curleg.route))
+                        .append($('<br>'))
+                        .append($('<br>'))
+                        .append($('<label style="float:left">').text(fromName))
+                        .append($('<label style="float:right">').text(UI.formatTime(curleg.startTime)))
+                        .append($('<br>'))
+                        .append("&darr;")
+                        .append($('<br>'))
+                        .append($('<label style="float:left">').text(toName))
+                        .append($('<label style="float:right">').text(UI.formatTime(curleg.endTime)))
+                        .append($('<br>'))
+                        .append($('<br>'))
+                        .append($('<div class="button" id="legmap' + i + '">')
+                            .append("<p>Open map</p>"))
+                    );
+                    $('#legmap' + i + '').click(function()
+                    {
+                        clickMap(this.id.substring(6));
+                    });
+                }
                 initSwipe();
-			}
-		});
+            });
+		} else {
+			sw.append($('<div class="leg-display">').html("Gefeliciteerd met het vinden van de credits!"));
+			sw.append($('<div class="leg-display">').html("Credits:"));
+			sw.append($('<div class="leg-display">').html("Opdrachtgever: <br> Paul Jansen"));
+			sw.append($('<div class="leg-display">').html("Research: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven"));
+			sw.append($('<div class="leg-display">').html("Documentatie: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
+			sw.append($('<div class="leg-display">').html("Design: <br> Henk Alkema <br> Frederique Gerritsen"));
+            sw.append($('<div class="leg-display">').html("Database: <br> Ferry Timmers <br> Jeroen van de Ven"));
+            sw.append($('<div class="leg-display">').html("CSS: <br> Henk Alkema <br> Frederique Gerritsen <br> Jeroen van de Ven"));
+			sw.append($('<div class="leg-display">').html("Javascript/JQuery: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
+			sw.append($('<div class="leg-display">').html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven"));
+			triplength = 10;
+            initSwipe();
+		}
+
 	});
 	
 	

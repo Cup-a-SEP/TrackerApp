@@ -4,6 +4,8 @@
 <head>
 	<title>Frits</title>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
+
 	<!--<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -23,13 +25,11 @@
 	
 	<div class="headerbuffer">
 		<h4 id="headertekst">Wat wil je doen?</h4>
-		<div id="curtripdiv">
-		<a href="currenttrip.html" class="divbutton"><p class="button">Details</p></a>
-		</div>
 		<!--<p class="button"><a href="testdecoder.html">Test de JSON decoder</a></p>
 		<p class="button"><a href="storage_test.html">Test Data Storage</a></p>-->
 		<!--<p class="button"><a href="location.html">Test de locatie kiezer!</a></p>-->
-		<a href="plan.html" class="divbutton"><p class="button">Plan je route</p></a>
+		<a href="plan.html" class="divbutton"><p class="button">Plan je route (fastclick)</p></a>
+		<a href="plan_slow.html" class="divbutton"><p class="button">Plan je route</p></a>
 		<!--<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>-->
 		<a href="settings.html" class="divbutton"><p class="button">Instellingen</p></a>
 		<a href="DBACTestCases.html" class="divbutton"><p class="button">DBAC Test Report</p></a>
@@ -57,15 +57,6 @@
 		$(function()
 		{
 			document.addEventListener("backbutton", onBackButton, false);
-			
-			Storage.Trips.init();
-			Storage.Trips.next().done(function(curTrip)
-			{
-				if (curTrip)
-					$('#curtripdiv').append($('<h1>').text(UI.formatTime(curTrip.expectedDepartureTime)));
-				 else 
-					$('#curtripdiv').hide();
-			});
 		});
 	</script>
 </body>
