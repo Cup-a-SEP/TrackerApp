@@ -15,6 +15,13 @@ Storage.init = function StorageInit()
 	localStorage['Alarm departure setting'] = localStorage['Alarm departure setting'] || false;
 	localStorage['Alarm embark setting'] = localStorage['Alarm embark setting'] || false;
 	localStorage['Alarm alight setting'] = localStorage['Alarm alight setting'] || false;
+	
+	/*
+	 * For reference:
+	 *
+	 * localStorage['OTP request']
+	 * localStorage['OTP data']
+	 */
 };
 
 /**
