@@ -16,8 +16,6 @@ function onBackButton()
 	history.back();
 }
 
-var nextOTP;
-
 $(function()
 {
 	$('#back').click(function()
@@ -26,38 +24,17 @@ $(function()
 	});
 	
 	Storage.init();
-	Storage.Trips.init();
-	//setTimeout(startPolling, 1000);
+	Service.Alarm.Callback = function(type, leg)
+	{
+		alert('De ' + type + ' wekker ging af!\n' + leg.from.name + ' -> ' + leg.to.name + ' (debug)');
+	};
+	setTimeout(Polling, 0);
 });
 
-function startPolling()
+function Polling()
 {
-	Storage.Trips.next().done(function(req)
-	{
-		console.log(req);
-		OTP.plan(req).done(function(data)
-		{
-			console.log(data);
-			nextOTP = data;
-			
-			polling();
-			setInterval(polling, 1000);
-		});
-	});
-}
-
-function polling()
-{
-	var now = new Date().getTime();
-	var alarm = nextOTP.itineraries[0].startTime - Number(localStorage['Alarm departure time']) * 60;
-	var lastAlarm = Number(localStorage['Alarm last']);
-	
-	if (localStorage['Alarm departure setting'] == 'true')
-	{
-		if ((!lastAlarm || lastAlarm < alarm) && alarm < now)
-		{
-			alert('Het is tijd!!');
-			localStorage['Alarm last'] = lastAlarm = alarm;
-		}
-	} 
+	var next = Service.Alarm.check() - new Date().getTime();
+	$('#status').text(next / 60000);
+	next = Math.max(Math.min(next / 2, 5 * 60 * 1000), 1000);
+	setTimeout(Polling, next);
 }
