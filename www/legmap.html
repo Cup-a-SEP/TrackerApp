@@ -11,11 +11,11 @@
 	<script src="cordova.js"></script>
 	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
-    <script src="js/service.js"></script>
 	<script src="js/class/localdb.class.js"></script>
 	<script src="js/storage.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
+	<script src="js/service.js"></script>
 	<script src="js/ui.js"></script>
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
@@ -85,7 +85,7 @@
 		 * @returns {String} the legGeometry of the Leg
 		 */
 		function getLegGeometry(legNr) {
-			var string = localStorage['OTP data'];
+			var string = localStorage['OTP data pending'];
 			
 			var data = $.evalJSON(string);
 			
@@ -156,7 +156,7 @@
 		 * Initializes the features to contain the data of the entire route 
 		 */
 		function showEntireRoute() {
-			var string = localStorage['OTP data'];
+			var string = localStorage['OTP data pending'];
 			var data = $.evalJSON(string);
 			features = new Array();
 			
