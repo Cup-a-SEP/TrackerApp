@@ -156,8 +156,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').datepicker();
-			$('#time').timepicker();
+			$('#date').datepicker()/*val(System.getDate())*/;
+			$('#time').timepicker({'step': 1});
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
@@ -209,8 +209,8 @@
 				}).fail(function(error, message)
 				{
 					$('#status').empty()
-						.append($('<h3>').text('Geen route gevonden.'))
-						.append($('<p>').text(message));
+						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
+						.append($('<h3>').text(message));
 				});
 				
 				return false;
