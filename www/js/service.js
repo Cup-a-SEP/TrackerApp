@@ -28,7 +28,7 @@ Service.Alarm.Callback = function(){};
  */
 Service.Alarm.check = function ServiceAlarmCheck()
 {
-	res = !localStorage['OTP data'] || $.parseJSON(localStorage['OTP data']);
+	res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
 	if (!res)
 		return Infinity;
 	var legs = res.itineraries[0].legs;
