@@ -31,6 +31,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	res = !localStorage['OTP data'] || $.parseJSON(localStorage['OTP data']);
 	if (!res)
 		return Infinity;
+	var legs = res.itineraries[0].legs;
 	
 	var now = new Date().getTime();
 	var last = localStorage['Alarm last'] ? Number(localStorage['Alarm last']) : 0;
@@ -38,20 +39,16 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	function nextEmbark()
 	{
-		$.each(res.itineraries[0].legs, function(leg)
-		{
-			if (leg.startTime > last)
-				return leg;
-		});
+		for (var i = 1; i < legs.length; ++i)
+			if (legs[i].startTime > last)
+				return legs[i];
 	}
 	
 	function nextAlight()
 	{
-		$.each(res.itineraries[0].legs, function(leg)
-		{
-			if (leg.endTime > last)
-				return leg;
-		});
+		for (var i = 0; i < legs.length; ++i)
+			if (legs[i].endTime > last)
+				return legs[i];
 	}
 	
 	if (localStorage['Alarm departure setting'] == 'true')
@@ -64,9 +61,10 @@ Service.Alarm.check = function ServiceAlarmCheck()
 			Service.Alarm.Callback('departure', res.itineraries[0].legs[0]);
 		}
 		if (time > last)
-			next = time;
+			next = time - predelay;
 	}
-	else if (localStorage['Alarm embark setting'] == 'true')
+	
+	if (localStorage['Alarm embark setting'] == 'true')
 	{
 		var predelay = Number(localStorage['Alarm embark time']) * 60;
 		var leg;
@@ -76,39 +74,32 @@ Service.Alarm.check = function ServiceAlarmCheck()
 			if (time > last && now >= time - predelay)
 			{
 				localStorage['Alarm last'] = last = time;
-				Service.Alarm.Callback('embark', reg);
+				Service.Alarm.Callback('embark', leg);
 			}
 		}
 		// Calculate next
 		if (leg = nextEmbark())
-			next = Math.min(next, leg.startTime);
+			next = Math.min(next, leg.startTime - predelay);
 	}
-	else if (localStorage['Alarm alight setting'] == 'true')
+	
+	if (localStorage['Alarm alight setting'] == 'true')
 	{
 		var time = Number(localStorage['Alarm alight time']) * 60;
-		var leg = nextAlight();
-		if (leg)
+		var leg;
+		if (leg = nextAlight())
 		{
 			var time = leg.endTime;
 			if (time > last && now >= time - predelay)
 			{
 				localStorage['Alarm last'] = last = time;
-				Service.Alarm.Callback('alight', reg);
+				Service.Alarm.Callback('alight', leg);
 			}
 		}
 		// Calculate next
 		if (leg = nextAlight())
-			next = Math.min(next, leg.endTime);
+			next = Math.min(next, leg.endTime - predelay);
 	}
 	return next;
-};
-
-/**
- * Receives the leg and type of next alarm 
- */
-Service.Alarm.next = function ServiceAlarmNext()
-{
-	
 };
 
 /**
