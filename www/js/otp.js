@@ -34,6 +34,9 @@ var OTP = {};
  * @readOnly
  * @type string
  */
+//http://b-direct.cup-a-sep.nl/rest/v1.0/
+//http://opentripplanner.nl/otp-rest-servlet/ws/
+//http://ferrari.goabout.com:8080/otp-rest-servlet/ws/
 OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 
 /*OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers, mode)
