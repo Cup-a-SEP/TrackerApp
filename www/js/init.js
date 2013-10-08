@@ -24,12 +24,17 @@ $(function()
 	});
 	
 	Storage.init();
+	Service.Alarm.Callback = function(type, leg)
+	{
+		alert('De ' + type + ' wekker ging af!\n' + leg.from.name + ' -> ' + leg.to.name + ' (debug)');
+	};
 	setTimeout(Polling, 0);
 });
 
 function Polling()
 {
-	var next = Service.Alarm.check() / 2;
-	next = Math.max(Math.min(next, 5 * 60 * 1000), 1000);
+	var next = Service.Alarm.check() - new Date().getTime();
+	$('#status').text(next / 60000);
+	next = Math.max(Math.min(next / 2, 5 * 60 * 1000), 1000);
 	setTimeout(Polling, next);
 }
