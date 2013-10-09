@@ -25,7 +25,7 @@
 		</div>
 		<form class="headerbuffer" id="form">
 			<div class="eilandLight" class="shadow">
-				<select name="ComplaintSubject" id="subject" onchange="fuckingfunction()" class="feedbackelement">
+				<select name="ComplaintSubject" id="subject" onchange="changeForm()" class="feedbackelement">
 					<option value="frits">Frits</option>
 					<option value="route">Route</option>
 					<option value="ovvoorziening">Voorziening</option>
@@ -37,36 +37,69 @@
 				<div id="itineraryHeader" style="display:none"></div>
 				<textarea id="comment" cols="14" rows="15" class="feedbackelement">Licht hier uw klacht toe</textarea>
 				<br>
-				<button type="button" onclick="buttonClick()" class="feedbackelement">
+				<button type="button" onclick="buttonClick()" class="feedbackelement" id="submitButton">
 					Verstuur klacht
 				</button>
 			</div>
 		</form>
+
 		<script src="js/init.js"></script>
 		<script>
+			// function createJson() {
+			// var data = $.evalJSON(localStorage['OTP data']);
+			// var package = new Object();
+			// package.date = data.date;
+			// document.getElementById("comment").value += data.date+"   Je Moeder   ";
+			// package.from = {"lon" : data.from.lon, "lat":data.from.lat};
+			// package.to = {"lon" : data.to.lon, "lat":data.to.lat};
+			// package.itineraries = [{"startTime":data.itineraries[0].startTime,"endTime":data.itineraries[0].startTime}];
+			// document.getElementById("comment").value += package.itineraries[0];
+			// for(var i =0; i<data.itineraries[0].legs.length; i++){
+			// package.itineraries[0].legs[i].startTime=data.itineraries[0].legs[i].startTime;
+			// package.itineraries[0].legs[i].endTime=data.itineraries[0].legs[i].endTime;
+			// package.itineraries[0].legs[i].mode=data.itineraries[0].legs[i].mode;
+			// package.itineraries[0].legs[i].route=data.itineraries[0].legs[i].route;
+			// package.itineraries[0].legs[i].from.stopId=data.itineraries[0].legs[i].from.stopId;
+			// package.itineraries[0].legs[i].to.stopId=data.itineraries[0].legs[i].to.stopId;
+			// package.itineraries[0].legs[i].tripId=data.itineraries[0].legs[i].tripId;
+			// }
+			// var myString = JSON.stringify(package);
+			// return myString;
+			// }
+
+			/**
+			 * Handles the sending of the feedback
+			 */
 			function buttonClick() {
 				var index = document.getElementById("subject").selectedIndex;
-				
+
 				if (index == 0) {
 					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over Frits") + "&body=" + escape(document.getElementById('comment').value);
 
 					window.location.href = link;
 
-					document.getElementById("comment").value += "Email verzonden!";
+					document.getElementById("comment").value = "Email verzonden!";
 					document.getElementById("submitButton").disabled = true;
 				} else if (index == 1) {
-					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over de route") + "&body=" + escape(document.getElementById('comment').value);
+					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over de route") + "&body=" + escape(document.getElementById('comment').value + "\nREQUEST:  " + localStorage['OTP request']);
 
 					window.location.href = link;
 
-					document.getElementById("comment").value += "Email verzonden!";
+					document.getElementById("comment").value = "Email verzonden!";
 					document.getElementById("submitButton").disabled = true;
 				} else {
+					var e = document.getElementById("legs");
+					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over ") + e.options[e.selectedIndex].text + "&body=" + e.options[e.selectedIndex].value + ": \n " + escape(document.getElementById('comment').value);
 
-					document.getElementById("comment").value += "Emai niet verzonden!";
+					window.location.href = link;
+					document.getElementById("comment").value = "Email verzonden!";
+					document.getElementById("submitButton").disabled = true;
 				}
 			}
 
+			/**
+			 * Makes the legs dropdown menu visible and fills it with the different parts of a journey a user can have a complaint about
+			 */
 			function getLegs() {
 				$('#legs').attr("style", "display : block");
 				var data = $.evalJSON(localStorage['OTP data']);
@@ -74,59 +107,61 @@
 				for (var i = 0; i < data.itineraries[0].legs.length; i++) {
 					if (data.itineraries[0].legs[i].mode == "BUS") {
 						if (first) {
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '>' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '>' + data.itineraries[0].legs[i].from.name + '</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '>' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + '</option>');
 							first = false;
 						} else {
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '>' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + '</option>');
 						}
 					} else if (data.itineraries[0].legs[i].mode == "RAIL") {
 						if (first) {
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '>' + data.itineraries[0].legs[i].from.name + ', Station NS</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '>' + data.itineraries[0].legs[i].from.name + ', Station NS</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
 							first = false;
 						} else {
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
 						}
 					} else if (data.itineraries[0].legs[i].mode == "TRAM") {
 						if (first) {
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Tramhalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 							first = false;
 						} else {
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 						}
 					} else if (data.itineraries[0].legs[i].mode == "SUBWAY") {
 						if (first) {
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Metrohalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 							first = false;
 						} else {
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 						}
-					}else if (data.itineraries[0].legs[i].mode == "FERRY") {
+					} else if (data.itineraries[0].legs[i].mode == "FERRY") {
 						if (first) {
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 							first = false;
 						} else {
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
-							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 						}
 					}
-				
+
 				}
 			}
-
+			/**
+			 * Makes a div visible that shows the user about which route he is making a complaint.
+			 */
 			function createDiv() {
 				$('#itineraryHeader').attr("style", "display : block");
 				$('#itineraryHeader').attr("style", "margin-top: 3.2 em");
@@ -139,15 +174,19 @@
 				var end = UI.formatTime(data.itineraries[0].endTime);
 				$('#itineraryHeader').append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to));
 			}
-
+			/**
+			 * Empties the div and makes it invisible.
+			 */
 			function emptyDiv() {
 				$('#itineraryHeader').empty();
 				$('#itineraryHeader').attr("style", "display : none");
 				$('#itineraryHeader').attr("style", "margin-top: 0 em");
 				$('#itineraryHeader').attr("style", "border: 0px");
 			}
-
-			function fuckingfunction() {
+			/**
+			 * Changes the form of the layout according to which type of complaint the user has.
+			 */
+			function changeForm() {
 				var index = document.getElementById("subject").selectedIndex;
 				if (index == 0) {
 					document.getElementById("comment").value = "Licht hier uw klacht toe";
@@ -177,6 +216,9 @@
 				// Initialize database
 				Storage.Trips.init();
 			});
+			/**
+			 * Empties the textfield when it is tapped.
+			 */
 			$("#comment").focus(function() {
 
 				if ($(this).val() == "Licht hier uw klacht toe") {
