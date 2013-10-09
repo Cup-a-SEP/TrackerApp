@@ -185,14 +185,9 @@
     }
     
 	$(function(){
-        var curTrip = $.evalJSON(localStorage['OTP request']);
-    
+    	var data = $.evalJSON(localStorage['OTP data']);
 		var sw = $('.swipe-wrap');
-		if (curTrip){
-            OTP.plan(curTrip).done(function(data)
-            {
-                localStorage['OTP data'] = $.toJSON(data);
-                
+		if (data){
                 triplength = data.itineraries[0].legs.length;
                 for(var i = 0; i < triplength; i++){
                     var curleg = data.itineraries[0].legs[i];
@@ -235,18 +230,17 @@
                     });
                 }
                 initSwipe();
-            });
 		} else {
-			sw.append($('<div class="leg-display">').html("Gefeliciteerd met het vinden van de credits!"));
-			sw.append($('<div class="leg-display">').html("Credits:"));
-			sw.append($('<div class="leg-display">').html("Opdrachtgever: <br> Paul Jansen"));
-			sw.append($('<div class="leg-display">').html("Research: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven"));
+			sw.append($('<div class="leg-display">').html("Gefeliciteerd met het vinden van de credits! <br> <br> <br> <br> <br> <br> <br> <br> <br>"));
+			sw.append($('<div class="leg-display">').html("Credits: <br> <br> <br> <br> <br> <br> <br> <br> <br>"));
+			sw.append($('<div class="leg-display">').html("Opdrachtgever: <br> Paul Jansen <br> <br> <br> <br> <br> <br> <br> <br>"));
+			sw.append($('<div class="leg-display">').html("Research: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> <br> <br> <br> <br> <br>"));
 			sw.append($('<div class="leg-display">').html("Documentatie: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
-			sw.append($('<div class="leg-display">').html("Design: <br> Henk Alkema <br> Frederique Gerritsen"));
-            sw.append($('<div class="leg-display">').html("Database: <br> Ferry Timmers <br> Jeroen van de Ven"));
-            sw.append($('<div class="leg-display">').html("CSS: <br> Henk Alkema <br> Frederique Gerritsen <br> Jeroen van de Ven"));
+			sw.append($('<div class="leg-display">').html("Design: <br> Henk Alkema <br> Frederique Gerritsen <br> <br> <br> <br> <br> <br> <br>"));
+            sw.append($('<div class="leg-display">').html("Database: <br> Ferry Timmers <br> Jeroen van de Ven <br> <br> <br> <br> <br> <br> <br>"));
+            sw.append($('<div class="leg-display">').html("CSS: <br> Henk Alkema <br> Frederique Gerritsen <br> Jeroen van de Ven <br> <br> <br> <br> <br> <br>"));
 			sw.append($('<div class="leg-display">').html("Javascript/JQuery: <br> Henk Alkema <br> Ferry Timmers <br> Jeroen van de Ven <br> Philip Klees <br> Florian Oosterhof <br> Sjarlie Graaumans <br> Frederique Gerritsen <br> Max Hageluken"));
-			sw.append($('<div class="leg-display">').html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven"));
+			sw.append($('<div class="leg-display">').html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven <br> <br> <br> <br> <br> <br> <br> <br>"));
 			triplength = 10;
             initSwipe();
 		}
