@@ -1,26 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>OTP test</title>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
-	<meta charset="utf-8"/>
-	<script src="js/lib/prototype-1.7.1.js"></script>
-	<script src="js/lib/jquery-1.8.3.min.js"></script>
-	<script src="js/lib/jquery.json-2.4.min.js"></script>
-	<script src="cordova.js"></script>
-	<script src="js/misc.js"></script>
-	<script src="js/system.js"></script>
-	<script src="js/class/localdb.class.js"></script>
-	<script src="js/storage.js"></script>
-	<script src="js/geocode.js"></script>
-	<script src="js/otp.js"></script>
-	<script src="js/service.js"></script>
-	<script src="js/ui.js"></script>
-	
+<head>
+	<title>Frits</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
+
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="js/lib/jquery.ui.timepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -53,71 +41,57 @@
 	</style>
 </head>
 <body>
-	<div id="header">
-		<span id="left"><span id="back">&lt;</span></span>
-		<span id="center">Frits</span> 
-		<span id="right"><span id="vraagteken">?</span></span>
-	</div>
+	<div id="header"><span id="left"><span id="back">&lt;</span></span>  
+	<span id="center">Frits</span> 
+
+	<span id="right"><span id="vraagteken">?</span></span></div>
+	
 	<section>
-		<form class="headerbuffer" id="form">
-			
-			<div class="eiland" class="shadow">
-			
-			<div class="divborder" id="fromdiv">
-				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
-				<input type="hidden" id="fromPlace" name="fromPlace">
-			</div>
-			<div id="sugfrom" class="suggestionsdiv"></div>
-			
-			<div class="divborder" id="todiv">
-				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
-				<input type="hidden" id="toPlace" name="toPlace">
-			</div>
-			<div id="sugto" class="suggestionsdiv"></div>
-			
-			<div class="divborder" id="datetime">
-				<div id="ditmoetopdezelfdelijn">
-					<select name="arriveBy" id="arriveBy">
-						<option value="false">vertrek</option>
-						<option value="true">aankomst</option>
-					</select>
-					<input type="date" id="date" name="date">
-					<input type="time" id="time" name="time">
-				</div>
-			</div>	
-				
-			<div class="divborder" id="voorkeur">
-				<label>Voorkeur<select id="preferenceDropdown" name="preferLeastTransfers">
-					<option value="false">snelste route</option>
-					<option value="true">minst aantal overstappen</option>
-				</select></label>
-			</div>
-			
-			<div class="divborder" id="modaliteiten">
-				<label>Modaliteiten<div align="center">
-					<img src="img/bus.png" class="icon" id="bus">
-					<img src="img/rail.png" class="icon" id="rail">
-					<img src="img/tram.png" class="icon" id="tram">
-					<img src="img/subway.png" class="icon" id="subway">
-					<img src="img/ferry.png" class="icon" id="ferry">
-				</div></label>
-				<input type="hidden" id="mode" name="mode" value="WALK,TRANSIT">
-			</div>
-			
-			<div class="divborder" id="wheelchairdiv">
-				<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
-			</div>
-			
-			<div id="planknop">
-				<span id="fav">&hearts;</span>
-				<div id="status"></div>
-				<button id="plan">Plan</button>
-			</div>
-			
-			</div><!-- einde eiland -->
-			
-		</form>
+	<div class="headerbuffer">
+		<h4 id="headertekst">AJAX-enabled page</h4>
+
+		<a id="planknopmetsupervetteajax" class="divbutton"><p class="button">Plan je route</p></a>
+	</div>
 	</section>
+	
+	<script src="js/lib/prototype-1.7.1.js"></script>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/class/localdb.class.js"></script>
+	<script src="js/storage.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/otp.js"></script>
+	<script src="js/ui.js"></script>
+	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script type="text/javascript" src="js/index_ajax.js"></script>
+	
+	<script type="text/javascript">
+		app.initialize();
+		
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		function onDeviceReady()
+		{
+			console.log("Test Device ready");
+			document.addEventListener("backbutton", onBackButton, false);
+			Storage.init();
+			startWatch();
+		}
+		
+		function onBackButton()
+		{
+			console.log('The user wants to close the app.');
+			navigator.app.exitApp();
+		}
+		
+		$(function()
+		{
+			document.addEventListener("backbutton", onBackButton, false);
+		});
+	</script>
 	<script src="js/init.js"></script>
 	<script>
 		// Modality button states
@@ -169,8 +143,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').datepicker();
-			$('#time').timepicker();
+			$('#date').datepicker()/*val(System.getDate())*/;
+			$('#time').timepicker({'step': 1})/*val(System.getTime())*/;
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
@@ -216,7 +190,7 @@
 					
 					// Save planner data
 					localStorage['OTP request'] = $.toJSON(req);
-					localStorage['OTP data pending'] = $.toJSON(data);
+					localStorage['OTP data'] = $.toJSON(data);
 					
 					window.location = "OTPresult.html";
 				}).fail(function(error, message)
