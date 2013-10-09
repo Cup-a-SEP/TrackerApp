@@ -34,10 +34,10 @@ var OTP = {};
  * @readOnly
  * @type string
  */
-//http://b-direct.cup-a-sep.nl/rest/v1.0/
-//http://opentripplanner.nl/otp-rest-servlet/ws/
-//http://ferrari.goabout.com:8080/otp-rest-servlet/ws/
-OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
+//OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
+//OTP.ServerPath = 'http://opentripplanner.nl/otp-rest-servlet/ws/';
+OTP.ServerPath = 'http://ferrari.goabout.com:8080/otp-rest-servlet/ws/';
+//OTP.ServerPath = 'http://otp1.do.goabout.com/otp-rest-servlet/ws/';
 
 /*OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers, mode)
 {
@@ -62,7 +62,9 @@ OTP.plan = function OTPPlan(request)
 	
 	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
-		if (!data.error)
+		if (typeof data != 'object')
+			def.reject(data);
+		else if (!data.error)
 			def.resolve(data.plan);
 		else
 			def.reject(data.error.id, data.error.msg);

@@ -53,7 +53,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm departure setting'] == 'true')
 	{
-		var predelay = Number(localStorage['Alarm departure time']) * 60;
+		var predelay = Number(localStorage['Alarm departure time']) * 60e3;
 		var time = res.itineraries[0].startTime;
 		if (time > last && now >= time - predelay)
 		{
@@ -66,7 +66,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm embark setting'] == 'true')
 	{
-		var predelay = Number(localStorage['Alarm embark time']) * 60;
+		var predelay = Number(localStorage['Alarm embark time']) * 60e3;
 		var leg;
 		if (leg = nextEmbark())
 		{
@@ -84,7 +84,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm alight setting'] == 'true')
 	{
-		var time = Number(localStorage['Alarm alight time']) * 60;
+		var time = Number(localStorage['Alarm alight time']) * 60e3;
 		var leg;
 		if (leg = nextAlight())
 		{
@@ -180,6 +180,10 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	if (!req)
 		return def.resolve();
 	
+	req.time = System.getTime();
+	req.date = System.getDate();
+	req.arriveBy = false;
+	
 	var leg = Service.Trip.currentLeg();
 	if (leg == null)
 		def.resolve();
@@ -187,7 +191,6 @@ Service.Trip.refresh = function ServiceTripRefresh()
 		System.getLocation().done(function(coords)
 		{
 			req.fromPlace = coords;
-			req.arriveBy = false;
 			plan();
 		}).fail(function() // No geolocation, use next leg
 		{
@@ -195,8 +198,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 			if (leg != null && leg.tripId != null)
 			{
 				delete req.fromPlace;
-				req.startTransitTripId = leg.tripId;
-				req.arriveBy = false;
+				req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
 				plan();
 			}
 			else // No idea where we are and where to go next, fail
@@ -205,18 +207,18 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	else
 	{
 		delete req.fromPlace;
-		req.startTransitTripId = leg.tripId;
-		req.arriveBy = false;
+		req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
 		plan();
 	}
 	
 	function plan()
 	{
+		console.log(req);
 		OTP.plan(req).done(function(data)
 		{
 			localStorage['OTP data'] = $.toJSON(data);
 			def.resolve();
-		}).fail(function(error) { def.reject(error); });
+		}).fail(function(code, error) { def.reject(code, error); });
 	}
 	
 	return def;
