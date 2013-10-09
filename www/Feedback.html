@@ -25,20 +25,20 @@
 		</div>
 		<form class="headerbuffer" id="form">
 			<div class="eiland" class="shadow">
-				<select name="ComplaintSubject" id="subject" onchange="fuckingfunction()">
+				<select name="ComplaintSubject" id="subject" onchange="fuckingfunction()" class="feedbackelement">
 					<option value="frits">Frits</option>
 					<option value="route">Route</option>
 					<option value="ovvoorziening">Voorziening</option>
 				</select>
-				<select name="legSelect" id="legs" style="display:none">
+				<select name="legSelect" id="legs" style="display:none" class="feedbackelement">
 					<option>Selecteer een voorziening</option>
 				</select>
 				<br>
 				<div id="itineraryHeader" style="display:none"></div>
-				<textarea id="comment" cols="14" rows="15" >Licht hier uw klacht toe</textarea>
+				<textarea id="comment" cols="14" rows="15" class="feedbackelement">Licht hier uw klacht toe</textarea>
 				<br>
-				<button type="button" onclick="buttonClick">
-					Submit complaint
+				<button type="button" onclick="buttonClick" class="feedbackelement">
+					Verstuur klacht
 				</button>
 			</div>
 		</form>

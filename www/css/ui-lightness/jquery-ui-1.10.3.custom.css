@@ -1665,3 +1665,9 @@ body {
 .alarmtype {
 	font-size: 14px;
 }
+
+.feedbackelement {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
