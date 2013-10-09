@@ -85,7 +85,7 @@
 		 * @returns {String} the legGeometry of the Leg
 		 */
 		function getLegGeometry(legNr) {
-			var string = localStorage['OTP data'];
+			var string = localStorage['OTP data pending'];
 			
 			var data = $.evalJSON(string);
 			
@@ -156,7 +156,7 @@
 		 * Initializes the features to contain the data of the entire route 
 		 */
 		function showEntireRoute() {
-			var string = localStorage['OTP data'];
+			var string = localStorage['OTP data pending'];
 			var data = $.evalJSON(string);
 			features = new Array();
 			
