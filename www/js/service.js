@@ -180,6 +180,10 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	if (!req)
 		return def.resolve();
 	
+	req.time = System.getTime();
+	req.date = System.getDate();
+	req.arriveBy = false;
+	
 	var leg = Service.Trip.currentLeg();
 	if (leg == null)
 		def.resolve();
@@ -187,7 +191,6 @@ Service.Trip.refresh = function ServiceTripRefresh()
 		System.getLocation().done(function(coords)
 		{
 			req.fromPlace = coords;
-			req.arriveBy = false;
 			plan();
 		}).fail(function() // No geolocation, use next leg
 		{
@@ -195,8 +198,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 			if (leg != null && leg.tripId != null)
 			{
 				delete req.fromPlace;
-				req.startTransitTripId = leg.tripId;
-				req.arriveBy = false;
+				req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
 				plan();
 			}
 			else // No idea where we are and where to go next, fail
@@ -206,17 +208,17 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	{
 		delete req.fromPlace;
 		req.startTransitTripId = leg.tripId;
-		req.arriveBy = false;
 		plan();
 	}
 	
 	function plan()
 	{
+		console.log(req);
 		OTP.plan(req).done(function(data)
 		{
 			localStorage['OTP data'] = $.toJSON(data);
 			def.resolve();
-		}).fail(function(error) { def.reject(error); });
+		}).fail(function(code, error) { def.reject(code, error); });
 	}
 	
 	return def;
