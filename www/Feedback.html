@@ -37,7 +37,7 @@
 				<div id="itineraryHeader" style="display:none"></div>
 				<textarea id="comment" cols="14" rows="15" >Licht hier uw klacht toe</textarea>
 				<br>
-				<button type="button" onclick="buttonClick">
+				<button type="button" onclick="buttonClick()" id="submitButton">
 					Submit complaint
 				</button>
 			</div>
@@ -46,15 +46,21 @@
 		<script>
 			function buttonClick() {
 				var index = document.getElementById("subject").selectedIndex;
+				
 				if (index == 0) {
-					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("This is my subject") + "&body=" + escape(document.getElementById('comment').value);
+					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over Frits") + "&body=" + escape(document.getElementById('comment').value);
 
 					window.location.href = link;
 
 					document.getElementById("comment").value += "Email verzonden!";
+					document.getElementById("submitButton").disabled = true;
 				} else if (index == 1) {
+					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over de route") + "&body=" + escape(document.getElementById('comment').value);
 
-					document.getElementById("comment").value += "Email niet,,, verzonden!";
+					window.location.href = link;
+
+					document.getElementById("comment").value += "Email verzonden!";
+					document.getElementById("submitButton").disabled = true;
 				} else {
 
 					document.getElementById("comment").value += "Emai niet verzonden!";
@@ -86,7 +92,38 @@
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
 						}
+					} else if (data.itineraries[0].legs[i].mode == "TRAM") {
+						if (first) {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							first = false;
+						} else {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+						}
+					} else if (data.itineraries[0].legs[i].mode == "SUBWAY") {
+						if (first) {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							first = false;
+						} else {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+						}
+					}else if (data.itineraries[0].legs[i].mode == "FERRY") {
+						if (first) {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+							first = false;
+						} else {
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+							$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.stopId + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
+						}
 					}
+				
 				}
 			}
 
