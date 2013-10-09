@@ -199,6 +199,8 @@
 					req[item.name] = item.value;
 				});
 				
+				req['maxWalkDistance'] = 1000;
+				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
 				// Save locations

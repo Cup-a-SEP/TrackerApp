@@ -34,9 +34,10 @@ var OTP = {};
  * @readOnly
  * @type string
  */
-OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
+//OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 //OTP.ServerPath = 'http://opentripplanner.nl/otp-rest-servlet/ws/';
-//OTP.ServerPath = 'http://ferrari.goabout.com:8080/otp-rest-servlet/ws/';
+OTP.ServerPath = 'http://ferrari.goabout.com:8080/otp-rest-servlet/ws/';
+//OTP.ServerPath = 'http://otp1.do.goabout.com/otp-rest-servlet/ws/';
 
 /*OTP.PlannerRequest = function OTPPlannerRequest(fromPlace, toPlace, date, time, arriveBy, wheelchair, preferLeastTransfers, mode)
 {
