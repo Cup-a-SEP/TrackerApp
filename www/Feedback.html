@@ -87,9 +87,12 @@
 
 					document.getElementById("comment").value = "Email verzonden!";
 					document.getElementById("submitButton").disabled = true;
-				} else {
+				} else if (document.getElementById("legs").selectedIndex==0){
+					
+					document.getElementById("comment").value = "Selecteer een voorziening in het tweede drop-down menu!";
+				}else{
 					var e = document.getElementById("legs");
-					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over ") + e.options[e.selectedIndex].text + "&body=" + e.options[e.selectedIndex].value + ": \n " + escape(document.getElementById('comment').value);
+					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over ") + e.options[e.selectedIndex].text + "&body=" + escape(document.getElementById('comment').value);
 
 					window.location.href = link;
 					document.getElementById("comment").value = "Email verzonden!";
