@@ -1382,10 +1382,10 @@ body {
 
 
 	position: absolute;
-	top: 60px;
-	bottom: 10px;
-	left: 10px;
-	right: 10px;
+	top: 65px;
+	bottom: 15px;
+	left: 15px;
+	right: 15px;
 
 
 	background-color: white;
@@ -1398,9 +1398,11 @@ body {
   				#C6FF36 /*97BD39
   				inset;*/
 	font-family:Arial;
-	box-shadow:
-		0px 0px 0px 2px #E2F5B3 inset, /** light green border on the inside of the island */
-		0px 0px 25px 5px #B7DB5C/* old, slightly brighter green colour, that I secretly like better: C6FF368*/ inset; /** slightly darker green gradient thing on the inside of the island */
+	-moz-box-shadow:    3px 3px 25px 6px #26A6D1;
+	-webkit-box-shadow: 3px 3px 25px 6px #26A6D1;
+	box-shadow:         3px 3px 25px 6px #26A6D1, /** dark blue drop shadow on the outside of the island old: 1A627A */
+											0px 0px 0px 2px #E2F5B3 inset, /** light green border on the inside of the island */
+											0px 0px 25px 10px #B7DB5C/* old, slightly brighter green colour, that I secretly like better: C6FF368*/ inset; /** slightly darker green gradient thing on the inside of the island */
 }
 
 /**
