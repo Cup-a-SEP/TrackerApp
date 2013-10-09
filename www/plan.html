@@ -169,20 +169,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').val(System.getDate()).datepicker();
-			$('#time').val(System.getTime()).timepicker();
-			
-			function hideKeyboard(element)
-			{
-			    element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
-			    element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
-			    setTimeout(function() {
-			        element.blur();  //actually close the keyboard
-			        // Remove readonly attribute after keyboard is hidden.
-			        element.removeAttr('readonly');
-			        element.removeAttr('disabled');
-			    }, 100);
-			}
+			$('#date').datepicker();
+			$('#time').timepicker();
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
