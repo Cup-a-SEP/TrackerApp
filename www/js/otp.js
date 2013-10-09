@@ -61,7 +61,9 @@ OTP.plan = function OTPPlan(request)
 	
 	$.getJSON(OTP.ServerPath + 'plan', request).done(function(data)
 	{
-		if (!data.error)
+		if (typeof data != 'object')
+			def.reject(data);
+		else if (!data.error)
 			def.resolve(data.plan);
 		else
 			def.reject(data.error.id, data.error.msg);
