@@ -172,18 +172,6 @@
 			$('#date').val(System.getDate()).datepicker();
 			$('#time').val(System.getTime()).timepicker();
 			
-			function hideKeyboard(element)
-			{
-			    element.attr('readonly', 'readonly'); // Force keyboard to hide on input field.
-			    element.attr('disabled', 'true'); // Force keyboard to hide on textarea field.
-			    setTimeout(function() {
-			        element.blur();  //actually close the keyboard
-			        // Remove readonly attribute after keyboard is hidden.
-			        element.removeAttr('readonly');
-			        element.removeAttr('disabled');
-			    }, 100);
-			}
-			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
 			{
@@ -228,14 +216,14 @@
 					
 					// Save planner data
 					localStorage['OTP request'] = $.toJSON(req);
-					localStorage['OTP data'] = $.toJSON(data);
+					localStorage['OTP data pending'] = $.toJSON(data);
 					
 					window.location = "OTPresult.html";
 				}).fail(function(error, message)
 				{
 					$('#status').empty()
-						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
-						.append($('<h3>').text(message));
+						.append($('<h3>').text('Geen route gevonden.'))
+						.append($('<p>').text(message));
 				});
 				
 				return false;

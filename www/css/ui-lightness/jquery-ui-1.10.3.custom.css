@@ -1665,3 +1665,35 @@ body {
 .alarmtype {
 	font-size: 14px;
 }
+
+.feedbackelement {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#legselect {
+	width: 70%;
+}
+
+#subject {
+	width: 70%;
+	margin-bottom: 15px;
+}
+
+#knopje {
+	background-color: #E2F7AB /*E8F7C1*/;
+	box-shadow: 0px -1px 0px 0.5px #E8F7C1 inset, rgba(0,0,0,0.4)
+ 				0 -24px 40px
+  				-10px /* spread */
+  				#B7DB5C/* old and better: C6FF36*/
+  				inset;
+	font-family: helvetica;
+	color: #358219;
+	border: 1px solid #358219;
+	border-radius: 10px;
+}
+
+#comment {
+	width: 85%;
+}

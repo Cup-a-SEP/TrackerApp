@@ -34,7 +34,6 @@ $(function()
 function Polling()
 {
 	var next = Service.Alarm.check() - new Date().getTime();
-	$('#status').text(next / 60000);
 	next = Math.max(Math.min(next / 2, 5 * 60 * 1000), 1000);
 	setTimeout(Polling, next);
 }
