@@ -28,7 +28,7 @@ Service.Alarm.Callback = function(){};
  */
 Service.Alarm.check = function ServiceAlarmCheck()
 {
-	res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
 	if (!res)
 		return Infinity;
 	var legs = res.itineraries[0].legs;
@@ -109,6 +109,45 @@ Service.Alarm.check = function ServiceAlarmCheck()
 Service.Trip = {};
 
 /**
+ * Gets the leg from the current planned trip where the user is expected to be.
+ * @returns OTP~Leg current leg or else null
+ */
+Service.Trip.currentLeg = function ServiceTripCurrentLeg()
+{
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return null;
+	
+	var now = new Date().getTime();
+	var legs = res.itineraries[0].legs; 
+	for (var i = 0; i < legs.length; ++i)
+		if (legs[i].endTime >= now)
+			return legs[i];
+	
+	return null;
+};
+
+/**
+ * Gets the next leg from the current planned trip where the user is expected to go next.
+ * @returns OTP~Leg current leg, on error null else when current is last leg: undefined
+ */
+Service.Trip.nextLeg = function ServiceTripCurrentLeg()
+{
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return null;
+	
+	var now = new Date().getTime();
+	var legs = res.itineraries[0].legs; 
+	for (var i = 0; i < legs.length; ++i)
+		if (legs[i].endTime >= now)
+			return legs[i + 1];
+	
+	return null;
+};
+
+
+/**
  * Rerequest trip information using last request
  * @return {Object} jQuery deferred object 
  */
@@ -116,7 +155,7 @@ Service.Trip.update = function ServiceTripUpdate()
 {
 	var def = $.Deferred();
 	
-	req = $.parseJSON(localStorage['OTP request']);
+	var req = $.parseJSON(localStorage['OTP request']);
 	if (!req)
 		def.resolve();
 	else
@@ -125,6 +164,60 @@ Service.Trip.update = function ServiceTripUpdate()
 			localStorage['OTP data'] = $.toJSON(data);
 			def.resolve();
 		}).fail(function(error) { def.reject(error); });
+	
+	return def;
+};
+
+/**
+ * Recalculates trip from current locations 
+ * @return {Object} jQuery deferred object
+ */
+Service.Trip.refresh = function ServiceTripRefresh()
+{
+	var def = $.Deferred();
+	
+	var req = $.parseJSON(localStorage['OTP request']);
+	if (!req)
+		return def.resolve();
+	
+	var leg = Service.Trip.currentLeg();
+	if (leg == null)
+		def.resolve();
+	else if (leg.tripId == null) // We are presumably walking, check geolocation
+		System.getLocation().done(function(coords)
+		{
+			req.fromPlace = coords;
+			req.arriveBy = false;
+			plan();
+		}).fail(function() // No geolocation, use next leg
+		{
+			leg = Service.Trip.nextLeg();
+			if (leg != null && leg.tripId != null)
+			{
+				delete req.fromPlace;
+				req.startTransitTripId = leg.tripId;
+				req.arriveBy = false;
+				plan();
+			}
+			else // No idea where we are and where to go next, fail
+				def.reject();
+		});
+	else
+	{
+		delete req.fromPlace;
+		req.startTransitTripId = leg.tripId;
+		req.arriveBy = false;
+		plan();
+	}
+	
+	function plan()
+	{
+		OTP.plan(req).done(function(data)
+		{
+			localStorage['OTP data'] = $.toJSON(data);
+			def.resolve();
+		}).fail(function(error) { def.reject(error); });
+	}
 	
 	return def;
 };
