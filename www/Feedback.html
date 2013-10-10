@@ -37,7 +37,7 @@
 				<div id="itineraryHeader" style="display:none"></div>
 				<textarea id="comment" cols="14" rows="15" class="feedbackelement">Licht hier uw klacht toe</textarea>
 				<br>
-				<button type="button" onclick="buttonClick()" class="feedbackelement" id="submitButton">
+				<button type="button" onclick="buttonClick()" class="feedbackelement" id="submitButton" disabled="true">
 					Verstuur klacht
 				</button>
 			</div>
@@ -193,24 +193,32 @@
 				var index = document.getElementById("subject").selectedIndex;
 				if (index == 0) {
 					document.getElementById("comment").value = "Licht hier uw klacht toe";
+					document.getElementById("submitButton").disabled = true;
 					emptyDiv();
 					$('#legs').attr("style", "display : none");
 				} else if (index == 1) {
 					$('#legs').attr("style", "display : none");
 					if (localStorage['OTP request'] == null) {
-						document.getElementById("comment").value = "Plan een route voor je gaat klagen, zeikerd";
+						document.getElementById("subject").selectedIndex=0;
+						alert("U kunt geen klacht indienden over een route zonder een route ingepland te hebben.");
+						document.getElementById("comment").value = "Licht hier uw klacht toe";
+					document.getElementById("submitButton").disabled = true;
 					} else {
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
+					document.getElementById("submitButton").disabled = true;
 						createDiv();
 					}
-
 				} else {
 					emptyDiv();
-					getLegs();
 					if (localStorage['OTP request'] == null) {
-						document.getElementById("comment").value = "Plan een route voor je gaat klagen, zeikerd";
-					} else {
+						document.getElementById("subject").selectedIndex=0;
+						alert("U kunt geen klacht indienden over een voorziening zonder een route ingepland te hebben.");
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
+					document.getElementById("submitButton").disabled = true;
+					} else {
+						getLegs();
+						document.getElementById("comment").value = "Licht hier uw klacht toe";
+					document.getElementById("submitButton").disabled = true;
 					}
 				}
 			}
@@ -226,6 +234,8 @@
 
 				if ($(this).val() == "Licht hier uw klacht toe") {
 					$(this).val("");
+					
+					document.getElementById("submitButton").disabled = false;
 				}
 
 			});
