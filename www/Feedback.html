@@ -80,7 +80,7 @@
 			 * @param(body) The body of the email
 			 */
 			function mail(subject, body) {
-				var link = "mailto:example@example.com" + "&subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
+				var link = "mailto:example@example.com" + "?subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
 				window.location.href = link;
 			}
 
@@ -231,7 +231,7 @@
 					emptyLegs();
 					if (localStorage['OTP request'] == null) {
 						document.getElementById("subject").selectedIndex = 0;
-						alert("U kunt geen klacht indienden over een route zonder een route ingepland te hebben.");
+						alert("U kunt geen klacht indienen over een route zonder een route ingepland te hebben.");
 					} else {
 						createDiv();
 					}
@@ -239,7 +239,7 @@
 					emptyDiv();
 					if (localStorage['OTP request'] == null) {
 						document.getElementById("subject").selectedIndex = 0;
-						alert("U kunt geen klacht indienden over een voorziening zonder een route ingepland te hebben.");
+						alert("U kunt geen klacht indienen over een voorziening zonder een route ingepland te hebben.");
 					} else {
 						getLegs();
 					}
