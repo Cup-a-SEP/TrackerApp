@@ -199,6 +199,8 @@
 					req[item.name] = item.value;
 				});
 				
+				req['maxWalkDistance'] = 1000;
+				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
 				// Save locations
@@ -222,8 +224,8 @@
 				}).fail(function(error, message)
 				{
 					$('#status').empty()
-						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
-						.append($('<h3>').text(message));
+						.append($('<h3>').text('Geen route gevonden.'))
+						.append($('<p>').text(message));
 				});
 				
 				return false;

@@ -53,7 +53,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm departure setting'] == 'true')
 	{
-		var predelay = Number(localStorage['Alarm departure time']) * 60;
+		var predelay = Number(localStorage['Alarm departure time']) * 60e3;
 		var time = res.itineraries[0].startTime;
 		if (time > last && now >= time - predelay)
 		{
@@ -66,7 +66,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm embark setting'] == 'true')
 	{
-		var predelay = Number(localStorage['Alarm embark time']) * 60;
+		var predelay = Number(localStorage['Alarm embark time']) * 60e3;
 		var leg;
 		if (leg = nextEmbark())
 		{
@@ -84,7 +84,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	
 	if (localStorage['Alarm alight setting'] == 'true')
 	{
-		var time = Number(localStorage['Alarm alight time']) * 60;
+		var time = Number(localStorage['Alarm alight time']) * 60e3;
 		var leg;
 		if (leg = nextAlight())
 		{
@@ -207,7 +207,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	else
 	{
 		delete req.fromPlace;
-		req.startTransitTripId = leg.tripId;
+		req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
 		plan();
 	}
 	
