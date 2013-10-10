@@ -10,7 +10,7 @@
     <keywords>cordova,statusbar</keywords>
 
     <js-module src="www/statusbarnotification.js" name="statusbarnotification">
-        <clobbers target="plugins.statusBarNotification" /><!-- maybe -->
+        <!--<clobbers target="plugins.statusBarNotification" /><!-- maybe -->
     </js-module>
     
     <!-- android -->
