@@ -36,6 +36,7 @@
 		<a href="DBACTestCases.html" class="divbutton"><p class="button">DBAC Test Report</p></a>
 		<a href="index_ajax.html" class="divbutton"><p class="button">AJAX Loading test page</p></a>
 		<a href="Feedback.html" class="divbutton"><p class="button">Gimme feedback</p></a>
+		<a onClick="sbn();" class="divbutton"><p class="button">Statusbarnotification!</p></a>
 	</div>
 	
 	<script type="text/javascript">
@@ -62,6 +63,11 @@
 		{
 			document.addEventListener("backbutton", onBackButton, false);
 		});
+		
+		
+		function sbn() {
+			window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+		}
 	</script>
 </body>
 </html>
