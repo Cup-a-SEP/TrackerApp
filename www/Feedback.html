@@ -66,37 +66,47 @@
 			// var myString = JSON.stringify(package);
 			// return myString;
 			// }
+			/**
+			 * Handles effects to form after feedback is sent
+			 */
+			function wrapUp() {
+				document.getElementById("comment").value = "Email verzonden!";
+				document.getElementById("submitButton").disabled = true;
+			}
+
+			/**
+			 * Starts mailing proceedings
+			 * @param(subject) The subject of the complaint
+			 * @param(body) The body of the email
+			 */
+			function mail(subject, body) {
+				var link = "mailto:example@example.com" + "&subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
+				window.location.href = link;
+			}
 
 			/**
 			 * Handles the sending of the feedback
 			 */
 			function buttonClick() {
 				var index = document.getElementById("subject").selectedIndex;
-
 				if (index == 0) {
-					var link = "mailto:example@example.com" + "&subject=" + escape("Klacht over Frits") + "&body=" + escape(document.getElementById('comment').value);
-
-					window.location.href = link;
-
-					document.getElementById("comment").value = "Email verzonden!";
-					document.getElementById("submitButton").disabled = true;
+					var subject = "Frits";
+					var body = document.getElementById('comment').value;
+					mail(subject, body);
+					wrapUp();
 				} else if (index == 1) {
-					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over de route") + "&body=" + escape(document.getElementById('comment').value + "\nREQUEST:  " + localStorage['OTP request']);
-
-					window.location.href = link;
-
-					document.getElementById("comment").value = "Email verzonden!";
-					document.getElementById("submitButton").disabled = true;
+					var subject = "de route";
+					var body = document.getElementById('comment').value + "\nREQUEST:  " + localStorage['OTP request'];
+					mail(subject, body);
+					wrapUp();
 				} else if (document.getElementById("legs").selectedIndex == 0) {
-
 					alert("Selecteer een voorziening in het tweede drop-down menu!");
 				} else {
 					var e = document.getElementById("legs");
-					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over ") + e.options[e.selectedIndex].text + "&body=" + escape(document.getElementById('comment').value);
-
-					window.location.href = link;
-					document.getElementById("comment").value = "Email verzonden!";
-					document.getElementById("submitButton").disabled = true;
+					var subject = e.options[e.selectedIndex].text;
+					var body = document.getElementById('comment').value;
+					mail(subject, body);
+					wrapUp();
 				}
 			}
 
@@ -193,22 +203,28 @@
 			 * Empties the second dropdown and makes it invisible.
 			 */
 			function emptyLegs() {
-				var x =document.getElementById("legs");
-				for ( var i = x.options.length - 1; i >= 0; i--) {
+				var x = document.getElementById("legs");
+				for (var i = x.options.length - 1; i >= 0; i--) {
 					x.remove(i);
 				}
 				$('#legs').append('<option>Selecteer een voorziening</option>');
 				$('#legs').attr("style", "display : none");
 			}
-
+			
+			/**
+			 * Resets the textarea and button disabled setting.
+			 */
+			function resetText() {
+				document.getElementById("comment").value = "Licht hier uw klacht toe";
+				document.getElementById("submitButton").disabled = true;
+			}
 			/**
 			 * Changes the form of the layout according to which type of complaint the user has.
 			 */
 			function changeForm() {
 				var index = document.getElementById("subject").selectedIndex;
+				resetText();
 				if (index == 0) {
-					document.getElementById("comment").value = "Licht hier uw klacht toe";
-					document.getElementById("submitButton").disabled = true;
 					emptyLegs();
 					emptyDiv();
 				} else if (index == 1) {
@@ -216,11 +232,7 @@
 					if (localStorage['OTP request'] == null) {
 						document.getElementById("subject").selectedIndex = 0;
 						alert("U kunt geen klacht indienden over een route zonder een route ingepland te hebben.");
-						document.getElementById("comment").value = "Licht hier uw klacht toe";
-						document.getElementById("submitButton").disabled = true;
 					} else {
-						document.getElementById("comment").value = "Licht hier uw klacht toe";
-						document.getElementById("submitButton").disabled = true;
 						createDiv();
 					}
 				} else {
@@ -228,12 +240,8 @@
 					if (localStorage['OTP request'] == null) {
 						document.getElementById("subject").selectedIndex = 0;
 						alert("U kunt geen klacht indienden over een voorziening zonder een route ingepland te hebben.");
-						document.getElementById("comment").value = "Licht hier uw klacht toe";
-						document.getElementById("submitButton").disabled = true;
 					} else {
 						getLegs();
-						document.getElementById("comment").value = "Licht hier uw klacht toe";
-						document.getElementById("submitButton").disabled = true;
 					}
 				}
 			}
