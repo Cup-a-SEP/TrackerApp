@@ -87,10 +87,10 @@
 
 					document.getElementById("comment").value = "Email verzonden!";
 					document.getElementById("submitButton").disabled = true;
-				} else if (document.getElementById("legs").selectedIndex==0){
-					
-					document.getElementById("comment").value = "Selecteer een voorziening in het tweede drop-down menu!";
-				}else{
+				} else if (document.getElementById("legs").selectedIndex == 0) {
+
+					alert("Selecteer een voorziening in het tweede drop-down menu!");
+				} else {
 					var e = document.getElementById("legs");
 					var link = "mailto:sjarlie.graaumans@gmail.com" + "&subject=" + escape("Klacht over ") + e.options[e.selectedIndex].text + "&body=" + escape(document.getElementById('comment').value);
 
@@ -162,6 +162,7 @@
 
 				}
 			}
+
 			/**
 			 * Makes a div visible that shows the user about which route he is making a complaint.
 			 */
@@ -177,6 +178,7 @@
 				var end = UI.formatTime(data.itineraries[0].endTime);
 				$('#itineraryHeader').append($('<h3>').text(start + ' ' + from + ' - ' + end + ' ' + to));
 			}
+
 			/**
 			 * Empties the div and makes it invisible.
 			 */
@@ -186,6 +188,19 @@
 				$('#itineraryHeader').attr("style", "margin-top: 0 em");
 				$('#itineraryHeader').attr("style", "border: 0px");
 			}
+
+			/**
+			 * Empties the second dropdown and makes it invisible.
+			 */
+			function emptyLegs() {
+				var x =document.getElementById("legs");
+				for ( var i = x.options.length - 1; i >= 0; i--) {
+					x.remove(i);
+				}
+				$('#legs').append('<option>Selecteer een voorziening</option>');
+				$('#legs').attr("style", "display : none");
+			}
+
 			/**
 			 * Changes the form of the layout according to which type of complaint the user has.
 			 */
@@ -194,31 +209,31 @@
 				if (index == 0) {
 					document.getElementById("comment").value = "Licht hier uw klacht toe";
 					document.getElementById("submitButton").disabled = true;
+					emptyLegs();
 					emptyDiv();
-					$('#legs').attr("style", "display : none");
 				} else if (index == 1) {
-					$('#legs').attr("style", "display : none");
+					emptyLegs();
 					if (localStorage['OTP request'] == null) {
-						document.getElementById("subject").selectedIndex=0;
+						document.getElementById("subject").selectedIndex = 0;
 						alert("U kunt geen klacht indienden over een route zonder een route ingepland te hebben.");
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
-					document.getElementById("submitButton").disabled = true;
+						document.getElementById("submitButton").disabled = true;
 					} else {
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
-					document.getElementById("submitButton").disabled = true;
+						document.getElementById("submitButton").disabled = true;
 						createDiv();
 					}
 				} else {
 					emptyDiv();
 					if (localStorage['OTP request'] == null) {
-						document.getElementById("subject").selectedIndex=0;
+						document.getElementById("subject").selectedIndex = 0;
 						alert("U kunt geen klacht indienden over een voorziening zonder een route ingepland te hebben.");
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
-					document.getElementById("submitButton").disabled = true;
+						document.getElementById("submitButton").disabled = true;
 					} else {
 						getLegs();
 						document.getElementById("comment").value = "Licht hier uw klacht toe";
-					document.getElementById("submitButton").disabled = true;
+						document.getElementById("submitButton").disabled = true;
 					}
 				}
 			}
@@ -234,7 +249,7 @@
 
 				if ($(this).val() == "Licht hier uw klacht toe") {
 					$(this).val("");
-					
+
 					document.getElementById("submitButton").disabled = false;
 				}
 
