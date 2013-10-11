@@ -111,34 +111,40 @@
 				$('#departure-slider').change(function() {
 					setTimeout(function() {
 						localStorage['Alarm departure time'] = $('#departure-slider').val();
+						Service.Alarm.refresh();
 					},0);
 				});
 				$('#embark-slider').change(function() {
 					setTimeout(function() {
 						localStorage['Alarm embark time'] = $('#embark-slider').val();
+						Service.Alarm.refresh();
 					},0);
 				});
 				$('#alight-slider').change(function() {
 					setTimeout(function() {
 						localStorage['Alarm alight time'] = $('#alight-slider').val();
+						Service.Alarm.refresh();
 					},0);
 				});
 				
 				$('#departure-control').children().click(function() {
 					setTimeout(function() {
 						localStorage['Alarm departure setting'] = $('#departure-on').prop('checked');
+						Service.Alarm.refresh();
 					},0);
 				});
 				
 				$('#embark-control').children().click(function() {
 					setTimeout(function() {
 						localStorage['Alarm embark setting'] = $('#embark-on').prop('checked');
+						Service.Alarm.refresh();
 					},0);
 				});
 				
 				$('#alight-control').children().click(function() {
 					setTimeout(function() {
 						localStorage['Alarm alight setting'] = $('#alight-on').prop('checked');
+						Service.Alarm.refresh();
 					},0);
 				});
 				
