@@ -23,83 +23,94 @@ Service.Alarm = {};
 Service.Alarm.Callback = function(){};
 
 /**
+ * Recalculates the alarms after planned trip or alarms setting have changed. 
+ */
+Service.Alarm.refresh = function ServiceAlarmRefresh()
+{
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return;
+	
+	var legs = res.itineraries[0].legs;
+	var predelay =
+	{
+		departure: Number(localStorage['Alarm departure time']) * 60e3,
+		embark: Number(localStorage['Alarm embark time']) * 60e3,
+		alight: Number(localStorage['Alarm alight time']) * 60e3,
+	};
+	var active =
+	{
+		departure: localStorage['Alarm departure setting'] == 'true',
+		embark: localStorage['Alarm embark setting'] == 'true',
+		alight: localStorage['Alarm alight setting'] == 'true',
+	};
+	
+	// Add potential alarms
+	var alarms = [];
+	if (active.departure && legs.length)
+		alarms.push(
+		{
+			type: 'departure',
+			time: legs[0].startTime - predelay.departure,
+			legid: 0
+		});
+	
+	for (var i = 0; i < legs.length; ++i)
+	{
+		if (legs[i].mode == 'WALK')
+			continue;
+		
+		if (active.embark)
+			alarms.push(
+			{
+				type: 'embark',
+				time: legs[i].startTime - predelay.embark,
+				legid: i
+			});
+		if (active.alight)
+			alarms.push(
+			{
+				type: 'alight',
+				time: Math.max(legs[i].endTime - predelay.alight, legs[i].startTime),
+				legid: i
+			});
+	}
+	
+	// Remove past alarms
+	var now = new Date().getTime();
+	alarms = alarms.filter(function(alarm)
+	{
+		return alarm.time >= now;
+	});
+	
+	localStorage['Alarm data'] = $.toJSON(alarms);
+	
+	return alarms;
+};
+
+/**
  * Check if an alarm would fire and fire it if so
  * @return {Number} Time of the next alarm that would fire or else Infinity (unix timestamp)
  */
 Service.Alarm.check = function ServiceAlarmCheck()
 {
+	var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']);
+	if (!alarms)
+		return Infinity;
+	
 	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
 	if (!res)
 		return Infinity;
-	var legs = res.itineraries[0].legs;
 	
 	var now = new Date().getTime();
-	var last = localStorage['Alarm last'] ? Number(localStorage['Alarm last']) : 0;
-	var next = Infinity;
-	
-	function nextEmbark()
+	if (alarms[0].time <= now)
 	{
-		for (var i = 1; i < legs.length; ++i)
-			if (legs[i].startTime > last)
-				return legs[i];
+		var alarm = alarms.shift();
+		Service.Alarm.Callback(alarm.type, res.itineraries[0].legs[alarm.legid]);
+		localStorage['Alarm data'] = $.toJSON(alarms);
 	}
 	
-	function nextAlight()
-	{
-		for (var i = 0; i < legs.length; ++i)
-			if (legs[i].endTime > last)
-				return legs[i];
-	}
-	
-	if (localStorage['Alarm departure setting'] == 'true')
-	{
-		var predelay = Number(localStorage['Alarm departure time']) * 60e3;
-		var time = res.itineraries[0].startTime;
-		if (time > last && now >= time - predelay)
-		{
-			localStorage['Alarm last'] = last = time;
-			Service.Alarm.Callback('departure', res.itineraries[0].legs[0]);
-		}
-		if (time > last)
-			next = time - predelay;
-	}
-	
-	if (localStorage['Alarm embark setting'] == 'true')
-	{
-		var predelay = Number(localStorage['Alarm embark time']) * 60e3;
-		var leg;
-		if (leg = nextEmbark())
-		{
-			var time = leg.startTime;
-			if (time > last && now >= time - predelay)
-			{
-				localStorage['Alarm last'] = last = time;
-				Service.Alarm.Callback('embark', leg);
-			}
-		}
-		// Calculate next
-		if (leg = nextEmbark())
-			next = Math.min(next, leg.startTime - predelay);
-	}
-	
-	if (localStorage['Alarm alight setting'] == 'true')
-	{
-		var time = Number(localStorage['Alarm alight time']) * 60e3;
-		var leg;
-		if (leg = nextAlight())
-		{
-			var time = leg.endTime;
-			if (time > last && now >= time - predelay)
-			{
-				localStorage['Alarm last'] = last = time;
-				Service.Alarm.Callback('alight', leg);
-			}
-		}
-		// Calculate next
-		if (leg = nextAlight())
-			next = Math.min(next, leg.endTime - predelay);
-	}
-	return next;
+	return alarms.length ? alarms[0].time : Infinity;
 };
 
 /**
@@ -162,6 +173,7 @@ Service.Trip.update = function ServiceTripUpdate()
 		OTP.plan(req).done(function(data)
 		{
 			localStorage['OTP data'] = $.toJSON(data);
+			Service.Alarm.refresh();
 			def.resolve();
 		}).fail(function(error) { def.reject(error); });
 	
@@ -217,6 +229,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 		OTP.plan(req).done(function(data)
 		{
 			localStorage['OTP data'] = $.toJSON(data);
+			Service.Alarm.refresh();
 			def.resolve();
 		}).fail(function(code, error) { def.reject(code, error); });
 	}
