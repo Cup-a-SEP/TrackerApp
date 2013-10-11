@@ -26,7 +26,12 @@ $(function()
 	Storage.init();
 	Service.Alarm.Callback = function(type, leg)
 	{
-		alert('De ' + type + ' wekker ging af!\n' + leg.from.name + ' -> ' + leg.to.name + ' (debug)');
+		var map = {
+			'departure':'Vertrek',
+			'embark':'Instap',
+			'alight':'Uitstap'
+		};
+		alert('De ' + map[type] + ' wekker ging af!\n' + leg.from.name + ' -> ' + leg.to.name + ' (debug)');
 	};
 	setTimeout(Polling, 0);
 });
