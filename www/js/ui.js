@@ -98,10 +98,13 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			
 		// zichtbaar bij uitklappen:
 		var hasstops = (leg.intermediateStops.length > 0);
-		var divstops = $('<div>').append(addStops(leg.intermediateStops));
-		divstops.toggle();
+		var divstops;
 		var stopbutton;
 		if(hasstops){
+			divstops = $('<div>').append(addStops(leg.intermediateStops));
+			console.log('test1');
+			divstops.toggle(false);
+			console.log('test2');
 			stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
 						.append("<p>tussenhaltes</p>");
 			stopbutton.click(function() {
@@ -111,11 +114,10 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		
 		var mapbutton = $('<div id="legmap' + i + '" class="button">')
 					.append("<p>Open map</p>");
-		
 		$(mapbutton).click(function() {
-			clickMap(i);
+			localStorage['ShowMap'] = i;
+			window.location = "legmap.html";
 		});
-		
 					
 		var div = $('<div>')
 			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(divstops).append(endTime + ': ' + toName))
