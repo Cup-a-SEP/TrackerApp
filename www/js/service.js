@@ -120,43 +120,56 @@ Service.Alarm.check = function ServiceAlarmCheck()
 Service.Trip = {};
 
 /**
- * Gets the leg from the current planned trip where the user is expected to be.
- * @returns OTP~Leg current leg or else null
+ * Plans a trip using OpenTripPlanner
+ * @param {OTP~PlannerRequest} request - request object to use with planner.
+ * @return {Object} jQuery deferred object 
  */
-Service.Trip.currentLeg = function ServiceTripCurrentLeg()
+Service.Trip.plan = function ServiceTripPlan(request)
 {
-	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
-	if (!res)
-		return null;
+	var def = $.Deferred();
 	
-	var now = new Date().getTime();
-	var legs = res.itineraries[0].legs; 
-	for (var i = 0; i < legs.length; ++i)
-		if (legs[i].endTime >= now)
-			return legs[i];
+	if (!('maxWalkDistance' in request))
+		request['maxWalkDistance'] = 5000;
 	
-	return null;
+	OTP.plan(request).done(function(data)
+	{
+		// TODO: strip data
+		
+		localStorage['OTP request pending'] = $.toJSON(request);
+		localStorage['OTP data pending'] = $.toJSON(data);
+		def.resolve(data);
+	}).fail(function(error, message) { def.reject(error, message); });
+	
+	return def;
 };
 
 /**
- * Gets the next leg from the current planned trip where the user is expected to go next.
- * @returns OTP~Leg current leg, on error null else when current is last leg: undefined
+ * Tracks the last planned trip (enables alarms and alerts)
  */
-Service.Trip.nextLeg = function ServiceTripCurrentLeg()
+Service.Trip.track = function ServiceTripPlan()
 {
-	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
-	if (!res)
-		return null;
+	if (localStorage['OTP request pending'])
+		localStorage['OTP request'] = localStorage['OTP request pending'];
 	
-	var now = new Date().getTime();
-	var legs = res.itineraries[0].legs; 
-	for (var i = 0; i < legs.length; ++i)
-		if (legs[i].endTime >= now)
-			return legs[i + 1];
+	if (localStorage['OTP data pending'])
+		localStorage['OTP data'] = localStorage['OTP data pending'];
 	
-	return null;
+	Service.Alarm.refresh();
 };
 
+/**
+ * Cancels the planned trip (if any) 
+ */
+Service.Trip.cancel = function ServiceTripCancel()
+{
+	if (localStorage['OTP request'])
+		delete localStorage['OTP request'];
+	
+	if (localStorage['OTP data'])
+		delete localStorage['OTP data'];
+	
+	Service.Alarm.refresh();
+};
 
 /**
  * Rerequest trip information using last request
@@ -235,4 +248,42 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	}
 	
 	return def;
+};
+
+/**
+ * Gets the leg from the current planned trip where the user is expected to be.
+ * @returns OTP~Leg current leg or else null
+ */
+Service.Trip.currentLeg = function ServiceTripCurrentLeg()
+{
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return null;
+	
+	var now = new Date().getTime();
+	var legs = res.itineraries[0].legs; 
+	for (var i = 0; i < legs.length; ++i)
+		if (legs[i].endTime >= now)
+			return legs[i];
+	
+	return null;
+};
+
+/**
+ * Gets the next leg from the current planned trip where the user is expected to go next.
+ * @returns OTP~Leg current leg, on error null else when current is last leg: undefined
+ */
+Service.Trip.nextLeg = function ServiceTripCurrentLeg()
+{
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return null;
+	
+	var now = new Date().getTime();
+	var legs = res.itineraries[0].legs; 
+	for (var i = 0; i < legs.length; ++i)
+		if (legs[i].endTime >= now)
+			return legs[i + 1];
+	
+	return null;
 };

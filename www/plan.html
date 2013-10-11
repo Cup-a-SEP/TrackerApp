@@ -208,7 +208,6 @@
 				});
 				
 				req['showIntermediateStops'] = true;
-				req['maxWalkDistance'] = 5000;
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
@@ -218,17 +217,8 @@
 				if (req.toPlace)
 					Storage.Locations.store(req.to, req.toPlace, false);
 				
-				OTP.plan(req).done(function(data)
+				Service.Trip.plan(req).done(function(data)
 				{
-					var stripped = (function(ser)
-					{
-						return ser;
-					})(data);
-					
-					// Save planner data
-					localStorage['OTP request'] = $.toJSON(req);
-					localStorage['OTP data pending'] = $.toJSON(data);
-					
 					window.location = "OTPresult.html";
 				}).fail(function(error, message)
 				{

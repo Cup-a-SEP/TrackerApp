@@ -38,7 +38,6 @@
 		{
 			// Initialize database
 			Storage.Trips.init();
-			var req = $.evalJSON(localStorage['OTP request']);
 			var data = $.evalJSON(localStorage['OTP data pending']);
 			
 			var from = data.from.name;
@@ -62,7 +61,9 @@
 			route.add(it);
 			
 			$('#planbutton').click(function(){
-				localStorage['OTP data'] = localStorage['OTP data pending'];
+				Service.Trip.track();
+				
+				var req = $.evalJSON(localStorage['OTP request']);
 				
 				req.expectedDepartureTime = it.legs[0].startTime;
 				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
