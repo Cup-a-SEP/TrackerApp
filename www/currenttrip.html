@@ -155,8 +155,7 @@
 	}
 	
 	function cancelTracking(){
-	    delete localStorage['OTP data'];
-	    delete localStorage['OTP data pending'];
+	    Service.Trip.cancel();
 	    window.location = "index.html";
 	}
 	
