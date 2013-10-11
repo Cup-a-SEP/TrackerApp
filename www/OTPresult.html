@@ -52,30 +52,22 @@
 					clickMap(-1);
 				});
 			
-			var route;
-			$('#plan').empty().append(route = $('<div>').attr('id', 'route'));
+			var route = $('<div>').attr('id', 'route');
+			$('#plan').empty().append(route);
+			
+			var it = data.itineraries[0];
 			
 			route.add = UI.addItinerary;
-			route.add(data.itineraries[0]);
-			route.accordion({collapsible:true});
-			
-			var legLength = data.itineraries[0].legs.length;
-			for(var i = 0; i < legLength; ++i)
-			{
-				$('#legmap' + i).click(function()
-				{
-					clickMap(this.id.substring(6));
-				});
-			}
+			route.add(it);
 			
 			$('#planbutton').click(function(){
 				Service.Trip.track();
 				
 				var req = $.evalJSON(localStorage['OTP request']);
-				var it = data.itineraries[0];
 				
 				req.expectedDepartureTime = it.legs[0].startTime;
 				req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
+
 				Storage.Trips.store(req).always(function()
 				{
 					window.location = "currenttrip.html";
