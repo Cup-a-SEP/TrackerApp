@@ -95,7 +95,7 @@ Service.Alarm.refresh = function ServiceAlarmRefresh()
 Service.Alarm.check = function ServiceAlarmCheck()
 {
 	var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']);
-	if (!alarms)
+	if (!alarms || !alarms.length)
 		return Infinity;
 	
 	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
