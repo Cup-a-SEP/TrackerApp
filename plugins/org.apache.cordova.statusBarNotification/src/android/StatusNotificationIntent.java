@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
-import com.jeroenvandeven.bestuurmokken.R;
+import com.phonegap.hello_world.R;
 
 public class StatusNotificationIntent {
     public static Notification buildNotification( Context context, CharSequence tag, CharSequence contentTitle, CharSequence contentText, int flag ) {
