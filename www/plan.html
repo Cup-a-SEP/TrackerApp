@@ -201,7 +201,7 @@
 			
 			// Send request to planner
 			$('#plan').click(function(event)
-			{
+			{	
 				event.preventDefault();
 				
 				var req = {};
@@ -211,6 +211,16 @@
 				});
 				
 				req['showIntermediateStops'] = true;
+				
+				if (!req.fromPlace || !req.toPlace)
+				{
+					var oldreq = localStorage['OTP request pending'] && $.parseJSON(localStorage['OTP request pending']);
+					if (oldreq)
+					{
+						req.fromPlace = oldreq.fromPlace;
+						req.toPlace = oldreq.toPlace;
+					}
+				}
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
