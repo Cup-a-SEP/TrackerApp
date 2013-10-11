@@ -199,6 +199,7 @@
 					req[item.name] = item.value;
 				});
 				
+				req['showIntermediateStops'] = true;
 				req['maxWalkDistance'] = 5000;
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
