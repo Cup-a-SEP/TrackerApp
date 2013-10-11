@@ -65,12 +65,14 @@
 			
 			<div class="divborder" id="fromdiv">
 				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
+				<a id="clearfrom">&times;</a>
 				<input type="hidden" id="fromPlace" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
 				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
+				<a id="clearto">&times;</a>
 				<input type="hidden" id="toPlace" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
@@ -231,6 +233,15 @@
 				});
 				
 				return false;
+			});
+			
+			
+			$('#clearfrom').click(function() {
+				console.log('blaat');
+				$('#fromPlace').val('');
+			});
+			$('#clearto').click(function() {
+				$('#toPlace').val('');
 			});
 		});
 	</script>
