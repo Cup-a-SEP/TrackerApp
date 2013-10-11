@@ -76,6 +76,15 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 				return modes[mode];
 			}
 		};
+		
+		function addStops(stops) {
+			var stopElem = $('<div>');
+			$.each(stops,function(i,stop) {
+				stopElem.append(stop.name + '<br>');
+			});
+			return stopElem;
+		}
+		
 		var h3 = $('<h3>')
 		
 		// plaatje:
@@ -88,13 +97,22 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
 			
 		// zichtbaar bij uitklappen:
+		var divstops = $('<div>').append(addStops(leg.intermediateStops));
+		divstops.toggle();
+		var stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
+					.append("<p>tussenhaltes</p>");
+		var mapbutton = $('<div id="legmap' + i + '" class="button">')
+					.append("<p>Open map</p>");
+					
+		stopbutton.click(function(){
+			divstops.toggle();
+		});
+					
 		var div = $('<div>')
-			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(endTime + ': ' + toName))
-			.append($('<div id="legmap' + i + '">')
-				.append($('<div class="button">')
-					.append("<p>Open map</p>")));
-			;
-		
+			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(divstops).append(endTime + ': ' + toName))
+			.append(mapbutton)
+			.append(stopbutton);
+
 		self.append(h3).append(div);
 	}
 	
