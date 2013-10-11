@@ -54,6 +54,8 @@ function Polling()
             }
         }
         
+        if(!curLeg) return;
+        
         var nextStopId;
         var nextStopTime;
         if(now < curLeg.startTime){
