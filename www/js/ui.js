@@ -97,15 +97,26 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
 			
 		// zichtbaar bij uitklappen:
-		var divstops = $('<div>').append(addStops(leg.intermediateStops));
-		divstops.toggle();
-		var stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
-					.append("<p>tussenhaltes</p>");
+		var hasstops = (leg.intermediateStops.length > 0);
+		var divstops;
+		var stopbutton;
+		if(hasstops){
+			divstops = $('<div>').append(addStops(leg.intermediateStops));
+			console.log('test1');
+			divstops.toggle(false);
+			console.log('test2');
+			stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
+						.append("<p>tussenhaltes</p>");
+			stopbutton.click(function() {
+				divstops.toggle();
+			});
+		}
+		
 		var mapbutton = $('<div id="legmap' + i + '" class="button">')
 					.append("<p>Open map</p>");
-					
-		stopbutton.click(function(){
-			divstops.toggle();
+		$(mapbutton).click(function() {
+			localStorage['ShowMap'] = i;
+			window.location = "legmap.html";
 		});
 					
 		var div = $('<div>')
@@ -117,6 +128,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	}
 	
 	$.each(itinerary.legs, addLeg);
+	self.accordion({collapsible:true});
 	return self;
 };
 
