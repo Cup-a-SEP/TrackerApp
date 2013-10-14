@@ -23,7 +23,16 @@
 		{
 			event.preventDefault();
 	
-			$('#section_container').load($(this).attr('href'));
+			Page.load($(this).attr('href'));
 		});
 	});
+	
+	function sbn() {
+		console.log('sbn');
+		window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+	}
+	
+	function note() {
+		navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
+	}
 </script>

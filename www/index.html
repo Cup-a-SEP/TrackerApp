@@ -20,6 +20,7 @@
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
 	<script src="js/service.js"></script>
+	<script src="js/page.js"></script>
 	<script src="js/ui.js"></script>
 	
 	<!-- interface -->
@@ -79,43 +80,28 @@
 	</div>
 	<div id="section_container"></div>
 	<script type="text/javascript">
+		var loaded = false;
 		
-		document.addEventListener("deviceready", onDeviceReady, false);
+		document.addEventListener("deviceready", Loaded, false);
 		
-		function onDeviceReady()
+		function Loaded()
 		{
 			console.log("Test Device ready");
-			document.addEventListener("backbutton", onBackButton, false);
+			document.addEventListener("backbutton", function() { Page.back(); }, false);
 			Storage.init();
-			startWatch();
-			navigator.location = 'plan.html';
-		}
-		
-		function onBackButton()
-		{
-			console.log('The user wants to close the app.');
-			navigator.app.exitApp();
+			//startWatch(); was da?
+			
+			Page.Body = $('#section_container');
+			Page.load('debug.html');
 		}
 		
 		$(function()
 		{
-			document.addEventListener("backbutton", onBackButton, false);
+			// Still load when not on phone for testing purposes
+			if (!navigator.app)
+				Loaded();
 		});
-		
-		
 	</script>
 	<script src="js/init.js"></script>
-	<script>
-		$('#section_container').load('debug.html');
-		
-		function sbn() {
-			console.log('sbn');
-			window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
-		}
-		
-		function note() {
-			navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
-		}
-	</script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-if (!Page) var Page = {};
-
 /**
  * Planner page namespace
  * @namespace Page.Plan 
@@ -9,7 +7,7 @@ Page.Plan = {};
 /**
  * Initializes plan page interface
  */
-Page.Plan.init = function()
+Page.Plan.init = function PagePlanInit()
 {
 	// Initialize database
 	Storage.Locations.init();
