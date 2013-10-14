@@ -1641,6 +1641,9 @@ body {
 	color: #358219;
 }
 
+/**
+ * 	version of the island with slightly lighter colours
+ */
 .eilandLight {
 	border: 1px #424242 solid;
 	border-radius: 25px;
@@ -1666,6 +1669,9 @@ body {
 	font-size: 14px;
 }
 
+/**
+ * 	class that encapsulates all elements in the feedback screen
+ */
 .feedbackelement {
 	display: block;
 	margin-left: auto;
@@ -1685,6 +1691,9 @@ body {
 	width: 85%;
 }
 
+/**
+ * 	speech balloon that functions as the feedback button
+ */
 .feedback {
 	width: 37px;
 }
