@@ -223,7 +223,8 @@ Service.Trip.refresh = function ServiceTripRefresh()
 			if (leg != null && leg.tripId != null)
 			{
 				delete req.fromPlace;
-				req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
+				//req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
+				req.startTransitTripId = 'ARR_' + leg.tripId; // Patch for OTP module bug
 				plan();
 			}
 			else // No idea where we are and where to go next, fail
@@ -232,7 +233,8 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	else
 	{
 		delete req.fromPlace;
-		req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
+		//req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
+		req.startTransitTripId = 'ARR_' + leg.tripId; // Patch for OTP module bug
 		plan();
 	}
 	

@@ -6,11 +6,13 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
 	
+	<!-- core -->
 	<script src="js/lib/prototype-1.7.1.js"></script>
 	<script src="js/lib/jquery-1.8.3.min.js"></script>
 	<script src="js/lib/jquery.json-2.4.min.js"></script>
 	<script src="cordova.js"></script>
 	
+	<!-- architecture -->
 	<script src="js/misc.js"></script>
 	<script src="js/system.js"></script>
 	<script src="js/class/localdb.class.js"></script>
@@ -20,11 +22,13 @@
 	<script src="js/service.js"></script>
 	<script src="js/ui.js"></script>
 	
+	<!-- interface -->
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
-	<script src="js/lib/jquery.ui.timepicker.js"></script>
-	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	
+	<!-- pages -->
+	<script src="js/page/plan.js"></script>
 	
 	<style type="text/css">
 		section {
@@ -64,34 +68,17 @@
 	</style>
 </head>
 <body>
-	<script src="js/index_ajax.js"></script>
-	<div id="header"><span id="left"><span id="back">&lt;</span></span>  
-	<span id="center">Frits</span> 
-
-	<span id="right"><span id="vraagteken">?</span></span></div>
-	
-	<div id="section_container">
-		<section id="index_page">
-			<div class="headerbuffer">
-				<!-- DEPRECATED!!!! everything in this screen will be removed; this screen will service as a loading screen in the future! -->
-				<h4 id="headertekst">Wat wil je doen?</h4>
-				<!--<p class="button"><a href="testdecoder.html">Test de JSON decoder</a></p>
-				<p class="button"><a href="storage_test.html">Test Data Storage</a></p>-->
-				<!--<p class="button"><a href="location.html">Test de locatie kiezer!</a></p>-->
-				<a href="plan.html" class="divbutton ajaxnavigation"><p class="button">Plan je route</p></a>
-				<a href="map_test.html" class="divbutton ajaxnavigation"><p class="button">Map Test</p></a>
-				<!--<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>-->
-				<a href="settings.html" class="divbutton ajaxnavigation"><p class="button">Instellingen</p></a>
-				<a href="DBACTestCases.html" class="divbutton ajaxnavigation"><p class="button">DBAC Test Report</p></a>
-				<a href="index-3.0.0.html" class="divbutton"><p class="button">Background</p></a>
-				<a href="Feedback.html" class="divbutton ajaxnavigation"><p class="button">Gimme feedback</p></a>
-				<a onClick="sbn();" class="divbutton"><p class="button">Statusbarnotification!</p></a>
-				<a onClick="note();" class="divbutton"><p class="button">Notification!</p></a>
-			</div>
-		</section>
+	<div id="header">
+		<span id="left">
+			<span id="back">&#9668;</span>
+		</span>  
+		<span id="center">Frits</span>
+		<span id="right">
+			<span><img src="img/Speech_balloon.svg" class="feedback"></img></span>
+		</span>
 	</div>
+	<div id="section_container"></div>
 	<script type="text/javascript">
-		app.initialize();
 		
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
@@ -114,111 +101,12 @@
 		{
 			document.addEventListener("backbutton", onBackButton, false);
 		});
+		
+		
 	</script>
 	<script src="js/init.js"></script>
 	<script>
-		// Modality button states
-		var modalities =
-		{
-			walk: true,
-			bus: true,
-			rail: true,
-			tram: true,
-			subway: true,
-			ferry: true
-		};
-		
-		var plan_page_ready = function()
-		{
-			
-			console.log($('#plan'));
-			// Initialize database
-			Storage.Locations.init();
-			
-			// Initialize to/from input boxes
-			var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
-			{
-				$('#from').val(address);
-				$('#fromPlace').val(coords);
-			});
-			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
-			{
-				$('#to').val(address);
-				$('#toPlace').val(coords);
-			});
-			
-			$('#from').keyup(function() { $('#fromPlace').val(''); });
-			$('#to').keyup(function() { $('#toPlace').val(''); });
-			
-			// Initialize suggestions list
-			sugfrom.list = sugto.list = {};
-			Storage.Locations.list(Infinity).done(function(res)
-			{
-				$.each(res, function(i, item)
-				{
-					sugto.list[item.name] = item.latlng;
-				});
-			});
-			/*{
-				'Eindhoven': '51.44302,5.479576',
-				'Utrecht': '52.089398,5.109861',
-				'Tilburg': '51.55972,5.087558',
-				'Groningen': '53.210766,6.564099',
-				'Breda': '51.595067,4.780053',
-			};*/
-			
-			// Initialize date/time input boxes
-			//$('#date').val(System.getDate()).datepicker();
-			//$('#time').val(System.getTime()).timepicker({'step': 1});
-			
-			// Initialize modality buttons
-			$.each(modalities, function(name)
-			{
-				var mod = $('#' + name);
-				mod.click(function()
-				{
-					modalities[name] = !modalities[name];
-					mod.css('opacity', modalities[name] ? 1 : .3);
-					$('#mode').val($.map(modalities, function(value, name)
-					{
-						if (value)
-							return name.toUpperCase();
-					}).join(','));
-				});
-			});
-			
-			// Send request to planner
-			$('#plan').click(function(event)
-			{
-				event.preventDefault();
-				
-				var req = {};
-				$.each($('#form').serializeArray(), function(i, item)
-				{
-					req[item.name] = item.value;
-				});
-				
-				$('#status').empty().append($('<h1>').text("Zoeken..."));
-				
-				// Save locations
-				if (req.fromPlace)
-					Storage.Locations.store(req.from, req.fromPlace, false);
-				if (req.toPlace)
-					Storage.Locations.store(req.to, req.toPlace, false);
-				
-				Service.Trip.plan(req).done(function(data)
-				{
-					window.location = "OTPresult.html";
-				}).fail(function(error, message)
-				{
-					$('#status').empty()
-						.append($('<h3>').text('Geen route gevonden.'))
-						.append($('<p>').text(message));
-				});
-				
-				return false;
-			});
-		};
+		$('#section_container').load('debug.html');
 		
 		function sbn() {
 			console.log('sbn');

@@ -1229,19 +1229,18 @@ body {
 	float: right;
 	padding: 5px;
 	margin: 5px;
+	margin-top: -12px;
+	padding-top: 0px;
 }
 
 /** 
- * question mark icon 
+ * watch icon 
  */
-#vraagteken {
-	border: 1px #09363B solid;
-	border-radius: 15px;
-	color: #FFFFFF; /* white */
-	background-color: #24C0D1; /* blue */
+#watch {
 	padding-left: 7px;
 	padding-right: 7px;
-	box-shadow: inset 0 0 10px #167782; /* gradienty shadowy part of the icon */
+	font-size: 48px;
+	color: #424242;
 }
 
 /* 
@@ -1261,16 +1260,9 @@ body {
  * back button 
  */
 #back {
-	border: 1px #7DD1C3 solid;
-	border-top-left-radius: 30px 20px;
-	border-bottom-left-radius: 30px 20px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
 	color: #424242;
-	background-color: #20E3C2;
 	padding-left:2px;
 	padding-right:2px;
-	box-shadow: inset 0 0 10px 5px #D7F7F2;
 	font-family: Arial;
 }
 
@@ -1376,7 +1368,7 @@ body {
  * 	CSS for the 'island-like' green div-box encapsulating all the input fields.
  */
 .eiland {
-	border: 2px #424242 solid;
+	border: 1px #424242 solid;
 	border-radius: 15px;
 	padding: 10px;
 
@@ -1401,7 +1393,7 @@ body {
 	-moz-box-shadow:    3px 3px 25px 6px #26A6D1;
 	-webkit-box-shadow: 3px 3px 25px 6px #26A6D1;
 	box-shadow:         3px 3px 25px 6px #26A6D1, /** dark blue drop shadow on the outside of the island old: 1A627A */
-											0px 0px 0px 2px #E2F5B3 inset, /** light green border on the inside of the island */
+											0px 0px 0px 1px #E2F5B3 inset, /** light green border on the inside of the island */
 											0px 0px 25px 10px #B7DB5C/* old, slightly brighter green colour, that I secretly like better: C6FF368*/ inset; /** slightly darker green gradient thing on the inside of the island */
 }
 
@@ -1649,6 +1641,9 @@ body {
 	color: #358219;
 }
 
+/**
+ * 	version of the island with slightly lighter colours
+ */
 .eilandLight {
 	border: 1px #424242 solid;
 	border-radius: 25px;
@@ -1674,6 +1669,9 @@ body {
 	font-size: 14px;
 }
 
+/**
+ * 	class that encapsulates all elements in the feedback screen
+ */
 .feedbackelement {
 	display: block;
 	margin-left: auto;
@@ -1691,4 +1689,11 @@ body {
 
 #comment {
 	width: 85%;
+}
+
+/**
+ * 	speech balloon that functions as the feedback button
+ */
+.feedback {
+	width: 37px;
 }
