@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+	<title>OTP test</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+	<meta charset="utf-8"/>
+	<script src="js/lib/prototype-1.7.1.js"></script>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.json-2.4.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/class/localdb.class.js"></script>
+	<script src="js/storage.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/otp.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/ui.js"></script>
+	
+	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/lib/jquery.ui.timepicker.js"></script>
+	<style type="text/css">
+		section {
+			width: 100%;
+		}
+		
+		input {
+			width: 75%;
+			float: right;
+		}
+		button, select {
+			float: right;
+		}
+		.time {
+			float:right;
+		}
+		
+		#sugto, #sugfrom {
+			display: none;
+		}
+		
+		div.datetimeholder {
+			width:65%;
+			float:right;
+		}
+		
+		div.datetimeholder input#date,
+		div.datetimeholder input#time {
+			width:100%;
+		}
+		
+		a.delete { color: red; }
+		
+		button.button {
+			height:50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<span id="left"><span id="back">&lt;</span></span>
+		<span id="center">Frits</span> 
+		<span id="right"><span id="vraagteken">?</span></span>
+	</div>
+	<section>
+		<form class="headerbuffer" id="form">
+			
+			<div class="eiland" class="shadow">
+			
+			<div class="divborder" id="fromdiv">
+				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
+				<a id="clearfrom" class="delete">&times;</a>
+				<input type="hidden" id="fromPlace" name="fromPlace">
+			</div>
+			<div id="sugfrom" class="suggestionsdiv"></div>
+			
+			<div class="divborder" id="todiv">
+				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
+				<a id="clearto" class="delete">&times;</a>
+				<input type="hidden" id="toPlace" name="toPlace">
+			</div>
+			<div id="sugto" class="suggestionsdiv"></div>
+			
+			<div class="divborder" id="datetime">
+				<div id="ditmoetopdezelfdelijn">
+					<select name="arriveBy" id="arriveBy">
+						<option value="false">vertrek</option>
+						<option value="true">aankomst</option>
+					</select>
+					<div class="datetimeholder">
+						<input type="date" id="date" name="date">
+					</div>
+					<div class="datetimeholder">
+						<input type="time" id="time" name="time">
+					</div>		
+				</div>
+			</div>	
+				
+			<div class="divborder" id="voorkeur">
+				<label>Voorkeur<select id="preferenceDropdown" name="preferLeastTransfers">
+					<option value="false">snelste route</option>
+					<option value="true">minst aantal overstappen</option>
+				</select></label>
+			</div>
+			
+			<div class="divborder" id="modaliteiten">
+				<label>Modaliteiten<div align="center">
+					<img src="img/bus.png" class="icon" id="bus">
+					<img src="img/rail.png" class="icon" id="rail">
+					<img src="img/tram.png" class="icon" id="tram">
+					<img src="img/subway.png" class="icon" id="subway">
+					<img src="img/ferry.png" class="icon" id="ferry">
+				</div></label>
+				<input type="hidden" id="mode" name="mode" value="WALK,TRANSIT">
+			</div>
+			
+			<div class="divborder" id="wheelchairdiv">
+				<label>Rolstoel <input type="checkbox" name="wheelchair" value="true"></label>
+			</div>
+			
+			<div id="planknop">
+				<button id="plan" class="button">Plan</button>
+			</div>
+			
+			<div id="status"></div>
+			</div><!-- einde eiland -->
+			
+		</form>
+	</section>
+	<script src="js/init.js"></script>
+	<script>
+		// Modality button states
+		var modalities =
+		{
+			walk: true,
+			bus: true,
+			rail: true,
+			tram: true,
+			subway: true,
+			ferry: true
+		};
+		
+		$(function()
+		{
+			// Initialize database
+			Storage.Locations.init();
+			
+			// Initialize to/from input boxes
+			var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
+			{
+				$('#from').val(address);
+				$('#fromPlace').val(coords);
+			});
+			var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
+			{
+				$('#to').val(address);
+				$('#toPlace').val(coords);
+			});
+			
+			$('#from').keyup(function() { $('#fromPlace').val(''); });
+			$('#to').keyup(function() { $('#toPlace').val(''); });
+			
+			// Initialize suggestions list
+			sugfrom.list = sugto.list = {};
+			Storage.Locations.list(Infinity).done(function(res)
+			{
+				$.each(res, function(i, item)
+				{
+					sugto.list[item.name] = item.latlng;
+				});
+			});
+			/*{
+				'Eindhoven': '51.44302,5.479576',
+				'Utrecht': '52.089398,5.109861',
+				'Tilburg': '51.55972,5.087558',
+				'Groningen': '53.210766,6.564099',
+				'Breda': '51.595067,4.780053',
+			};*/
+			
+			// Initialize date/time input boxes
+			$('#date').val(System.getDate()).datepicker();
+			$('#time').val(System.getTime()).timepicker();
+			
+			// Initialize modality buttons
+			$.each(modalities, function(name)
+			{
+				var mod = $('#' + name);
+				mod.click(function()
+				{
+					modalities[name] = !modalities[name];
+					mod.css('opacity', modalities[name] ? 1 : .3);
+					$('#mode').val($.map(modalities, function(value, name)
+					{
+						if (value)
+							return name.toUpperCase();
+					}).join(','));
+				});
+			});
+			
+			// Send request to planner
+			$('#plan').click(function(event)
+			{	
+				event.preventDefault();
+				
+				var req = {};
+				$.each($('#form').serializeArray(), function(i, item)
+				{
+					req[item.name] = item.value;
+				});
+				
+				req['showIntermediateStops'] = true;
+				
+				if (!req.fromPlace || !req.toPlace)
+				{
+					var oldreq = localStorage['OTP request pending'] && $.parseJSON(localStorage['OTP request pending']);
+					if (oldreq)
+					{
+						req.fromPlace = oldreq.fromPlace;
+						req.toPlace = oldreq.toPlace;
+					}
+				}
+				
+				$('#status').empty().append($('<h1>').text("Zoeken..."));
+				
+				// Save locations
+				if (req.fromPlace)
+					Storage.Locations.store(req.from, req.fromPlace, false);
+				if (req.toPlace)
+					Storage.Locations.store(req.to, req.toPlace, false);
+				
+				Service.Trip.plan(req).done(function(data)
+				{
+					window.location = "OTPresult.html";
+				}).fail(function(error, message)
+				{
+					$('#status').empty()
+						.append($('<h3>').text('Geen route gevonden.'))
+						.append($('<p>').text(message));
+				});
+				
+				return false;
+			});
+			
+			
+			$('#clearfrom').click(function() {
+				console.log('blaat');
+				$('#from').val('');
+			});
+			$('#clearto').click(function() {
+				$('#to').val('');
+			});
+		});
+	</script>
+</body>
+</html>
