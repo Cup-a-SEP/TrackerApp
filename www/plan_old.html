@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>OTP test</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 
 	<meta charset="utf-8"/>
 	<script src="js/lib/prototype-1.7.1.js"></script>
@@ -14,10 +15,12 @@
 	<script src="js/storage.js"></script>
 	<script src="js/geocode.js"></script>
 	<script src="js/otp.js"></script>
+	<script src="js/service.js"></script>
 	<script src="js/ui.js"></script>
 	
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/lib/jquery.ui.timepicker.js"></script>
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -37,6 +40,22 @@
 		#sugto, #sugfrom {
 			display: none;
 		}
+		
+		div.datetimeholder {
+			width:65%;
+			float:right;
+		}
+		
+		div.datetimeholder input#date,
+		div.datetimeholder input#time {
+			width:100%;
+		}
+		
+		a.delete { color: red; }
+		
+		button.button {
+			height:50px;
+		}
 	</style>
 </head>
 <body>
@@ -52,12 +71,14 @@
 			
 			<div class="divborder" id="fromdiv">
 				<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
+				<a id="clearfrom" class="delete">&times;</a>
 				<input type="hidden" id="fromPlace" name="fromPlace">
 			</div>
 			<div id="sugfrom" class="suggestionsdiv"></div>
 			
 			<div class="divborder" id="todiv">
 				<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
+				<a id="clearto" class="delete">&times;</a>
 				<input type="hidden" id="toPlace" name="toPlace">
 			</div>
 			<div id="sugto" class="suggestionsdiv"></div>
@@ -68,8 +89,12 @@
 						<option value="false">vertrek</option>
 						<option value="true">aankomst</option>
 					</select>
-					<input type="date" id="date" name="date">
-					<input type="time" id="time" name="time">
+					<div class="datetimeholder">
+						<input type="date" id="date" name="date">
+					</div>
+					<div class="datetimeholder">
+						<input type="time" id="time" name="time">
+					</div>		
 				</div>
 			</div>	
 				
@@ -96,11 +121,10 @@
 			</div>
 			
 			<div id="planknop">
-				<span id="fav">&hearts;</span>
-				<div id="status"></div>
-				<button id="plan">Plan</button>
+				<button id="plan" class="button">Plan</button>
 			</div>
 			
+			<div id="status"></div>
 			</div><!-- einde eiland -->
 			
 		</form>
@@ -156,8 +180,8 @@
 			};*/
 			
 			// Initialize date/time input boxes
-			$('#date').val(System.getDate());
-			$('#time').val(System.getTime());
+			$('#date').val(System.getDate()).datepicker();
+			$('#time').val(System.getTime()).timepicker();
 			
 			// Initialize modality buttons
 			$.each(modalities, function(name)
@@ -177,7 +201,7 @@
 			
 			// Send request to planner
 			$('#plan').click(function(event)
-			{
+			{	
 				event.preventDefault();
 				
 				var req = {};
@@ -185,6 +209,18 @@
 				{
 					req[item.name] = item.value;
 				});
+				
+				req['showIntermediateStops'] = true;
+				
+				if (!req.fromPlace || !req.toPlace)
+				{
+					var oldreq = localStorage['OTP request pending'] && $.parseJSON(localStorage['OTP request pending']);
+					if (oldreq)
+					{
+						req.fromPlace = oldreq.fromPlace;
+						req.toPlace = oldreq.toPlace;
+					}
+				}
 				
 				$('#status').empty().append($('<h1>').text("Zoeken..."));
 				
@@ -194,26 +230,26 @@
 				if (req.toPlace)
 					Storage.Locations.store(req.to, req.toPlace, false);
 				
-				OTP.plan(req).done(function(data)
+				Service.Trip.plan(req).done(function(data)
 				{
-					var stripped = (function(ser)
-					{
-						return ser;
-					})(data);
-					
-					// Save planner data
-					localStorage['OTP request'] = $.toJSON(req);
-					localStorage['OTP data'] = $.toJSON(data);
-					
 					window.location = "OTPresult.html";
 				}).fail(function(error, message)
 				{
 					$('#status').empty()
-						.append($('<h1>').text('Sorry! De OV-gids van Frits is kapot! :('))
-						.append($('<h3>').text(message));
+						.append($('<h3>').text('Geen route gevonden.'))
+						.append($('<p>').text(message));
 				});
 				
 				return false;
+			});
+			
+			
+			$('#clearfrom').click(function() {
+				console.log('blaat');
+				$('#from').val('');
+			});
+			$('#clearto').click(function() {
+				$('#to').val('');
 			});
 		});
 	</script>

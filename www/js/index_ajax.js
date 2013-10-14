@@ -50,9 +50,10 @@ var app = {
 
 $(function() {
 	
-	$('#planknopmetsupervetteajax').click(function() {
-		
-		$('section').load('plan_ajax.html');
-	})
+	$('a.ajaxnavigation').click(function(event) {
+		event.preventDefault();
+
+		$('#section_container').load($(this).attr('href'));
+	});
 	
-})
+});

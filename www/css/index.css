@@ -105,14 +105,18 @@ body {
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:1.8em;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
+section#index_page {
+	  font-size:1.8em; 
+    text-transform:uppercase;
+
+
+}
 /**
  * 	fixed header bar at the top of the screen 
  */
@@ -238,7 +242,7 @@ body {
  * moves everything except for the header 48 pixels downwards, so the 
  * header won't cover any relevant parts of the screen
  */
-.headerbuffer {
+#index_page .headerbuffer {
 	margin-top: 80px;
 	text-align: center;
 	text-transform: none;
