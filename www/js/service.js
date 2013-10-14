@@ -238,7 +238,6 @@ Service.Trip.refresh = function ServiceTripRefresh()
 	
 	function plan()
 	{
-		console.log(req);
 		OTP.plan(req).done(function(data)
 		{
 			localStorage['OTP data'] = $.toJSON(data);
