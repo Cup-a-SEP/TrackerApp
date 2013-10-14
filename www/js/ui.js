@@ -98,7 +98,9 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			
 		// zichtbaar bij uitklappen:
 		var hasstops = (leg.intermediateStops.length > 0);
-		var divstops;
+
+		var divstops = $('<div>').append(addStops(leg.intermediateStops));
+		divstops.toggle(false);
 		var stopbutton;
 		if(hasstops){
 			divstops = $('<div>').append(addStops(leg.intermediateStops));
