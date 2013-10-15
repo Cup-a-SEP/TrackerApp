@@ -24,7 +24,7 @@ Page.Body = $('body');
  */
 Page.load = function PageLoad(href)
 {
-	Page.History.push(Page.Body.contents());
+	Page.History.push(Page.Body.contents().clone(true, true));
 	Page.Body.load(href);
 };
 
