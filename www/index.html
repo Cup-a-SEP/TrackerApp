@@ -93,8 +93,6 @@
 	</div>
 	<div id="section_container"></div>
 	<script type="text/javascript">
-		var loaded = false;
-		
 		document.addEventListener("deviceready", Loaded, false);
 		
 		function Loaded()
@@ -105,7 +103,16 @@
 			//startWatch(); was da?
 			
 			Page.Body = $('#section_container');
+			
+			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
+			/**/
 			Page.load('debug.html');
+			/** /
+			if (localStorage['OTP data'])
+				Page.load('currenttrip.html');
+			else
+				Page.load('plan.html');
+			/**/
 		}
 		
 		$(function()
