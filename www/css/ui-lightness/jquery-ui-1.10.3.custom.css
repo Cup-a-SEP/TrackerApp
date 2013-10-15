@@ -1703,4 +1703,10 @@ a {
 	text-decoration: none;
 }
 
-
+#prevLegButton {
+	padding: 5px;
+	float: left;
+	margin: 5px;
+	width: 80px;
+	height: 30px;
+}
