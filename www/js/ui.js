@@ -296,3 +296,101 @@ UI.Suggestion.prototype.close = function UISuggestionClose()
 	this.target.slideUp();
 	return this;
 };
+
+/**
+ * Creates a swipe box from an element
+ * @constructor Suggestion
+ * @param {jQuery}           target    - element which will be replaced by the swipe box
+ * @param {jQuery}           indicator - element that will contain the index indicator
+ * 
+ * @property {Number} count - number of pages
+ * @property {Number} index - page currently selected
+ */
+UI.Swipe = function UISwipe(target, indicator)
+{
+	var self = this;
+	this.count = 0;
+	this.index = 0;
+	this.element = target;
+	this.indicator = indicator;
+	
+	this.element.append(this.container = $('<div>').addClass('swipe-wrap'));
+	this.reset();
+};
+
+/**
+ * Redraws the swipebox when pages have been added
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.reset = function UISwipeReset()
+{
+	var self = this;
+	
+	function update()
+	{
+		var bullets = '';
+		for (var i = 0; i < self.count; ++i)
+			bullets += i == self.index ? '&diams; ' : '&bull; '; 
+		
+		self.indicator.html(bullets);
+	};
+	
+	this.control = Swipe(this.element[0],
+	{
+		//startSlide: 4,                              //(default:0) - index position Swipe should start at
+		//speed: 300,                                 //(default:300) - speed of prev and next transitions in milliseconds
+		//auto: 3000,                                 //begin with auto slideshow (time in milliseconds between slides)
+		continuous : false,                           //(default:true) - create an infinite feel with no endpoints
+		//disableScroll: true,                        //(default:false) - stop any touches on this container from scrolling the page
+		//stopPropagation: true,                      //(default:false) - stop event propagation
+		callback : function(index, element)           //runs at slide change
+		{
+			self.index = index;
+			update();
+		},
+		//transitionEnd: function(index, element) {}  //runs at the end slide transition
+	});
+	
+	update();
+	
+	return this;
+};
+
+/**
+ * Adds a page to the swipebox
+ * @memberof UI.Swipe
+ * @return {jQuery} added page element 
+ */
+UI.Swipe.prototype.add = function UISwipeAdd()
+{
+	this.count++;
+	
+	var div;
+	this.container.append(div = $('<div>')
+		.addClass('leg-display')
+		.append(element));
+	return div;
+};
+
+/**
+ * Goes to the next page
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.next = function UISwipeNext()
+{
+	this.control.next();
+	return this;
+};
+
+/**
+ * Goes to the previous page
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.prev = function UISwipePrev()
+{
+	this.control.prev();
+	return this;
+};
