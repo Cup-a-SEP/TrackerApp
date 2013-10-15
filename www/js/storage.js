@@ -122,10 +122,14 @@ Storage.Trips.init = function StorageTripsInit()
  */
 Storage.Trips.store = function StorageTripsStore(trip)
 {
-	trip = Object.create(trip);
+	trip = $.extend({}, trip);
 	trip.arriveBy = (trip.arriveBy ? '1' : '0');
 	trip.wheelchair = (trip.wheelchair ? '1' : '0');
 	trip.preferLeastTransfers = (trip.preferLeastTransfers ? '1' : '0');
+	
+	delete trip['showIntermediateStops'];
+	delete trip['maxWalkDistance'];
+	
 	return this.db.insert(trip);
 };
 

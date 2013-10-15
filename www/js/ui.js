@@ -368,8 +368,7 @@ UI.Swipe.prototype.add = function UISwipeAdd()
 	
 	var div;
 	this.container.append(div = $('<div>')
-		.addClass('leg-display')
-		.append(element));
+		.addClass('leg-display'));
 	return div;
 };
 
