@@ -1228,9 +1228,7 @@ body {
 #right {
 	float: right;
 	padding: 5px;
-	margin: 5px;
-	margin-top: -12px;
-	padding-top: 0px;
+	margin: 5px;	
 }
 
 /** 
@@ -1239,8 +1237,9 @@ body {
 #watch {
 	padding-left: 7px;
 	padding-right: 7px;
-	font-size: 48px;
-	color: #424242;
+	color: #424242;	
+	width: 26%;
+	height: 26%;
 }
 
 #right a {
@@ -1700,4 +1699,11 @@ body {
  */
 .feedback {
 	width: 37px;
+}
+
+/**
+ * 	remove all the underlines on links
+ */
+a {
+	text-decoration: none;
 }
