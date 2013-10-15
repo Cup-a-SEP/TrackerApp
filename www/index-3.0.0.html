@@ -21,17 +21,15 @@
 		<title>MyService V3.0.0</title>
 		
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-		<script type="text/javascript" src="backgroundService-3.0.0.js"></script>
-		<script src="js/lib/jquery-1.8.3.min.js"></script>
-
-		<script type="text/javascript" src="myService-3.0.0.js"></script>
+		<script type="text/javascript" src="js/backgroundService-3.0.0.js"></script>
+		<script type="text/javascript" src="js/myService-3.0.0.js"></script>
 		
-    <script type="text/javascript" >
-    	var myService = cordova.require('cordova/plugin/myService');
-    	
-    	document.addEventListener('deviceready', function() {			
+        <script type="text/javascript" >
+        	var myService = cordova.require('cordova/plugin/myService');
+        	
+        	document.addEventListener('deviceready', function() {
 				getStatus();
-			}, true);
+  			}, true);
 
  			function handleSuccess(data) {
  				updateView(data);

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and   
  * limitations under the License.
  */
+
 cordova.define(	'cordova/plugin/myService',	function(require, exports, module) {    
-	CreateBackgroundService('com.phonegap.hello_world.MyService', require, exports, module);
-});
+												CreateBackgroundService('com.phonegap.hello_world.MyService', require, exports, module);
+											});
