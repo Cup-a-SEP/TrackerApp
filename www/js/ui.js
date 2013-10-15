@@ -87,42 +87,49 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		
 		var h3 = $('<h3>')
 		
-		// plaatje:
+		// image:
 			.append($('<img>').attr('src', 'img/' + leg.mode + '.png')
 				.css('width', 20)
 				.css('height', 20))
 	
-		// titel:
+		// title:
 			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' - ' + UI.formatTime(leg.endTime)))
 			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
 			
-		// zichtbaar bij uitklappen:
-		var hasstops = (leg.intermediateStops.length > 0);
-
-		var divstops = $('<div>').append(addStops(leg.intermediateStops));
-		divstops.toggle(false);
-		var stopbutton;
-		if(hasstops){
+		
+		// intermediate stops:
+		var stopbutton, divstops;
+		if (leg.intermediateStops && leg.intermediateStops.length)
+		{
 			divstops = $('<div>').append(addStops(leg.intermediateStops));
-			console.log('test1');
 			divstops.toggle(false);
-			console.log('test2');
-			stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
-						.append("<p>tussenhaltes</p>");
-			stopbutton.click(function() {
-				divstops.toggle();
-			});
+			
+			// show intermediate stops button
+			stopbutton = $('<div>')
+				.attr('id', 'stopbutton' + i)
+				.addClass('button')
+				.append($('<p>').text('tussenhaltes'))
+				.click(function() { divstops.toggle(); });
 		}
 		
-		var mapbutton = $('<div id="legmap' + i + '" class="button">')
-					.append("<p>Open map</p>");
-		$(mapbutton).click(function() {
-			localStorage['ShowMap'] = i;
-			window.location = "legmap.html";
-		});
-					
+		// open map button
+		var mapbutton = $('<div>')
+			.attr('id', 'legmap' + i)
+			.addClass('button')
+			.append($('<p>').text('Open map'))
+			.click(function()
+			{
+				localStorage['ShowMap'] = i; // What does this do?
+				Page.load("legmap.html");
+			});
+		
+		// visible when extended:
 		var div = $('<div>')
-			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(divstops).append(endTime + ': ' + toName))
+			.append($('<p>')
+				.text(startTime + ': ' + fromName)
+				.append($('<br>'))
+				.append(divstops)
+				.append(endTime + ': ' + toName))
 			.append(mapbutton)
 			.append(stopbutton);
 
@@ -287,5 +294,103 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
 	this.target.slideUp();
+	return this;
+};
+
+/**
+ * Creates a swipe box from an element
+ * @constructor Suggestion
+ * @param {jQuery}           target    - element which will be replaced by the swipe box
+ * @param {jQuery}           indicator - element that will contain the index indicator
+ * 
+ * @property {Number} count - number of pages
+ * @property {Number} index - page currently selected
+ */
+UI.Swipe = function UISwipe(target, indicator)
+{
+	var self = this;
+	this.count = 0;
+	this.index = 0;
+	this.element = target;
+	this.indicator = indicator;
+	
+	this.element.append(this.container = $('<div>').addClass('swipe-wrap'));
+	this.reset();
+};
+
+/**
+ * Redraws the swipebox when pages have been added
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.reset = function UISwipeReset()
+{
+	var self = this;
+	
+	function update()
+	{
+		var bullets = '';
+		for (var i = 0; i < self.count; ++i)
+			bullets += i == self.index ? '&diams; ' : '&bull; '; 
+		
+		self.indicator.html(bullets);
+	};
+	
+	this.control = Swipe(this.element[0],
+	{
+		//startSlide: 4,                              //(default:0) - index position Swipe should start at
+		//speed: 300,                                 //(default:300) - speed of prev and next transitions in milliseconds
+		//auto: 3000,                                 //begin with auto slideshow (time in milliseconds between slides)
+		continuous : false,                           //(default:true) - create an infinite feel with no endpoints
+		//disableScroll: true,                        //(default:false) - stop any touches on this container from scrolling the page
+		//stopPropagation: true,                      //(default:false) - stop event propagation
+		callback : function(index, element)           //runs at slide change
+		{
+			self.index = index;
+			update();
+		},
+		//transitionEnd: function(index, element) {}  //runs at the end slide transition
+	});
+	
+	update();
+	
+	return this;
+};
+
+/**
+ * Adds a page to the swipebox
+ * @memberof UI.Swipe
+ * @return {jQuery} added page element 
+ */
+UI.Swipe.prototype.add = function UISwipeAdd()
+{
+	this.count++;
+	
+	var div;
+	this.container.append(div = $('<div>')
+		.addClass('leg-display')
+		.append(element));
+	return div;
+};
+
+/**
+ * Goes to the next page
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.next = function UISwipeNext()
+{
+	this.control.next();
+	return this;
+};
+
+/**
+ * Goes to the previous page
+ * @memberof UI.Swipe
+ * @return this 
+ */
+UI.Swipe.prototype.prev = function UISwipePrev()
+{
+	this.control.prev();
 	return this;
 };

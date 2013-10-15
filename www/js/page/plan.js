@@ -79,6 +79,8 @@ Page.Plan.init = function PagePlanInit()
 			req[item.name] = item.value;
 		});
 		
+		req['showIntermediateStops'] = true;
+		
 		$('#status').empty().append($('<h1>').text("Zoeken..."));
 		
 		// Save locations
@@ -89,12 +91,13 @@ Page.Plan.init = function PagePlanInit()
 		
 		Service.Trip.plan(req).done(function(data)
 		{
-			window.location = "OTPresult.html";
+			$('#status').empty();
+			Page.load("OTPresult.html");
 		}).fail(function(error, message)
 		{
 			$('#status').empty()
 				.append($('<h3>').text('Geen route gevonden.'))
-				.append($('<p>').text(message));
+				.append($('<h4>').text(message));
 		});
 		
 		return false;

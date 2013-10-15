@@ -28,9 +28,15 @@
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<script src="js/lib/swipe.js"></script>
+	<link href="css/swipestyle.css" rel="stylesheet">
+	<script src="OpenLayers/OpenLayers.js"></script>
 	
 	<!-- pages -->
 	<script src="js/page/plan.js"></script>
+	<script src="js/page/OTPresult.js"></script>
+	<script src="js/page/legmap.js"></script>
+	<script src="js/page/currenttrip.js"></script>
 	
 	<style type="text/css">
 		section {
@@ -53,7 +59,7 @@
 		}
 		
 		div.datetimeholder {
-			width:80%;
+			width: 50%;
 			float:right;
 		}
 		
@@ -67,6 +73,12 @@
 		button.button {
 			height:50px;
 		}
+		
+		#status {
+			float: left;
+			width: 70%;
+			margin-left: 5%;
+		}
 	</style>
 </head>
 <body>
@@ -76,13 +88,12 @@
 		</span>  
 		<span id="center">Frits</span>
 		<span id="right">
-			<span><img src="img/Speech_balloon.svg" class="feedback"></img></span>
+			<span><a href="settings.html"><img src="img/alarm_clock_goed.png" id="watch"></a></span>
+			<span><a href="Feedback.html"><img src="img/Speech_balloon.svg" class="feedback"></img></a></span>
 		</span>
 	</div>
 	<div id="section_container"></div>
 	<script type="text/javascript">
-		var loaded = false;
-		
 		document.addEventListener("deviceready", Loaded, false);
 		
 		function Loaded()
@@ -93,7 +104,16 @@
 			//startWatch(); was da?
 			
 			Page.Body = $('#section_container');
+			
+			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
+			/**/
 			Page.load('debug.html');
+			/** /
+			if (localStorage['OTP data'])
+				Page.load('currenttrip.html');
+			else
+				Page.load('plan.html');
+			/**/
 		}
 		
 		$(function()
