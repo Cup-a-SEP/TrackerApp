@@ -1540,6 +1540,10 @@ body {
 	color: black;
 }
 
+#alarmInfoDiv {
+	margin-top: 50px;
+}
+
 /**
  * 	div for the wheelchair thing
  */
@@ -1703,4 +1707,19 @@ a {
 	text-decoration: none;
 }
 
+#prevLegButton {
+	padding: 5px;
+	float: left;
+	margin: 5px;
+	width: 80px;
+	height: 30px;
+}
 
+#nextLegButton {
+	padding: 5px;
+	float: right;
+	margin: 5px;
+	width: 80px;
+	height: 30px;
+	margin-bottom: 30px;
+}

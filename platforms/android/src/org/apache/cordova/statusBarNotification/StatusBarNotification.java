@@ -61,8 +61,8 @@ public class StatusBarNotification extends CordovaPlugin {
                 String title = data.getString(1);
                 String body = data.getString(2);
                 String flag = data.getString(3);
-                Log.d("NotificationPlugin", "Notification: " + tag + ", " + title + ", " + body);
                 int notificationFlag = getFlagValue(flag);
+                Log.d("NotificationPlugin", "Notification: " + tag + ", " + title + ", " + body + ", " + notificationFlag);
                 showNotification(tag, title, body, notificationFlag);
             } catch (JSONException jsonEx) {
                 Log.d("NotificationPlugin", "Got JSON Exception "
