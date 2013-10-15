@@ -1243,6 +1243,10 @@ body {
 	color: #424242;
 }
 
+#right a {
+	text-decoration: none;
+}
+
 /* 
  * the heart icon used to add a route to favourites 
  */
