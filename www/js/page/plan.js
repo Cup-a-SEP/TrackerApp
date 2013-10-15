@@ -91,12 +91,13 @@ Page.Plan.init = function PagePlanInit()
 		
 		Service.Trip.plan(req).done(function(data)
 		{
+			$('#status').empty();
 			Page.load("OTPresult.html");
 		}).fail(function(error, message)
 		{
 			$('#status').empty()
 				.append($('<h3>').text('Geen route gevonden.'))
-				.append($('<p>').text(message));
+				.append($('<h4>').text(message));
 		});
 		
 		return false;
