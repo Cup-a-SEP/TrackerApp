@@ -41,13 +41,13 @@ Page.OTPResult.init = function PageOTPResultInit()
 		req.expectedDepartureTime = it.legs[0].startTime;
 		req.expectedArrivalTime = it.legs[it.legs.length-1].endTime;
 
-        try{
-            Storage.Trips.store(req).always(function()
-            {
-                window.location = "currenttrip.html";
-            });
-        } catch(e){
-            window.location = "currenttrip.html";
-        }
+		try {
+			Storage.Trips.store(req).always(function()
+			{
+				Page.load("currenttrip.html");
+			});
+		} catch(e) {
+			Page.load("currenttrip.html");
+		}
 	});
 };
