@@ -1540,6 +1540,10 @@ body {
 	color: black;
 }
 
+#alarmInfoDiv {
+	margin-top: 50px;
+}
+
 /**
  * 	div for the wheelchair thing
  */
