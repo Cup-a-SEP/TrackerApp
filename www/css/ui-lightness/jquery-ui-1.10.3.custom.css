@@ -1710,3 +1710,12 @@ a {
 	width: 80px;
 	height: 30px;
 }
+
+#nextLegButton {
+	padding: 5px;
+	float: right;
+	margin: 5px;
+	width: 80px;
+	height: 30px;
+	margin-bottom: 30px;
+}
