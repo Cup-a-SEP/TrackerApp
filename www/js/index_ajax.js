@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -48,6 +51,8 @@ var app = {
     }
 };
 
+// DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
+
 $(function() {
 	
 	$('a.ajaxnavigation').click(function(event) {
@@ -57,3 +62,5 @@ $(function() {
 	});
 	
 });
+
+// DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED

@@ -1,0 +1,38 @@
+<section id="index_page">
+	<div class="headerbuffer">
+		<!-- DEPRECATED!!!! everything in this screen will be removed; this screen will service as a loading screen in the future! -->
+		<h4 id="headertekst">Wat wil je doen?</h4>
+		<!--<p class="button"><a href="testdecoder.html">Test de JSON decoder</a></p>
+		<p class="button"><a href="storage_test.html">Test Data Storage</a></p>-->
+		<!--<p class="button"><a href="location.html">Test de locatie kiezer!</a></p>-->
+		<a href="plan.html" class="divbutton ajaxnavigation"><p class="button">Plan je route</p></a>
+		<a href="map_test.html" class="divbutton ajaxnavigation"><p class="button">Map Test</p></a>
+		<!--<a href="input_test.html" class="divbutton"><p class="button">Input test</p></a>-->
+		<a href="settings.html" class="divbutton ajaxnavigation"><p class="button">Instellingen</p></a>
+		<a href="DBACTestCases.html" class="divbutton ajaxnavigation"><p class="button">DBAC Test Report</p></a>
+		<a href="index-3.0.0.html" class="divbutton"><p class="button">Background</p></a>
+		<a href="Feedback.html" class="divbutton ajaxnavigation"><p class="button">Gimme feedback</p></a>
+		<a onClick="sbn();" class="divbutton"><p class="button">Statusbarnotification!</p></a>
+		<a onClick="note();" class="divbutton"><p class="button">Notification!</p></a>
+	</div>
+</section>
+<script>
+	$(function()
+	{	
+		$('a.ajaxnavigation').click(function(event)
+		{
+			event.preventDefault();
+	
+			Page.load($(this).attr('href'));
+		});
+	});
+	
+	function sbn() {
+		console.log('sbn');
+		window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+	}
+	
+	function note() {
+		navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
+	}
+</script>
