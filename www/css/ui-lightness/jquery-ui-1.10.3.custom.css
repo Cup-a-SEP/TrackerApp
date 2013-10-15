@@ -1495,8 +1495,11 @@ body {
 #time {
 	float: right;
 	margin: 5px;
+	margin-top: 10px;
 	width: 57%;
 	border-radius: 5px;
+	margin-left: 50px;
+	margin-right: -100px;
 }
 
 /**
