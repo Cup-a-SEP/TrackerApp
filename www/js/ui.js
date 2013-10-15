@@ -87,42 +87,49 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		
 		var h3 = $('<h3>')
 		
-		// plaatje:
+		// image:
 			.append($('<img>').attr('src', 'img/' + leg.mode + '.png')
 				.css('width', 20)
 				.css('height', 20))
 	
-		// titel:
+		// title:
 			.append($('<span>').addClass('time').text(UI.formatTime(leg.startTime) + ' - ' + UI.formatTime(leg.endTime)))
 			.append(' ' + modeName(leg.mode) + ' ' + leg.route + ' ');
 			
-		// zichtbaar bij uitklappen:
-		var hasstops = (leg.intermediateStops.length > 0);
-
-		var divstops = $('<div>').append(addStops(leg.intermediateStops));
-		divstops.toggle(false);
-		var stopbutton;
-		if(hasstops){
+		
+		// intermediate stops:
+		var stopbutton, divstops;
+		if (leg.intermediateStops && leg.intermediateStops.length)
+		{
 			divstops = $('<div>').append(addStops(leg.intermediateStops));
-			console.log('test1');
 			divstops.toggle(false);
-			console.log('test2');
-			stopbutton = $('<div id="stopsbutton' + i + '" class="button">')
-						.append("<p>tussenhaltes</p>");
-			stopbutton.click(function() {
-				divstops.toggle();
-			});
+			
+			// show intermediate stops button
+			stopbutton = $('<div>')
+				.attr('id', 'stopbutton' + i)
+				.addClass('button')
+				.append($('<p>').text('tussenhaltes'))
+				.click(function() { divstops.toggle(); });
 		}
 		
-		var mapbutton = $('<div id="legmap' + i + '" class="button">')
-					.append("<p>Open map</p>");
-		$(mapbutton).click(function() {
-			localStorage['ShowMap'] = i;
-			window.location = "legmap.html";
-		});
-					
+		// open map button
+		var mapbutton = $('<div>')
+			.attr('id', 'legmap' + i)
+			.addClass('button')
+			.append($('<p>').text('Open map'))
+			.click(function()
+			{
+				localStorage['ShowMap'] = i; // What does this do?
+				Page.load("legmap.html");
+			});
+		
+		// visible when extended:
 		var div = $('<div>')
-			.append($('<p>').text(startTime + ': ' + fromName).append($('<br>')).append(divstops).append(endTime + ': ' + toName))
+			.append($('<p>')
+				.text(startTime + ': ' + fromName)
+				.append($('<br>'))
+				.append(divstops)
+				.append(endTime + ': ' + toName))
 			.append(mapbutton)
 			.append(stopbutton);
 
