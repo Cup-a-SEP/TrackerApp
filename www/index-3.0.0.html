@@ -27,10 +27,9 @@
 		<script type="text/javascript" src="myService-3.0.0.js"></script>
 		
     <script type="text/javascript" >
-    	var myService;
+    	var myService = cordova.require('cordova/plugin/myService');
     	
     	document.addEventListener('deviceready', function() {			
-    		myService = cordova.require('cordova/plugin/myService');
 				getStatus();
 			}, true);
 
