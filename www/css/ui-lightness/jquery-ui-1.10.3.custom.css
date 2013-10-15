@@ -1686,6 +1686,7 @@ body {
  */
 .feedback {
 	width: 37px;
+	float: right;
 }
 
 /**
