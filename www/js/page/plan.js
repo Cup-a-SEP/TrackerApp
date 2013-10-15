@@ -79,6 +79,8 @@ Page.Plan.init = function PagePlanInit()
 			req[item.name] = item.value;
 		});
 		
+		req['showIntermediateStops'] = true;
+		
 		$('#status').empty().append($('<h1>').text("Zoeken..."));
 		
 		// Save locations
