@@ -29,6 +29,7 @@
     <access origin="ferrari.goabout.com:8080" />
     <access origin="http://*.openstreetmap.org" />
     <access origin="http://bag42.nl" />
+    <access origin="http://*.opentripplanner.nl" />
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="permissions" value="none" />

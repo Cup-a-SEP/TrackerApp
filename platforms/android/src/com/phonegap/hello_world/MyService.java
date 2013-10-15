@@ -10,6 +10,8 @@ import android.util.Log;
 
 import com.red_folder.phonegap.plugin.backgroundservice.BackgroundService;
 
+import org.apache.cordova.statusBarNotification.*;
+
 public class MyService extends BackgroundService {
 	
 	private final static String TAG = MyService.class.getSimpleName();
@@ -28,6 +30,11 @@ public class MyService extends BackgroundService {
 			result.put("Message", msg);
 
 			Log.d(TAG, msg);
+						
+			StatusBarNotification sbn = new StatusBarNotification();
+			
+			sbn.showNotification("tag", "title", "body", 1);
+
 		} catch (JSONException e) {
 		}
 		
