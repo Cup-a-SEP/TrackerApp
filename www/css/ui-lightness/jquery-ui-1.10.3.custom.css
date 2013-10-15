@@ -1240,7 +1240,8 @@ body {
 	padding-right: 7px;
 	color: #424242;	
 	width: 26%;
-	float: right;
+	position:relative;
+	right: -5px;
 }
 
 #right a {
