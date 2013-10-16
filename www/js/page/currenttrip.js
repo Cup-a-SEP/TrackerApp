@@ -23,7 +23,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 	window.tripsSwipe = trips;
 
     $(document).on("OTPdataRefresh",function(){
-        Page.load("currenttrip.html");
+        Page.replace("currenttrip.html", Page.CurrentTrip);
     });
     
 	$(function()
