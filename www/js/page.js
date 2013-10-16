@@ -29,6 +29,15 @@ Page.load = function PageLoad(href)
 };
 
 /**
+ * Loads a page without saving history
+ * @param {Object} href
+ */
+Page.replace = function PageReplace(href)
+{
+	Page.Body.load(href);
+};
+
+/**
  * Go back a page in history or close the app if the last one 
  */
 Page.back = function PageBack()
