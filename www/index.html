@@ -41,6 +41,7 @@
 	<script src="js/page/legmap.js"></script>
 	<script src="js/page/currenttrip.js"></script>
 	<script src="js/page/settings.js"></script>
+	<script src="js/page/feedback.js"></script>
 	
 	<style type="text/css">
 		section {
@@ -93,7 +94,7 @@
 		<span id="center">Frits</span>
 		<span id="right">
 			<span><a id="settingsButton"><img src="img/alarm_clock_goed.png" id="watch"></a></span>
-			<span><a href="Feedback.html"><img src="img/Speech_balloon.svg" class="feedback"></img></a></span>
+			<span><a id="feedbackButton"><img src="img/Speech_balloon.svg" class="feedback"></img></a></span>
 		</span>
 	</div>
 	<div id="section_container"></div>
@@ -112,6 +113,12 @@
 			$('#settingsButton').click(function()
 			{
 				Page.load('settings.html');
+				return false;
+			});
+			
+			$('#feedbackButton').click(function()
+			{
+				Page.load('feedback.html');
 				return false;
 			});
 			
