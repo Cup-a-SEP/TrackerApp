@@ -20,7 +20,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 	};
 
 	var trips = new UI.Swipe($('#trips'), $('#indexindicator'));
-	window.bla = trips;
+	window.tripsSwipe = trips;
 
 	$(function()
 	{
@@ -31,7 +31,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 		$('#cancelButton').click(function ()
 		{
 			Service.Trip.cancel();
-			Page.load('plan.html');
+			Page.load('plan.html', Page.Plan);
 		});
 		
 		if (OTPdata)
@@ -76,7 +76,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 							return function()
 							{
 								localStorage['ShowMap'] = i;
-								Page.load('legmap.html');
+								Page.load('legmap.html', Page.Legmap);
 							};
 						})(i)));
 			}
@@ -97,4 +97,12 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 			trips.reset();
 		}
 	});
+};
+
+/**
+ * Refreshes current trip information page interface
+ */
+Page.CurrentTrip.refresh = function PageCurrentTripRefresh()
+{
+	window.tripsSwipe.reset($('#trips'), $('#indexindicator'));
 };

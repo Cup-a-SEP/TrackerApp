@@ -92,7 +92,7 @@ Page.Plan.init = function PagePlanInit()
 		Service.Trip.plan(req).done(function(data)
 		{
 			$('#status').empty();
-			Page.load("OTPresult.html");
+			Page.load("OTPresult.html", Page.OTPResult);
 		}).fail(function(error, message)
 		{
 			$('#status').empty()

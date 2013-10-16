@@ -112,13 +112,13 @@
 			// Setup header
 			$('#settingsButton').click(function()
 			{
-				Page.load('settings.html');
+				Page.load('settings.html', Page.Settings);
 				return false;
 			});
 			
 			$('#feedbackButton').click(function()
 			{
-				Page.load('feedback.html');
+				Page.load('feedback.html', Page.Feedback);
 				return false;
 			});
 			
@@ -126,13 +126,13 @@
 			Page.Body = $('#section_container');
 			
 			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
-			/**/
-			Page.load('debug.html');
 			/** /
+			Page.load('debug.html');
+			/**/
 			if (localStorage['OTP data'])
-				Page.load('currenttrip.html');
+				Page.load('currenttrip.html', Page.CurrentTrip);
 			else
-				Page.load('plan.html');
+				Page.load('plan.html', Page.Plan);
 			/**/
 		}
 		
