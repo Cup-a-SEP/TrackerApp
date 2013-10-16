@@ -26,70 +26,84 @@ function Polling()
     var oldData = $.parseJSON(localStorage['OTP data']);
     
     if(req && oldData){
-        // Get the next stopID and the time the user will be there
         var oldLegs = oldData.itineraries[0].legs;
-        var now = new Date().getTime();
-        var curLeg;
-        for(var i = 0; i < oldLegs.length; i++){
-            if(now <= oldLegs[i].endTime){
-                curLeg = oldLegs[i];
+        
+        Service.Trip.refresh().fail(function(){
+            // onBoard trip planning failed. Try using the next stop to plan
+            
+                // Get the next stopID and the time the user will be there
+                var now = new Date().getTime();
+                var curLeg;
+                for(var i = 0; i < oldLegs.length; i++){
+                    if(now <= oldLegs[i].endTime){
+                        curLeg = oldLegs[i];
+                        break;
+                    }
+                }
+                
+                if(!curLeg) return;
+                
+                var nextStopId;
+                var nextStopTime;
+                if(now < curLeg.startTime){
+                    // waiting to start curLeg, therefore at the starting location of curLeg
+                    nextStopTime = now;
+                    if(curLeg == oldLegs[0]){
+                        nextStopId = req.fromPlace;
+                    } else {
+                        nextStopId = curLeg.from.stopId.agencyId + '_' + curLeg.from.stopId.id;
+                    }
+                } else {
+                    // currently on curLeg
+                    for(var i = 0; i < curLeg.intermediateStops.length; i++){
+                        var stop = curLeg.intermediateStops[i];
+                        var time = stop.arrival;
+                        if(now < time){
+                            nextStopTime = time;
+                            nextStopId = stop.stopId.agencyId + '_' + stop.stopId.id;
+                            break;
+                        }
+                    }
+                    
+                    if(!nextStopId){
+                        // next stop is not one of the intermediate stops, therefore it is the destination
+                        nextStopTime = curLeg.endTime;
+                        nextStopId = curLeg.to.stopId.agencyId + '_'+ curLeg.to.stopId.id;
+                    }
+                }
+                
+                // plan the trip from the next stop
+                req.fromPlace = nextStopId;
+                req.arriveBy = false;
+                var d = new Date(nextStopTime);
+                req.time = d.getHours() + ':' + d.getMinutes();
+                
+                OTP.plan(req).done(function(data)
+                {
+                    localStorage['OTP data'] = $.toJSON(data);
+                    Service.Alarm.refresh();
+                }).fail(function(error){
+                    console.log("Error in OTP alert plan " + error);
+                });
+        });
+    
+        var data = $.parseJSON(localStorage['OTP data']);
+        var newLegs = data.itineraries[0].legs;
+        var offset = oldLegs.length - newLegs.length;
+                    
+        var gotAlert = false;
+        for(var i = 0; i < newLegs.length; i++){
+            if(newLegs[i].tripId != oldLegs[i+offset].tripId){
+                gotAlert = true;
+                // TODO: handle the alert
+                console.log("OMGWTFBBQ! Alert!");
                 break;
             }
         }
-        
-        if(!curLeg) return;
-        
-        var nextStopId;
-        var nextStopTime;
-        if(now < curLeg.startTime){
-            // waiting to start curLeg, therefore at the starting location of curLeg
-            nextStopTime = now;
-            if(curLeg == oldLegs[0]){
-                nextStopId = req.fromPlace;
-            } else {
-                nextStopId = curLeg.from.stopId.agencyId + '_' + curLeg.from.stopId.id;
-            }
-        } else {
-            // currently on curLeg
-            for(var i = 0; i < curLeg.intermediateStops.length; i++){
-                var stop = curLeg.intermediateStops[i];
-                var time = stop.arrival;
-                if(now < time){
-                    nextStopTime = time;
-                    nextStopId = stop.stopId.agencyId + '_' + stop.stopId.id;
-                    break;
-                }
-            }
-            
-            if(!nextStopId){
-                // next stop is not one of the intermediate stops, therefore it is the destination
-                nextStopTime = curLeg.endTime;
-                nextStopId = curLeg.to.stopId.agencyId + '_'+ curLeg.to.stopId.id;
-            }
+        if(!gotAlert){
+            //refresh the page for delay updates
+            $(document).trigger("OTPdataRefresh");
         }
-        
-        // plan the trip from the next stop
-        
-        req.fromPlace = nextStopId;
-        req.arriveBy = false;
-        var d = new Date(nextStopTime);
-        req.time = d.getHours() + ':' + d.getMinutes();
-        
-        
-        OTP.plan(req).done(function(data)
-        {
-            var newLegs = data.itineraries[0].legs;
-            var offset = oldLegs.length - newLegs.length;
-            
-            for(var i = 0; i < newLegs.length; i++){
-                if(newLegs[i].tripId != oldLegs[i+offset].tripId){
-                    // TODO: handle the alarm
-                    console.log("OMGWTFBBQ! ALERT!!!11!!!!!!");
-                }
-            }
-        }).fail(function(error){
-            console.log("Error in OTP alert plan " + error);
-        });
     }
     // end alert code
     

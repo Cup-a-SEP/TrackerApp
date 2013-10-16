@@ -22,6 +22,10 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 	var trips = new UI.Swipe($('#trips'), $('#indexindicator'));
 	window.bla = trips;
 
+    $(document).on("OTPdataRefresh",function(){
+        Page.load("currenttrip.html");
+    });
+    
 	$(function()
 	{
 		var OTPdata = localStorage['OTP data'] && $.evalJSON(localStorage['OTP data']);
@@ -60,12 +64,12 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 					.append($('<br>'))
 					.append($('<br>'))
 					.append($('<label>').css('float', 'left').text(fromName))
-					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].startTime)))
+					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].startTime) + (legs[i].realTime ? (' (' + UI.formatTime(legs[i].startTime-legs[i].departureDelay*1e3) + ' + '+ Math.floor(legs[i].departureDelay/60) + 'm)') : '')))
 					.append($('<br>'))
 					.append("&darr;")
 					.append($('<br>'))
 					.append($('<label>').css('float', 'left').text(toName))
-					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].endTime)))
+					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].endTime) + (legs[i].realTime ? (' (' + UI.formatTime(legs[i].endTime-legs[i].arrivalDelay*1e3) + ' + '+ Math.floor(legs[i].arrivalDelay/60) + 'm)') : '')))
 					.append($('<br>'))
 					.append($('<br>'))
 					.append($('<div>').attr('id', 'legmap' + i)
