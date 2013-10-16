@@ -277,6 +277,16 @@ section#index_page {
 	color: #358219;
 }
 
+#prevLegButton{
+    margin-right: 20px;
+    width: 100px;
+    float: center;
+}
+#nextLegButton{
+    width: 100px;
+    float: center;
+}
+
 /**
 .headerbuffer p.button {
 	line-height:180%;
