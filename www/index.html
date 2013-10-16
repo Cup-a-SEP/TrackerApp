@@ -130,9 +130,9 @@
 			Page.load('debug.html');
 			/**/
 			if (localStorage['OTP data'])
-				Page.load('currenttrip.html', Page.CurrentTrip);
+				Page.replace('currenttrip.html', Page.CurrentTrip);
 			else
-				Page.load('plan.html', Page.Plan);
+				Page.replace('plan.html', Page.Plan);
 			/**/
 		}
 		
