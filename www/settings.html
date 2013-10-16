@@ -1,164 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-
-		<meta charset="utf-8"/>	
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no"><!-- makes clicks 300ms faster, no joke -->
-		
-		<script src="js/lib/prototype-1.7.1.js"></script>
-		<script src="js/lib/jquery-1.8.3.min.js"></script>
-		<script src="js/lib/jquery.json-2.4.min.js"></script>
-		<script src="js/lib/jquery.mobile-1.3.2.min.js"></script>
-		<script src="cordova.js"></script>
-		<script src="js/misc.js"></script>
-		<script src="js/system.js"></script>
-		<script src="js/class/localdb.class.js"></script>
-		<script src="js/storage.js"></script>
-		<script src="js/geocode.js"></script>
-		<script src="js/otp.js"></script>
-		<script src="js/service.js"></script>
-		<script src="js/ui.js"></script>	
-		
-		<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-		<link href="css/index.css" rel="stylesheet">
-		<link href="css/settings.css" rel="stylesheet">
-		<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet">
-		
-		<title>settings</title>
-	</head>
-
-	<body>
-		<div id="header">
-			<span id="left"><span id="back">&lt;</span></span>
-			<span id="center">Frits</span>
-			<span id="right"><span id="vraagteken">?</span></span>
-		</div>
-
-		<section>
-			<div class="headerbuffer">
-				<div class="eilandLight" class="shadow">
-					<h1 id="headertekst">Instellingen</h1>
-					<div class="settings-section"id="alarm">
-						<h2>Alarm</h2>
-						<br>
-						
-						<div class="settings-subsection">
-							<div data-role="fieldcontain">
-								<header>
-									<label class="alarmtype">Vertrekalarm</label>
-									<fieldset data-role="controlgroup" data-type="horizontal">
-										<input type="radio" id="departure-on" class = "departure-control" name="departure-setting">
-										<label for="departure-on">Aan</label>
-										<input type="radio" id="departure-off" class = "departure-control" name="departure-setting">
-										<label for="departure-off">Uit</label>
-									</fieldset
-								</header>
-							</div>
-							<div data-role="fieldcontain" class="customsliderclass">
-								<input id="departure-slider" type="range" name="departure-slider"  min="1" max="60" data-highlight="true" data-mini="true">
-							</div>
-						</div>
-						
-						<div class="settings-subsection">
-							<div data-role="fieldcontain">
-								<header>
-									<label class="alarmtype">Instapalarm</label>
-									<fieldset data-role="controlgroup" data-type="horizontal">
-										<input type="radio" id="embark-on" class = "embark-control" name="embark-setting">
-										<label for="embark-on">Aan</label>
-										<input type="radio" id="embark-off" class = "embark-control" name="embark-setting">
-										<label for="embark-off">Uit</label>
-									</fieldset
-								</header>
-							</div>
-							<div data-role="fieldcontain" class="customsliderclass">
-								<input id="embark-slider" type="range" name="embark-slider"  min="1" max="60" data-highlight="true" data-mini="true">
-							</div>
-						</div>
-						<div class="settings-subsection">
-							<div data-role="fieldcontain">
-								<header>
-									<label class="alarmtype">Uitstapalarm</label>
-									<fieldset data-role="controlgroup" data-type="horizontal">
-										<input type="radio" id="alight-on" class = "alight-control" name="alight-setting">
-										<label for="alight-on">Aan</label>
-										<input type="radio" id="alight-off" class = "alight-control" name="alight-setting">
-										<label for="alight-off">Uit</label>
-									</fieldset
-								</header>
-							</div>
-							<div data-role="fieldcontain" class="customsliderclass">
-								<input id="alight-slider" type="range" name="alight-slider" min="1" max="60" data-highlight="true" data-mini="true">
-							</div>
-						</div>
-						
+<section>
+	<div class="headerbuffer">
+		<div class="eilandLight" class="shadow">
+			<h1 id="headertekst">Instellingen</h1>
+			<div class="settings-section" id="alarm">
+				<h2>Alarm</h2>
+				<br>
+				
+				<div class="settings-subsection">
+					<div data-role="fieldcontain">
+						<header>
+							<label class="alarmtype">Vertrekalarm</label>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" id="departure-on" class="departure-control" name="departure-setting">
+								<label for="departure-on">Aan</label>
+								<input type="radio" id="departure-off" class="departure-control" name="departure-setting">
+								<label for="departure-off">Uit</label>
+							</fieldset
+						</header>
+					</div>
+					<div data-role="fieldcontain" class="customsliderclass">
+						<input id="departure-slider" type="range" name="departure-slider" min="1" max="60" data-highlight="true" data-mini="true">
 					</div>
 				</div>
+				
+				<div class="settings-subsection">
+					<div data-role="fieldcontain">
+						<header>
+							<label class="alarmtype">Instapalarm</label>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" id="embark-on" class="embark-control" name="embark-setting">
+								<label for="embark-on">Aan</label>
+								<input type="radio" id="embark-off" class="embark-control" name="embark-setting">
+								<label for="embark-off">Uit</label>
+							</fieldset
+						</header>
+					</div>
+					<div data-role="fieldcontain" class="customsliderclass">
+						<input id="embark-slider" type="range" name="embark-slider" min="1" max="60" data-highlight="true" data-mini="true">
+					</div>
+				</div>
+				
+				<div class="settings-subsection">
+					<div data-role="fieldcontain">
+						<header>
+							<label class="alarmtype">Uitstapalarm</label>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<input type="radio" id="alight-on" class="alight-control" name="alight-setting">
+								<label for="alight-on">Aan</label>
+								<input type="radio" id="alight-off" class="alight-control" name="alight-setting">
+								<label for="alight-off">Uit</label>
+							</fieldset
+						</header>
+					</div>
+					<div data-role="fieldcontain" class="customsliderclass">
+						<input id="alight-slider" type="range" name="alight-slider" min="1" max="60" data-highlight="true" data-mini="true">
+					</div>
+				</div>
+				
 			</div>
-		</section>
-		<script src="js/init.js"></script>
-		<script>
-			$(function()
-			{
-				$('#departure-slider').val(localStorage['Alarm departure time']).slider('refresh');
-				$('#embark-slider').val(localStorage['Alarm embark time']).slider('refresh');
-				$('#alight-slider').val(localStorage['Alarm alight time']).slider('refresh');
-				
-				$('#departure-' + (localStorage['Alarm departure setting'] == 'true' ? 'on' : 'off')).prop('checked',true).checkboxradio('refresh');
-				$('#embark-' + (localStorage['Alarm embark setting'] == 'true' ? 'on' : 'off')).prop('checked',true).checkboxradio('refresh');
-				$('#alight-' + (localStorage['Alarm alight setting'] == 'true' ? 'on' : 'off')).prop('checked',true).checkboxradio('refresh');
-				
-				$('#departure-slider').change(function() {
-					setTimeout(function() {
-						localStorage['Alarm departure time'] = $('#departure-slider').val();
-						Service.Alarm.refresh();
-					},0);
-				});
-				$('#embark-slider').change(function() {
-					setTimeout(function() {
-						localStorage['Alarm embark time'] = $('#embark-slider').val();
-						Service.Alarm.refresh();
-					},0);
-				});
-				$('#alight-slider').change(function() {
-					setTimeout(function() {
-						localStorage['Alarm alight time'] = $('#alight-slider').val();
-						Service.Alarm.refresh();
-					},0);
-				});
-				
-				$('.departure-control').click(function() {
-					setTimeout(function() {
-						localStorage['Alarm departure setting'] = $('#departure-on').prop('checked');
-						Service.Alarm.refresh();
-					},0);
-				});
-				
-				$('.embark-control').click(function() {
-					setTimeout(function() {
-						localStorage['Alarm embark setting'] = $('#embark-on').prop('checked');
-						Service.Alarm.refresh();
-					},0);
-				});
-				
-				$('.alight-control').click(function() {
-					setTimeout(function() {
-						localStorage['Alarm alight setting'] = $('#alight-on').prop('checked');
-						Service.Alarm.refresh();
-					},0);
-				});
-				
-				// naam waarde
-				/*
-				localStorage['Alarm departure setting']
-				localStorage['Alarm departure time']
-				localStorage['Alarm embark setting']
-				localStorage['Alarm embark time']
-				localStorage['Alarm alight setting']
-				localStorage['Alarm alight time']
-				*/
-				 
-			});
-		</script>
-	</body>
-</html>
+		</div>
+	</div>
+</section>
+<script>Page.Settings.init();</script>
