@@ -120,7 +120,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			.click(function()
 			{
 				localStorage['ShowMap'] = i; // What does this do?
-				Page.load("legmap.html");
+				Page.load("legmap.html", Page.Legmap);
 			});
 		
 		// visible when extended:
@@ -323,9 +323,16 @@ UI.Swipe = function UISwipe(target, indicator)
  * @memberof UI.Swipe
  * @return this 
  */
-UI.Swipe.prototype.reset = function UISwipeReset()
+UI.Swipe.prototype.reset = function UISwipeReset(target, indicator)
 {
 	var self = this;
+	if (target)
+	{
+		this.element = target;
+		this.container = target.children('.swipe-wrap');
+	}
+	if (indicator)
+		this.indicator = indicator; 
 	
 	function update()
 	{
@@ -338,7 +345,7 @@ UI.Swipe.prototype.reset = function UISwipeReset()
 	
 	this.control = Swipe(this.element[0],
 	{
-		//startSlide: 4,                              //(default:0) - index position Swipe should start at
+		startSlide: this.index,                       //(default:0) - index position Swipe should start at
 		//speed: 300,                                 //(default:300) - speed of prev and next transitions in milliseconds
 		//auto: 3000,                                 //begin with auto slideshow (time in milliseconds between slides)
 		continuous : false,                           //(default:true) - create an infinite feel with no endpoints

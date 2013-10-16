@@ -5,27 +5,61 @@
 var Page = {};
 
 /**
- * Page history stack
- * @attribute History
- * @type {jQuery}
+ * Format for page states recorded in history 
+ * @typedef {Object} Page~State 
+ * @property {jQuery} body        - DOM elements recorded in that state
+ * @property {Page~Events} events - Callback handlers for page events 
  */
-Page.History = [];
+
+/**
+ * callback object for page events
+ * @typedef {Object} Page~Events
+ * @property {Function} init    -  fired when page is initialized 
+ * @property {Function} refresh - fired when a page is reloaded (back button) 
+ */
 
 /**
  * Page history stack
  * @attribute History
- * @type {jQuery}
+ * @type Array
+ */
+Page.History = [];
+
+/**
+ * Page contianer element
+ * @attribute Body
+ * @type jQuery
  */
 Page.Body = $('body'); 
 
 /**
  * Loads a page and saves the history 
- * @param {Object} href
+ * @param {String} href - url for the html portion of the page
+ * @param {Page~Events} events - Events object for the javascrip portion of the page
  */
-Page.load = function PageLoad(href)
+Page.load = function PageLoad(href, events)
 {
-	Page.History.push(Page.Body.contents().clone(true, true));
-	Page.Body.load(href);
+	Page.History.push(
+	{
+		body: Page.Body.contents().clone(true, true),
+		events: Page.events
+	});
+	Page.replace(href, events);
+};
+
+/**
+ * Loads a page without saving history
+ * @param {String} href - url for the html portion of the page
+ * @param {Page~Events} events - Events object for the javascrip portion of the page
+ */
+Page.replace = function PageReplace(href, events)
+{
+	Page.events =
+	{
+		init: events.init || function(){},
+		refresh: events.refresh || function(){}
+	};
+	Page.Body.load(href, Page.events.init);
 };
 
 /**
@@ -34,7 +68,11 @@ Page.load = function PageLoad(href)
 Page.back = function PageBack()
 {
 	if (Page.History.length)
-		Page.Body.empty().append(Page.History.pop());
+	{
+		var page = Page.History.pop();
+		Page.Body.empty().append(page.body);
+		page.events.refresh();
+	}
 	else
 		navigator.app.exitApp();
 };

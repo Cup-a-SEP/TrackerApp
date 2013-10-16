@@ -44,10 +44,10 @@ Page.OTPResult.init = function PageOTPResultInit()
 		try {
 			Storage.Trips.store(req).always(function()
 			{
-				Page.load("currenttrip.html");
+				Page.load("currenttrip.html", Page.CurrentTrip);
 			});
 		} catch(e) {
-			Page.load("currenttrip.html");
+			Page.load("currenttrip.html", Page.CurrentTrip);
 		}
 	});
 };
