@@ -142,19 +142,12 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	}
 	
 	$.each(itinerary.legs, addLeg);
-	this.data('accordion', self.accordion({collapsible:true}));
+	self.accordion(
+	{
+		collapsible: true,
+		heightStyle: 'fill'
+	});
 	return self;
-};
-
-/**
- * Updates an itinerary list 
- * @this $
- */
-UI.refreshItinerary = function UIrefreshItinerary()
-{
-	this.data('accordion')
-		.accordion({collapsible:true})
-		.accordion('refresh');
 };
 
 /**

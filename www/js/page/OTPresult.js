@@ -33,6 +33,7 @@ Page.OTPResult.init = function PageOTPResultInit()
 	
 	route.add = UI.addItinerary;
 	route.add(it);
+	route.data('itineraries', it);
 	
 	$('#planbutton').click(function(){
 		Service.Trip.track();
@@ -58,7 +59,11 @@ Page.OTPResult.init = function PageOTPResultInit()
  */
 Page.OTPResult.refresh = function PageOTPResultRefresh()
 {
-	var route = $('#route');
-	route.refresh = UI.refreshItinerary;
-	route.refresh();
+	var it = $('#route').data('itineraries');
+	var route = $('<div>').attr('id', 'route');
+	
+	$('#plan').empty().append(route);
+	route.add = UI.addItinerary;
+	route.add(it);
+	route.data('itineraries', it);
 };
