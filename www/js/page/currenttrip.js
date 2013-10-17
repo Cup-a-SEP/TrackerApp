@@ -26,8 +26,17 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
         Page.replace("currenttrip.html", Page.CurrentTrip);
     });
     
+    $('#currentTripHeader').empty().append($('<h3>')
+            .text('Huidige reis'))
+        .click(function()
+        {
+            localStorage['ShowMap'] = -1;
+            Page.load("legmap.html", Page.Legmap);
+        });
+    
 	$(function()
 	{
+	    
 		var OTPdata = localStorage['OTP data'] && $.evalJSON(localStorage['OTP data']);
 		
 		$('#prevLegButton').click(function() { trips.prev(); });

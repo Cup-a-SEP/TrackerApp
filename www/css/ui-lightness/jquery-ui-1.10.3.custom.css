@@ -1597,9 +1597,10 @@ body {
 }
 
 /**
- * 	The header above the list of legs of an itinerary in legmap.html. 
+ * 	The header above the list of legs of an itinerary in legmap.html
+ *  and the header above the swipe of currentTrip.html
  */
-#itineraryHeader {
+#itineraryHeader, #currentTripHeader {
 	background-color: #EDF5BA/*dafcfe*/;
 	border-radius: 15px;
 	border: 1px solid #358219/*41B0E8*/;

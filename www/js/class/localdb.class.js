@@ -258,7 +258,7 @@ var LocalDB = Class.create({
 		this.pDbo.transaction(
 			function transaction(tx)
 			{
-				console.log(sqlQuery);
+				//console.log(sqlQuery);
 				tx.executeSql(sqlQuery, [], function result(tx, result)
 				{
 					def.result = new LocalDBResult(sqlQuery, result);
@@ -271,7 +271,7 @@ var LocalDB = Class.create({
 			}, 
 			function success()
 			{
-				console.log('success');
+				//console.log('success');
 				def.resolve(def.result);
 			}
 		);
@@ -292,7 +292,7 @@ var LocalDB = Class.create({
 				tx.executeSql(self.pTableStruct, [],
 					function (tx, res)
 					{
-						console.log("Table `" + self.pTableName + "` created Successfully");
+						//console.log("Table `" + self.pTableName + "` created Successfully");
 					},
 					function (tx, err)
 					{

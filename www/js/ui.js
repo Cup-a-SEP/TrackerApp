@@ -119,7 +119,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 			.append($('<p>').text('Open map'))
 			.click(function()
 			{
-				localStorage['ShowMap'] = i; // What does this do?
+				localStorage['ShowMap'] = i;
 				Page.load("legmap.html", Page.Legmap);
 			});
 		
