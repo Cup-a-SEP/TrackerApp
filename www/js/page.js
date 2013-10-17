@@ -72,6 +72,7 @@ Page.back = function PageBack()
 		var page = Page.History.pop();
 		Page.Body.empty().append(page.body);
 		page.events.refresh();
+		Page.events = page.events;
 	}
 	else
 		navigator.app.exitApp();

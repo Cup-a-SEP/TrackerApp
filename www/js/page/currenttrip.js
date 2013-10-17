@@ -20,7 +20,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 	};
 
 	var trips = new UI.Swipe($('#trips'), $('#indexindicator'));
-	window.tripsSwipe = trips;
+	$('#trips').data('swipe', trips);
 
     $(document).on("OTPdataRefresh",function(){
         Page.replace("currenttrip.html", Page.CurrentTrip);
@@ -108,5 +108,5 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
  */
 Page.CurrentTrip.refresh = function PageCurrentTripRefresh()
 {
-	window.tripsSwipe.reset($('#trips'), $('#indexindicator'));
+	$('#trips').data('swipe').refresh($('#trips'), $('#indexindicator'));
 };

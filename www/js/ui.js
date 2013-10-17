@@ -221,6 +221,19 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 };
 
 /**
+ * Resets the DOM elements used for this swipe box (useful for page refresh)
+ * @memberof UI.Suggestion
+ * @param {jQuery}           target    - element which will be replaced by the suggestion box
+ * @param {jQuery}           input     - textbox element which provides the input
+ */
+UI.Suggestion.prototype.refresh = function UISuggestionRefresh(target, input)
+{
+	this.target = target;
+	this.source = input;
+	this.update(); 
+};
+
+/**
  * Updates the suggestion box (when list or input has changed)
  * @memberof UI.Suggestion
  */
@@ -299,7 +312,7 @@ UI.Suggestion.prototype.close = function UISuggestionClose()
 
 /**
  * Creates a swipe box from an element
- * @constructor Suggestion
+ * @constructor Swipe
  * @param {jQuery}           target    - element which will be replaced by the swipe box
  * @param {jQuery}           indicator - element that will contain the index indicator
  * 
@@ -323,16 +336,9 @@ UI.Swipe = function UISwipe(target, indicator)
  * @memberof UI.Swipe
  * @return this 
  */
-UI.Swipe.prototype.reset = function UISwipeReset(target, indicator)
+UI.Swipe.prototype.reset = function UISwipeReset()
 {
 	var self = this;
-	if (target)
-	{
-		this.element = target;
-		this.container = target.children('.swipe-wrap');
-	}
-	if (indicator)
-		this.indicator = indicator; 
 	
 	function update()
 	{
@@ -362,6 +368,20 @@ UI.Swipe.prototype.reset = function UISwipeReset(target, indicator)
 	update();
 	
 	return this;
+};
+
+/**
+ * Resets the DOM elements used for this swipe box (useful for page refresh)
+ * @memberof UI.Swipe
+ * @param {jQuery}           target    - element which will be replaced by the swipe box
+ * @param {jQuery}           indicator - element that will contain the index indicator
+ */
+UI.Swipe.prototype.refresh = function UISwipeRefresh(target, indicator)
+{
+	this.element = target;
+	this.container = target.children('.swipe-wrap');
+	this.indicator = indicator;
+	this.reset(); 
 };
 
 /**
