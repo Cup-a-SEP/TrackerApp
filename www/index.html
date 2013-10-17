@@ -103,10 +103,14 @@
 		
 		function Loaded()
 		{	
-			// Setup subsystems
-			//console.log("Test Device ready");
+			// Setup event handlers
 			document.addEventListener("backbutton", function() { Page.back(); }, false);
+			
+			// Initialize database/storage
 			Storage.init();
+			Storage.Locations.init();
+			Storage.Trips.init();
+			
 			//startWatch(); was da?
 			
 			// Setup header

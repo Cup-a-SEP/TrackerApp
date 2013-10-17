@@ -9,8 +9,6 @@ Page.OTPResult = {};
  */
 Page.OTPResult.init = function PageOTPResultInit()
 {
-	// Initialize database
-	Storage.Trips.init();
 	var data = $.evalJSON(localStorage['OTP data pending']);
 	
 	var from = data.from.name;

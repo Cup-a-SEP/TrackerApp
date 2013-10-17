@@ -189,10 +189,6 @@ Page.Feedback.init = function PageFeedbackInit()
 		}
 	});
 
-	$(function() {
-		// Initialize database
-		Storage.Trips.init();
-	});
 	/**
 	 * Empties the textfield when it is tapped.
 	 */
