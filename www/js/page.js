@@ -54,6 +54,7 @@ Page.load = function PageLoad(href, events)
  */
 Page.replace = function PageReplace(href, events)
 {
+	events = events || {};
 	Page.events =
 	{
 		init: events.init || function(){},

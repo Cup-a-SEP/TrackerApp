@@ -33,6 +33,7 @@ Page.OTPResult.init = function PageOTPResultInit()
 	
 	route.add = UI.addItinerary;
 	route.add(it);
+	route.data('itineraries', it);
 	
 	$('#planbutton').click(function(){
 		Service.Trip.track();
@@ -51,4 +52,20 @@ Page.OTPResult.init = function PageOTPResultInit()
 			Page.load("currenttrip.html", Page.CurrentTrip);
 		}
 	});
+};
+
+/**
+ * Refreshes result page interface
+ */
+Page.OTPResult.refresh = function PageOTPResultRefresh()
+{
+	var it = $('#route').data('itineraries');
+	var index = $('#route').data('active');
+	var route = $('<div>').attr('id', 'route');
+	
+	$('#plan').empty().append(route);
+	route.add = UI.addItinerary;
+	route.add(it, index);
+	route.data('itineraries', it);
+	route.data('active', index);
 };
