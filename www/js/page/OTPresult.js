@@ -22,9 +22,10 @@ Page.OTPResult.init = function PageOTPResultInit()
 			.text(start + ' ' + from + ' - ' + end + ' ' + to))
 		.click(function()
 		{
-			clickMap(-1);
+		    localStorage['ShowMap'] = -1;
+            Page.load("legmap.html", Page.Legmap);
 		});
-	
+
 	var route = $('<div>').attr('id', 'route');
 	$('#plan').empty().append(route);
 	
