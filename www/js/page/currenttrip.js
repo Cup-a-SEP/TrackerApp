@@ -26,19 +26,12 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
         Page.replace("currenttrip.html", Page.CurrentTrip);
     });
     
-    $('#currentTripHeader').empty().append($('<h3>')
-            .text('Huidige reis'))
-        .click(function()
-        {
-            localStorage['ShowMap'] = -1;
-            Page.load("legmap.html", Page.Legmap);
-        });
-    
 	$(function()
 	{
 	    
 		var OTPdata = localStorage['OTP data'] && $.evalJSON(localStorage['OTP data']);
 		
+        
 		$('#prevLegButton').click(function() { trips.prev(); });
 		$('#nextLegButton').click(function() { trips.next(); });
 		$('#showIntStopsButton').click(function() { $('.intStop').toggle(); });
@@ -50,7 +43,17 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 		
 		if (OTPdata)
 		{
-			var legs = OTPdata.itineraries[0].legs;
+   
+            $('#currentTripHeader').empty().append($('<h3>')
+                .text('Huidige reis - ' + UI.formatDay(OTPdata.date)))
+                .click(function()
+                {
+                    localStorage['ShowMap'] = -1;
+                    Page.load("legmap.html", Page.Legmap);
+            });
+            
+            var legs = OTPdata.itineraries[0].legs;
+            
 			for (var i = 0; i < legs.length; ++i)
 			{
 				var fromName = legs[i].from.name;
