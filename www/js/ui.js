@@ -30,9 +30,10 @@ UI.formatName = function UIFormatName(name)
  * Adds a formatted itinerary to a element
  * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 
+ * @param {Number} index - Leg that is opened on start
  * @this $
  */
-UI.addItinerary = function UIaddItinerary(itinerary)
+UI.addItinerary = function UIaddItinerary(itinerary, index)
 {
 	var self = this;
 	
@@ -145,7 +146,12 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	self.accordion(
 	{
 		collapsible: true,
-		heightStyle: 'fill'
+		heightStyle: 'content',
+		activate: function(event, ui)
+		{
+			self.data('active', self.accordion('option', 'active'));
+		},
+		active: index
 	});
 	return self;
 };

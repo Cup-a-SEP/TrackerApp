@@ -60,10 +60,11 @@ Page.OTPResult.init = function PageOTPResultInit()
 Page.OTPResult.refresh = function PageOTPResultRefresh()
 {
 	var it = $('#route').data('itineraries');
+	var index = $('#route').data('active');
 	var route = $('<div>').attr('id', 'route');
 	
 	$('#plan').empty().append(route);
 	route.add = UI.addItinerary;
-	route.add(it);
+	route.add(it, index);
 	route.data('itineraries', it);
 };
