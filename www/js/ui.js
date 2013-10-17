@@ -6,7 +6,7 @@ var UI = {};
 
 /**
  * Formats time to hh:mm format
- * @param time - A javascrip suppored time designation
+ * @param time - A javascript suppored time designation
  * @return The specified time in hh:mm format
  */
 UI.formatTime = function UIFormatTime(time)
@@ -14,6 +14,18 @@ UI.formatTime = function UIFormatTime(time)
 	function pad(x) { return x < 10 ? '0' + x : x; }
 	var time = new Date(time);
 	return time.getHours() + ':' + pad(time.getMinutes());
+};
+
+/**
+ * Formats time to day month format
+ * @param time - A javascript suppored time designation
+ * @return The specified time in day month format
+ */
+UI.formatDay = function UIFormatDay(time)
+{
+    var time = new Date(time);
+    var monthName = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+    return time.getDate() + ' ' + monthName[time.getMonth()];
 };
 
 /**
@@ -182,7 +194,7 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	this.list = {};
 	this.callback = callback || Function();
 	
-	input.click(function()
+	input.focus(function()
 	{
 		self.update();
 		self.open();
