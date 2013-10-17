@@ -147,12 +147,14 @@ UI.addItinerary = function UIaddItinerary(itinerary, index)
 	{
 		collapsible: true,
 		heightStyle: 'content',
-		activate: function(event, ui)
-		{
-			self.data('active', self.accordion('option', 'active'));
-		},
 		active: index
 	});
+	
+	self.on('accordionactivate', function(event, ui)
+	{
+		self.data('active', self.accordion('option', 'active'));
+	});
+	
 	return self;
 };
 
