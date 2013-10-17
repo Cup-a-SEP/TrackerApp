@@ -150,10 +150,13 @@ UI.addItinerary = function UIaddItinerary(itinerary, index)
 		active: index
 	});
 	
-	self.on('accordionactivate', function(event, ui)
+	setTimeout(function()
 	{
-		self.data('active', self.accordion('option', 'active'));
-	});
+		self.on('accordionactivate', function(event, ui)
+		{
+			self.data('active', self.accordion('option', 'active'));
+		});
+	}, 500);
 	
 	return self;
 };
