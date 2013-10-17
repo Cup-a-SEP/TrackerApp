@@ -41,6 +41,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 		
 		$('#prevLegButton').click(function() { trips.prev(); });
 		$('#nextLegButton').click(function() { trips.next(); });
+		$('#showIntStopsButton').click(function() { $('.intStop').toggle(); });
 		$('#cancelButton').click(function ()
 		{
 			Service.Trip.cancel();
@@ -75,8 +76,20 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 					.append($('<label>').css('float', 'left').text(fromName))
 					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].startTime) + (legs[i].realTime ? (' (' + UI.formatTime(legs[i].startTime-legs[i].departureDelay*1e3) + ' + '+ Math.floor(legs[i].departureDelay/60) + 'm)') : '')))
 					.append($('<br>'))
-					.append("&darr;")
-					.append($('<br>'))
+					.append($('<label>').attr('class', 'intStop').html("&darr;"))
+					.append($('<br>').attr('class', 'intStop'));
+				if(legs[i].intermediateStops){
+				    for(var j = 0; j < legs[i].intermediateStops.length; j++){
+				        var stop = legs[i].intermediateStops[j];
+				        var name = stop.name;
+				        var time = UI.formatTime(stop.arrival);
+				        trips.last()
+                            .append($('<label>').attr('class', 'intStop').css('float', 'left').text(name).toggle(false))
+                            .append($('<label>').attr('class', 'intStop').css('float', 'right').text(time).toggle(false))
+                            .append($('<br>').attr('class', 'intStop').toggle(false));
+				    }
+				}
+				trips.last()
 					.append($('<label>').css('float', 'left').text(toName))
 					.append($('<label>').css('float', 'right').text(UI.formatTime(legs[i].endTime) + (legs[i].realTime ? (' (' + UI.formatTime(legs[i].endTime-legs[i].arrivalDelay*1e3) + ' + '+ Math.floor(legs[i].arrivalDelay/60) + 'm)') : '')))
 					.append($('<br>'))

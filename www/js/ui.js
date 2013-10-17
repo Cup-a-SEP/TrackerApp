@@ -416,6 +416,16 @@ UI.Swipe.prototype.add = function UISwipeAdd()
 };
 
 /**
+ * Returns the last page of the swipebox
+ * @memberof UI.Swipe
+ * @return {jQuery} the last page of the swipebox 
+ */
+UI.Swipe.prototype.last = function UISwipeLast()
+{
+    return $('.leg-display').last();
+};
+
+/**
  * Goes to the next page
  * @memberof UI.Swipe
  * @return this 
