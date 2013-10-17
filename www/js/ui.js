@@ -88,7 +88,7 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		var h3 = $('<h3>')
 		
 		// image:
-			.append($('<img>').attr('src', 'img/' + leg.mode + '.png')
+			.append($('<img>').attr('src', 'img/' + leg.mode.toLowerCase() + '.png')
 				.css('width', 20)
 				.css('height', 20))
 	
