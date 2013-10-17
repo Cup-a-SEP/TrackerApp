@@ -52,3 +52,13 @@ Page.OTPResult.init = function PageOTPResultInit()
 		}
 	});
 };
+
+/**
+ * Refreshes result page interface
+ */
+Page.OTPResult.refresh = function PageOTPResultRefresh()
+{
+	var route = $('#route');
+	route.refresh = UI.refreshItinerary;
+	route.refresh();
+};

@@ -101,15 +101,20 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		var stopbutton, divstops;
 		if (leg.intermediateStops && leg.intermediateStops.length)
 		{
-			divstops = $('<div>').append(addStops(leg.intermediateStops));
-			divstops.toggle(false);
+			divstops = $('<div>')
+				.attr('id', 'intermediate' + i)
+				.append(addStops(leg.intermediateStops))
+				.toggle(false);
 			
 			// show intermediate stops button
 			stopbutton = $('<div>')
 				.attr('id', 'stopbutton' + i)
 				.addClass('button')
 				.append($('<p>').text('tussenhaltes'))
-				.click(function() { divstops.toggle(); });
+				.click((function(i)
+				{
+					return function() { $('#intermediate' + i).toggle(); };
+				})(i));
 		}
 		
 		// open map button
@@ -137,8 +142,19 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	}
 	
 	$.each(itinerary.legs, addLeg);
-	self.accordion({collapsible:true});
+	this.data('accordion', self.accordion({collapsible:true}));
 	return self;
+};
+
+/**
+ * Updates an itinerary list 
+ * @this $
+ */
+UI.refreshItinerary = function UIrefreshItinerary()
+{
+	this.data('accordion')
+		.accordion({collapsible:true})
+		.accordion('refresh');
 };
 
 /**
