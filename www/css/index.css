@@ -286,7 +286,12 @@ section#index_page {
     width: 100px;
     float: center;
 }
-
+#showIntStopsButton{
+    float:center;
+    width: 40%;
+    margin-left: 30%;
+    margin-bottom: 10px;
+}
 /**
 .headerbuffer p.button {
 	line-height:180%;

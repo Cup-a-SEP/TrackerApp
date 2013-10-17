@@ -6,7 +6,7 @@ var UI = {};
 
 /**
  * Formats time to hh:mm format
- * @param time - A javascrip suppored time designation
+ * @param time - A javascript suppored time designation
  * @return The specified time in hh:mm format
  */
 UI.formatTime = function UIFormatTime(time)
@@ -14,6 +14,18 @@ UI.formatTime = function UIFormatTime(time)
 	function pad(x) { return x < 10 ? '0' + x : x; }
 	var time = new Date(time);
 	return time.getHours() + ':' + pad(time.getMinutes());
+};
+
+/**
+ * Formats time to day month format
+ * @param time - A javascript suppored time designation
+ * @return The specified time in day month format
+ */
+UI.formatDay = function UIFormatDay(time)
+{
+    var time = new Date(time);
+    var monthName = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+    return time.getDate() + ' ' + monthName[time.getMonth()];
 };
 
 /**
@@ -30,9 +42,10 @@ UI.formatName = function UIFormatName(name)
  * Adds a formatted itinerary to a element
  * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 
+ * @param {Number} index - Leg that is opened on start
  * @this $
  */
-UI.addItinerary = function UIaddItinerary(itinerary)
+UI.addItinerary = function UIaddItinerary(itinerary, index)
 {
 	var self = this;
 	
@@ -101,15 +114,20 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 		var stopbutton, divstops;
 		if (leg.intermediateStops && leg.intermediateStops.length)
 		{
-			divstops = $('<div>').append(addStops(leg.intermediateStops));
-			divstops.toggle(false);
+			divstops = $('<div>')
+				.attr('id', 'intermediate' + i)
+				.append(addStops(leg.intermediateStops))
+				.toggle(false);
 			
 			// show intermediate stops button
 			stopbutton = $('<div>')
 				.attr('id', 'stopbutton' + i)
 				.addClass('button')
 				.append($('<p>').text('tussenhaltes'))
-				.click(function() { divstops.toggle(); });
+				.click((function(i)
+				{
+					return function() { $('#intermediate' + i).toggle(); };
+				})(i));
 		}
 		
 		// open map button
@@ -137,7 +155,21 @@ UI.addItinerary = function UIaddItinerary(itinerary)
 	}
 	
 	$.each(itinerary.legs, addLeg);
-	self.accordion({collapsible:true});
+	self.accordion(
+	{
+		collapsible: true,
+		heightStyle: 'content',
+		active: index
+	});
+	
+	setTimeout(function()
+	{
+		self.on('accordionactivate', function(event, ui)
+		{
+			self.data('active', self.accordion('option', 'active'));
+		});
+	}, 500);
+	
 	return self;
 };
 
@@ -162,7 +194,7 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	this.list = {};
 	this.callback = callback || Function();
 	
-	input.click(function()
+	input.focus(function()
 	{
 		self.update();
 		self.open();
@@ -397,6 +429,16 @@ UI.Swipe.prototype.add = function UISwipeAdd()
 	this.container.append(div = $('<div>')
 		.addClass('leg-display'));
 	return div;
+};
+
+/**
+ * Returns the last page of the swipebox
+ * @memberof UI.Swipe
+ * @return {jQuery} the last page of the swipebox 
+ */
+UI.Swipe.prototype.last = function UISwipeLast()
+{
+    return $('.leg-display').last();
 };
 
 /**

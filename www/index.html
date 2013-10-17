@@ -102,11 +102,15 @@
 		document.addEventListener("deviceready", Loaded, false);
 		
 		function Loaded()
-		{
-			// Setup subsystems
-			//console.log("Test Device ready");
+		{	
+			// Setup event handlers
 			document.addEventListener("backbutton", function() { Page.back(); }, false);
+			
+			// Initialize database/storage
 			Storage.init();
+			Storage.Locations.init();
+			Storage.Trips.init();
+			
 			//startWatch(); was da?
 			
 			// Setup header
@@ -124,10 +128,17 @@
 			
 			// Page loading
 			Page.Body = $('#section_container');
+
+			// Drop the UI below the statusBar on iOS7 (no Cordova device plugin loaded, so using th userAgent)
+			if (!!navigator.userAgent.match(/iPhone OS 7/i)) {
+				// both body and header need extra padding as the header has fixed position
+          		$('body, #header').css('padding-top', '20px');
+    		}
 			
 			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
+
 			/**/
-			window.location='debug.html';
+			Page.replace('debug.html');
 			/** /
 			if (localStorage['OTP data'])
 				Page.replace('currenttrip.html', Page.CurrentTrip);
