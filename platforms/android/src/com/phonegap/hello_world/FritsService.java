@@ -11,6 +11,8 @@ import android.util.Log;
 import com.red_folder.phonegap.plugin.backgroundservice.BackgroundService;
 import org.apache.cordova.statusBarNotification.StatusNotificationIntent;
 
+import java.lang.NumberFormatException;
+
 //Stuff for SBN
 
 import android.app.Notification;
@@ -21,26 +23,30 @@ import org.json.JSONArray;
 
 
 
-public class MyService extends BackgroundService {
+public class FritsService extends BackgroundService {
 	
-	private final static String TAG = MyService.class.getSimpleName();
+	//Needed for system log
+	private final static String TAG = FritsService.class.getSimpleName();
 	
-	private String mHelloTo = "World";
+	private long mNextAlarmTimestamp = 0;
+	private String mSBNTitle = "Frits Alarm";
+	private String mSBNBody = "Frits alarm gaat af!";
+	
 
 	@Override
 	protected JSONObject doWork() {
 		JSONObject result = new JSONObject();
 		
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-			String now = df.format(new Date(System.currentTimeMillis())); 
+			long now = System.currentTimeMillis() / 1000;
 
-			String msg = "Hello " + this.mHelloTo + " - its currently " + now;
+			long timetoalarm = mNextAlarmTimestamp - now;
+			String msg = "Alarm is set in " + String.valueOf(timetoalarm) + " seconds. (" + String.valueOf(mNextAlarmTimestamp) + ", " + String.valueOf(now) + ")";
 			result.put("Message", msg);
 
 			Log.d(TAG, msg);
 						
-			showNotification("tag", "title", "body", 1);
+			//showNotification(TAG, "title", "body", 1);
 
 		} catch (JSONException e) {
 		}
@@ -53,7 +59,7 @@ public class MyService extends BackgroundService {
 		JSONObject result = new JSONObject();
 		
 		try {
-			result.put("HelloTo", this.mHelloTo);
+			result.put("NextAlarmTimestamp", String.valueOf(this.mNextAlarmTimestamp));
 		} catch (JSONException e) {
 		}
 		
@@ -63,9 +69,21 @@ public class MyService extends BackgroundService {
 	@Override
 	protected void setConfig(JSONObject config) {
 		try {
-			if (config.has("HelloTo"))
-				this.mHelloTo = config.getString("HelloTo");
+			Log.d(TAG, config.getString("NextAlarmTimestamp"));
+			
+			if (config.has("NextAlarmTimestamp")) this.mNextAlarmTimestamp = Long.valueOf(config.getString("NextAlarmTimestamp").substring(0,10));
+			
+			Log.d(TAG, String.valueOf(mNextAlarmTimestamp));
+			
+			long now = System.currentTimeMillis() / 1000;
+
+			long timetoalarm = mNextAlarmTimestamp - now;
+			String msg = "Alarm is set in " + String.valueOf(timetoalarm) + " seconds. (" + String.valueOf(mNextAlarmTimestamp) + ", " + String.valueOf(now) + ")";
+
+			Log.d(TAG, msg);
 		} catch (JSONException e) {
+		} catch (NumberFormatException e) {
+			Log.d(TAG, "NFE");
 		}
 		
 	}     
