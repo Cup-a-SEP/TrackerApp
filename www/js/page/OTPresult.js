@@ -67,4 +67,5 @@ Page.OTPResult.refresh = function PageOTPResultRefresh()
 	route.add = UI.addItinerary;
 	route.add(it, index);
 	route.data('itineraries', it);
+	route.data('active', index);
 };
