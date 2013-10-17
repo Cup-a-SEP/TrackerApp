@@ -6,3 +6,5 @@ build-tools
 .project
 *.db
 docs/
+.DS_Store
+node_modules/
