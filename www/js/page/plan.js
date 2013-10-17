@@ -18,11 +18,14 @@ Page.Plan.init = function PagePlanInit()
 		$('#from').val(address);
 		$('#fromPlace').val(coords);
 	});
+	$('#from').data('sugbox', sugfrom);
+	
 	var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 	{
 		$('#to').val(address);
 		$('#toPlace').val(coords);
 	});
+	$('#to').data('sugbox', sugto);
 	
 	$('#from').keyup(function() { $('#fromPlace').val(''); });
 	$('#to').keyup(function() { $('#toPlace').val(''); });
@@ -102,4 +105,13 @@ Page.Plan.init = function PagePlanInit()
 		
 		return false;
 	});
+};
+
+/**
+ * Refreshes the plan page interface (used for back button)
+ */
+Page.Plan.refresh = function PagePlanRefresh()
+{
+	$('#from').data('sugbox').refresh($('#sugfrom'), $('#from'));
+	$('#to').data('sugbox').refresh($('#sugto'), $('#to'));
 };
