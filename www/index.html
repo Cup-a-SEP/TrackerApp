@@ -103,22 +103,26 @@
 		
 		function Loaded()
 		{	
-			// Setup subsystems
-			//console.log("Test Device ready");
+			// Setup event handlers
 			document.addEventListener("backbutton", function() { Page.back(); }, false);
+			
+			// Initialize database/storage
 			Storage.init();
+			Storage.Locations.init();
+			Storage.Trips.init();
+			
 			//startWatch(); was da?
 			
 			// Setup header
 			$('#settingsButton').click(function()
 			{
-				Page.load('settings.html', Page.Settings);
+				Page.open('settings.html', Page.Settings);
 				return false;
 			});
 			
 			$('#feedbackButton').click(function()
 			{
-				Page.load('feedback.html', Page.Feedback);
+				Page.open('feedback.html', Page.Feedback);
 				return false;
 			});
 			
@@ -132,6 +136,7 @@
     		}
 			
 			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
+
 			/** /
 			Page.replace('debug.html');
 			/**/

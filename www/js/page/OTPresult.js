@@ -9,8 +9,6 @@ Page.OTPResult = {};
  */
 Page.OTPResult.init = function PageOTPResultInit()
 {
-	// Initialize database
-	Storage.Trips.init();
 	var data = $.evalJSON(localStorage['OTP data pending']);
 	
 	var from = data.from.name;
@@ -59,13 +57,4 @@ Page.OTPResult.init = function PageOTPResultInit()
  */
 Page.OTPResult.refresh = function PageOTPResultRefresh()
 {
-	var it = $('#route').data('itineraries');
-	var index = $('#route').data('active');
-	var route = $('<div>').attr('id', 'route');
-	
-	$('#plan').empty().append(route);
-	route.add = UI.addItinerary;
-	route.add(it, index);
-	route.data('itineraries', it);
-	route.data('active', index);
 };

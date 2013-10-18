@@ -147,5 +147,4 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
  */
 Page.CurrentTrip.refresh = function PageCurrentTripRefresh()
 {
-	$('#trips').data('swipe').refresh($('#trips'), $('#indexindicator'));
 };

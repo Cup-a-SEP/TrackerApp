@@ -9,9 +9,6 @@ Page.Plan = {};
  */
 Page.Plan.init = function PagePlanInit()
 {
-	// Initialize database
-	Storage.Locations.init();
-	
 	// Initialize to/from input boxes
 	var sugfrom = new UI.Suggestion($('#sugfrom'), $('#from'), 5, true, function(coords, address)
 	{
@@ -112,6 +109,4 @@ Page.Plan.init = function PagePlanInit()
  */
 Page.Plan.refresh = function PagePlanRefresh()
 {
-	$('#from').data('sugbox').refresh($('#sugfrom'), $('#from'));
-	$('#to').data('sugbox').refresh($('#sugto'), $('#to'));
 };

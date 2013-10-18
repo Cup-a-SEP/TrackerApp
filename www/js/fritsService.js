@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-cordova.define(	'cordova/plugin/myService',	function(require, exports, module) {    
-	CreateBackgroundService('com.phonegap.hello_world.MyService', require, exports, module);
+cordova.define(	'cordova/plugin/fritsService',	function(require, exports, module) {    
+	CreateBackgroundService('com.phonegap.hello_world.FritsService', require, exports, module);
 });
 
-var myService = cordova.require('cordova/plugin/myService');
+var fritsService = cordova.require('cordova/plugin/fritsService');
         	
 document.addEventListener('deviceready', function() {
 	getStatus();
@@ -38,38 +38,38 @@ function handleError(data) {
  * Button Handlers
  */ 			
 function getStatus() {
-	myService.getStatus(	function(r){handleSuccess(r)},
+	fritsService.getStatus(	function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 };
 
 function startService() {
-	myService.startService(	function(r){handleSuccess(r)},
+	fritsService.startService(	function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
 
 function stopService() {
-	myService.stopService(	function(r){handleSuccess(r)},
+	fritsService.stopService(	function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
 
 function enableTimer() {
-	myService.enableTimer(	20000,
+	fritsService.enableTimer(	5000,
 							function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
 
 function disableTimer() {
-	myService.disableTimer(	function(r){handleSuccess(r)},
+	fritsService.disableTimer(	function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 };
  			
 function registerForBootStart() {
-	myService.registerForBootStart(	function(r){handleSuccess(r)},
+	fritsService.registerForBootStart(	function(r){handleSuccess(r)},
 									function(e){handleError(e)});
 }
 
 function deregisterForBootStart() {
-	myService.deregisterForBootStart(	function(r){handleSuccess(r)},
+	fritsService.deregisterForBootStart(	function(r){handleSuccess(r)},
 										function(e){handleError(e)});
 }
 
@@ -77,9 +77,10 @@ function setConfig() {
 	var helloToTxt = document.getElementById("helloToTxt");
 	var helloToString = helloToTxt.value;
 	var config = { 
-					"HelloTo" : helloToString 
+					"HelloTo" : helloToString ,
+					"NextAlarmTimestamp" : '' + (200 + new Date().getTime() / 1000)
 				}; 
-	myService.setConfiguration(	config,
+	fritsService.setConfiguration(	config,
 								function(r){handleSuccess(r)},
 								function(e){handleError(e)});
 }

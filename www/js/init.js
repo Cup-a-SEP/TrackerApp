@@ -6,7 +6,6 @@ $(function()
 		Page.back();
 	});
 	
-	Storage.init();
 	Service.Alarm.Callback = function(type, leg)
 	{
 		var map = {
