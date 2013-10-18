@@ -1,5 +1,23 @@
-
-
+<script>
+	$(function()
+	{	
+		$('a.ajaxnavigation').click(function(event)
+		{
+			event.preventDefault();
+	
+			Page.load($(this).attr('href'));
+		});
+	});
+	
+	function sbn() {
+		console.log('sbn');
+		window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+	}
+	
+	function note() {
+		navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
+	}
+</script>
 <section id="index_page">
 	<div class="headerbuffer">
 		<!-- DEPRECATED!!!! everything in this screen will be removed; this screen will service as a loading screen in the future! -->

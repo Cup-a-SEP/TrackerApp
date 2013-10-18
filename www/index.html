@@ -42,29 +42,6 @@
 	<script src="js/page/currenttrip.js"></script>
 	<script src="js/page/settings.js"></script>
 	<script src="js/page/feedback.js"></script>
-	
-	
-	<script>
-		$(function()
-		{	
-			$('a.ajaxnavigation').click(function(event)
-			{
-				event.preventDefault();
-		
-				Page.load($(this).attr('href'));
-			});
-		});
-		
-		function sbn() {
-			console.log('sbn');
-			window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
-		}
-		
-		function note() {
-			navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
-		}
-	</script>
-	
 
 	<style type="text/css">
 		section {
