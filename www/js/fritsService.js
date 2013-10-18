@@ -128,7 +128,7 @@ function startBackgroundService(data) {
 		registerForBootStart();
 	}
 
-	setBackgroundAlarm(null, "Frits alarm!", "Tekst");
+	//setBackgroundAlarm(null, "Frits alarm!", "Tekst");
 	
 	if (data.Configuration != null)
 	{
