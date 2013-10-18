@@ -9,6 +9,8 @@ Page.Feedback = {};
  */
 Page.Feedback.init = function PageFeedbackInit()
 {
+	var emailAddress = "mailto:example@example.com";
+	
 	/**
 	 * Handles effects to form after feedback is sent
 	 */
@@ -23,7 +25,7 @@ Page.Feedback.init = function PageFeedbackInit()
 	 * @param(body) The body of the email
 	 */
 	function mail(subject, body) {
-		var link = "mailto:example@example.com" + "?subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
+		var link = emailAddress + "?subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
 		window.location.href = link;
 	}
 
