@@ -126,8 +126,8 @@ Service.Alarm.type = function ServiceAlarmType(timestamp)
 	
 	for (var i = 0; i < alarms.length; ++i)
 		if (alarms[i].time == timestamp)
-			return alarm[i].type;
-	
+			return alarms[i].type;
+
 	return '';
 };
 
