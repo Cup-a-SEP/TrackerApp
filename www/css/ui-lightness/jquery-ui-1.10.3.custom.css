@@ -1238,12 +1238,12 @@ body {
  * watch icon 
  */
 #watch {
-	padding-left: 7px;
+	padding-left: 0px;
 	padding-right: 7px;
 	color: #424242;	
 	width: 80%;
 	position:relative;
-	right: 40px;
+	right: 50px;
 	top:4px;
 }
 
