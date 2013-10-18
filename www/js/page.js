@@ -9,6 +9,7 @@ var Page = {};
  * @typedef {Object} Page~State 
  * @property {jQuery} body        - DOM elements recorded in that state
  * @property {Page~Events} events - Callback handlers for page events 
+ * @property {String} location    - page href
  */
 
 /**
@@ -49,7 +50,9 @@ Page.load = function PageLoad(href, events)
 	Page.History.push(
 	{
 		body: Page.Body.contents().detach(),
-		events: Page.events
+		events: Page.events,
+		location: Page.Location
+		
 	});
 	Page.replace(href, events);
 };
@@ -93,6 +96,7 @@ Page.back = function PageBack()
 		Page.Body.empty().append(page.body);
 		page.events.refresh();
 		Page.events = page.events;
+		Page.Location = page.location;
 	}
 	else
 		navigator.app.exitApp();
