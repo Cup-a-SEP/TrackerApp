@@ -291,7 +291,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	if (this.there)
 		this.target.append($('<p>')
 			.text(this.there.address)
-			.click(function()
+			.mousedown(function()
 			{
 				self.callback(self.there.coords, self.there.address);
 				self.close();
@@ -303,7 +303,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 			break;
 		this.target.append($('<p>')
 			.text(names[i])
-			.click((function(i)
+			.mousedown((function(i)
 			{
 				return function()
 				{
@@ -316,7 +316,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	if (this.here)
 		this.target.append($('<p>')
 			.text('Huidige locatie')
-			.click(function()
+			.mousedown(function()
 			{
 				self.callback(self.here.coords, self.here.address);
 				self.close();
@@ -343,7 +343,7 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
  */
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
-	this.target.fadeOut();
+	this.target.fadeOut(100);
 	return this;
 };
 
