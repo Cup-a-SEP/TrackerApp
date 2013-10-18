@@ -21,17 +21,22 @@ cordova.define(	'cordova/plugin/fritsService',	function(require, exports, module
 var fritsService = cordova.require('cordova/plugin/fritsService');
         	
 document.addEventListener('deviceready', function() {
-	getStatus();
+	fritsService.getStatus(	
+		function(r){startBackgroundService(r)},
+		function(e){handleError(e);}
+	);
 }, true);
 
 function handleSuccess(data) {
-	updateView(data);
+	//updateView(data);
+	
+	//console.log(data);
 }
 
 function handleError(data) {
-	alert("Error: " + data.ErrorMessage);
-	alert(JSON.stringify(data));
-	updateView(data);
+	console.log("Error: " + data.ErrorMessage);
+	console.log(JSON.stringify(data));
+	//updateView(data);
 }
 
 /*
@@ -53,7 +58,7 @@ function stopService() {
 }
 
 function enableTimer() {
-	fritsService.enableTimer(	5000,
+	fritsService.enableTimer(	20000,
 							function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
@@ -73,75 +78,62 @@ function deregisterForBootStart() {
 										function(e){handleError(e)});
 }
 
-function setConfig() {
-	var helloToTxt = document.getElementById("helloToTxt");
-	var helloToString = helloToTxt.value;
+function setBackgroundAlarm(NextAlarmTimestamp, SBNTitle, SBNBody) {
+	//Default 20 second alarm
+	NextAlarmTimestamp = NextAlarmTimestamp || (30 + new Date().getTime() / 1000);
 	var config = { 
-					"HelloTo" : helloToString ,
-					"NextAlarmTimestamp" : '' + (20 + new Date().getTime() / 1000)
+					"NextAlarmTimestamp" : '' + NextAlarmTimestamp,
+					"SBNTitle" : SBNTitle,
+					"SBNBody" : SBNBody
 				}; 
 	fritsService.setConfiguration(	config,
 								function(r){handleSuccess(r)},
 								function(e){handleError(e)});
 }
 
-/*
- * View logic
- */
-function updateView(data) {
-	var serviceBtn = document.getElementById("toggleService");
-	var timerBtn = document.getElementById("toggleTimer");
-	var bootBtn = document.getElementById("toggleBoot");
-	var updateBtn = document.getElementById("updateBtn");
-	var refreshBtn = document.getElementById("refreshBtn");
 
-	var serviceStatus = document.getElementById("serviceStatus");
-	var timerStatus = document.getElementById("timerStatus");
-	var bootStatus = document.getElementById("bootStatus");
+function cancelBackgroundAlarm() {
+	//Default 20 second alarm
+	NextAlarmTimestamp = -1;
+	var config = { 
+					"NextAlarmTimestamp" : '' + NextAlarmTimestamp,
+				}; 
+	fritsService.setConfiguration(	config,
+								function(r){handleSuccess(r)},
+								function(e){handleError(e)});
+}
 
-	serviceBtn.disabled = false;
+
+function startBackgroundService(data) {
+	
+	console.log("Starting FritsService in background");
+	
 	if (data.ServiceRunning) {
-		serviceStatus.innerHTML = "Running";
-		serviceBtn.onclick = stopService;
-		timerBtn.disabled = false;
+		// OK
 		if (data.TimerEnabled) {
-			timerStatus.innerHTML = "Enabled";
-			timerBtn.onclick = disableTimer;
+			// OK
 		} else {
-			timerStatus.innerHTML = "Disabled";
-			timerBtn.onclick = enableTimer;
+			enableTimer();
 		} 
 
-		updateBtn.disabled = false;
-		updateBtn.onclick = setConfig;
-
-		refreshBtn.disabled = false;
-		refreshBtn.onclick = getStatus;
-
 	} else { 
-		serviceStatus.innerHTML = "Not running";
-		serviceBtn.onclick = startService;
-		timerBtn.disabled = true;
-		timerEnabled = false; 
-
-		updateBtn.disabled = true;
-		refreshBtn.disabled = true;
+		startService();
+		enableTimer();
+		
 	} 
 
-	bootBtn.disabled = false;
 	if (data.RegisteredForBootStart) {
-		bootStatus.innerHTML = "Registered";
-		bootBtn.onclick = deregisterForBootStart;
+		// OK
 	} else {
-		bootStatus.innerHTML = "Not registered";
-		bootBtn.onclick = registerForBootStart;
+		registerForBootStart();
 	}
 
+	setBackgroundAlarm(null, "Frits alarm!", "Tekst");
+	
 	if (data.Configuration != null)
 	{
 		try {
-			var helloToTxt = document.getElementById("helloToTxt");
-			helloToTxt.value = data.Configuration.HelloTo;
+			var helloToTxt = data.Configuration.HelloTo;
 		} catch (err) {
 		}
 	}
@@ -149,8 +141,7 @@ function updateView(data) {
 	if (data.LatestResult != null)
 	{
 		try {
-			var resultMessage = document.getElementById("resultMessage");
-			resultMessage.innerHTML = data.LatestResult.Message;
+			var resultMessage = data.LatestResult.Message;
 		} catch (err) {
 		}
 	}

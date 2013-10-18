@@ -74,32 +74,39 @@ Page.Plan.init = function PagePlanInit()
 		event.preventDefault();
 		
 		var req = {};
-		$.each($('#form').serializeArray(), function(i, item)
-		{
-			req[item.name] = item.value;
-		});
-		
-		req['showIntermediateStops'] = true;
-		
-		$('#status').empty().append($('<h1>').text("Zoeken..."));
-		
-		// Save locations
-		if (req.fromPlace)
-			Storage.Locations.store(req.from, req.fromPlace, false);
-		if (req.toPlace)
-			Storage.Locations.store(req.to, req.toPlace, false);
-		
-		Service.Trip.plan(req).done(function(data)
-		{
-			$('#status').empty();
-			Page.load("OTPresult.html", Page.OTPResult);
-		}).fail(function(error, message)
-		{
-			$('#status').empty()
-				.append($('<h3>').text('Geen route gevonden.'))
-				.append($('<h4>').text(error + ' ' + message));
-		});
-		
+        $.each($('#form').serializeArray(), function(i, item)
+        {
+            req[item.name] = item.value;
+        });
+            
+        req['showIntermediateStops'] = true;
+        
+		if(!req.fromPlace){
+            navigator.notification.alert('De van-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
+		} else if(!req.toPlace){
+            navigator.notification.alert('De naar-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
+		} else if(Misc.splitDate(req.date) == null){
+            navigator.notification.alert('De datum is nog niet ingevuld of niet correct. Gebruik het volgende formaat: yyyy-mm-dd', function(){}, 'Foute invoer');
+		} else if(Misc.splitTime(req.time) == null){
+		    navigator.notification.alert('De tijd is nog niet ingevuld of niet correct. Gebruik het volgende formaat: hh:mm', function(){}, 'Foute invoer');
+		} else {
+    		
+    		$('#status').empty().append($('<h1>').text("Zoeken..."));
+    		
+    		Storage.Locations.store(req.from, req.fromPlace, false);
+    		Storage.Locations.store(req.to, req.toPlace, false);
+    		
+    		Service.Trip.plan(req).done(function(data)
+    		{
+    			$('#status').empty();
+    			Page.load("OTPresult.html", Page.OTPResult);
+    		}).fail(function(error, message)
+    		{
+    			$('#status').empty()
+    				.append($('<h3>').text('Geen route gevonden.'))
+    				.append($('<h4>').text(error + ' ' + message));
+    		});
+		}
 		return false;
 	});
 };

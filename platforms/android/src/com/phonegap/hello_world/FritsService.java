@@ -54,7 +54,7 @@ public class FritsService extends BackgroundService {
 				// Should the alarm sound now?
 				if (timetoalarm < 0) {
 					Log.d(TAG, "ALARM!");		
-					showNotification(TAG, "title", "body", 1);
+					showNotification(TAG, mSBNTitle, mSBNBody, 1);
 					
 					// Unset the alarm timer
 					mNextAlarmTimestamp = Long.MAX_VALUE;
@@ -85,10 +85,24 @@ public class FritsService extends BackgroundService {
 	@Override
 	protected void setConfig(JSONObject config) {
 	
-		// This blocko parses the timestamp given from the JS code.
+		// This block parses the timestamp given from the JS code.
 		try {
 			
-			if (config.has("NextAlarmTimestamp")) this.mNextAlarmTimestamp = Long.valueOf(config.getString("NextAlarmTimestamp").substring(0,10));
+			if (config.has("NextAlarmTimestamp")) {
+
+				String NAT = config.getString("NextAlarmTimestamp");
+				if (NAT.equals("-1")) {
+					Log.d(TAG, "Cancel die shit");
+					this.mNextAlarmTimestamp = Long.MAX_VALUE;
+				} else {
+					Log.d(TAG, NAT);
+					this.mNextAlarmTimestamp = Long.valueOf(NAT.substring(0,10));
+				}
+			}
+			
+			if (config.has("SBNTitle")) this.mSBNTitle = config.getString("SBNTitle");
+			if (config.has("SBNBody")) this.mSBNBody = config.getString("SBNBody");
+			
 			
 		} catch (JSONException e) {
 			Log.d(TAG, "JSONException in FritsService");
@@ -96,11 +110,8 @@ public class FritsService extends BackgroundService {
 			Log.d(TAG, "NFE");
 		}
 				
-		// Return some useful debugging data
-		long now = System.currentTimeMillis() / 1000;
-		long timetoalarm = mNextAlarmTimestamp - now;
-		String msg = "Alarm is set in " + String.valueOf(timetoalarm) + " seconds. (" + String.valueOf(mNextAlarmTimestamp) + ", " + String.valueOf(now) + ")";
-		Log.d(TAG, msg);
+		// Check/display new alarm status
+		doWork();
 		
 	}     
 
