@@ -1739,8 +1739,8 @@ a {
 }
 
 .ui-button-text {
-	padding: 0px;
-	font-size: 13px;
+	margin: -4px;
+	font-size: 12px;
 }
 
 .alarmheader {
