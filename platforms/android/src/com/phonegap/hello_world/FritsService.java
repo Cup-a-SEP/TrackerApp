@@ -18,6 +18,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 
 public class FritsService extends BackgroundService {
 	
@@ -55,6 +56,10 @@ public class FritsService extends BackgroundService {
 				if (timetoalarm < 0) {
 					Log.d(TAG, "ALARM!");		
 					showNotification(TAG, mSBNTitle, mSBNBody, 1);
+					
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					// Vibrate for 500 milliseconds
+					v.vibrate(2000);
 					
 					// Unset the alarm timer
 					mNextAlarmTimestamp = Long.MAX_VALUE;
@@ -94,6 +99,7 @@ public class FritsService extends BackgroundService {
 				if (NAT.equals("-1")) {
 					Log.d(TAG, "Cancel die shit");
 					this.mNextAlarmTimestamp = Long.MAX_VALUE;
+					this.clearAllNotifications();
 				} else {
 					Log.d(TAG, NAT);
 					this.mNextAlarmTimestamp = Long.valueOf(NAT.substring(0,10));
