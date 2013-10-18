@@ -26,6 +26,13 @@ var Page = {};
 Page.History = [];
 
 /**
+ * Current location
+ * @attribute Location
+ * @type String
+ */
+Page.Location = '';
+
+/**
  * Page contianer element
  * @attribute Body
  * @type jQuery
@@ -61,6 +68,18 @@ Page.replace = function PageReplace(href, events)
 		refresh: events.refresh || function(){}
 	};
 	Page.Body.load(href, Page.events.init);
+	Page.Location = href;
+};
+
+/**
+ * Loads a page and saves the history only if it's not currently open
+ * @param {String} href - url for the html portion of the page
+ * @param {Page~Events} events - Events object for the javascrip portion of the page
+ */
+Page.open = function PageOpen(href, events)
+{
+	
+	(href == Page.Location ? Page.replace : Page.load)(href, events);
 };
 
 /**
