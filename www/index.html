@@ -43,6 +43,29 @@
 	<script src="js/page/settings.js"></script>
 	<script src="js/page/feedback.js"></script>
 	
+	
+	<script>
+		$(function()
+		{	
+			$('a.ajaxnavigation').click(function(event)
+			{
+				event.preventDefault();
+		
+				Page.load($(this).attr('href'));
+			});
+		});
+		
+		function sbn() {
+			console.log('sbn');
+			window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
+		}
+		
+		function note() {
+			navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
+		}
+	</script>
+	
+
 	<style type="text/css">
 		section {
 			width: 100%;
@@ -137,9 +160,9 @@
 			
 			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
 
-			/** /
-			Page.replace('debug.html');
 			/**/
+			Page.replace('debug.html');
+			/** /
 			if (localStorage['OTP data'])
 				Page.replace('currenttrip.html', Page.CurrentTrip);
 			else

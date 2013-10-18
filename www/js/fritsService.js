@@ -78,7 +78,7 @@ function setConfig() {
 	var helloToString = helloToTxt.value;
 	var config = { 
 					"HelloTo" : helloToString ,
-					"NextAlarmTimestamp" : '' + (200 + new Date().getTime() / 1000)
+					"NextAlarmTimestamp" : '' + (20 + new Date().getTime() / 1000)
 				}; 
 	fritsService.setConfiguration(	config,
 								function(r){handleSuccess(r)},
