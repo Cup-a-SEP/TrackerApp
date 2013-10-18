@@ -13,6 +13,10 @@ Page.Settings.init = function PageSettingsInit()
 	$('#embark-slider').val(localStorage['Alarm embark time']).slider();
 	$('#alight-slider').val(localStorage['Alarm alight time']).slider();
 	
+	$('#departure-slider-number').text(localStorage['Alarm departure time']);
+	$('#embark-slider-number').text(localStorage['Alarm embark time']);
+	$('#alight-slider-number').text(localStorage['Alarm alight time']);
+	
 	$('#departure-' + (localStorage['Alarm departure setting'] == 'true' ? 'on' : 'off')).prop('checked',true);//.checkboxradio();
 	$('#embark-' + (localStorage['Alarm embark setting'] == 'true' ? 'on' : 'off')).prop('checked',true);//.checkboxradio();
 	$('#alight-' + (localStorage['Alarm alight setting'] == 'true' ? 'on' : 'off')).prop('checked',true);//.checkboxradio();
@@ -22,18 +26,21 @@ Page.Settings.init = function PageSettingsInit()
 	$('#departure-slider').change(function() {
 		setTimeout(function() {
 			localStorage['Alarm departure time'] = $('#departure-slider').val();
+			$('#departure-slider-number').text($('#departure-slider').val());
 			Service.Alarm.refresh();
 		},0);
 	});
 	$('#embark-slider').change(function() {
 		setTimeout(function() {
 			localStorage['Alarm embark time'] = $('#embark-slider').val();
+			$('#departure-slider-number').text($('#departure-slider').val());
 			Service.Alarm.refresh();
 		},0);
 	});
 	$('#alight-slider').change(function() {
 		setTimeout(function() {
 			localStorage['Alarm alight time'] = $('#alight-slider').val();
+			$('#departure-slider-number').text($('#departure-slider').val());
 			Service.Alarm.refresh();
 		},0);
 	});
