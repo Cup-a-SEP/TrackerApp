@@ -12,34 +12,8 @@
 		<a href="debug/DBACTestCases.html" class="divbutton ajaxnavigation"><p class="button">DBAC Test Report</p></a>
 		<a href="background.html" class="divbutton"><p class="button">Background</p></a>
 		<a href="Feedback.html" class="divbutton ajaxnavigation"><p class="button">Gimme feedback</p></a>
-		<a onClick="sbn();" class="divbutton"><p class="button">Statusbarnotification!</p></a>
-		<a onClick="note();" class="divbutton"><p class="button">Notification!</p></a>
-		<input type="date" />
-		<input type="date" class="nativedatepicker" />
-		<input type="text" class="nativedatepicker" />
+
 	</div>
 </section>
 <script src="cordova.js"></script>
 <script src="js/lib/jquery-1.8.3.min.js"></script>
-
-<script>
-	$(function()
-	{	
-		$('a.ajaxnavigation').click(function(event)
-		{
-			event.preventDefault();
-	
-			Page.load($(this).attr('href'));
-		});
-	});
-	
-	function sbn() {
-		console.log('sbn');
-		window.plugins.statusBarNotification.notify("Put your title here", "Put your message here");
-	}
-	
-	function note() {
-		navigator.notification.alert('hoihoi', function(){}, 'hiephoi');
-	}
-</script>
-<script src="js/datePickerPlugin.js"></script>
