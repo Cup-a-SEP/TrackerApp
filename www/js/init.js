@@ -106,7 +106,9 @@ function Polling()
     }
     // end alert code
     
-	var next = Service.Alarm.check() - new Date().getTime();
-	next = Math.max(Math.min(next / 2, 5 * 60 * 1000), 1000);
+	var next = Service.Alarm.check();
+	$(document).trigger("alarmsRefresh");
+	next -= new Date().getTime();
+	next = Math.max(Math.min(next / 2, 5 * 60e3), 60e3);
 	setTimeout(Polling, next);
 }

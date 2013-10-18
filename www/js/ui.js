@@ -12,8 +12,8 @@ var UI = {};
 UI.formatTime = function UIFormatTime(time)
 {
 	function pad(x) { return x < 10 ? '0' + x : x; }
-	var time = new Date(time);
-	return time.getHours() + ':' + pad(time.getMinutes());
+	var timex = new Date(time);
+	return timex.getHours() + ':' + pad(timex.getMinutes());
 };
 
 /**
@@ -23,9 +23,9 @@ UI.formatTime = function UIFormatTime(time)
  */
 UI.formatDay = function UIFormatDay(time)
 {
-    var time = new Date(time);
     var monthName = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-    return time.getDate() + ' ' + monthName[time.getMonth()];
+    var timex = new Date(time);
+    return timex.getDate() + ' ' + monthName[timex.getMonth()];
 };
 
 /**

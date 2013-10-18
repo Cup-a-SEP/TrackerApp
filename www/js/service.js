@@ -103,7 +103,7 @@ Service.Alarm.check = function ServiceAlarmCheck()
 		return Infinity;
 	
 	var now = new Date().getTime();
-	if (alarms[0].time <= now)
+	while (alarms.length && alarms[0].time <= now)
 	{
 		var alarm = alarms.shift();
 		Service.Alarm.Callback(alarm.type, res.itineraries[0].legs[alarm.legid]);
@@ -225,7 +225,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 				delete req.fromPlace;
 				//req.startTransitTripId = leg.agencyId + '_' + leg.tripId;
 				req.startTransitTripId = 'ARR_' + leg.tripId; // Patch for OTP module bug
-				plan();
+				plan().fail(function(code, error) { def.reject(code, error); });
 			}
 			else // No idea where we are and where to go next, fail
 				def.reject();
