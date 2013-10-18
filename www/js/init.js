@@ -25,9 +25,11 @@ function Polling() {
 
 	if (req && oldData) {
 		var oldLegs = oldData.itineraries[0].legs;
+		var usedOnBoardTripPlanning = true;
 
 		Service.Trip.refresh().fail(function () {
 			// onBoard trip planning failed. Try using the next stop to plan
+			usedOnBoardTripPlanning = false;
 
 			// Get the next stopID and the time the user will be there
 			var now = new Date().getTime();
@@ -87,14 +89,18 @@ function Polling() {
 		var data = $.parseJSON(localStorage['OTP data']);
 		var newLegs = data.itineraries[0].legs;
 		var offset = oldLegs.length - newLegs.length;
-		
 		for (var i = 0; i < newLegs.length; ++i)
 			if (newLegs[i].tripId != oldLegs[i + offset].tripId)
 			{
 				navigator.notification.alert('Uw oude reis is gewijzigd vanwege veranderingen in de dienstregeling.', function(){}, 'Reis wijzigingen');
 				break;
 			}
-	
+		
+		if(usedOnBoardTripPlanning){
+			newLegs[0].startTime = oldLegs[offset].startTime;
+			newLegs[0].from = oldLegs[offset].from;
+		}
+		
 		//refresh the page for delay updates
 		$(document).trigger("OTPdataRefresh");
 	}
