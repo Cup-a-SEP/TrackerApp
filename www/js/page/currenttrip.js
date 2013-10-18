@@ -50,7 +50,8 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 		$('#cancelButton').click(function ()
 		{
 			Service.Trip.cancel();
-			Page.load('plan.html', Page.Plan);
+			Page.History.clear();
+			Page.replace('plan.html', Page.Plan);
 		});
 		
 		if (OTPdata)
