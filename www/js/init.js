@@ -88,16 +88,13 @@ function Polling() {
 		var newLegs = data.itineraries[0].legs;
 		var offset = oldLegs.length - newLegs.length;
 		
-		function checkAlerts()
-		{
-			for (var i = 0; i < newLegs.length; ++i)
-				if (newLegs[i].tripId != oldLegs[i + offset].tripId)
-				{
-					navigator.notification.alert('Hier een zinnige tekst', function(){}, 'Reis wijzigingen');
-					return;
-				}
-		}
-		
+		for (var i = 0; i < newLegs.length; ++i)
+			if (newLegs[i].tripId != oldLegs[i + offset].tripId)
+			{
+				navigator.notification.alert('Hier een zinnige tekst', function(){}, 'Reis wijzigingen');
+				break;
+			}
+	
 		//refresh the page for delay updates
 		$(document).trigger("OTPdataRefresh");
 	}
