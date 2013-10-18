@@ -82,13 +82,13 @@ Page.Plan.init = function PagePlanInit()
         req['showIntermediateStops'] = true;
         
 		if(!req.fromPlace){
-            navigator.notification.alert('De van-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
+            (navigator.notification ? navigator.notification : window).alert('De van-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
 		} else if(!req.toPlace){
-            navigator.notification.alert('De naar-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
+            (navigator.notification ? navigator.notification : window).alert('De naar-locatie is nog niet ingevuld. Vul deze locatie in en probeer het opnieuw', function(){}, 'Foute invoer');
 		} else if(Misc.splitDate(req.date) == null){
-            navigator.notification.alert('De datum is nog niet ingevuld of niet correct. Gebruik het volgende formaat: yyyy-mm-dd', function(){}, 'Foute invoer');
+            (navigator.notification ? navigator.notification : window).alert('De datum is nog niet ingevuld of niet correct. Gebruik het volgende formaat: yyyy-mm-dd', function(){}, 'Foute invoer');
 		} else if(Misc.splitTime(req.time) == null){
-		    navigator.notification.alert('De tijd is nog niet ingevuld of niet correct. Gebruik het volgende formaat: hh:mm', function(){}, 'Foute invoer');
+		    (navigator.notification ? navigator.notification : window).alert('De tijd is nog niet ingevuld of niet correct. Gebruik het volgende formaat: hh:mm', function(){}, 'Foute invoer');
 		} else {
     		
     		$('#status').empty().append($('<h1>').text("Zoeken..."));

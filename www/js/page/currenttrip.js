@@ -137,8 +137,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 			trips.add().html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven <br> <br> <br> <br> <br> <br> <br> <br>");
 			trips.reset();
 		}
-		var next = Service.Alarm.check();
-        $(document).trigger("alarmsRefresh", next);
+		$(document).trigger("alarmsRefresh", Service.Alarm.check());
 	});
 };
 
@@ -148,4 +147,5 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 Page.CurrentTrip.refresh = function PageCurrentTripRefresh()
 {
 	$('#trips').data('swipe').refresh($('#trips'), $('#indexindicator'));
+	$(document).trigger("alarmsRefresh", Service.Alarm.check());
 };
