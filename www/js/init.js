@@ -13,7 +13,7 @@ $(function()
 			'embark':'Instap',
 			'alight':'Uitstap'
 		};
-		navigator.notification.alert('De ' + map[type] + ' wekker ging af!\n' + leg.from.name + ' -> ' + leg.to.name + ' (debug)', function(){}, 'Alarm');
+		navigator.notification.alert('De ' + map[type] + ' wekker ging af!', function(){}, 'Alarm');
 	};
 	setTimeout(Polling, 0);
 });
@@ -91,7 +91,7 @@ function Polling() {
 		for (var i = 0; i < newLegs.length; ++i)
 			if (newLegs[i].tripId != oldLegs[i + offset].tripId)
 			{
-				navigator.notification.alert('Hier een zinnige tekst', function(){}, 'Reis wijzigingen');
+				navigator.notification.alert('Uw oude reis is gewijzigd vanwege veranderingen in de dienstregeling.', function(){}, 'Reis wijzigingen');
 				break;
 			}
 	
