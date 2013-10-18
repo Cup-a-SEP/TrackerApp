@@ -199,7 +199,12 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 		self.update();
 		self.open();
 	});
-	input.blur(function() { setTimeout(function() { self.close(); }, 1000); });
+	
+	input.blur(function() 
+	{ 
+	    self.close();
+	    
+	});
 	
 	// Geo location and location resolving variables
 	this.here = undefined;
@@ -327,7 +332,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
  */
 UI.Suggestion.prototype.open = function UISuggestionOpen()
 {
-	this.target.slideDown();
+	this.target.fadeIn();
 	return this;
 };
 
@@ -338,7 +343,7 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
  */
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
-	this.target.slideUp();
+	this.target.fadeOut();
 	return this;
 };
 
