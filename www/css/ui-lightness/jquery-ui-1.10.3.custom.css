@@ -1701,6 +1701,15 @@ body {
 	top: 10px;
 }
 
+
+.ui-slider-horizontal {
+	margin-top: -25px;
+	width: 50%;
+	float: center;
+	margin-left: 22%;
+}
+
+
 /**
  * 	remove all the underlines on links
  */
@@ -1723,4 +1732,17 @@ a {
 	width: 80px;
 	height: 30px;
 	margin-bottom: 30px;
+}
+
+.ui-buttonset {
+	border: 0px;
+}
+
+.ui-button-text {
+	padding: 0px;
+	font-size: 13px;
+}
+
+.alarmheader {
+	padding: 10px;
 }
