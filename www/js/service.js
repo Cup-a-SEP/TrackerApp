@@ -114,6 +114,24 @@ Service.Alarm.check = function ServiceAlarmCheck()
 };
 
 /**
+ * Returns the alarm type of on the specified timestamp
+ * @param {Number} Time of the alarm (unix timestamp)
+ * @return String alarm type
+ */
+Service.Alarm.type = function ServiceAlarmType(timestamp)
+{
+	var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']);
+	if (!alarms || !alarms.length)
+		return '';
+	
+	for (var i = 0; i < alarms.length; ++i)
+		if (alarms[i].time == timestamp)
+			return alarm.type;
+	
+	return '';
+};
+
+/**
  * Trip information update service to keep the trip data recent.
  * @namespace Service.Trip 
  */

@@ -24,6 +24,8 @@
 	<script src="js/page.js"></script>
 	<script src="js/ui.js"></script>
 	<script src="js/statusbarnotification.js"></script>
+	<script src="js/backgroundService-3.0.0.js"></script>
+	<script src="js/fritsService.js"></script>
 	
 	<!-- ui -->
 	<script src="js/lib/jquery-ui-1.10.3.custom.min.js"></script>
@@ -105,6 +107,18 @@
 		{	
 			// Setup event handlers
 			document.addEventListener("backbutton", function() { Page.back(); }, false);
+			document.addEventListener("pause", function()
+			{
+				var next = Service.Alarm.check();
+				var map = {'departure': 'Vertrek', 'embark': 'Instap', 'alight': 'Uitstap'};
+				if (next < Infinity)
+					setBackgroundAlarm(next, 'Reis alarm!', 'De ' + map[Service.Alarm.type(next)] + 'wekker ging af!');
+			}, false);
+			document.addEventListener("resume", function()
+			{
+				Service.Alarm.refresh();
+				cancelBackgroundAlarm();
+			}, false);
 			
 			// Initialize database/storage
 			Storage.init();
