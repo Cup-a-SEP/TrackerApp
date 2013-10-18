@@ -134,7 +134,7 @@ UI.addItinerary = function UIaddItinerary(itinerary, index)
 		var mapbutton = $('<div>')
 			.attr('id', 'legmap' + i)
 			.addClass('button')
-			.append($('<p>').text('Open map'))
+			.append($('<p>').text('kaart'))
 			.click(function()
 			{
 				localStorage['ShowMap'] = i;
@@ -383,7 +383,7 @@ UI.Swipe.prototype.reset = function UISwipeReset()
 		for (var i = 0; i < self.count; ++i)
 			bullets += i == self.index ? '&diams; ' : '&bull; '; 
 		
-		self.indicator.html(bullets);
+		self.indicator.html(bullets.trim());
 	};
 	
 	this.control = Swipe(this.element[0],
