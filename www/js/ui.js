@@ -253,7 +253,7 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 };
 
 /**
- * Resets the DOM elements used for this swipe box (useful for page refresh)
+ * Resets the DOM elements used for this swipe box (useful for cloned pages)
  * @memberof UI.Suggestion
  * @param {jQuery}           target    - element which will be replaced by the suggestion box
  * @param {jQuery}           input     - textbox element which provides the input
@@ -403,7 +403,7 @@ UI.Swipe.prototype.reset = function UISwipeReset()
 };
 
 /**
- * Resets the DOM elements used for this swipe box (useful for page refresh)
+ * Resets the DOM elements used for this swipe box (useful for cloned pages)
  * @memberof UI.Swipe
  * @param {jQuery}           target    - element which will be replaced by the swipe box
  * @param {jQuery}           indicator - element that will contain the index indicator

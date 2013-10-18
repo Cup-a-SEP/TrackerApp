@@ -48,7 +48,7 @@ Page.load = function PageLoad(href, events)
 {
 	Page.History.push(
 	{
-		body: Page.Body.contents().clone(true, true),
+		body: Page.Body.contents().detach(),
 		events: Page.events
 	});
 	Page.replace(href, events);
