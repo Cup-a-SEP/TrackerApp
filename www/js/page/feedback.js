@@ -43,7 +43,7 @@ Page.Feedback.init = function PageFeedbackInit()
 			mail(subject, body);
 			wrapUp();
 		} else if (document.getElementById("legs").selectedIndex == 0) {
-			alert("Selecteer een voorziening in het tweede drop-down menu!");
+			alert("Maak een keuze in het tweede drop-down menu!");
 		} else {
 			var e = document.getElementById("legs");
 			var subject = e.options[e.selectedIndex].text;
@@ -52,70 +52,108 @@ Page.Feedback.init = function PageFeedbackInit()
 			wrapUp();
 		}
 	});
-
+	
 	/**
-	 * Makes the legs dropdown menu visible and fills it with the different parts of a journey a user can have a complaint about
+	 * Makes the Stations dropdown menu visible and fills it with the different parts of a journey a user can have a complaint about
 	 */
-	function getLegs() {
+	function getStations() {
 		$('#legs').attr("style", "display : block");
 		var data = $.evalJSON(localStorage['OTP data']);
 		var first = true;
 		for (var i = 0; i < data.itineraries[0].legs.length; i++) {
 			if (data.itineraries[0].legs[i].mode == "BUS") {
 				if (first) {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '>' + data.itineraries[0].legs[i].from.name + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + '</option>');
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Bushalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Bushalte -' + data.itineraries[0].legs[i].to.name + '</option>');
 					first = false;
 				} else {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + '</option>');
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Bushalte -' + data.itineraries[0].legs[i].to.name + '</option>');
 				}
 			} else if (data.itineraries[0].legs[i].mode == "RAIL") {
 				if (first) {
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '>' + data.itineraries[0].legs[i].from.name + ', Station NS</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
 					first = false;
 				} else {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '>' + data.itineraries[0].legs[i].to.name + ', Station NS</option>');
 				}
 			} else if (data.itineraries[0].legs[i].mode == "TRAM") {
 				if (first) {
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Tramhalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 					first = false;
 				} else {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Tramhalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 				}
 			} else if (data.itineraries[0].legs[i].mode == "SUBWAY") {
 				if (first) {
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Metrohalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 					first = false;
 				} else {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Metrohalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 				}
 			} else if (data.itineraries[0].legs[i].mode == "FERRY") {
 				if (first) {
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].from.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].from.name + '</option>');
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 					first = false;
 				} else {
-					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
 					$("#legs").append('<option value=' + data.itineraries[0].legs[i].to.name + '> Veerponthalte - ' + data.itineraries[0].legs[i].to.name + '</option>');
 				}
 			}
 
 		}
 	}
+	
+	/**
+	 * Makes the Vehicles dropdown menu visible and fills it with the different parts of a journey a user can have a complaint about
+	 */
+	function getVehicles() {
+		$('#legs').attr("style", "display : block");
+		var data = $.evalJSON(localStorage['OTP data']);
+		var first = true;
+		for (var i = 0; i < data.itineraries[0].legs.length; i++) {
+			if (data.itineraries[0].legs[i].mode == "BUS") {
+				if (first) {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
+					first = false;
+				} else {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>Bus - ' + data.itineraries[0].legs[i].route + '</option>');
+				}
+			} else if (data.itineraries[0].legs[i].mode == "RAIL") {
+				if (first) {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+					first = false;
+				} else {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '>' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+				}
+			} else if (data.itineraries[0].legs[i].mode == "TRAM") {
+				if (first) {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+					first = false;
+				} else {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Tram ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+				}
+			} else if (data.itineraries[0].legs[i].mode == "SUBWAY") {
+				if (first) {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+					first = false;
+				} else {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Metro ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+				}
+			} else if (data.itineraries[0].legs[i].mode == "FERRY") {
+				if (first) {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+					first = false;
+				} else {
+					$("#legs").append('<option value=' + data.itineraries[0].legs[i].tripId + '> Veerpont ' + data.itineraries[0].legs[i].routeShortName + ' - ' + data.itineraries[0].legs[i].routeLongName + '</option>');
+				}
+			}
 
+		}
+	}
+	
 	/**
 	 * Makes a div visible that shows the user about which route he is making a complaint.
 	 */
@@ -150,7 +188,7 @@ Page.Feedback.init = function PageFeedbackInit()
 		for (var i = x.options.length - 1; i >= 0; i--) {
 			x.remove(i);
 		}
-		$('#legs').append('<option>Selecteer een voorziening</option>');
+		$('#legs').append('<option>Maak een keuze!</option>');
 		$('#legs').attr("style", "display : none");
 	}
 	
@@ -178,17 +216,31 @@ Page.Feedback.init = function PageFeedbackInit()
 			} else {
 				createDiv();
 			}
-		} else {
+		} else if (index == 2){
 			emptyDiv();
+			emptyLegs();
 			if (localStorage['OTP request'] == null) {
 				document.getElementById("subject").selectedIndex = 0;
-				alert("U kunt geen klacht indienen over een voorziening zonder een route ingepland te hebben.");
+				alert("U kunt geen klacht indienen over een halte of station zonder een route ingepland te hebben.");
 			} else {
-				getLegs();
+				getStations();
+			}
+		} else {
+			emptyDiv();
+			emptyLegs();
+			if (localStorage['OTP request'] == null) {
+				document.getElementById("subject").selectedIndex = 0;
+				alert("U kunt geen klacht indienen over een vervoersmiddel zonder een route ingepland te hebben.");
+			} else {
+				getVehicles();
 			}
 		}
 	});
 
+	$(function() {
+		// Initialize database
+		Storage.Trips.init();
+	});
 	/**
 	 * Empties the textfield when it is tapped.
 	 */

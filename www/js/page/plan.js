@@ -109,6 +109,4 @@ Page.Plan.init = function PagePlanInit()
  */
 Page.Plan.refresh = function PagePlanRefresh()
 {
-	$('#from').data('sugbox').refresh($('#sugfrom'), $('#from'));
-	$('#to').data('sugbox').refresh($('#sugto'), $('#to'));
 };

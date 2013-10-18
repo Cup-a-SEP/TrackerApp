@@ -116,13 +116,13 @@
 			// Setup header
 			$('#settingsButton').click(function()
 			{
-				Page.load('settings.html', Page.Settings);
+				Page.open('settings.html', Page.Settings);
 				return false;
 			});
 			
 			$('#feedbackButton').click(function()
 			{
-				Page.load('feedback.html', Page.Feedback);
+				Page.open('feedback.html', Page.Feedback);
 				return false;
 			});
 			
@@ -137,9 +137,9 @@
 			
 			// TOGGLE THIS BEFORE RELEASE !!!TOGGLE THIS BEFORE RELEASE !!! TOGGLE THIS BEFORE RELEASE !!!  
 
-			/**/
-			Page.replace('debug.html');
 			/** /
+			Page.replace('debug.html');
+			/**/
 			if (localStorage['OTP data'])
 				Page.replace('currenttrip.html', Page.CurrentTrip);
 			else
