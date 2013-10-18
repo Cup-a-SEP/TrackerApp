@@ -69,7 +69,7 @@ Page.Legmap.init = function PageLegmapInit()
 	 * imported in the Vector Layer of a Map
 	 * 
 	 * @param {String} geometry The legGeometry of the Leg
-	 * @returns {[OpenLayers.Feature.Vector]} an array of Feature Vectors  
+	 * @returns {OpenLayers.Feature.Vector} an array of Feature Vectors  
 	 */
 	function getFeatures(geometry) {
 		var format = new OpenLayers.Format.EncodedPolyline();
