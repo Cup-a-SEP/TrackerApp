@@ -97,7 +97,7 @@ Page.Plan.init = function PagePlanInit()
 		{
 			$('#status').empty()
 				.append($('<h3>').text('Geen route gevonden.'))
-				.append($('<h4>').text(message));
+				.append($('<h4>').text(error + ' ' + message));
 		});
 		
 		return false;

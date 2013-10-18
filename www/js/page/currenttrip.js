@@ -26,6 +26,18 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
         Page.replace("currenttrip.html", Page.CurrentTrip);
     });
     
+    $(document).on("alarmsRefresh",function(){
+        var next = Service.Alarm.check();
+        var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']); // klopt dit?
+        if(!alarms || !alarms.length || next == Infinity){
+            $('#alarmInfoDiv').empty()
+               .append($('<label>').text('Er zijn geen alarmen meer die af kunnen gaan'));
+        } else {
+            $('#alarmInfoDiv').empty()
+               .append($('<label>').text('Het volgende alarm gaat af om ' + UI.formatTime(next)));
+        }
+    });
+    
 	$(function()
 	{
 	    
@@ -125,6 +137,8 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 			trips.add().html("Groep Cup-A-SEP <br> Technische Universiteit Eindhoven <br> <br> <br> <br> <br> <br> <br> <br>");
 			trips.reset();
 		}
+		var next = Service.Alarm.check();
+        $(document).trigger("alarmsRefresh", next);
 	});
 };
 
@@ -133,4 +147,5 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
  */
 Page.CurrentTrip.refresh = function PageCurrentTripRefresh()
 {
+	$('#trips').data('swipe').refresh($('#trips'), $('#indexindicator'));
 };

@@ -12,8 +12,8 @@ var UI = {};
 UI.formatTime = function UIFormatTime(time)
 {
 	function pad(x) { return x < 10 ? '0' + x : x; }
-	var time = new Date(time);
-	return time.getHours() + ':' + pad(time.getMinutes());
+	var timex = new Date(time);
+	return timex.getHours() + ':' + pad(timex.getMinutes());
 };
 
 /**
@@ -23,9 +23,9 @@ UI.formatTime = function UIFormatTime(time)
  */
 UI.formatDay = function UIFormatDay(time)
 {
-    var time = new Date(time);
     var monthName = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-    return time.getDate() + ' ' + monthName[time.getMonth()];
+    var timex = new Date(time);
+    return timex.getDate() + ' ' + monthName[timex.getMonth()];
 };
 
 /**
@@ -199,7 +199,12 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 		self.update();
 		self.open();
 	});
-	input.blur(function() { setTimeout(function() { self.close(); }, 1000); });
+	
+	input.blur(function() 
+	{ 
+	    self.close();
+	    
+	});
 	
 	// Geo location and location resolving variables
 	this.here = undefined;
@@ -286,7 +291,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	if (this.there)
 		this.target.append($('<p>')
 			.text(this.there.address)
-			.click(function()
+			.mousedown(function()
 			{
 				self.callback(self.there.coords, self.there.address);
 				self.close();
@@ -298,7 +303,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 			break;
 		this.target.append($('<p>')
 			.text(names[i])
-			.click((function(i)
+			.mousedown((function(i)
 			{
 				return function()
 				{
@@ -311,7 +316,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	if (this.here)
 		this.target.append($('<p>')
 			.text('Huidige locatie')
-			.click(function()
+			.mousedown(function()
 			{
 				self.callback(self.here.coords, self.here.address);
 				self.close();
@@ -327,7 +332,7 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
  */
 UI.Suggestion.prototype.open = function UISuggestionOpen()
 {
-	this.target.slideDown();
+	this.target.fadeIn();
 	return this;
 };
 
@@ -338,7 +343,7 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
  */
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
-	this.target.slideUp();
+	this.target.fadeOut(100);
 	return this;
 };
 
