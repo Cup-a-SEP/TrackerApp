@@ -6,6 +6,6 @@
     "source": {
     	"includePattern": ".+\\.js$",
         "include": ["www/js"],
-        "exclude": ["www/OpenLayers","www/js/lib"]
+        "exclude": ["www/OpenLayers","www/js/lib","www/js/unfinished"]
     },
 }
