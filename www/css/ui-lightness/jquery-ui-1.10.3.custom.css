@@ -1569,6 +1569,11 @@ body {
 	width: 53%;
 	border-radius: 10px;
 	margin-top: -1px;
+	float: right;
+}
+
+#plan {
+	float: right;
 }
 
 /**
