@@ -33,14 +33,14 @@ Page.Settings.init = function PageSettingsInit()
 	$('#embark-slider').change(function() {
 		setTimeout(function() {
 			localStorage['Alarm embark time'] = $('#embark-slider').val();
-			$('#departure-slider-number').text($('#departure-slider').val());
+			$('#embark-slider-number').text($('#embark-slider').val());
 			Service.Alarm.refresh();
 		},0);
 	});
 	$('#alight-slider').change(function() {
 		setTimeout(function() {
 			localStorage['Alarm alight time'] = $('#alight-slider').val();
-			$('#departure-slider-number').text($('#departure-slider').val());
+			$('#alight-slider-number').text($('#alight-slider').val());
 			Service.Alarm.refresh();
 		},0);
 	});
