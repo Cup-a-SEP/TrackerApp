@@ -25,7 +25,7 @@ Page.OTPResult.init = function PageOTPResultInit()
 		});
 
 	var route = $('<div>').attr('id', 'route');
-	$('#plan').empty().append(route);
+	$('#result').empty().append(route);
 	
 	var it = data.itineraries[0];
 	
