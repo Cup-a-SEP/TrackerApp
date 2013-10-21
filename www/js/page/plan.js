@@ -24,6 +24,7 @@ Page.Plan.init = function PagePlanInit()
 			$('#fromPlace').val(sugfrom.there.coords);
 		}
 	});
+	$('#fromdiv').click(function() { sugfrom.source.focus(); });
 	
 	var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 	{
@@ -39,6 +40,7 @@ Page.Plan.init = function PagePlanInit()
 			$('#toPlace').val(sugto.there.coords);
 		}
 	});
+	$('#todiv').click(function() { sugto.source.focus(); });
 	
 	$('#from').keyup(function() { $('#fromPlace').val(''); });
 	$('#to').keyup(function() { $('#toPlace').val(''); });
