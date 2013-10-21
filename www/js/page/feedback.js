@@ -15,7 +15,7 @@ Page.Feedback.init = function PageFeedbackInit()
 	 * Handles effects to form after feedback is sent
 	 */
 	function wrapUp() {
-		document.getElementById("comment").value = "Email verzonden!";
+		document.getElementById("comment").value = "Email aan het verzenden...";
 		document.getElementById("submitButton").disabled = true;
 	}
 
