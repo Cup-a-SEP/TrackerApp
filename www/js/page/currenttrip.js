@@ -123,7 +123,7 @@ Page.CurrentTrip.init = function PageCurrentTripInit()
 					.append($('<br>'))
 					.append($('<div>').attr('id', 'legmap' + i)
 						.addClass('button')
-						.append($('<p>').text('kaart'))
+						.append($('<p>').attr('id', 'currentTripKaart').text('kaart'))
 						.click((function(i)
 						{
 							return function()
