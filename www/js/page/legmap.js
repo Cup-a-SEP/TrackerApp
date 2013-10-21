@@ -30,7 +30,7 @@ Page.Legmap.init = function PageLegmapInit()
 	 */
 	var size = new OpenLayers.Size(21,25);
 	var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-	var markerIcon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+	var markerIcon = new OpenLayers.Icon('img/marker.png', size, offset);
 	
 	/**
 	 * Creates a new Map object, with an OpenLayers Map, a new OSM Layer,
