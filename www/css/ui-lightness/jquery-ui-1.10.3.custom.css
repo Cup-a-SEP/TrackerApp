@@ -1574,6 +1574,21 @@ body {
 
 #plan {
 	float: right;
+	width: 40%;
+}
+
+#zoeken {
+	width: 40%;
+	font-size: 25px;
+	display: block;
+	float: left;
+	position: absolute;
+}
+
+#status {
+	font-size: 12px;
+	float: left;
+	margin-left: 0px;
 }
 
 /**
