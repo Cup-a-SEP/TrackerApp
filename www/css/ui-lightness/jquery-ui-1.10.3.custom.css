@@ -1775,3 +1775,7 @@ a {
 .alarmheader {
 	padding: 10px;
 }
+
+#cancelButton {
+	padding: 10px;
+}
