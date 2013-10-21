@@ -163,7 +163,7 @@
 	display: block;
 	cursor: pointer;
 	position: relative;
-	margin-top: 2px;
+	margin-top: -1px;
 	padding: .5em .5em .5em .7em;
 	min-height: 0; /* support: IE7 */
 }
@@ -1625,16 +1625,15 @@ body {
 }
 
 #planbutton {
-	margin: 10px;
 	padding: 10px;
+	margin-top: 10px;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	width: 20%;
-	border-radius: 15px;
+	width: 30%;
 	border: 1px #358219 solid;
-	text-decoration: none;
 	border-radius: 15px;
+	text-decoration: none;
 	background-color: #E2F7AB /*E8F7C1*/;
 	box-shadow: 0px -1px 0px 0.5px #E8F7C1 inset, rgba(0,0,0,0.4)
  				0 -24px 40px
@@ -1643,6 +1642,7 @@ body {
   				inset;
 	font-family: helvetica;
 	color: #358219;
+	clear: both;
 }
 
 /**
