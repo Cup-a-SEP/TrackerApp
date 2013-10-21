@@ -39,6 +39,20 @@ UI.formatName = function UIFormatName(name)
 };
 
 /**
+ * Formats a delayed time as used by departure and arrival times
+ * @param {Number} time  - Specified time including the delay (unix timestamp)
+ * @param {Number} delay - The delay itself (seconds)
+ * @return String A String containing the undelayed time with the difference in minutes
+ */
+UI.formatDelay = function UIFormatDelay(time, delay)
+{
+	return UI.formatTime(Number(time) - Number(delay) * 1e3)
+		+ (delay >= 0 ? ' + ' : ' - ')
+		+ Math.abs(Math.floor(Number(delay) / 60))
+		+ 'm';
+};
+
+/**
  * Adds a formatted itinerary to a element
  * I wonder if anyone actually reads these comments
  * @param {OTP~Itinerary} itinerary - Itinerary 
