@@ -16,7 +16,11 @@ Page.Plan.init = function PagePlanInit()
 		$('#fromPlace').val(coords);
 	});
 	$('#from').data('sugbox', sugfrom);
-	sugfrom.source.blur(function()
+	sugfrom.source.focus(function()
+	{
+		$('#from').val('');
+		$('#fromPlace').val('');
+	}).blur(function()
 	{
 		if (!$('#fromPlace').val())
 		{
@@ -32,7 +36,11 @@ Page.Plan.init = function PagePlanInit()
 		$('#toPlace').val(coords);
 	});
 	$('#to').data('sugbox', sugto);
-	sugto.source.blur(function()
+	sugto.source.focus(function()
+	{
+		$('#to').val('');
+		$('#toPlace').val('');
+	}).blur(function()
 	{
 		if (!$('#toPlace').val())
 		{
