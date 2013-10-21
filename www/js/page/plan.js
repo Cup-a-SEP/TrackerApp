@@ -16,6 +16,19 @@ Page.Plan.init = function PagePlanInit()
 		$('#fromPlace').val(coords);
 	});
 	$('#from').data('sugbox', sugfrom);
+	sugfrom.source.focus(function()
+	{
+		$('#from').val('');
+		$('#fromPlace').val('');
+	}).blur(function()
+	{
+		if (!$('#fromPlace').val())
+		{
+			$('#from').val(sugfrom.there.address);
+			$('#fromPlace').val(sugfrom.there.coords);
+		}
+	});
+	$('#fromdiv').click(function() { sugfrom.source.focus(); });
 	
 	var sugto = new UI.Suggestion($('#sugto'), $('#to'), 5, false, function(coords, address)
 	{
@@ -23,6 +36,19 @@ Page.Plan.init = function PagePlanInit()
 		$('#toPlace').val(coords);
 	});
 	$('#to').data('sugbox', sugto);
+	sugto.source.focus(function()
+	{
+		$('#to').val('');
+		$('#toPlace').val('');
+	}).blur(function()
+	{
+		if (!$('#toPlace').val())
+		{
+			$('#to').val(sugto.there.address);
+			$('#toPlace').val(sugto.there.coords);
+		}
+	});
+	$('#todiv').click(function() { sugto.source.focus(); });
 	
 	$('#from').keyup(function() { $('#fromPlace').val(''); });
 	$('#to').keyup(function() { $('#toPlace').val(''); });
