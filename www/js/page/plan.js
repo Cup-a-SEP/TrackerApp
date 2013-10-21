@@ -127,7 +127,7 @@ Page.Plan.init = function PagePlanInit()
     		(navigator.notification ? navigator.notification : window).alert('De ingevulde datum is in het verleden. Gebruik het volgende formaat: yyyy-mm-dd', function(){}, 'Foute invoer');
    		} else {
     		
-    		$('#status').empty().append($('<h1>').text("Zoeken..."));
+    		$('#status').empty().append($('<div>').attr('id', 'zoeken').text("Zoeken..."));
     		
     		Storage.Locations.store(req.from, req.fromPlace, false);
     		Storage.Locations.store(req.to, req.toPlace, false);
