@@ -323,6 +323,8 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 			}));
 	else if (this.here !== false)
 		this.target.append($('<p>').text('Zoeken...'));
+	else 
+		this.target.append($('<p>').text('GPS niet beschikbaar'));
 };
 
 /**
