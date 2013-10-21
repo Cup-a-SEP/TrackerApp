@@ -212,12 +212,12 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 	
 	function hereError(code, message)
 	{
-		self.here = false;
+		self.here = null;
 		self.update();
 	}
 	function thereError(code, message)
 	{
-		self.there = false;
+		self.there = null;
 		self.update();
 	}
 	
@@ -315,16 +315,21 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 	
 	if (this.here)
 		this.target.append($('<p>')
+			.addClass('geolocation')
 			.text('Huidige locatie')
 			.mousedown(function()
 			{
 				self.callback(self.here.coords, self.here.address);
 				self.close();
 			}));
+	else if (this.here === null)
+		this.target.append($('<p>')
+			.addClass('geolocation')
+			.text('GPS niet beschikbaar'));
 	else if (this.here !== false)
-		this.target.append($('<p>').text('Zoeken...'));
-	else 
-		this.target.append($('<p>').text('GPS niet beschikbaar'));
+		this.target.append($('<p>')
+			.addClass('geolocation')
+			.text('Zoeken...'));
 };
 
 /**
