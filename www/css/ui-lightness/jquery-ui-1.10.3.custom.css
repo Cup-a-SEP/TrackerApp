@@ -1577,6 +1577,15 @@ body {
 	width: 40%;
 }
 
+#currentTripKaart {
+	margin-top: 5px;
+	padding-top: 10px;
+}
+
+#legmap0 {
+	width: 55%;
+}
+
 #zoeken {
 	width: 40%;
 	font-size: 25px;
