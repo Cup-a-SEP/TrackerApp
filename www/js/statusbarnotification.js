@@ -37,7 +37,7 @@ Flag.FLAG_AUTO_CANCEL="16";
 Flag.FLAG_NO_CLEAR="32";
 
 /** @deprecated Use the W3C standard window.Notification API instead. */
-var NotificationMessenger = function() { }
+var NotificationMessenger = function() { };
 
 /**
  * @param title Title of the notification
@@ -51,7 +51,7 @@ NotificationMessenger.prototype.notify = function(title, body, flag) {
             flag: flag
         });
     }
-}
+};
 
 /**
  * Clears the Notification Bar
@@ -62,9 +62,9 @@ NotificationMessenger.prototype.clear = function() {
         this.activeNotification.close();
         this.activeNotification = undefined;
     }
-}
+};
 
-if (!window.plugins) window.plugins = {}
+if (!window.plugins) window.plugins = {};
 if (!window.plugins.statusBarNotification) window.plugins.statusBarNotification = new NotificationMessenger();
 
 
