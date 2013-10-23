@@ -1,11 +1,11 @@
 {
 	"opts": {
 		"destination": "./docs/",
-		"recurse": true,
+		"recurse": false,
 	},
     "source": {
     	"includePattern": ".+\\.js$",
-        "include": ["www/js"],
-        "exclude": ["www/OpenLayers","www/js/lib","www/js/unfinished"]
+        "include": ["www/js", "www/js/class", "www/js/page"],
+        "exclude": ["www/js/statusbarnotification.js"]
     },
 }

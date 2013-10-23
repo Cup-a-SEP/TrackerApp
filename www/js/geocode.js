@@ -9,6 +9,7 @@ var Geo = {};
  * @attribute ServerPath
  * @readOnly
  * @type string
+ * @default
  */
 
 //alternatively use google maps geocoding

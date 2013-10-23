@@ -1,1 +1,2 @@
-jsdoc -c ./docs.json
+rm -rf docs
+jsdoc -c docs.json

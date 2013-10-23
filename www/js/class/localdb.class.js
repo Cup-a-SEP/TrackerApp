@@ -1,26 +1,76 @@
 //LocalDB Class
 //See: http://prototypejs.org/learn/class-inheritance.html
 
-// If this code works, it was written by Jeroen van de Ven. If not, I don't know who wrote it.
-
 /**
- * Class to aid access to the local database on a device. Also contains the table structure.
+ * Initialize a LocalDB instance for a specified table and database structure version
+ * @classdesc Class to aid access to the local database on a device. Also contains the table structure.
+ * @name LocalDB
+ * 
+ * @constructor
+ * @param {String} tableStruct - A create table structure query
+ * @param {String} dbVersion   - Version of the data structure expected on the device
+ * @throws {TypeError} Error when supplied table structure is incorrect
+ * 
  */
 var LocalDB = Class.create({
 	
 	//Constants
-	cClassVersion: 1, //Version of this class code
-	cDefaultDbVersion: 2, //When DB Version is not specified, use this value. 
+	/**
+	 * Version of this class code
+	 * @constant {Number} cClassVersion
+	 * @memberof LocalDB.prototype
+	 * @default 1
+	 */
+	cClassVersion: 1,
 	
+	/**
+	 * When DB Version is not specified, it uses this value.
+	 * @constant {Number} cDefaultDbVersion
+	 * @memberof LocalDB.prototype
+	 * @default 2
+	 */
+	cDefaultDbVersion: 2,
 	
 	//Properties
+	/**
+	 * Database version this instance uses
+	 * @member {Number} pDbVersion
+	 * @memberof LocalDB.prototype
+	 * @readonly
+	 */
 	pDbVersion: undefined,
-	pDbo: undefined,
-	pTableName: undefined,
-	pTableStruct: undefined,
-	pError: false,
 	
-	dbResultCallback: undefined,
+	/**
+	 * WebSQl object this instance uses
+	 * @member {Database} pDbo
+	 * @memberof LocalDB.prototype
+	 * @readonly
+	 */
+	pDbo: undefined,
+	
+	/**
+	 * Name of the table this instance uses
+	 * @member {String} pTableName
+	 * @memberof LocalDB.prototype
+	 * @readonly
+	 */
+	pTableName: undefined,
+	
+	/**
+	 * SQL Structure of the table this instance uses
+	 * @member {String} pTableStruct
+	 * @memberof LocalDB.prototype
+	 * @readonly
+	 */
+	pTableStruct: undefined,
+	
+	/**
+	 * Error state of this instance
+	 * @member {Boolean} pError
+	 * @memberof LocalDB.prototype
+	 * @readonly
+	 */
+	pError: false,
 	
 	//Methods
 	onDbCreate: function (db)
@@ -29,13 +79,7 @@ var LocalDB = Class.create({
 		this.pDbo = db;
 		this.initDbStruct();
 	},
-		
-	/**
-	 * Initialize a LocalDB instance for a specified table and database structure version
-	 * 
-	 * @param {String} tableStruct - A create table structure query
-	 * @param {String} dbVersion   - Version of the data structure expected on the device
-	 */
+	
 	initialize: function(tableStruct, dbVersion)
 	{
 		if (undefined == dbVersion)
@@ -81,6 +125,7 @@ var LocalDB = Class.create({
 	/**
 	 * Select a single row from the current table by id
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Number} id    - Row ID in the database table
 	 * @param {Array} fields - List of fields to select (optional) 
 	 * @return {Object} A jQuery deferred object
@@ -99,6 +144,7 @@ var LocalDB = Class.create({
 	/**
 	 * Select a single row from the current table
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Number} limit - Limit of the amount of rows returned. A value of -1 disables the limit.
 	 * @param {Array} fields - List of fields to select (optional) 
 	 * @param {String} sql   - Additional SQL parameters (optional)
@@ -121,6 +167,7 @@ var LocalDB = Class.create({
 	/**
 	 * Select rows from the current table that match a certain value for a certain column
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Object} match - Column-value pairs to search for in the database
 	 * @param {String} sql   - Additional SQL parameters (optional)
 	 * @return {Object} A jQuery deferred object
@@ -145,6 +192,7 @@ var LocalDB = Class.create({
 	/**
 	 * Inserts a row into the current table.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Object} values - Column-value pairs to insert for this row
 	 * @return {Object} A jQuery deferred object
 	 */	
@@ -166,6 +214,7 @@ var LocalDB = Class.create({
 	/**
 	 * Updates a row in the current table by id.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Number} id     - Id of record to update
 	 * @param {Object} values - Column-value pairs to insert for this row
 	 * @return {Object} A jQuery deferred object
@@ -185,6 +234,7 @@ var LocalDB = Class.create({
 	/**
 	 * Updates a row in the current table using a match.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Object} values - Column-value pairs to insert for this row
 	 * @param {Object} match  - Column-value pairs to search for in the database
 	 * @param {String} sql    - Additional SQL parameters (optional)
@@ -210,6 +260,7 @@ var LocalDB = Class.create({
 	/**
 	 * Deletes a row into the current table by id.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Number} id Row ID in the database table
 	 * @return {Object} A jQuery deferred object
 	 */	
@@ -223,6 +274,7 @@ var LocalDB = Class.create({
 	/**
 	 * Deletes a row into the current table by match.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {Object} values - Column-value pairs to search for in the database
 	 * @param {String} sql    - Additional SQL parameters (optional)
 	 * @return {Object} A jQuery deferred object
@@ -242,6 +294,7 @@ var LocalDB = Class.create({
 	/**
 	 * Executes a raw SQL query.
 	 * 
+	 * @memberof LocalDB.prototype
 	 * @param {String} sqlQuery - A SQL query (what a surprise)
 	 * @return {Object} A jQuery deferred object
 	 */
@@ -281,6 +334,8 @@ var LocalDB = Class.create({
 
 	/**
 	 * The database did not exist yet, create the structure here.
+	 * @memberof LocalDB.prototype
+	 * @private
 	 * @param {database} db The WebSQL database objectc
 	 */	
 	initDbStruct: function()
@@ -309,55 +364,100 @@ var LocalDB = Class.create({
 //See: http://prototypejs.org/learn/class-inheritance.html
 
 /**
- * Class to contain results from the LocalDB database requests
+ * Initialize a LocalDB instance for a specified table and database structure version
+ * @classdesc Class to contain results from the LocalDB database requests
+ * 
+ * @constructor
+ * @param {bool} isSelectQuery Is this the result based on a SELECT query or not
+ * @param {String} dbVersion Version of the data structure expected on the device
  */
 var LocalDBResult = Class.create({
 	
 	//Constants
-	cDefaultDbVersion: 1, //When DB Version is not specified, use this value. 
-	
+	/**
+	 * When DB Version is not specified, use this value.
+	 * @constant {Number} cDefaultDbVersion
+	 * @memberof LocalDBResult.prototype
+	 * @readonly
+	 * @default 1
+	 */
+	cDefaultDbVersion: 1, 
 	
 	//Properties
+	/**
+	 * Web SQL result object
+	 * @member {DatabaseResult} pResultData
+	 * @memberof LocalDBResult.prototype
+	 * @readonly
+	 */
 	pResultData: undefined,
+	
+	/**
+	 * Original SQL query sent
+	 * @member {String} pSqlQuery
+	 * @memberof LocalDBResult.prototype
+	 * @readonly
+	 */
 	pSqlQuery: undefined,
+	
+	/**
+	 * Number of rows returned in result
+	 * @member {Number} pRows
+	 * @memberof LocalDBResult.prototype
+	 * @readonly
+	 */
 	pRows: -1,
 	
 	//Methods
-	
-	/**
-	 * Initialize a LocalDB instance for a specified table and database structure version
-	 * 
-	 * @param {bool} isSelectQuery Is this the result based on a SELECT query or not
-	 * @param {String} dbVersion Version of the data structure expected on the device
-	 */
-	initialize: function(sqlQuery, resultData) {
+	initialize: function(sqlQuery, resultData)
+	{
 		this.pSqlQuery = sqlQuery;
 		this.pResultData = resultData;
 		this.pRows = this.pResultData.rows.length;	
 	},
 	
-	toObject: function() {
-		
+	/**
+	 * Returns an object representation of the SQL result
+	 * @memberof LocalDBResult.prototype
+	 * @return {Array} [field => value]
+	 */
+	toObject: function()
+	{	
 		var obj = [];
 		
-		for (var i = 0; i < this.pRows; i++){
+		for (var i = 0; i < this.pRows; ++i)
 			obj.push(this.pResultData.rows.item(i));
-		}
+		
 		return obj;
 	},
 	
-	firstRow: function() {
-		
+	/**
+	 * Returns on object representation of teh rist row of the SQL result
+	 * @memberof LocalDBResult.prototype
+	 * @return {Object} field => value
+	 */
+	firstRow: function()
+	{	
 		return this.pResultData.rows.item(0);
 	},
 	
-	rowsAffected: function() {
-		
+	/**
+	 * Returns the numbre of affected rows
+	 * @memberof LocalDBResult.prototype
+	 * @return {Number} number of rows affected 
+	 */
+	rowsAffected: function()
+	{	
 		return this.pResultData.rowsAffected;
 	},
 	
-	insertId: function() {
-		
+	/**
+	 * Id of insertion
+	 * @memberof LocalDBResult.prototype
+	 * @return {Number} 
+	 */
+	insertId: function()
+	{	
 		return this.pResultData.insertId;
 	},
 });

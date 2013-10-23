@@ -1,11 +1,20 @@
 /**
- * Storage related functionality
+ * Local storage and local database functionality
  * @namespace Storage 
  */
 var Storage = {};
 
+/**
+ * Version of the storage scheme used (Increment everytime database structures have changed regarding the next release)
+ * @attribute {Number} Version
+ * @readonly
+ * @default 
+ */
 Storage.Version = 1;
 
+/**
+ * Initializes local storage; applies default values when not present. 
+ */
 Storage.init = function StorageInit()
 {
 	localStorage['Alarm departure time'] = localStorage['Alarm departure time'] || 10;
@@ -15,17 +24,10 @@ Storage.init = function StorageInit()
 	localStorage['Alarm departure setting'] = localStorage['Alarm departure setting'] || false;
 	localStorage['Alarm embark setting'] = localStorage['Alarm embark setting'] || false;
 	localStorage['Alarm alight setting'] = localStorage['Alarm alight setting'] || false;
-	
-	/*
-	 * For reference:
-	 *
-	 * localStorage['OTP request']
-	 * localStorage['OTP data']
-	 */
 };
 
 /**
- * Location storage for previous used and favourite locations.
+ * Storage for previous used and favourite locations.
  * @namespace Storage.Locations 
  */
 Storage.Locations = {};
@@ -40,7 +42,7 @@ Storage.Locations.init = function()
 };
 
 /**
- * Adds a new location to the stored ones
+ * Adds a new location to the stored ones or increases the usage counter if it already exists
  * @param {String} name   - Location name
  * @param {String} latlng - Geoposition coordinates concated with a comma
  * @param {Boolean} fav   - Is this locations favourited (or just previously used). 
@@ -95,7 +97,7 @@ Storage.Locations.list = function StorageLocationsList(number)
 };
 
 /**
- * Trip storage for tracked trips
+ * Storage for tracked trips
  * @namespace Storage.Trips
  */
 Storage.Trips = {};
@@ -119,16 +121,22 @@ Storage.Trips.init = function StorageTripsInit()
 /**
  * Store a planned trip
  * @param {OTP~PlannerRequest} trip -  A planner request object to store 
+ * @return {Object} jQuery deferred object 
  */
 Storage.Trips.store = function StorageTripsStore(trip)
 {
-	trip = $.extend({}, trip);
-	trip.arriveBy = (trip.arriveBy ? '1' : '0');
-	trip.wheelchair = (trip.wheelchair ? '1' : '0');
-	trip.preferLeastTransfers = (trip.preferLeastTransfers ? '1' : '0');
-	
-	delete trip['showIntermediateStops'];
-	delete trip['maxWalkDistance'];
+	trip = 
+	{
+		from: trip.from,       fromPlace: trip.fromPlace            ,
+		to:   trip.to,         toPlace:   trip.toPlace              ,
+		time: trip.time,       date:      trip.date                 ,
+		expectedDepartureTime: trip.expectedDepartureTime           ,
+		expectedArrivalTime:   trip.expectedArrivalTime             ,
+		arriveBy:              trip.arriveBy             ? '1' : '0',
+		mode:                  trip.mode                            ,
+		wheelchair:            trip.wheelchair           ? '1' : '0',
+		preferLeastTransfers:  trip.preferLeastTransfers ? '1' : '0'
+	};
 	
 	return this.db.insert(trip);
 };
@@ -169,6 +177,7 @@ Storage.Trips.next = function StorageTripsNext()
 /**
  * Remove a planned trip
  * @param {OTP~PlannerRequest} trip -  A planner request object to remove (only from, to time and date matter) 
+ * @return {Object} jQuery deferred object 
  */
 Storage.Trips.remove = function StorageTripsRemove(trip)
 {

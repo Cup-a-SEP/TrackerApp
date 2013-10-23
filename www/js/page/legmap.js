@@ -39,6 +39,10 @@ Page.Legmap.init = function PageLegmapInit()
 	 * @constructor
 	 * @this {Map}
 	 * @param {String} id The id of the HTML div element in which the map will be put
+	 * 
+	 * @property {OpenLayers~Map} map         - map container
+	 * @property {OpenLayers~Layer} layer     - OpenStreetMaps layer
+	 * @property {OpenLayers~Projection} proj - map projection
 	 */
 	function Map(id)
 	{

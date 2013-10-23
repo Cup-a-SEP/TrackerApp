@@ -20,28 +20,29 @@ var Page = {};
  */
 
 /**
- * Page history stack
+ * Stack with page states representing the current history (as: [Page~State])
  * @attribute History
  * @type Array
  */
 Page.History = [];
 
 /**
- * Current location
+ * Href of the last loaded page (the current location)
  * @attribute Location
  * @type String
  */
 Page.Location = '';
 
 /**
- * Page contianer element
+ * jQuery Object pointing to the container in which pages will be loaded
  * @attribute Body
  * @type jQuery
+ * @default
  */
 Page.Body = $('body'); 
 
 /**
- * Loads a page and saves the history 
+ * Loads a page and saves the old one in the history 
  * @param {String} href - url for the html portion of the page
  * @param {Page~Events} events - Events object for the javascrip portion of the page
  */
@@ -75,7 +76,7 @@ Page.replace = function PageReplace(href, events)
 };
 
 /**
- * Loads a page and saves the history only if it's not currently open
+ * Loads a page and saves the old one in history only if it's a different page as currently open
  * @param {String} href - url for the html portion of the page
  * @param {Page~Events} events - Events object for the javascrip portion of the page
  */
@@ -86,7 +87,7 @@ Page.open = function PageOpen(href, events)
 };
 
 /**
- * Go back a page in history or close the app if the last one 
+ * Goes back a page in history and closes the app when it was the last one 
  */
 Page.back = function PageBack()
 {

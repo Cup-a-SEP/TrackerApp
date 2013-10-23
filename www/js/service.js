@@ -1,9 +1,11 @@
 /**
+ * Foreground services as a counterpart for the services that run in the background
  * @namespace Service
  */
 var Service = {};
 
 /**
+ * Alarm service: functionality for fireing alarms.
  * @namespace Service.Alarm 
  */
 Service.Alarm = {};
@@ -16,14 +18,14 @@ Service.Alarm = {};
  */
 
 /**
- * Fired when an alarm is triggered
+ * Callback that is fired when an alarm is triggered
  * @attribute Callback
  * @type Service.Alarm~Callback
  */
-Service.Alarm.Callback = function(){};
+Service.Alarm.Callback = Function();
 
 /**
- * Recalculates the alarms after planned trip or alarms setting have changed. 
+ * Recalculates the alarms (should be called when tracked trip data or alarm settings have changed). 
  */
 Service.Alarm.refresh = function ServiceAlarmRefresh()
 {
@@ -76,7 +78,7 @@ Service.Alarm.refresh = function ServiceAlarmRefresh()
 			});
 	}
 	
-	// Remove past alarms
+	// Remove alarms that are in the past
 	var now = new Date().getTime();
 	alarms = alarms.filter(function(alarm)
 	{
@@ -90,7 +92,7 @@ Service.Alarm.refresh = function ServiceAlarmRefresh()
 
 /**
  * Check if an alarm would fire and fire it if so
- * @return {Number} Time of the next alarm that would fire or else Infinity (unix timestamp)
+ * @return {Number} The time of the next alarm that would fire (unix timestamp) or else Infinity
  */
 Service.Alarm.check = function ServiceAlarmCheck()
 {
@@ -114,9 +116,9 @@ Service.Alarm.check = function ServiceAlarmCheck()
 };
 
 /**
- * Returns the alarm type of on the specified timestamp
+ * Returns the type of the alarm that would fire at the specified timestamp
  * @param {Number} Time of the alarm (unix timestamp)
- * @return String alarm type
+ * @return {String} alarm type ('departure', 'embark' or 'alight')
  */
 Service.Alarm.type = function ServiceAlarmType(timestamp)
 {
@@ -132,7 +134,7 @@ Service.Alarm.type = function ServiceAlarmType(timestamp)
 };
 
 /**
- * Trip information update service to keep the trip data recent.
+ * Trip information update service to keep the trip data recent (uses onboard trip planning).
  * @namespace Service.Trip 
  */
 Service.Trip = {};
@@ -190,7 +192,7 @@ Service.Trip.cancel = function ServiceTripCancel()
 };
 
 /**
- * Rerequest trip information using last request
+ * Recalculates the trip using the request issued by the tracked trip
  * @return {Object} jQuery deferred object 
  */
 Service.Trip.update = function ServiceTripUpdate()
@@ -212,7 +214,7 @@ Service.Trip.update = function ServiceTripUpdate()
 };
 
 /**
- * Recalculates trip from current locations 
+ * Recalculates the trip using the expected current location (uses onboard trip planning)
  * @return {Object} jQuery deferred object
  */
 Service.Trip.refresh = function ServiceTripRefresh()
@@ -271,7 +273,7 @@ Service.Trip.refresh = function ServiceTripRefresh()
 
 /**
  * Gets the leg from the current planned trip where the user is expected to be.
- * @returns OTP~Leg current leg or else null
+ * @returns {OTP~Leg} current leg or else null
  */
 Service.Trip.currentLeg = function ServiceTripCurrentLeg()
 {
@@ -290,7 +292,7 @@ Service.Trip.currentLeg = function ServiceTripCurrentLeg()
 
 /**
  * Gets the next leg from the current planned trip where the user is expected to go next.
- * @returns OTP~Leg current leg, on error null else when current is last leg: undefined
+ * @returns {OTP~Leg} current leg, on error null else when current is last leg: undefined
  */
 Service.Trip.nextLeg = function ServiceTripCurrentLeg()
 {

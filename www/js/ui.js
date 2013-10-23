@@ -7,7 +7,7 @@ var UI = {};
 /**
  * Formats time to hh:mm format
  * @param time - A javascript suppored time designation
- * @return The specified time in hh:mm format
+ * @return {String} The specified time in hh:mm format
  */
 UI.formatTime = function UIFormatTime(time)
 {
@@ -19,7 +19,7 @@ UI.formatTime = function UIFormatTime(time)
 /**
  * Formats time to day month format
  * @param time - A javascript suppored time designation
- * @return The specified time in day month format
+ * @return {String} The specified time in day month format
  */
 UI.formatDay = function UIFormatDay(time)
 {
@@ -31,7 +31,7 @@ UI.formatDay = function UIFormatDay(time)
 /**
  * Formats a location name so it does not contain double spaces
  * @param name - A Location name
- * @return The name without double spaces 
+ * @return {String} The name without double spaces 
  */
 UI.formatName = function UIFormatName(name)
 {
@@ -42,7 +42,7 @@ UI.formatName = function UIFormatName(name)
  * Formats a delayed time as used by departure and arrival times
  * @param {Number} time  - Specified time including the delay (unix timestamp)
  * @param {Number} delay - The delay itself (seconds)
- * @return String A String containing the undelayed time with the difference in minutes
+ * @return {String} A String containing the undelayed time with the difference in minutes: (H:MM + Dm)
  */
 UI.formatDelay = function UIFormatDelay(time, delay)
 {
@@ -53,11 +53,10 @@ UI.formatDelay = function UIFormatDelay(time, delay)
 };
 
 /**
- * Adds a formatted itinerary to a element
- * I wonder if anyone actually reads these comments
+ * Adds a formatted itinerary to an element (accordion)
  * @param {OTP~Itinerary} itinerary - Itinerary 
- * @param {Number} index - Leg that is opened on start
- * @this $
+ * @param {Number} index - Leg that is selected on start
+ * @this jQuery target element
  */
 UI.addItinerary = function UIaddItinerary(itinerary, index)
 {

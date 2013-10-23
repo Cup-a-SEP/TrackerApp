@@ -4,7 +4,7 @@
  */
 var Misc = {};
 
-/*
+/**
  * Levenshtein algorithm cost specification
  * @typedef {Object} Misc~LDistanceCost
  * @property {Number} del  - Cost of deleting a letter
@@ -72,7 +72,7 @@ Misc.lDistance.DefaultCost =
 /**
  * Splits the given time into the hour and minute part
  * @param {String} time              - a time in a hh:mm format
- * @returns an array of the form [hours, minutes]. Returns null if the time is not a valid time or not in the correct format
+ * @returns {Array} An array of the form [hours, minutes]. Returns null if the time is not a valid time or not in the correct format
  */
 Misc.splitTime = function MiscSplitTime(time){
     var split = time.match(/^(\d+):(\d+)$/);
@@ -85,7 +85,7 @@ Misc.splitTime = function MiscSplitTime(time){
 /**
  * Splits the given date into the day, month and year part
  * @param {String} date             - a date in a yyyy:mm:dd format
- * @returns an array of the form [day, month, year]. Returns null if the date is not in the correct format and if day > 31 or month > 12.
+ * @returns {Array} An array of the form [day, month, year]. Returns null if the date is not in the correct format and if day > 31 or month > 12.
  * Note that this function will accept impossible dates like for expample 2013-2-31
  */
 Misc.splitDate = function MiscSplitDate(date){

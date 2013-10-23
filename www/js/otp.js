@@ -33,6 +33,7 @@ var OTP = {};
  * @attribute ServerPath
  * @readOnly
  * @type string
+ * @default
  */
 //OTP.ServerPath = 'http://b-direct.cup-a-sep.nl/rest/v1.0/';
 OTP.ServerPath = 'http://opentripplanner.nl/otp-rest-servlet/ws/';
