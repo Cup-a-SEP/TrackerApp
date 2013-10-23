@@ -14,73 +14,55 @@
  * limitations under the License.
  */
 
+// Link to the native code through cordova
 cordova.define(	'cordova/plugin/fritsService',	function(require, exports, module) {    
 	CreateBackgroundService('com.phonegap.hello_world.FritsService', require, exports, module);
 });
-
 var fritsService = cordova.require('cordova/plugin/fritsService');
         	
+// Always start the service even if it isn't neede yet.
 document.addEventListener('deviceready', function() {
+	// Make an API call and start the service on success, else handle error.
 	fritsService.getStatus(	
 		function(r){startBackgroundService(r)},
 		function(e){handleError(e);}
 	);
 }, true);
 
+// Something to do when an API call succeeds. Do nothing in our case.
 function handleSuccess(data) {
-	//updateView(data);
-	
 	//console.log(data);
 }
 
+// Something to do when an API call fails. We log some messages.
 function handleError(data) {
 	console.log("Error: " + data.ErrorMessage);
 	console.log(JSON.stringify(data));
-	//updateView(data);
 }
 
-/*
- * Button Handlers
- */ 			
-function getStatus() {
-	fritsService.getStatus(	function(r){handleSuccess(r)},
-							function(e){handleError(e)});
-};
-
+// Start the service
 function startService() {
 	fritsService.startService(	function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
 
-function stopService() {
-	fritsService.stopService(	function(r){handleSuccess(r)},
-							function(e){handleError(e)});
-}
-
+// Enable the service timer with 20s interval
 function enableTimer() {
-	fritsService.enableTimer(	2000,
+	fritsService.enableTimer(	20000,
 							function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
-
-function disableTimer() {
-	fritsService.disableTimer(	function(r){handleSuccess(r)},
-							function(e){handleError(e)});
-};
  			
+// Register the service to start on reboot of the device
 function registerForBootStart() {
 	fritsService.registerForBootStart(	function(r){handleSuccess(r)},
 									function(e){handleError(e)});
 }
 
-function deregisterForBootStart() {
-	fritsService.deregisterForBootStart(	function(r){handleSuccess(r)},
-										function(e){handleError(e)});
-}
-
+// Public function to set the parameters for an alarm
 function setBackgroundAlarm(NextAlarmTimestamp, SBNTitle, SBNBody) {
 	//Default 20 second alarm
-	NextAlarmTimestamp = NextAlarmTimestamp || (30 + new Date().getTime() / 1000);
+	NextAlarmTimestamp = NextAlarmTimestamp || (20 + new Date().getTime() / 1000);
 	var config = { 
 					"NextAlarmTimestamp" : '' + NextAlarmTimestamp,
 					"SBNTitle" : SBNTitle,
@@ -91,9 +73,8 @@ function setBackgroundAlarm(NextAlarmTimestamp, SBNTitle, SBNBody) {
 								function(e){handleError(e)});
 }
 
-
+// Public function to cancel the next alarm
 function cancelBackgroundAlarm() {
-	//Default 20 second alarm
 	NextAlarmTimestamp = -1;
 	var config = { 
 					"NextAlarmTimestamp" : '' + NextAlarmTimestamp,
@@ -103,7 +84,7 @@ function cancelBackgroundAlarm() {
 								function(e){handleError(e)});
 }
 
-
+// Configure and start the service
 function startBackgroundService(data) {
 	
 	console.log("Starting FritsService in background");
@@ -129,20 +110,4 @@ function startBackgroundService(data) {
 	}
 
 	//setBackgroundAlarm(null, "Frits alarm!", "Tekst");
-	
-	if (data.Configuration != null)
-	{
-		try {
-			var helloToTxt = data.Configuration.HelloTo;
-		} catch (err) {
-		}
-	}
-	
-	if (data.LatestResult != null)
-	{
-		try {
-			var resultMessage = data.LatestResult.Message;
-		} catch (err) {
-		}
-	}
 }
