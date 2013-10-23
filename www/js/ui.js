@@ -188,6 +188,7 @@ UI.addItinerary = function UIaddItinerary(itinerary, index)
 
 /**
  * Creates a suggestion box from a text box
+ * @classdesc A dropdown with possible locations that is updated when the user types sorted on relevance.
  * @constructor Suggestion
  * @param {jQuery}           target    - element which will be replaced by the suggestion box
  * @param {jQuery}           input     - textbox element which provides the input
@@ -196,7 +197,7 @@ UI.addItinerary = function UIaddItinerary(itinerary, index)
  * @param {Geo~DoneCallback} callback  - callback executed when user clicks a suggestion
  * 
  * @property {Number} size - number of suggestions
- * @property {Object} list - suggestion list object with address => "lat,lng"
+ * @property {Object} list - suggestion list object (address => "lat,lng")
  */
 UI.Suggestion = function(target, input, size, geolocate, callback)
 {
@@ -272,7 +273,8 @@ UI.Suggestion = function(target, input, size, geolocate, callback)
 
 /**
  * Resets the DOM elements used for this swipe box (useful for cloned pages)
- * @memberof UI.Suggestion
+ * @memberof Suggestion.prototype
+ * @method refresh
  * @param {jQuery}           target    - element which will be replaced by the suggestion box
  * @param {jQuery}           input     - textbox element which provides the input
  */
@@ -285,7 +287,8 @@ UI.Suggestion.prototype.refresh = function UISuggestionRefresh(target, input)
 
 /**
  * Updates the suggestion box (when list or input has changed)
- * @memberof UI.Suggestion
+ * @memberof Suggestion.prototype
+ * @method update
  */
 UI.Suggestion.prototype.update = function UISuggestionUpdate()
 {
@@ -347,8 +350,9 @@ UI.Suggestion.prototype.update = function UISuggestionUpdate()
 
 /**
  * Opens the suggestion box
- * @memberof UI.Suggestion
- * @return this 
+ * @memberof Suggestion.prototype
+ * @method open
+ * @return {Suggestion} this 
  */
 UI.Suggestion.prototype.open = function UISuggestionOpen()
 {
@@ -358,8 +362,9 @@ UI.Suggestion.prototype.open = function UISuggestionOpen()
 
 /**
  * Closes the suggestion box
- * @memberof UI.Suggestion
- * @return this
+ * @memberof Suggestion.prototype
+ * @method close
+ * @return {Suggestion} this
  */
 UI.Suggestion.prototype.close = function UISuggestionClose()
 {
@@ -369,6 +374,7 @@ UI.Suggestion.prototype.close = function UISuggestionClose()
 
 /**
  * Creates a swipe box from an element
+ * @classdesc Box with multiple pages that can be swiped through.
  * @constructor Swipe
  * @param {jQuery}           target    - element which will be replaced by the swipe box
  * @param {jQuery}           indicator - element that will contain the index indicator
@@ -390,8 +396,9 @@ UI.Swipe = function UISwipe(target, indicator)
 
 /**
  * Redraws the swipebox when pages have been added
- * @memberof UI.Swipe
- * @return this 
+ * @memberof Swipe.prototype
+ * @method reset
+ * @return {Swipe} this 
  */
 UI.Swipe.prototype.reset = function UISwipeReset()
 {
@@ -429,7 +436,8 @@ UI.Swipe.prototype.reset = function UISwipeReset()
 
 /**
  * Resets the DOM elements used for this swipe box (useful for cloned pages)
- * @memberof UI.Swipe
+ * @memberof Swipe.prototype
+ * @method refresh
  * @param {jQuery}           target    - element which will be replaced by the swipe box
  * @param {jQuery}           indicator - element that will contain the index indicator
  */
@@ -443,7 +451,8 @@ UI.Swipe.prototype.refresh = function UISwipeRefresh(target, indicator)
 
 /**
  * Adds a page to the swipebox
- * @memberof UI.Swipe
+ * @memberof Swipe.prototype
+ * @method add
  * @return {jQuery} added page element 
  */
 UI.Swipe.prototype.add = function UISwipeAdd()
@@ -458,7 +467,8 @@ UI.Swipe.prototype.add = function UISwipeAdd()
 
 /**
  * Returns the last page of the swipebox
- * @memberof UI.Swipe
+ * @memberof Swipe.prototype
+ * @method last
  * @return {jQuery} the last page of the swipebox 
  */
 UI.Swipe.prototype.last = function UISwipeLast()
@@ -468,8 +478,9 @@ UI.Swipe.prototype.last = function UISwipeLast()
 
 /**
  * Goes to the next page
- * @memberof UI.Swipe
- * @return this 
+ * @memberof Swipe.prototype
+ * @method next
+ * @return {Swipe} this 
  */
 UI.Swipe.prototype.next = function UISwipeNext()
 {
@@ -479,8 +490,9 @@ UI.Swipe.prototype.next = function UISwipeNext()
 
 /**
  * Goes to the previous page
- * @memberof UI.Swipe
- * @return this 
+ * @memberof Swipe.prototype
+ * @method prev
+ * @return {Swipe} this 
  */
 UI.Swipe.prototype.prev = function UISwipePrev()
 {

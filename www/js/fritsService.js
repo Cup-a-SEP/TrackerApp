@@ -24,7 +24,7 @@ var fritsService = cordova.require('cordova/plugin/fritsService');
 document.addEventListener('deviceready', function() {
 	// Make an API call and start the service on success, else handle error.
 	fritsService.getStatus(	
-		function(r){startBackgroundService(r)},
+		function(r){startBackgroundService(r);},
 		function(e){handleError(e);}
 	);
 }, true);
@@ -42,24 +42,29 @@ function handleError(data) {
 
 // Start the service
 function startService() {
-	fritsService.startService(	function(r){handleSuccess(r)},
-							function(e){handleError(e)});
+	fritsService.startService(	function(r){handleSuccess(r);},
+							function(e){handleError(e);});
 }
 
 // Enable the service timer with 20s interval
 function enableTimer() {
 	fritsService.enableTimer(	20000,
-							function(r){handleSuccess(r)},
-							function(e){handleError(e)});
+							function(r){handleSuccess(r);},
+							function(e){handleError(e);});
 }
  			
 // Register the service to start on reboot of the device
 function registerForBootStart() {
-	fritsService.registerForBootStart(	function(r){handleSuccess(r)},
-									function(e){handleError(e)});
+	fritsService.registerForBootStart(	function(r){handleSuccess(r);},
+									function(e){handleError(e);});
 }
 
-// Public function to set the parameters for an alarm
+/**
+ * Public function to set the parameters for an alarm
+ * @param {Number} NextAlarmTimestamp - time when alarm will trigger (unix timestamp)
+ * @param {String} SBNTitle - statusbar notification title
+ * @param {String} SBNBody - statusbar notification message
+ */
 function setBackgroundAlarm(NextAlarmTimestamp, SBNTitle, SBNBody) {
 	//Default 20 second alarm
 	NextAlarmTimestamp = NextAlarmTimestamp || (20 + new Date().getTime() / 1000);
@@ -69,19 +74,21 @@ function setBackgroundAlarm(NextAlarmTimestamp, SBNTitle, SBNBody) {
 					"SBNBody" : SBNBody
 				}; 
 	fritsService.setConfiguration(	config,
-								function(r){handleSuccess(r)},
-								function(e){handleError(e)});
+								function(r){handleSuccess(r);},
+								function(e){handleError(e);});
 }
 
-// Public function to cancel the next alarm
+/**
+ * Public function to cancel the next alarm
+ */
 function cancelBackgroundAlarm() {
 	NextAlarmTimestamp = -1;
 	var config = { 
 					"NextAlarmTimestamp" : '' + NextAlarmTimestamp,
 				}; 
 	fritsService.setConfiguration(	config,
-								function(r){handleSuccess(r)},
-								function(e){handleError(e)});
+								function(r){handleSuccess(r);},
+								function(e){handleError(e);});
 }
 
 // Configure and start the service
