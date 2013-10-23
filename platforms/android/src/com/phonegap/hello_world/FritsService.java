@@ -12,7 +12,9 @@ import java.lang.NumberFormatException;
 import com.red_folder.phonegap.plugin.backgroundservice.BackgroundService;
 import org.apache.cordova.statusBarNotification.StatusNotificationIntent;
 
-
+// To store the settings in event of reboot etc.
+import android.content.SharedPreferences;
+	
 // More stuff for Status Bar Notifications
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -29,12 +31,20 @@ public class FritsService extends BackgroundService {
 	private long mNextAlarmTimestamp = Long.MAX_VALUE;
 	private String mSBNTitle = "Frits Alarm";
 	private String mSBNBody = "Frits alarm gaat af!";
+	private static final String PREFS_NAME = "FritsServiceSettings";
 	
 
 	// Called every time the timer expires, i.e. every 20 seconds
 	@Override
 	protected JSONObject doWork() {
 		JSONObject result = new JSONObject();
+		
+		// Retrieve data about next alarm from store. Ensures the timer still works after interruption.
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		this.mSBNTitle = settings.getString("SBNTitle", this.mSBNTitle);
+		this.mSBNBody = settings.getString("SBNBody", this.mSBNBody);
+		this.mNextAlarmTimestamp = settings.getLong("NextAlarmTimestamp", this.mNextAlarmTimestamp);
+		Log.d(TAG, PREFS_NAME);
 		
 		try {
 		
@@ -59,10 +69,13 @@ public class FritsService extends BackgroundService {
 					
 					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 					// Vibrate for 500 milliseconds
-					v.vibrate(2000);
+					v.vibrate(1500);
 					
 					// Unset the alarm timer
 					mNextAlarmTimestamp = Long.MAX_VALUE;
+					
+					// Save this change
+					this.saveSettings();
 				}
 			}			
 		} catch (JSONException e) {
@@ -109,7 +122,9 @@ public class FritsService extends BackgroundService {
 			if (config.has("SBNTitle")) this.mSBNTitle = config.getString("SBNTitle");
 			if (config.has("SBNBody")) this.mSBNBody = config.getString("SBNBody");
 			
-			
+			// Save settings
+			this.saveSettings();
+						
 		} catch (JSONException e) {
 			Log.d(TAG, "JSONException in FritsService");
 		} catch (NumberFormatException e) {
@@ -120,6 +135,16 @@ public class FritsService extends BackgroundService {
 		doWork();
 		
 	}     
+	
+	
+	private void saveSettings() {
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    SharedPreferences.Editor editor = settings.edit();
+    editor.putString("SBNTitle", this.mSBNTitle);
+    editor.putString("SBNBody", this.mSBNBody);
+    editor.putLong("NextAlarmTimestamp", this.mNextAlarmTimestamp);
+		editor.commit();
+	}
 
 	@Override
 	protected JSONObject initialiseLatestResult() {
@@ -130,7 +155,6 @@ public class FritsService extends BackgroundService {
 	@Override
 	protected void onTimerEnabled() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
