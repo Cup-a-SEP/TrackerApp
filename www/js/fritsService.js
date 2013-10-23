@@ -58,7 +58,7 @@ function stopService() {
 }
 
 function enableTimer() {
-	fritsService.enableTimer(	20000,
+	fritsService.enableTimer(	2000,
 							function(r){handleSuccess(r)},
 							function(e){handleError(e)});
 }
