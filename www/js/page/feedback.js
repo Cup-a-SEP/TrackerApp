@@ -25,7 +25,7 @@ Page.Feedback.init = function PageFeedbackInit()
 	 * @param(body) The body of the email
 	 */
 	function mail(subject, body) {
-		var link = emailAddress + "?subject=" + escape("Klacht over " + subject) + "&body=" + escape(body);
+		var link = emailAddress + "?subject=" + escape("Feedback over " + subject) + "&body=" + escape(body);
 		window.location.href = link;
 	}
 
@@ -198,7 +198,7 @@ Page.Feedback.init = function PageFeedbackInit()
 	 * Resets the textarea and button disabled setting.
 	 */
 	function resetText() {
-		document.getElementById("comment").value = "Licht hier uw klacht toe";
+		document.getElementById("comment").value = "Licht hier uw feedback toe";
 		document.getElementById("submitButton").disabled = true;
 	}
 	/**
@@ -214,7 +214,7 @@ Page.Feedback.init = function PageFeedbackInit()
 			emptyLegs();
 			if (localStorage['OTP request'] == null) {
 				document.getElementById("subject").selectedIndex = 0;
-				alert("U kunt geen klacht indienen over een route zonder een route ingepland te hebben.");
+				alert("U kunt geen feedback indienen over een route zonder een route ingepland te hebben.");
 			} else {
 				createDiv();
 			}
@@ -223,7 +223,7 @@ Page.Feedback.init = function PageFeedbackInit()
 			emptyLegs();
 			if (localStorage['OTP request'] == null) {
 				document.getElementById("subject").selectedIndex = 0;
-				alert("U kunt geen klacht indienen over een halte of station zonder een route ingepland te hebben.");
+				alert("U kunt geen feedback indienen over een halte of station zonder een route ingepland te hebben.");
 			} else {
 				getStations();
 			}
@@ -232,7 +232,7 @@ Page.Feedback.init = function PageFeedbackInit()
 			emptyLegs();
 			if (localStorage['OTP request'] == null) {
 				document.getElementById("subject").selectedIndex = 0;
-				alert("U kunt geen klacht indienen over een vervoersmiddel zonder een route ingepland te hebben.");
+				alert("U kunt geen feedback indienen over een vervoersmiddel zonder een route ingepland te hebben.");
 			} else {
 				getVehicles();
 			}
@@ -248,7 +248,7 @@ Page.Feedback.init = function PageFeedbackInit()
 	 */
 	$("#comment").focus(function() {
 
-		if ($(this).val() == "Licht hier uw klacht toe") {
+		if ($(this).val() == "Licht hier uw feedback toe") {
 			$(this).val("");
 
 			document.getElementById("submitButton").disabled = false;

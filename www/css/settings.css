@@ -86,3 +86,8 @@ body {
     );
     background-attachment:fixed;
 }
+
+
+.slider-number:after {
+	content: ' min';
+}
