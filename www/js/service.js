@@ -5,7 +5,7 @@
 var Service = {};
 
 /**
- * Alarm service: functionality for fireing alarms.
+ * Alarm service: functionality for firing alarms.
  * @namespace Service.Alarm 
  */
 Service.Alarm = {};

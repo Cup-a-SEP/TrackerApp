@@ -27,12 +27,12 @@ Geo.ServerPath = 'http://bag42.nl/api/v0/geocode/json';
  * Callback for failure in geo requests
  * @callback Geo~FailCallback
  * @param          errorCode    - An error identifier
- * @param {String} errorMessage - A human readable error message.
+ * @param {String} errorMessage - An human readable error message.
  */
 
 /**
  * Converts an human readable location to geo-coordinates
- * @param {string} address - A human readable location designation
+ * @param {string} address - An human readable location designation
  * @return {object}  deferred object
  */
 Geo.code = function Geocode(address)

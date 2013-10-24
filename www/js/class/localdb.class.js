@@ -123,7 +123,7 @@ var LocalDB = Class.create({
 	 */
 	
 	/**
-	 * Select a single row from the current table by id
+	 * Selects a single row from the current table by id
 	 * 
 	 * @memberof LocalDB.prototype
 	 * @param {Number} id    - Row ID in the database table
@@ -142,7 +142,7 @@ var LocalDB = Class.create({
 	},
 	
 	/**
-	 * Select a single row from the current table
+	 * Selects a single row from the current table
 	 * 
 	 * @memberof LocalDB.prototype
 	 * @param {Number} limit - Limit of the amount of rows returned. A value of -1 disables the limit.
@@ -165,7 +165,7 @@ var LocalDB = Class.create({
 	},
 
 	/**
-	 * Select rows from the current table that match a certain value for a certain column
+	 * Selects rows from the current table that match a certain value for a certain column
 	 * 
 	 * @memberof LocalDB.prototype
 	 * @param {Object} match - Column-value pairs to search for in the database
@@ -258,7 +258,7 @@ var LocalDB = Class.create({
 	},
 
 	/**
-	 * Deletes a row into the current table by id.
+	 * Deletes a row from the current table by id.
 	 * 
 	 * @memberof LocalDB.prototype
 	 * @param {Number} id Row ID in the database table
@@ -272,7 +272,7 @@ var LocalDB = Class.create({
 	},
 	
 	/**
-	 * Deletes a row into the current table by match.
+	 * Deletes a row from the current table by match.
 	 * 
 	 * @memberof LocalDB.prototype
 	 * @param {Object} values - Column-value pairs to search for in the database
@@ -432,7 +432,7 @@ var LocalDBResult = Class.create({
 	},
 	
 	/**
-	 * Returns on object representation of teh rist row of the SQL result
+	 * Returns an object representation of the first row of the SQL result
 	 * @memberof LocalDBResult.prototype
 	 * @return {Object} field => value
 	 */
@@ -442,7 +442,7 @@ var LocalDBResult = Class.create({
 	},
 	
 	/**
-	 * Returns the numbre of affected rows
+	 * Returns the number of affected rows
 	 * @memberof LocalDBResult.prototype
 	 * @return {Number} number of rows affected 
 	 */

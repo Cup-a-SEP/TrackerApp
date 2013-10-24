@@ -5,7 +5,8 @@
 var Misc = {};
 
 /**
- * Levenshtein algorithm cost specification
+ * Alkema-Levenshtein algorithm cost specification
+ * This distance is equal to the Levenshtein distance but with free insertions at the end.
  * @typedef {Object} Misc~LDistanceCost
  * @property {Number} del  - Cost of deleting a letter
  * @property {Number} ins  - Cost of inserting a letter
@@ -13,7 +14,7 @@ var Misc = {};
  */
 
 /**
- * Calculates the Levenshtein distance between two strings
+ * Calculates the Alkema-Levenshtein distance between two strings
  * @param {String} src              - Source string
  * @param {String} dst              - Target string
  * @param {Misc~LDistanceCost} cost - Specifies cost parameters for the algorithm (optional)
