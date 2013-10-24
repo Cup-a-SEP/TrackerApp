@@ -18,6 +18,7 @@ var Misc = {};
  * @param {String} src              - Source string
  * @param {String} dst              - Target string
  * @param {Misc~LDistanceCost} cost - Specifies cost parameters for the algorithm (optional)
+ * @return {Number} Distance
  */
 Misc.lDistance = function MiscLDistance(src, dst, cost)
 {
