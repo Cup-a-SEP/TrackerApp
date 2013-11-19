@@ -1,0 +1,59 @@
+<section id="plan_page">
+	<form class="headerbuffer" id="form">
+		
+		<div class="eiland" class="shadow">
+		
+		<div class="divborder" id="fromdiv">
+			<label>Van<input type="text" id="from" name="from" placeholder="..."></label>
+			<input type="hidden" id="fromPlace" name="fromPlace">
+		</div>
+		<div id="sugfrom" class="suggestionsdiv"></div>
+		
+		<div class="divborder" id="todiv">
+			<label>Naar<input type="text" id="to" name="to" placeholder="..."></label>
+			<input type="hidden" id="toPlace" name="toPlace">
+		</div>
+		<div id="sugto" class="suggestionsdiv"></div>
+		
+		<div class="divborder" id="datetime">
+			<div id="ditmoetopdezelfdelijn">
+				<select name="arriveBy" id="arriveBy">
+					<option value="false">vertrek</option>
+					<option value="true">aankomst</option>
+				</select>
+				<div class="datetimeholder">
+					<input type="date" id="date" name="date" onclick="$(this).val('');">
+				</div>
+				<div class="datetimeholder">
+					<input type="time" id="time" name="time" onclick="$(this).val('');">
+				</div>		
+			</div>
+		</div>	
+			
+		<div class="divborder" id="voorkeur">
+			<label>Voorkeur<select id="preferenceDropdown" name="preferLeastTransfers">
+				<option value="false">snelste route</option>
+				<option value="true">minst aantal overstappen</option>
+			</select></label>
+		</div>
+		
+		<div class="divborder" id="modaliteiten">
+			<label>Modaliteiten<div align="center">
+				<img src="img/bus.png" class="icon" id="bus">
+				<img src="img/rail.png" class="icon" id="rail">
+				<img src="img/tram.png" class="icon" id="tram">
+				<img src="img/subway.png" class="icon" id="subway">
+				<img src="img/ferry.png" class="icon" id="ferry">
+			</div></label>
+			<input type="hidden" id="mode" name="mode" value="WALK,TRANSIT">
+		</div>
+		
+		<div id="planknop">
+			<div id="status"></div>
+			<button id="plan" class="button">Plan een reis</button>
+		</div>
+		
+		</div><!-- einde eiland -->
+		
+	</form>
+</section>

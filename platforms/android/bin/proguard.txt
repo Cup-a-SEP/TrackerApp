@@ -1,0 +1,9 @@
+# view AndroidManifest.xml #generated:6
+-keep class com.phonegap.hello_world.Frits { <init>(...); }
+
+# view AndroidManifest.xml #generated:12
+-keep class com.phonegap.hello_world.FritsService { <init>(...); }
+
+# view AndroidManifest.xml #generated:17
+-keep class com.red_folder.phonegap.plugin.backgroundservice.BootReceiver { <init>(...); }
+
