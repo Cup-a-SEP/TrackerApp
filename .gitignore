@@ -1,10 +1,10 @@
 *.class
 *.pyc
 *.pyo
-build-tools
-.gitignore
 .project
 *.db
 docs/
 .DS_Store
+._*
 node_modules/
+_build*
