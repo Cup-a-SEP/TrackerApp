@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map test</title>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="OpenLayers/OpenLayers.mobile.js"></script>
+	<style type="text/css">
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+		
+		#map {
+			width: 75%;
+			height: 75%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Map test</h1>
+	<div id="mapDiv" style="height: 300px; width:100%">&nbsp;</div>
+	<h1 id="speed">Speed:</h1>
+	<script src="OpenLayers/OpenLayers.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/geolocation.js"> </script>
+	<script src="js/calculateSpeed.js"> </script>
+	<script type="text/javascript">
+	
+		var geometric = new OpenLayers.Projection("EPSG:4326");
+		var mercator = new OpenLayers.Projection("EPSG:900913");
+		
+		var size = new OpenLayers.Size(21,25);
+		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+		var markerIcon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+		var map;
+		var bounds;
+		
+		function Map(id)
+		{
+			this.map = new OpenLayers.Map(id);
+			this.layer = new OpenLayers.Layer.OSM();
+			this.map.addLayer(this.layer);
+			this.proj = {};
+			this.proj.from = geometric;
+			this.proj.to = this.map.getProjection();
+		}
+		
+		function update(position) {
+			markerLayer.addMarker(new OpenLayers.Marker(
+			new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(geometric, map.proj.to), 
+				markerIcon.clone())
+			);
+			
+			bounds = markerLayer.getDataExtent();
+			
+			map.map.zoomToExtent(bounds);
+			
+			$('#speed').text('Speed: ' + localStorage['walkSpeed']);
+		}
+		
+		$(function()
+		{
+			
+			map = new Map("mapDiv");
+			markerLayer = new OpenLayers.Layer.Markers("Marker Layer");
+			
+			map.map.addLayers([markerLayer]);
+			
+			map.map.zoomToMaxExtent();
+			
+			startTrackPoll();
+		}
+		);
+	</script>
+</body>
+</html>

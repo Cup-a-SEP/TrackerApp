@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input test</title>
+	<script src="js/lib/jquery-1.8.3.min.js"></script>
+	<script src="js/lib/jquery.mobile-1.3.2.min.js"></script>
+	<script src="cordova.js"></script>
+	<script src="js/misc.js"></script>
+	<script src="js/system.js"></script>
+	<script src="js/geocode.js"></script>
+	<script src="js/ui.js"></script>
+	<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet">
+	<style type="text/css">
+		.ui-slider-switch { width: 9em !important; }
+	</style>
+</head>
+<body>
+	<section>
+		<h1>Input test</h1>
+		<form>
+			<input id="input" type="text" list="cities" style="width: 30em;">
+			<datalist id="cities">
+				<option>Eindhoven</option>
+				<option>Utrecht</option>
+				<option>Groningen</option>
+				<option>Breda</option>
+				<option>Tilburg</option>
+				<option>Onderkarspel</option>
+			</datalist>
+		</form>
+	</section>
+	<script>
+		$(function()
+		{
+			var top = $('<option>');
+			var input = $('#input');
+			
+			$('#cities').prepend(top);
+			input.keypress(function()
+			{
+				setTimeout(function()
+				{
+					Geo.code(input.val()).done(function(coords, address)
+					{
+						top.text(address);
+					});
+				}, 0);
+			});
+		});
+	</script>
+	<section>
+		<div data-role="page" id="page1">
+			<div data-role="header">
+				<h1>Input test</h1>
+				<a href="index.html" data-icon="delete" data-theme="e">Cancel</a>
+				<a href="index.html" data-icon="check" data-theme="e">Save</a>
+			</div>
+			<div data-role="content">
+				<label for="flip-0">Kies:</label>
+				<select name="flip-0" id="flip-0" data-role="slider" data-theme="e" data-track-theme="e">
+					<option value="arrive">Aankomst</option>
+					<option value="departure">Vertrek</option>
+				</select>
+			</div>
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Kies:</legend>
+					<input type="radio" id="radio-choice-1" name="radio">
+					<label for="radio-choice-1">Vertrek</label>
+					<input type="radio" id="radio-choice-2" name="radio" checked="">
+					<label for="radio-choice-2">Aankomst</label>
+				</fieldset>
+			</div>
+			<div data-role="content">
+				<ul id="autocomplete" data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Find a city..." data-filter-theme="d">
+				</ul>
+			</div>
+		</div>
+	</section>
+	<script>
+		$(function()
+		{
+			var defLoc = ['Eindhoven', 'Utrecht', 'Groningen', 'Breda', 'Tilburg'];
+			var ul = $('#autocomplete');
+			
+			ul.on('listviewbeforefilter', function (e, data)
+			{
+				var input = $(data.input);
+				var value = input.val();
+				console.log(value);
+				Geo.code(value).done(function(coords, address)
+				{
+					console.log(address);
+					ul.empty();
+					ul.append($('<li>').text(address));
+					ul.append($('<li>').attr('data-role', 'list-divider'));
+					$.each(defLoc, function(i, name)
+					{
+						ul.append($('<li>').text(name));
+						ul.listview('refresh');
+						ul.trigger('updatelayout');
+					});
+				});
+			});
+		});
+	</script>
+</body>
+</html>
