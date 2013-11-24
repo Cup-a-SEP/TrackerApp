@@ -82,15 +82,6 @@ $(function()
 		Page.back();
 	});
 	
-	Service.Alarm.Callback = function(type, leg)
-	{
-		var map = {
-			'departure':'Vertrek',
-			'embark':'Instap',
-			'alight':'Uitstap'
-		};
-		(navigator.notification ? navigator.notification : window).alert('De ' + map[type] + ' wekker ging af!', function(){}, 'Alarm');
-	};
 	setTimeout(Polling, 0);
 });
 

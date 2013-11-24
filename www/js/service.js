@@ -11,79 +11,39 @@ var Service = {};
 Service.Alarm = {};
 
 /**
- * Callback for triggered alarms
- * @callback Service.Alarm~Callback
- * @param {String} alarmType - Alarm type: departure, embark or alight.
- * @param {OTP~Leg} leg      - An OTP leg object
- */
-
-/**
- * Callback that is fired when an alarm is triggered
- * @attribute Callback
- * @type Service.Alarm~Callback
- */
-Service.Alarm.Callback = Function();
-
-/**
  * Recalculates the alarms (should be called when tracked trip data or alarm settings have changed). 
  */
 Service.Alarm.refresh = function ServiceAlarmRefresh()
 {
+	
+	// Obtain the current trip details or fail.
 	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
 	if (!res)
 		return;
-	
-	var legs = res.itineraries[0].legs;
-	var predelay =
-	{
-		departure: Number(localStorage['Alarm departure time']) * 60e3,
-		embark: Number(localStorage['Alarm embark time']) * 60e3,
-		alight: Number(localStorage['Alarm alight time']) * 60e3,
-	};
-	var active =
-	{
-		departure: localStorage['Alarm departure setting'] == 'true',
-		embark: localStorage['Alarm embark setting'] == 'true',
-		alight: localStorage['Alarm alight setting'] == 'true',
-	};
-	
-	// Add potential alarms
-	var alarms = [];
-	if (active.departure && legs.length)
-		alarms.push(
-		{
-			type: 'departure',
-			time: legs[0].startTime - predelay.departure,
-			legid: 0
-		});
-	
-	for (var i = 0; i < legs.length; ++i)
-	{
-		if (legs[i].mode == 'WALK')
-			continue;
 		
-		if (active.embark)
-			alarms.push(
-			{
-				type: 'embark',
-				time: legs[i].startTime - predelay.embark,
-				legid: i
-			});
-		if (active.alight)
-			alarms.push(
-			{
-				type: 'alight',
-				time: Math.max(legs[i].endTime - predelay.alight, legs[i].startTime),
-				legid: i
-			});
-	}
+	var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']);
+	if (!alarms)
+		return;
+		
+	var legs = res.itineraries[0].legs;
+
+	// Loop over all the alarms for updating
+	for (var i = 0; i < alarms.length; ++i) {
 	
-	// Remove alarms that are in the past
-	var now = new Date().getTime();
-	alarms = alarms.filter(function(alarm)
-	{
-		return alarm.time >= now;
-	});
+		var alarmLeg = null;
+		while (legs.length) {
+			var thisleg = legs.shift;
+			if (thisleg.id == alarms[i].leg) {
+				alarmLeg = thisleg;
+				break;
+			}
+		}
+		if (alarmLeg == null) return false; //There is a serious error, so abort.
+		
+		// Calculate new time for alarm
+		alarms[i].time: alarms[i].leadTime + (alarmType == 'departure' ? alarmLeg.startTime : alarmLeg.endTime),
+
+	}
 	
 	localStorage['Alarm data'] = $.toJSON(alarms);
 	
@@ -100,38 +60,134 @@ Service.Alarm.check = function ServiceAlarmCheck()
 	if (!alarms || !alarms.length)
 		return Infinity;
 	
-	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
-	if (!res)
-		return Infinity;
-	
 	var now = new Date().getTime();
-	while (alarms.length && alarms[0].time <= now)
-	{
-		var alarm = alarms.shift();
-		Service.Alarm.Callback(alarm.type, res.itineraries[0].legs[alarm.legid]);
-		localStorage['Alarm data'] = $.toJSON(alarms);
+
+	var nextAlarm = null
+	// Check each alarm (they are out of order)
+	for (var i = 0; i < alarms.length; ++i) {
+		var thisAlarm = alarms[i];
+		
+		// Check if the alarm should fire, and do so
+		if (thisAlarm.time <= now) {
+			
+			// Remove the item. Compensate the iterator variable.
+			alarms.splice(i--, 1);
+			
+			// Fire the alarm
+			Service.Alarm.Fire(alarm);
+			
+			// Save our alarm set
+			localStorage['Alarm data'] = $.toJSON(alarms);
+
+		} else {
+			
+			// If the alarm should not fire, then it might be the next alarm to fire.
+			if (thisAlarm.time < nextAlarm.time) {
+				nextAlarm = thisAlarm;
+			}
+		}
 	}
-	
-	return alarms.length ? alarms[0].time : Infinity;
+
+	return alarms.length ? nextAlarm.time : Infinity;
 };
 
 /**
- * Returns the type of the alarm that would fire at the specified timestamp
- * @param {Number} Time of the alarm (unix timestamp)
- * @return {String} alarm type ('departure', 'embark' or 'alight')
+ * Sets a new alarm or changes the existing alarm
+ * @param {String} leg - To which leg this alarm is related
+ * @param {String} alarmType - Alarm type: {departure, arrival}.
+ * @param {int} leadTime - The amount of time in seconds before the event that the alarm should sound
  */
-Service.Alarm.type = function ServiceAlarmType(timestamp)
-{
-	var alarms = localStorage['Alarm data'] && $.parseJSON(localStorage['Alarm data']);
-	if (!alarms || !alarms.length)
-		return '';
+Service.Alarm.set = function ServiceAlarmSet(leg, alarmType, leadTime) {
 	
-	for (var i = 0; i < alarms.length; ++i)
-		if (alarms[i].time == timestamp)
-			return alarms[i].type;
+	// Remove an earlier setting for this alarm if there is one
+	Service.Alarm.remove(leg, alarmType);
+	
+	
+	var alarmData = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
 
-	return '';
+	// Gather trip data in order to calculate alarm time
+	var res = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+	if (!res)
+		return;
+	
+	// Find the requested leg
+	var legs = res.itineraries[0].legs;
+	var alarmLeg = null;
+	while (legs.length) {
+		var thisleg = legs.shift;
+		if (thisleg.id == leg) {
+			alarmLeg = thisleg;
+			break;
+		}
+	}
+	if (alarmLeg == null) return false;
+		
+		
+	// Calculate the new alarm time and push the alarm into the set
+	alarmData.push(
+			{
+				type: alarmType,
+				leadTime: leadTime,
+				time: leadTime + (alarmType == 'departure' ? alarmLeg.startTime : alarmLeg.endTime),
+				leg: leg
+			});
+
+	// Save our alarm set
+	localStorage['Alarm data'] = $.toJSON(alarmData);
+
 };
+
+/**
+ * Removes the alarm specified by the parameters
+ * @param {String} leg - To which leg this alarm is related
+ * @param {String} alarmType - Alarm type: {departure, arrival}.
+ */
+Service.Alarm.remove = function ServiceAlarmRemove(leg, alarmType) {
+
+	var alarmData = localStorage['OTP data'] && $.parseJSON(localStorage['OTP data']);
+
+	// Find the requested alarm
+	for (var i = 0; i < alarmData.length; ++i) {
+		var thisAlarm = alarmData[i];
+		if (thisAlarm.leg == leg && thisAlarm.type == alarmType) {
+			
+			// Remove the item
+			alarmData.splice(i, 1);
+			
+			// Save our alarm set
+			localStorage['Alarm data'] = $.toJSON(alarmData);
+			return true;
+		}
+	}
+	return false;		
+};
+
+/**
+ * Removes all alarms.
+ * @param {String} leg - To which leg this alarm is related
+ * @param {String} alarmType - Alarm type: {departure, arrival}.
+ */
+Service.Alarm.removeAll = function ServiceAlarmRemoveAll() {
+	var alarmData = [];
+	
+	localStorage['Alarm data'] = $.toJSON(alarmData);
+};
+
+/**
+ * Fires an alarm
+ * @param {object} alarm - The alarm object to fire
+ */
+Service.Alarm.fire = function ServiceAlarmFire(alarm) {
+		
+	var map = {
+		'departure':'Vertrek',
+		'arrival':'Aankomst'
+	};
+	(navigator.notification ? navigator.notification : window).alert('De ' + map[alarm.type] + ' wekker ' ging af!', function(){}, 'Alarm');
+		
+};
+
+
 
 /**
  * Trip information update service to keep the trip data recent (uses onboard trip planning).
